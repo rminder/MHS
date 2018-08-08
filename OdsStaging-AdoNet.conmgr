@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OdsStaging-AdoNet"
+  DTS:DTSID="{44DF0C99-DB19-451B-9761-9E9DE33E5C88}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Application Name=SSIS-SL-{44DF0C99-DB19-451B-9761-9E9DE33E5C88}PROTXSQLBI01.minercorporation.com\Warehouse.OdsStaging.LucidDeveloper2;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAACyP51IbJ2t1omMx+imPLxTji6iMm9L7mlfwb/XcDHw7wAAAAAOgAAAAAIAACAAAADdUrFKP0qv1dXgVov6Ti2nPD/nANAqYJxhQdZqQj81FoAAAAALQadkX9b3G8JrEyrnY3lIX+5biyhfIldbD6T9vewwQFpXYAcOZfpFqVwr0PPqxLHsb21OgBLHDZ567QYaDvr3i85nSOJeuPANlr1q0zlmkl8OVKQkp5p8PaHlEkxdcMElg22GeZul1FkM8twGCUyWnrBnVeWUBj0+LeBSNfNSFkAAAABo36S2Jju2Pwuis1RbP5CtUdkiAxFqTfdBRNvvgUWD7zfHqS4dS4xT3oB0/NTRa0FvJW0MWKPrHwU6v/YW20u3</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

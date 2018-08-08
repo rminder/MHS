@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Ods</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{53011cc6-5a28-4cae-9a21-9d2795740e91}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Ods</RootNamespace>
+    <AssemblyName>Ods</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="SL\" />
+    <Folder Include="SL\Tables\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="SL\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="SL\Views\" />
+    <Folder Include="dbo\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="SL\Tables\Company.sql" />
+    <Build Include="SL\Tables\Account.sql" />
+    <Build Include="SL\Tables\AccountHist.sql" />
+    <Build Include="SL\Tables\AccountHistory.sql" />
+    <Build Include="SL\Tables\AccountHistoryHistory.sql" />
+    <Build Include="SL\Tables\GeneralLedgerTransaction.sql" />
+    <Build Include="SL\Tables\GeneralLedgerTransactionHistory.sql" />
+    <Build Include="dbo\Tables\TemporalTableDemo2.sql" />
+    <Build Include="dbo\Tables\TemporalTableDemo2History.sql" />
+    <Build Include="dbo\Tables\TemporalTableDemoHistory.sql" />
+    <Build Include="dbo\Tables\ImportLog.sql" />
+    <Build Include="SL\Functions\GeneralLedgerTransactionGetHistory.sql" />
+    <Build Include="dbo\Stored Procedures\AddImportLog.sql" />
+    <Build Include="Security\SL.sql" />
+    <Build Include="TemporalTables.sql" />
+    <Build Include="dbo\Tables\TemporalTableDemo.sql" />
+    <Build Include="dbo\Functions\TemporalTableDemoGetHistory.sql" />
+    <Build Include="SL\Tables\AccountsReceivableTransactionHistory.sql" />
+    <Build Include="SL\Tables\AccountsReceivableTransaction.sql" />
+    <Build Include="SL\Functions\AccountsReceivableTransactionGetHistory.sql" />
+    <Build Include="SL\Functions\AccountHistoryGetHistory.sql" />
+    <Build Include="SL\Functions\AccountGetHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableTransactionHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableTransaction.sql" />
+    <Build Include="SL\Functions\AccountsPayableTransactionGetHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableDocumentHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableDocument.sql" />
+    <Build Include="SL\Views\vwAccountsPayableDocument.sql" />
+    <Build Include="SL\Functions\AccountsPayableDocumentGetHistory.sql" />
+    <Build Include="SL\Tables\SegmentDefinitionHistory.sql" />
+    <Build Include="SL\Tables\SegmentDefinition.sql" />
+    <Build Include="dbo\Tables\LocationMapping.sql" />
+    <Build Include="dbo\Tables\DimDate.sql" />
+    <Build Include="SL\Views\vwSegmentDefinition.sql" />
+    <Build Include="dbo\Views\fGLTran.sql" />
+    <Build Include="dbo\Views\fGLStat.sql" />
+    <Build Include="dbo\Views\fARTran.sql" />
+    <Build Include="dbo\Views\fAPTran.sql" />
+    <Build Include="dbo\Views\dSubAcctSeg2.sql" />
+    <Build Include="dbo\Views\dSubAcctSeg1.sql" />
+    <Build Include="dbo\Views\dPosted.sql" />
+    <Build Include="dbo\Views\dPeriod.sql" />
+    <Build Include="dbo\Views\dModules.sql" />
+    <Build Include="dbo\Views\dJrnlType.sql" />
+    <Build Include="dbo\Views\dGLAccount.sql" />
+    <Build Include="dbo\Views\dCompany.sql" />
+    <Build Include="dbo\Views\dARDocType.sql" />
+    <Build Include="dbo\Views\dAPDocType.sql" />
+    <Build Include="SL\Functions\SegmentDefinitionGetHistory.sql" />
+    <Build Include="SL\Tables\GeneralLedgerSetupHistory.sql" />
+    <Build Include="SL\Tables\GeneralLedgerSetup.sql" />
+    <Build Include="SL\Views\vwGeneralLedgerTransaction.sql" />
+    <Build Include="SL\Views\vwGeneralLedgerSetup.sql" />
+    <Build Include="SL\Views\vwCompany.sql" />
+    <Build Include="SL\Views\vwAccountsReceivableTransaction.sql" />
+    <Build Include="SL\Views\vwAccountsPayableTransaction.sql" />
+    <Build Include="SL\Views\vwAccountHistory.sql" />
+    <Build Include="SL\Views\vwAccount.sql" />
+    <Build Include="dbo\Views\dTranType.sql" />
+    <Build Include="SL\Tables\CustomerHistory.sql" />
+    <Build Include="SL\Tables\Customer.sql" />
+    <Build Include="SL\Views\vwCustomer.sql" />
+    <Build Include="dbo\Views\dCustomer.sql" />
+    <Build Include="SL\Functions\CustomerGetHistory.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SchemaCompareOds.scmp" />
+    <None Include="SchemaCompareOdsStaging.scmp" />
+  </ItemGroup>
+</Project>

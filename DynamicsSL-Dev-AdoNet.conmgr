@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DynamicsSL-Dev-AdoNet"
+  DTS:DTSID="{4CD1FAC3-4058-480C-8DA9-89F520B167A1}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=PROCLSQLREPL01.mhd.local\INST01;User ID=LucidDeveloper;Initial Catalog=MinerSLAPP;Application Name=SSIS-SL-{4CD1FAC3-4058-480C-8DA9-89F520B167A1}PROTXSQLBI01\WAREHOUSE.DynamicsSL.LucidDeveloper;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADl9CgBg7R3anwMxizwbTlQfq4p1m0iZEnO4Zz02qtKXQAAAAAOgAAAAAIAACAAAAAA/uG6TL3XwDrrnQC8BLUE1TSxZTRQpt9S4DTuc58n0IAAAADhjjOc6GgXRRgMr5EAYSqYBin/XR3XYlbU/GndMJNjeb6WMdIZSX9i+NO3y1CmTA29XEb7ix6sTk8A3zV1hehLZHD/PGwmaxDQw46muUik0Wkw5KFgsDCwtin9P5OCyEF9z/Amcxv4sAvO6fpQD3n1aPx2eEfLhL880lRL/18JNUAAAACn4ItLFcyzf+onn8L3C36wH8xsWFtQBaNhU16vKvOf0nhOntAOnO0cjyAIW91WHgDjB8eM8v9eH/k53cpcA8Pl</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
