@@ -135,6 +135,15 @@
     <Build Include="SL\Views\vwCustomer.sql" />
     <Build Include="dbo\Views\dCustomer.sql" />
     <Build Include="SL\Functions\CustomerGetHistory.sql" />
+    <Build Include="SL\Tables\SalesPersonHistory.sql" />
+    <Build Include="SL\Tables\Salesperson.sql" />
+    <Build Include="SL\Tables\CustomerClassHistory_1.sql" />
+    <Build Include="SL\Tables\CustomerClass_1.sql" />
+    <Build Include="SL\Views\vwSalesPerson.sql" />
+    <Build Include="dbo\Views\vwCustomerClass_1.sql" />
+    <Build Include="dbo\Views\dCustClass.sql" />
+    <Build Include="SL\Functions\SalesPersonGetHistory.sql" />
+    <Build Include="SL\Functions\CustomerClassGetHistory_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

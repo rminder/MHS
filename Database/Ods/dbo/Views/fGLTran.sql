@@ -1,10 +1,39 @@
-﻿CREATE VIEW dbo.fGLTran
+﻿
+
+CREATE VIEW [dbo].[fGLTran]
 AS
-SELECT        Account AS 'Acct', BaseCurrencyId AS 'BaseCuryID', BatchNumber AS 'BatNbr', CompanyId AS 'CpnyID', CreditAmount AS 'CrAmt', CurrencyCreditAmount AS 'CuryCrAmt', CurrencyDebitAmount AS 'CuryDrAmt', 
-                         CurrencyId AS 'CuryId', CurrencyRate AS 'CuryRate', DebitAmount AS 'DrAmt', FiscalYear AS 'FiscYr', JournalType AS 'JrnlType', LedgerId AS 'LedgerID', LineNumber AS 'LineNbr', Module, PeriodToPost AS 'PerPost', 
-                         PeriodFinancialDate AS 'PerFinancialDate', Posted, ProjectId AS 'ProjectID', Released AS 'Rlsed', SubaccountId AS 'Sub', SubSeg1, SubSeg2, TaskId AS 'TaskID', TransactionDate AS 'TranDate', TransactionDesc AS 'TranDesc', 
-                         TransactionType AS 'TranType', TransactionReferenceNumber AS 'RefNbr', LastUpdate AS 'tstamp'
-FROM            SL.GeneralLedgerTransaction
+SELECT 
+
+COALESCE(CASE WHEN  Account = '' THEN NULL ELSE Account	 END, 'n/a') AS 'Acct',
+COALESCE(CASE WHEN  BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS 'BaseCuryID',
+COALESCE(CASE WHEN  [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a') AS 'BatNbr',
+COALESCE(CASE WHEN  [CompanyId] = '' THEN NULL ELSE [CompanyId] END, 'n/a') AS 'CpnyID',
+CASE WHEN [CreditAmount] IS NULL THEN 0 ELSE [CreditAmount] END AS 'CrAmt',
+CASE WHEN [CurrencyCreditAmount] IS NULL THEN 0 ELSE [CurrencyCreditAmount] END AS 'CuryCrAmt',
+CASE WHEN [CurrencyDebitAmount] IS NULL THEN 0 ELSE [CurrencyDebitAmount] END AS 'CuryDrAmt',
+COALESCE(CASE WHEN [CurrencyId] = '' THEN NULL ELSE [CurrencyId] END, 'n/a') AS 'CuryId',
+CASE WHEN [CurrencyRate] IS NULL THEN 0 ELSE [CurrencyRate] END AS 'CuryRate',
+CASE WHEN [DebitAmount] IS NULL THEN 0 ELSE [DebitAmount] END AS 'DrAmt',
+COALESCE(CASE WHEN  [FiscalYear] = '' THEN NULL ELSE [FiscalYear] END, 'n/a') AS 'FiscYr',
+COALESCE(CASE WHEN  [JournalType] = '' THEN NULL ELSE [JournalType] END, 'n/a') AS 'JrnlType',
+COALESCE(CASE WHEN  [LedgerId] = '' THEN NULL ELSE [LedgerId] END, 'n/a') AS 'LedgerID',
+CASE WHEN [LineNumber] IS NULL THEN 0 ELSE [LineNumber] END AS 'LineNbr',
+COALESCE(CASE WHEN  [Module] = '' THEN NULL ELSE [Module] END, 'n/a') AS 'Module',
+COALESCE(CASE WHEN  [PeriodToPost] = '' THEN NULL ELSE [PeriodToPost] END, 'n/a') AS 'PerPost',
+CASE WHEN  [PeriodFinancialDate] IS NULL THEN '1900-1-1 00:00:00' ELSE  [PeriodFinancialDate] END AS 'PerFinancialDate',
+COALESCE(CASE WHEN  [Posted] = '' THEN NULL ELSE [Posted] END, 'n/a') AS 'Posted',
+COALESCE(CASE WHEN  [ProjectId] = '' THEN NULL ELSE [ProjectId] END, 'n/a') AS 'ProjectID',
+CASE WHEN [Released] IS NULL THEN 0 ELSE [Released] END AS 'Rlsed',
+COALESCE(CASE WHEN  [SubaccountId] = '' THEN NULL ELSE [SubaccountId] END, 'n/a') AS 'Sub',
+COALESCE(CASE WHEN  [SubSeg1] = '' THEN NULL ELSE [SubSeg1] END, 'n/a') AS 'SubSeg1',
+COALESCE(CASE WHEN  [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a') AS 'SubSeg2',
+COALESCE(CASE WHEN  [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a') AS 'TaskID',
+CASE WHEN  [TransactionDate] IS NULL THEN '1900-1-1 00:00:00' ELSE  [TransactionDate] END AS 'TranDate',
+COALESCE(CASE WHEN  [TransactionDesc] = '' THEN NULL ELSE [TransactionDesc] END, 'n/a') AS 'TranDesc',
+COALESCE(CASE WHEN  [TransactionType] = '' THEN NULL ELSE [TransactionType] END, 'n/a') AS 'trantype',
+COALESCE(CASE WHEN  [TransactionReferenceNumber] = '' THEN NULL ELSE [TransactionReferenceNumber] END, 'n/a') AS 'RefNbr',
+CASE WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00' ELSE [LastUpdate] END AS 'tstamp'
+FROM SL.GeneralLedgerTransaction
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fGLTran';
 

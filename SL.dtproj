@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAAD6B8qeKNLTj539Y7AMpVqWJ5ZwdWwxs7NYN6dzGLPR9AAAAAAOgAAAAAIAACAAAAA1zgswV18AH8tQGAV/JPZcI44RMJQzYqdX/SpNX55HxpAAAAA2Cbhucq6bYKW16Okj5aB/9VgDtzvBJmQH/oJ/FeqdMJdwQPFYSVKTCDB+e911UK7y9OUO6v17XvVCALoTUR3LXRh82o5zo/mDrTznD26HOaXxQInb+ngxpw9RJWnJ5S2gSxYPih8fssaK6U0TBVX3adA5X1PLJds9HVt2tVzy+wnicrFqoMYS4oHPWu5y82tAAAAAlEefL41ebIaE1OgcMpHEu8UItLrXmzfadBKKwC/5mevTxXTi+8f6VKfWKN5QgZCHr97DouoRK2bwLA870hBRsw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABFX6ZsHYegVnB/6B3HKHm2yNjHwyiTe4cnGmASYApe0wAAAAAOgAAAAAIAACAAAAAViWU9p2FG/VLirJDTcZXHs8q10nwugBF4WQNW2l4mkZAAAADDp7e+zxt2VQVh0xXHbBKmtgHONpeYmMCI+r9ywlq+FCAKA75eavorv5bsW9u49WAsAHyw7AKD8B6YVfRbRf+OuGwZPpvc0y9xr1cxaGQa/kb9m/nCpzfF1mHnpIXAzU6TGoFMMyxwFmZ6Fos3/tQYmnZ+AFf9yc2trkisJ/PwuNnUQtS7RR/zelDHgROAE3ZAAAAA1ddmbKEQg62zcVQf9dUff1W89Zza+1mE2+a/rgxpgXq+iQjO6REKn+55fE8sro1icUQpMD1GCa84CJSqJmdFRQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -41,6 +41,7 @@
           <SSIS:Package SSIS:Name="SL-GeneralLedgerSetup.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-Customer.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-CustomerClass.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SL.SalesPerson.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="OdsProduction.conmgr" />
@@ -858,6 +859,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{D263811D-08F8-4F91-B5A7-5D356F56AE7A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SL.SalesPerson.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{EDC9A0C5-D8DD-4EB5-AFC4-AF80C5DE508A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SL SalesPerson</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">230</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{AEC91CD1-445C-41A3-A1FB-3F1F6F246CC9}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
