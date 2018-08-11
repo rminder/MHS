@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SL SalesPerson"
   DTS:PackageType="5"
-  DTS:VersionBuild="230"
-  DTS:VersionGUID="{AEC91CD1-445C-41A3-A1FB-3F1F6F246CC9}">
+  DTS:VersionBuild="232"
+  DTS:VersionGUID="{8E1AAB78-EBAC-4664-B4DF-448719D18E17}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -84,26 +84,26 @@ ELSE
       DTS:CreationName=""
       DTS:DTSID="{04D4FA3C-7441-4444-B085-5CF34182F080}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA; SalesPersonId From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By SalesPersonId&quot;"
+      DTS:Expression="&quot;Select&#xA; SalesPersonId From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetOdsRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
- SalesPersonId From SL.SalesPerson Where LastUpdate Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') Order By SalesPersonId</DTS:VariableValue>
+ SalesPersonId From SL.SalesPerson Where LastUpdate Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{1593E190-2CB0-4E0C-BE25-F9C049D1B446}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA;   RTrim(SlsperId) as [SL-SalesPersonId] &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By SlsperId&quot;"
+      DTS:Expression="&quot;Select&#xA;   RTrim(SlsperId) as [SL-SalesPersonId] &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSLStagingRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
    RTrim(SlsperId) as [SL-SalesPersonId] 
-From dbo.SalesPerson Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') Order By SlsperId</DTS:VariableValue>
+From dbo.SalesPerson Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -352,14 +352,35 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.SalesPerson Where LUpd_DateTime Between @
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -739,35 +760,14 @@ namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1163,6 +1163,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                         <inputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Add to Staging Delete.Inputs[OLE DB Destination Input].Columns[SalesPersonId]"
                           cachedCodepage="1252"
+                          cachedComparisonFlags="200711"
                           cachedDataType="str"
                           cachedLength="10"
                           cachedName="SalesPersonId"
@@ -1232,12 +1233,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\Conditional Split.Outputs[NullSalesPersonId]"
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\Conditional Split.Outputs[NullCondition]"
                       description="Output 1 of the Conditional Split Transformation"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       exclusionGroup="1"
-                      name="NullSalesPersonId"
+                      name="NullCondition"
                       synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\Conditional Split.Inputs[Conditional Split Input]"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1309,7 +1310,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="System.Int32"
                       description="Specifies the type of join to perform."
                       name="JoinType"
-                      typeConverter="JoinType">1</property>
+                      typeConverter="JoinType">2</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the number of columns in the ordering key."
@@ -1332,11 +1333,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                         <inputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Left Input].Columns[SalesPersonId]"
                           cachedCodepage="1252"
+                          cachedComparisonFlags="200711"
                           cachedDataType="str"
                           cachedLength="10"
                           cachedName="SalesPersonId"
                           cachedSortKeyPosition="1"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output].Columns[SalesPersonId]" />
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Outputs[Sort Output].Columns[SalesPersonId]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -1348,11 +1350,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                         <inputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Right Input].Columns[SL-SalesPersonId]"
                           cachedCodepage="1252"
+                          cachedComparisonFlags="200711"
                           cachedDataType="str"
                           cachedLength="10"
                           cachedName="SL-SalesPersonId"
                           cachedSortKeyPosition="1"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output].Columns[SL-SalesPersonId]" />
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Outputs[Sort Output].Columns[SL-SalesPersonId]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -1366,6 +1369,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                         <outputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Outputs[Merge Join Output].Columns[SalesPersonId]"
                           codePage="1252"
+                          comparisonFlags="200711"
                           dataType="str"
                           length="10"
                           lineageId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Outputs[Merge Join Output].Columns[SalesPersonId]"
@@ -1458,7 +1462,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   <outputs>
                     <output
                       refId="Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output]"
-                      isSorted="true"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
@@ -1471,7 +1474,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                           length="10"
                           lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output].Columns[SalesPersonId]"
                           name="SalesPersonId"
-                          sortKeyPosition="1"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
@@ -1514,6 +1516,79 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   </outputs>
                 </component>
                 <component
+                  refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="Ods Sort"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Inputs[Sort Input].Columns[SalesPersonId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="SalesPersonId"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output].Columns[SalesPersonId]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">200711</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Outputs[Sort Output].Columns[SalesPersonId]"
+                          codePage="1252"
+                          comparisonFlags="200711"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Outputs[Sort Output].Columns[SalesPersonId]"
+                          name="SalesPersonId"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output].Columns[SalesPersonId]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Find Deleted Rows in Source\Store to Staging\Row Count"
                   componentClassID="Microsoft.RowCount"
                   contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -1538,6 +1613,79 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       refId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Outputs[Row Count Output 1]"
                       name="Row Count Output 1"
                       synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="SL Sort"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Inputs[Sort Input].Columns[SL-SalesPersonId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="SL-SalesPersonId"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output].Columns[SL-SalesPersonId]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">200711</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Outputs[Sort Output].Columns[SL-SalesPersonId]"
+                          codePage="1252"
+                          comparisonFlags="200711"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Outputs[Sort Output].Columns[SL-SalesPersonId]"
+                          name="SL-SalesPersonId"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output].Columns[SL-SalesPersonId]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -1608,7 +1756,6 @@ Where LUpd_DateTime Between @TargetDate And DateAdd("M",1,@TargetDate)</property
                   <outputs>
                     <output
                       refId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output]"
-                      isSorted="true"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
@@ -1621,7 +1768,6 @@ Where LUpd_DateTime Between @TargetDate And DateAdd("M",1,@TargetDate)</property
                           length="10"
                           lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output].Columns[SL-SalesPersonId]"
                           name="SL-SalesPersonId"
-                          sortKeyPosition="1"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
@@ -1674,22 +1820,32 @@ Where LUpd_DateTime Between @TargetDate And DateAdd("M",1,@TargetDate)</property
                   refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[NullBatchNumber]"
                   endId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Inputs[Row Count Input 1]"
                   name="NullBatchNumber"
-                  startId="Package\Find Deleted Rows in Source\Store to Staging\Conditional Split.Outputs[NullSalesPersonId]" />
+                  startId="Package\Find Deleted Rows in Source\Store to Staging\Conditional Split.Outputs[NullCondition]" />
                 <path
                   refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output]"
-                  endId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Right Input]"
-                  name="OLE DB Source Output"
-                  startId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output]" />
-                <path
-                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
-                  endId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Left Input]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Inputs[Sort Input]"
                   name="OLE DB Source Output"
                   startId="Package\Find Deleted Rows in Source\Store to Staging\Ods.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Find Deleted Rows in Source\Store to Staging\SL Staging.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[Row Count Output 1]"
                   endId="Package\Find Deleted Rows in Source\Store to Staging\Add to Staging Delete.Inputs[OLE DB Destination Input]"
                   name="Row Count Output 1"
                   startId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Outputs[Row Count Output 1]" />
+                <path
+                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[Sort Output]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Left Input]"
+                  name="Sort Output"
+                  startId="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort.Outputs[Sort Output]" />
+                <path
+                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[Sort Output1]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\Merge Join.Inputs[Merge Join Right Input]"
+                  name="Sort Output"
+                  startId="Package\Find Deleted Rows in Source\Store to Staging\SL Sort.Outputs[Sort Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -1712,36 +1868,6 @@ Where LUpd_DateTime Between @TargetDate And DateAdd("M",1,@TargetDate)</property
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1948,6 +2074,35 @@ using System.Runtime.CompilerServices;
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2085,34 +2240,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -5033,36 +5189,6 @@ Where LUpd_DateTime &gt; ?</property>
           Language="CSharp"
           ReadOnlyVariables="User::GetSourceRowsQuery">
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -5181,6 +5307,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
+    "ings")]
+
+namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="ST_3dd9bda90c68436bb536c6598ed20014.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -5406,34 +5561,35 @@ namespace ST_3dd9bda90c68436bb536c6598ed20014
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
-    "ings")]
-
-namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Settings.settings"
             Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -6286,10 +6442,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="130,42"
-          Id="Package\Find Deleted Rows in Source\Store to Staging\Merge Join"
-          TopLeft="404.166666666667,191.666666666667" />
-        <NodeLayout
           Size="130.5,42"
           Id="Package\Find Deleted Rows in Source\Store to Staging\Row Count"
           TopLeft="413,415" />
@@ -6332,74 +6484,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
-          TopLeft="377.166666666667,109.833333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="71.6666666666667,81.8333333333337"
-              Start="0,0"
-              End="71.6666666666667,74.3333333333337">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,44.503039513678" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,44.503039513678"
-                    Point2="0,48.503039513678"
-                    Point3="4,48.503039513678" />
-                  <mssgle:LineSegment
-                    End="67.6666666666667,48.503039513678" />
-                  <mssgle:CubicBezierSegment
-                    Point1="67.6666666666667,48.503039513678"
-                    Point2="71.6666666666667,48.503039513678"
-                    Point3="71.6666666666667,52.503039513678" />
-                  <mssgle:LineSegment
-                    End="71.6666666666667,74.3333333333337" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output]"
-          TopLeft="573.666666666667,111.166666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-84.166666666667,80.5"
-              Start="0,0"
-              End="-84.166666666667,73">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.7127659574468" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,43.7127659574468"
-                    Point2="0,47.7127659574468"
-                    Point3="-4,47.7127659574468" />
-                  <mssgle:LineSegment
-                    End="-80.166666666667,47.7127659574468" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-80.166666666667,47.7127659574468"
-                    Point2="-84.166666666667,47.7127659574468"
-                    Point3="-84.166666666667,51.7127659574468" />
-                  <mssgle:LineSegment
-                    End="-84.166666666667,73" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[NullBatchNumber]"
           TopLeft="475.666666666667,336.541666666667">
           <EdgeLayout.Curve>
@@ -6419,24 +6503,172 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-39.67798828125,30.6046549479165,79.3559765625,9.7490234375"
+              BoundingBox="-29.47193359375,30.6046549479165,58.9438671875,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="119.5,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\Ods Sort"
+          TopLeft="232.083333333333,150.416666666667" />
+        <NodeLayout
+          Size="112.5,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\SL Sort"
+          TopLeft="620.416666666667,155.416666666667" />
         <EdgeLayout
-          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Merge Join Output]"
-          TopLeft="471.125,233.666666666667">
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output]"
+          TopLeft="377.166666666667,109.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.875"
+              EndConnector="-85.3333333333337,40.5833333333334"
               Start="0,0"
-              End="0,53.375">
+              End="-85.3333333333337,33.0833333333334">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.375" />
+                    End="0,16.2916666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.2916666666667"
+                    Point2="0,20.2916666666667"
+                    Point3="-4,20.2916666666667" />
+                  <mssgle:LineSegment
+                    End="-81.3333333333337,20.2916666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81.3333333333337,20.2916666666667"
+                    Point2="-85.3333333333337,20.2916666666667"
+                    Point3="-85.3333333333337,24.2916666666667" />
+                  <mssgle:LineSegment
+                    End="-85.3333333333337,33.0833333333334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
+          TopLeft="573.666666666667,111.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103,44.25"
+              Start="0,0"
+              End="103,36.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.125"
+                    Point2="0,22.125"
+                    Point3="4,22.125" />
+                  <mssgle:LineSegment
+                    End="98.9999999999998,22.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.9999999999998,22.125"
+                    Point2="103,22.125"
+                    Point3="103,26.125" />
+                  <mssgle:LineSegment
+                    End="103,36.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\Merge Join"
+          TopLeft="415.833333333333,197.5" />
+        <EdgeLayout
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Sort Output]"
+          TopLeft="351.583333333333,171.416666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.2499999999999,47.0833333333333"
+              Start="0,0"
+              End="56.7499999999999,47.0833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="28.125,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.125,0"
+                    Point2="32.125,0"
+                    Point3="32.125,4" />
+                  <mssgle:LineSegment
+                    End="32.125,43.0833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.125,43.0833333333333"
+                    Point2="32.125,47.0833333333333"
+                    Point3="36.125,47.0833333333333" />
+                  <mssgle:LineSegment
+                    End="56.7499999999999,47.0833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Sort Output1]"
+          TopLeft="620.416666666667,176.416666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-74.5833333333335,42.0833333333333"
+              Start="0,0"
+              End="-67.0833333333335,42.0833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-33.2916666666667,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33.2916666666667,0"
+                    Point2="-37.2916666666667,0"
+                    Point3="-37.2916666666667,4" />
+                  <mssgle:LineSegment
+                    End="-37.2916666666667,38.0833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-37.2916666666667,38.0833333333333"
+                    Point2="-37.2916666666667,42.0833333333333"
+                    Point3="-41.2916666666667,42.0833333333333" />
+                  <mssgle:LineSegment
+                    End="-67.0833333333335,42.0833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Merge Join Output]"
+          TopLeft="476.958333333333,239.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.041666666667"
+              Start="0,0"
+              End="0,47.541666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.541666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
