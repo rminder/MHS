@@ -36,7 +36,14 @@
 );
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_AccountsReceivableTransactionHistory]
     ON [SL].[AccountsReceivableTransactionHistory]([ValidTo] ASC, [ValidFrom] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransactionHistory_RowId]
+    ON [SL].[AccountsReceivableTransactionHistory]([RowId] ASC);
 

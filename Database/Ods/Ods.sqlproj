@@ -144,6 +144,26 @@
     <Build Include="dbo\Views\dCustClass.sql" />
     <Build Include="SL\Functions\SalesPersonGetHistory.sql" />
     <Build Include="SL\Functions\CustomerClassGetHistory_1.sql" />
+    <Build Include="SL\Tables\VendorHistory.sql" />
+    <Build Include="SL\Tables\VendorClassHistory.sql" />
+    <Build Include="SL\Tables\VendorClass.sql" />
+    <Build Include="SL\Tables\Vendor.sql" />
+    <Build Include="SL\Tables\SubaccountHistory.sql" />
+    <Build Include="SL\Tables\Subaccount.sql" />
+    <Build Include="SL\Tables\LedgerHistory.sql" />
+    <Build Include="SL\Tables\Ledger.sql" />
+    <Build Include="SL\Tables\AccountsReceivableDocumentHistory.sql" />
+    <Build Include="SL\Tables\AccountsReceivableDocument.sql" />
+    <Build Include="dbo\Tables\GetARBalance.sql" />
+    <Build Include="SL\Views\vwLedger.sql" />
+    <Build Include="SL\Views\vwCustomerClass.sql" />
+    <Build Include="SL\Views\vwAccountsReceivableDocument.sql" />
+    <Build Include="SL\Views\vwAccountsReceivableBalances.sql" />
+    <Build Include="dbo\Views\fARBalance.sql" />
+    <Build Include="dbo\Views\fAPBalance.sql" />
+    <Build Include="dbo\Views\dVendor.sql" />
+    <Build Include="dbo\Views\dSalesPerson.sql" />
+    <Build Include="SL\Functions\AccountsReceivableDocumentGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

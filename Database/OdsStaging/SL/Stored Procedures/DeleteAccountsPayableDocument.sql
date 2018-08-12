@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 5-Aug, 2018
 -- Description: Delete rows from Ods.SL.AccountsPayableDocument
@@ -18,7 +19,8 @@ BEGIN
 
 	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
 	-- OdsStaging
+
 	DELETE T
 	FROM Ods.SL.AccountsPayableDocument T
-		INNER JOIN OdsStaging.SL.APDocDelete T2 ON RTRIM(T2.DocType) = T.DocumentType AND RTRIM(T2.Acct) = T.Account AND RTRIM(T2.Sub) = T.SubaccountId AND RTRIM(T2.RefNbr) = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
+		INNER JOIN OdsStaging.SL.APDocDelete T2 ON T2.Account = T.Account And T2.SubaccountId = T.SubaccountId And T2.DocumentType = T.DocumentType And T2.TransactionReferenceNumber = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
 END

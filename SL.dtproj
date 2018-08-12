@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABCLUIUC8uaQe/cEO1sd+mwvReyhZ9rUCoFIQV0UCip3QAAAAAOgAAAAAIAACAAAAChSWLYCiGu94/qSM9fcbl72vtxjxzP8JxPtlsx9EiUBJAAAAD3QsGTI1wPJEzKMibUVo4cJz5fj5RnLX6a51BHYq38qztuk7rcq2K+1I9lftftn3rZ4XMjFM6VuXKwHgKpucjXDJXvTi4wDvK7JbrjBOl+JQayaLveAN9RV/NNZhgItm5NReqm23E8zhUGZki3B9p+rHu8rD40I0b3HQlhUmhOopIs/JnzckyxcoXTSw5oqrBAAAAAIib3a5hf83sOYdCJTKB/Y4QQ7DyJj2aktVfHyaaUN1twlMxSr730KcbO6I1kmqG5QLZUWKpo9bPfI7tosq1keQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAACXlbfOt3yN4G+ihgn+tuVLraz0deLXSxCp28HvzkvEiQAAAAAOgAAAAAIAACAAAACwPB+V+pLBhJs+WO+P1K23u/YzL9pwHOkZ1gzeGy2prpAAAABxu9c77rZOhViBEt20Ew+e5qnwBckrCzKnMQEO16AVSqA//AErPL+IoIuEHZWezzpzz1vB5vARnSJ+qGbqI/AVrLBEk2CCsUconWCfhNNE2jwvOyeDIATP5JQrffgq1YpWNI6RFl4IvlmbfD8/Sy0TUHkFQcdCuKn8yycy+cbV3WqfiXGS8B+CmU2WNw/vRqRAAAAArMnxh6J0X7zXqqMMqQi5Ghp56gX+qgV0U3cAQq4WLm9oU4v81UB+Tbwa0qshCuxW8bBk4qFS2AGRleeK+rVlYg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -43,6 +43,7 @@
           <SSIS:Package SSIS:Name="SL-CustomerClass.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL.SalesPerson.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-AccountsReceivableDocument.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SL-Vendor.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="OdsProduction.conmgr" />
@@ -244,7 +245,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROCLSQLREPL01.mhd.local\INST01;User ID=LucidDeveloper;Initial Catalog=MinerSLAPP;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=DynamicsSL;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -259,7 +260,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">MinerSLAPP</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">DynamicsSL</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -303,7 +304,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROCLSQLREPL01.mhd.local\INST01</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -894,6 +895,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{1A93DFFA-1E15-430A-9F50-858B621D5B02}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SL-Vendor.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{90B57B00-569B-487E-8319-18B65547FF6A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SL-Vendor</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">232</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B0F612B9-2F4F-42CC-BF88-B4A91CEB1528}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

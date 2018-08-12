@@ -41,7 +41,15 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableTransactionH
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransaction_LastUpdate]
     ON [SL].[AccountsReceivableTransaction]([LastUpdate] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransaction_TransactionReferenceNumber_TransactionType_CustomerId]
+    ON [SL].[AccountsReceivableTransaction]([CustomerId] ASC, [TransactionReferenceNumber] ASC, [TransactionType] ASC)
+    INCLUDE([SubaccountId]);
 

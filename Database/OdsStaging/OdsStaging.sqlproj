@@ -116,5 +116,25 @@
     <Build Include="SL\Views\vwCustClass_1.sql" />
     <Build Include="SL\Stored Procedures\DeleteSalesPerson.sql" />
     <Build Include="SL\Stored Procedures\DeleteCustomerClass_1.sql" />
+    <Build Include="SL\Tables\VendorDelete.sql" />
+    <Build Include="SL\Tables\Vendor.sql" />
+    <Build Include="SL\Tables\VendClassDelete.sql" />
+    <Build Include="SL\Tables\VendClass.sql" />
+    <Build Include="SL\Tables\SubAcctDelete.sql" />
+    <Build Include="SL\Tables\SubAcct.sql" />
+    <Build Include="SL\Tables\LedgerDelete.sql" />
+    <Build Include="SL\Tables\Ledger.sql" />
+    <Build Include="SL\Tables\ARDocDelete.sql" />
+    <Build Include="SL\Tables\ARDoc.sql" />
+    <Build Include="SL\Views\vwVendor.sql" />
+    <Build Include="SL\Views\vwVendClass.sql" />
+    <Build Include="SL\Views\vwSubAcct.sql" />
+    <Build Include="SL\Views\vwLedger.sql" />
+    <Build Include="SL\Views\vwARDoc.sql" />
+    <Build Include="SL\Stored Procedures\DeleteVendorClass.sql" />
+    <Build Include="SL\Stored Procedures\DeleteVendor.sql" />
+    <Build Include="SL\Stored Procedures\DeleteSubaccount.sql" />
+    <Build Include="SL\Stored Procedures\DeleteLedger.sql" />
+    <Build Include="SL\Stored Procedures\DeleteAccountsReceivableDocument.sql" />
   </ItemGroup>
 </Project>
