@@ -136,5 +136,9 @@
     <Build Include="SL\Stored Procedures\DeleteSubaccount.sql" />
     <Build Include="SL\Stored Procedures\DeleteLedger.sql" />
     <Build Include="SL\Stored Procedures\DeleteAccountsReceivableDocument.sql" />
+    <Build Include="SL\Tables\BudgetDelete.sql" />
+    <Build Include="SL\Tables\Budget.sql" />
+    <Build Include="SL\Views\vwBudget.sql" />
+    <Build Include="SL\Stored Procedures\DeleteBudget.sql" />
   </ItemGroup>
 </Project>

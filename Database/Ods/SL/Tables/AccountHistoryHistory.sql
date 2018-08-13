@@ -1,4 +1,4 @@
-﻿CREATE TABLE [SL].[AccountHistoryHistory] (
+CREATE TABLE [SL].[AccountHistoryHistory] (
     [RowId]              INT              NOT NULL,
     [Account]            VARCHAR (10)     NOT NULL,
     [BalanceType]        CHAR (1)         NOT NULL,
@@ -33,11 +33,14 @@
 
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_AccountHistoryHistory]
     ON [SL].[AccountHistoryHistory]([ValidTo] ASC, [ValidFrom] ASC);
 
 
 GO
-
+CREATE NONCLUSTERED INDEX [IX_AccountHistory_RowId]
+    ON [SL].[AccountHistoryHistory]([RowId] ASC);
 
