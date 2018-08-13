@@ -1,0 +1,16 @@
+﻿Create View SL.vwVendor AS
+SELECT 
+	[RowId]
+	,[City]
+	,[ClassId]
+	,[Country]
+	,[Name]
+	,[State]
+	,[Status]
+	,[VendorId]
+	,[Zip]
+	,[LastUpdate]
+	,[ImportDate]
+	,[ValidFrom]
+	,[ValidTo]
+  FROM [SL].[Vendor]

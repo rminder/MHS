@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [SL].[VendorDelete] (
-    [VendId] CHAR (15) NOT NULL,
-    CONSTRAINT [PKVendorDelete] PRIMARY KEY CLUSTERED ([VendId] ASC)
+    [VendId] CHAR (15) NOT NULL
 );
+
+
 

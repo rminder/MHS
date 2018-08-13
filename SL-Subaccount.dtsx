@@ -5,20 +5,20 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="MinderVM"
   DTS:CreatorName="MinderVM\randyminder"
-  DTS:DTSID="{CF118C0E-1458-421B-82FE-83BD5A39CC87}"
+  DTS:DTSID="{6ED22181-C457-4845-B7FB-36003CD308EB}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.106"
   DTS:LocaleID="1033"
-  DTS:ObjectName="SL-Account"
+  DTS:ObjectName="SL-Subaccount"
   DTS:PackageType="5"
-  DTS:VersionBuild="220"
-  DTS:VersionGUID="{7AC64A86-2080-4C77-89BF-399F2EB1D456}">
+  DTS:VersionBuild="223"
+  DTS:VersionGUID="{E10DDCE8-4D35-4D98-AFDA-AFADC267BB1C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{9AF73E70-0C86-4A85-AECD-4258757F1BD6}"
+      DTS:DTSID="{E3FA6F71-791B-43D6-93DF-2442B04BA630}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="BeginDate">
@@ -27,7 +27,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{D9ECF5E0-D187-49AF-AD89-B53EEA544FF2}"
+      DTS:DTSID="{DAA63B89-9F20-41B7-B892-4B1BF3B38524}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="DeletedRowCount">
@@ -36,18 +36,18 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{F585834D-CBDE-455E-9300-3B4ABD1F9086}"
+      DTS:DTSID="{496DFCD3-01B8-4AED-ABBA-39A230AF8F0B}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Execute &quot; + @[User::OdsSchemaName] + &quot;.Delete&quot; + @[User::OdsTableName]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="DeleteFromOdsQuery">
       <DTS:VariableValue
-        DTS:DataType="8">Execute SL.DeleteAccount</DTS:VariableValue>
+        DTS:DataType="8">Execute SL.DeleteSubaccount</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{CE7B9343-8678-4EF6-9DB6-18455474AA5B}"
+      DTS:DTSID="{F73528EA-533B-49C5-81DB-0B4329CFCB9A}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="EndDate">
@@ -56,7 +56,7 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B75CD101-583C-4B7C-864E-E88E165B234D}"
+      DTS:DTSID="{42427C31-BBC2-4B02-972A-AC05DC5740F2}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Declare @TargetDate Date = '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;' &#xA;Declare @RowCount int&#xA;&#xA;-- Check to see if we just processed any rows between the date contained in the parameter value and that date plus&#xA;-- one month&#xA;Select @RowCount = Count(*)&#xA;From &quot; + @[User::OdsFullTableName] + &quot;&#xA;Where LastUpdate Between @TargetDate And DateAdd(MONTH,1,@TargetDate)&#xA;&#xA;IF @RowCount = 0&#xA;   -- No we didn't process any rows. Find the first date greater than the date contained in the parametert value. This is where we&#xA;   -- will start the next iteration&#xA;   Select ISNULL(MIN(LastUpdate),'1/1/9999') as NextDate From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate &gt; @TargetDate&#xA;ELSE&#xA;   -- Yes we did process some rows. Advance the date contained in the paraeter one month.&#xA;   Select DateAdd(MONTH,1,@TargetDate) as NextDate&quot;"
       DTS:IncludeInDebugDump="2345"
@@ -69,56 +69,56 @@ Declare @RowCount int
 -- Check to see if we just processed any rows between the date contained in the parameter value and that date plus
 -- one month
 Select @RowCount = Count(*)
-From SL.Account
+From SL.Subaccount
 Where LastUpdate Between @TargetDate And DateAdd(MONTH,1,@TargetDate)
 
 IF @RowCount = 0
    -- No we didn't process any rows. Find the first date greater than the date contained in the parametert value. This is where we
    -- will start the next iteration
-   Select ISNULL(MIN(LastUpdate),'1/1/9999') as NextDate From SL.Account Where LastUpdate &gt; @TargetDate
+   Select ISNULL(MIN(LastUpdate),'1/1/9999') as NextDate From SL.Subaccount Where LastUpdate &gt; @TargetDate
 ELSE
    -- Yes we did process some rows. Advance the date contained in the paraeter one month.
    Select DateAdd(MONTH,1,@TargetDate) as NextDate</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6B024D56-92F6-4EDB-B0B6-140FC36E225B}"
+      DTS:DTSID="{D3545DB4-AD01-4D52-A7A8-1999AEB2F763}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA; Account From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
+      DTS:Expression="&quot;Select&#xA; SubaccountId From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetOdsRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
- Account From SL.Account Where LastUpdate Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
+ SubaccountId From SL.Subaccount Where LastUpdate Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{DC6B709B-6667-482D-A950-3F392BBC87FF}"
+      DTS:DTSID="{6938B188-CD8B-4311-ABB0-BD391CD43B5C}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA;   RTrim(Acct) as [SL-Account]  &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
+      DTS:Expression="&quot;Select&#xA;   RTrim(Sub) as [SL-Subaccount]Id  &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') &quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSLStagingRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
-   RTrim(Acct) as [SL-Account]  
-From dbo.Account Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
+   RTrim(Sub) as [SL-Subaccount]Id  
+From dbo.SubAcct Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1/1/1900') </DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{AC385747-C885-4C22-B06A-E68369A33191}"
+      DTS:DTSID="{FD4E937D-5368-4D1C-8634-6D2255FB9640}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Select * From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime &gt; '&quot; + (DT_WSTR,50)@[User::SourceLastUpdate] + &quot;'&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSourceRowsQuery">
       <DTS:VariableValue
-        DTS:DataType="8">Select * From dbo.Account Where LUpd_DateTime &gt; '1/1/1900'</DTS:VariableValue>
+        DTS:DataType="8">Select * From dbo.SubAcct Where LUpd_DateTime &gt; '1/1/1900'</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E676404C-7DB7-43FE-A16B-B8A016874CBC}"
+      DTS:DTSID="{8452AEB2-F2E3-466A-AAD0-D52542185701}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="InsertUpdateRowCount">
@@ -127,45 +127,45 @@ From dbo.Account Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1/1
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{71337C97-3286-4946-8AA9-5AC9F8010EF4}"
+      DTS:DTSID="{9B08C9C8-95E9-4B36-AD41-C38303A12F27}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;[&quot; + REPLACE( @[User::OdsStagingTableName] , &quot;.&quot;, &quot;-&quot; ) + &quot;]&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="LastUpdateColumn">
       <DTS:VariableValue
-        DTS:DataType="8">[SL-Account]</DTS:VariableValue>
+        DTS:DataType="8">[SL-SubAcct]</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E0BF2C2D-E37C-4953-9461-AF0B8E23A255}"
+      DTS:DTSID="{80FDF5E3-ED68-4411-9B7A-CF7F4A3EFD73}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;IF (Select Count(*) From &quot; + @[User::OdsStagingTableName] +&quot;) &gt; 0 BEGIN &#xA;DECLARE @LastUpdateDate datetime2(7) &#xA;Set @LastUpdateDate = (Select Max(LUpd_DateTime) From &quot; + @[User::OdsStagingTableName] + &quot;) &#xA;&#xA;UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  &#xA;WHERE TableName = '&quot; + @[User::LastUpdateColumn] + &quot;' END&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="LastUpdateQuery">
       <DTS:VariableValue
-        DTS:DataType="8">IF (Select Count(*) From SL.Account) &gt; 0 BEGIN 
+        DTS:DataType="8">IF (Select Count(*) From SL.SubAcct) &gt; 0 BEGIN 
 DECLARE @LastUpdateDate datetime2(7) 
-Set @LastUpdateDate = (Select Max(LUpd_DateTime) From SL.Account) 
+Set @LastUpdateDate = (Select Max(LUpd_DateTime) From SL.SubAcct) 
 
 UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  
-WHERE TableName = '[SL-Account]' END</DTS:VariableValue>
+WHERE TableName = '[SL-SubAcct]' END</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{E924AE4D-F3DF-4C44-A96E-4F423B8C1C29}"
+      DTS:DTSID="{27D61232-C882-4AD2-8A3C-1F0F10F206A0}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="@[User::OdsSchemaName] + &quot;.&quot; +  @[User::OdsTableName]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsFullTableName">
       <DTS:VariableValue
-        DTS:DataType="8">SL.Account</DTS:VariableValue>
+        DTS:DataType="8">SL.Subaccount</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{150DEC11-199A-4070-881F-FF2C8BB496B2}"
+      DTS:DTSID="{2F6C7C62-69A7-454B-BEB5-12E0A9700EDA}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="OdsRowCount">
@@ -174,7 +174,7 @@ WHERE TableName = '[SL-Account]' END</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{527B5E7C-A84E-4F32-8253-0DE87CECA0FC}"
+      DTS:DTSID="{E6F57B86-95D3-4556-86FF-5190A80F610F}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Declare @BeginDate Date = '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;' &#xA;&#xA;SELECT COUNT(*) AS [RowCount] FROM &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between @BeginDate And DateAdd(MONTH,1,@BeginDate)&quot;"
       DTS:IncludeInDebugDump="2345"
@@ -183,11 +183,11 @@ WHERE TableName = '[SL-Account]' END</DTS:VariableValue>
       <DTS:VariableValue
         DTS:DataType="8">Declare @BeginDate Date = '1/1/1900' 
 
-SELECT COUNT(*) AS [RowCount] FROM SL.Account Where LastUpdate Between @BeginDate And DateAdd(MONTH,1,@BeginDate)</DTS:VariableValue>
+SELECT COUNT(*) AS [RowCount] FROM SL.Subaccount Where LastUpdate Between @BeginDate And DateAdd(MONTH,1,@BeginDate)</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{6C5749B0-53D1-4E9A-9D70-E053EF44EA5D}"
+      DTS:DTSID="{47439432-9187-438B-A683-23081E8D31CD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsSchemaName">
@@ -196,45 +196,45 @@ SELECT COUNT(*) AS [RowCount] FROM SL.Account Where LastUpdate Between @BeginDat
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{C7D3B0A5-AC8D-452C-BA47-D0AA6AE1459B}"
+      DTS:DTSID="{F8BB7F1A-78D1-4FF8-B736-0DEF8262D146}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="@[User::OdsStagingTableName] + &quot;Delete&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsStagingDeleteTableName">
       <DTS:VariableValue
-        DTS:DataType="8">SL.AccountDelete</DTS:VariableValue>
+        DTS:DataType="8">SL.SubAcctDelete</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{DED4E62F-181A-42D3-B57B-8A08946673A3}"
+      DTS:DTSID="{58EDDA02-F394-46C2-93C8-53705C8AE4BF}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsStagingTableName">
       <DTS:VariableValue
-        DTS:DataType="8">SL.Account</DTS:VariableValue>
+        DTS:DataType="8">SL.SubAcct</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{D34A5141-0FF5-4345-8CEC-1B3B4BB2FF62}"
+      DTS:DTSID="{A9E8FAFF-E206-409B-A1F5-29DBA567C44C}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsStagingViewName">
       <DTS:VariableValue
-        DTS:DataType="8">SL.vwAccount</DTS:VariableValue>
+        DTS:DataType="8">SL.vwSubAcct</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{B52342C8-50E5-4E85-87F0-641F4C58F33F}"
+      DTS:DTSID="{99F243F6-26C4-45F8-8F77-8B3D83732AF6}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="OdsTableName">
       <DTS:VariableValue
-        DTS:DataType="8">Account</DTS:VariableValue>
+        DTS:DataType="8">Subaccount</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{1E341128-71CD-4B91-8CE0-9FD316E9F39D}"
+      DTS:DTSID="{6D995F17-8635-4B2C-A7BE-1FDA3E4879BA}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="SourceLastUpdate">
@@ -243,7 +243,7 @@ SELECT COUNT(*) AS [RowCount] FROM SL.Account Where LastUpdate Between @BeginDat
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{8FAB1C73-032E-459A-A65E-90412691FB99}"
+      DTS:DTSID="{D2FCDDC4-8B9C-457B-8EE9-D99F2B03A8A5}"
       DTS:IncludeInDebugDump="6789"
       DTS:Namespace="User"
       DTS:ObjectName="SourceRowCount">
@@ -252,7 +252,7 @@ SELECT COUNT(*) AS [RowCount] FROM SL.Account Where LastUpdate Between @BeginDat
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{529BCBD9-7D93-4D34-905A-2BE741CA5652}"
+      DTS:DTSID="{769C1DDB-C8DC-471D-BA1A-3E6B562F4224}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="&quot;Declare @BeginDate Date = '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;' &#xA;&#xA;SELECT COUNT(*) AS [RowCount] FROM &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between @BeginDate And DateAdd(MONTH,1,@BeginDate)&quot;"
       DTS:IncludeInDebugDump="2345"
@@ -261,16 +261,16 @@ SELECT COUNT(*) AS [RowCount] FROM SL.Account Where LastUpdate Between @BeginDat
       <DTS:VariableValue
         DTS:DataType="8">Declare @BeginDate Date = '1/1/1900' 
 
-SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @BeginDate And DateAdd(MONTH,1,@BeginDate)</DTS:VariableValue>
+SELECT COUNT(*) AS [RowCount] FROM dbo.SubAcct Where LUpd_DateTime Between @BeginDate And DateAdd(MONTH,1,@BeginDate)</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
-      DTS:DTSID="{3AA37E1D-4E7D-49F1-9AB2-850B52DDBC4A}"
+      DTS:DTSID="{10BC9769-94EB-4EE3-824B-0B7C05B6D2B7}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SourceTableName">
       <DTS:VariableValue
-        DTS:DataType="8">dbo.Account</DTS:VariableValue>
+        DTS:DataType="8">dbo.SubAcct</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -278,7 +278,7 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @Begi
       DTS:refId="Package\Delete From Ods"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{70719824-0AD7-4431-8872-B961E36EF4C4}"
+      DTS:DTSID="{798E40D9-E927-455A-BE8E-723C9770B43B}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Delete From Ods"
@@ -296,7 +296,7 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @Begi
       DTS:refId="Package\Find Deleted Rows in Source"
       DTS:CreationName="STOCK:FORLOOP"
       DTS:Description="For Loop Container"
-      DTS:DTSID="{71FB84D6-DD44-443C-BFCC-4782840B7F9F}"
+      DTS:DTSID="{269ED0B8-4FD3-4F25-AA85-9D38CC34DAAD}"
       DTS:EvalExpression="@BeginDate &lt;= GetDate()"
       DTS:ExecutableType="STOCK:FORLOOP"
       DTS:InitExpression="@BeginDate = &quot;1/1/1800&quot;"
@@ -309,7 +309,7 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @Begi
           DTS:refId="Package\Find Deleted Rows in Source\Find Next Start Date"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Find Next Start Date"
-          DTS:DTSID="{D28FF966-0689-4074-BBFD-EC443AFE7F64}"
+          DTS:DTSID="{D67376CA-2869-46A6-9161-86618D8C405B}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Find Next Start Date"
@@ -338,7 +338,7 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @Begi
           DTS:refId="Package\Find Deleted Rows in Source\Missing Rows in Ods"
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
-          DTS:DTSID="{D5DD5773-FA02-45E8-89F9-71EFB1720650}"
+          DTS:DTSID="{949D3386-D6CC-4F35-9102-A2ED50944091}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Missing Rows in Ods"
@@ -351,36 +351,6 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Account Where LUpd_DateTime Between @Begi
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -500,6 +470,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -731,34 +730,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -961,7 +961,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:refId="Package\Find Deleted Rows in Source\Ods Row Count"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{8F3AADB5-B846-468B-ACD7-5E4D2FD8DE7A}"
+          DTS:DTSID="{D1A91520-A95E-4347-849C-58D6DF30F041}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Ods Row Count"
@@ -984,7 +984,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:refId="Package\Find Deleted Rows in Source\Source Row Count"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{14883050-AD95-4939-862F-DF7ABF3066E9}"
+          DTS:DTSID="{0939A3CA-3A33-499B-8132-BD268A7E1B8F}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Source Row Count"
@@ -1007,7 +1007,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:refId="Package\Find Deleted Rows in Source\Store to Staging"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{A3DC8114-F399-44B0-B58D-326760DBD598}"
+          DTS:DTSID="{EDAB3E30-3BFF-4B51-A907-6847B81985C4}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Store to Staging"
@@ -1017,7 +1017,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <DTS:EventHandler
               DTS:refId="Package\Find Deleted Rows in Source\Store to Staging.EventHandlers[OnPostExecute]"
               DTS:CreationName="OnPostExecute"
-              DTS:DTSID="{074001B6-0732-4C39-9310-6DC1A05AB1DA}"
+              DTS:DTSID="{01751C84-0256-41D6-A3FD-E5FF8308C1D4}"
               DTS:EventID="0"
               DTS:EventName="OnPostExecute"
               DTS:LocaleID="-1">
@@ -1025,7 +1025,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                 <DTS:Variable
                   DTS:CreationName=""
                   DTS:Description="The propagate property of the event"
-                  DTS:DTSID="{C02273AC-4D64-43B7-8C0B-B2A37B980910}"
+                  DTS:DTSID="{B9AA0B53-5079-41E6-8185-61649639FA26}"
                   DTS:IncludeInDebugDump="6789"
                   DTS:Namespace="System"
                   DTS:ObjectName="Propagate">
@@ -1038,7 +1038,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   DTS:refId="Package\Find Deleted Rows in Source\Store to Staging.EventHandlers[OnPostExecute]\Execute SQL Task"
                   DTS:CreationName="Microsoft.ExecuteSQLTask"
                   DTS:Description="Execute SQL Task"
-                  DTS:DTSID="{AC1C884B-099A-4EE5-9664-4F6197CB02BF}"
+                  DTS:DTSID="{19038796-3F7E-48D8-A0F6-1026C9F724A1}"
                   DTS:ExecutableType="Microsoft.ExecuteSQLTask"
                   DTS:LocaleID="-1"
                   DTS:ObjectName="Execute SQL Task"
@@ -1102,14 +1102,16 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       description="Specifies the SQL statement that generates the lookup table."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select RTrim(Acct) as Acct From dbo.Account</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select RTrim(Sub) as Sub 
+From dbo.SubAcct</property>
                     <property
                       dataType="System.String"
                       description="Specifies a SQL statement that uses parameters to generate the lookup table."
                       expressionType="Notify"
                       name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (Select RTrim(Acct) as Acct From dbo.Account) [refTable]
-where [refTable].[Acct] = ?</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (Select RTrim(Sub) as Sub 
+From dbo.SubAcct) [refTable]
+where [refTable].[Sub] = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the type of connection used to access the reference dataset."
@@ -1140,12 +1142,12 @@ where [refTable].[Acct] = ?</property>
                     <property
                       dataType="System.String"
                       description="Indicates whether to reference metadata in an XML format."
-                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Acct" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Sub" dataType="DT_STR" length="24" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[Account]};</property>
+                      name="ParameterMap">#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[SubaccountId]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1169,17 +1171,17 @@ where [refTable].[Acct] = ?</property>
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Inputs[Lookup Input].Columns[Account]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Inputs[Lookup Input].Columns[SubaccountId]"
                           cachedCodepage="1252"
                           cachedDataType="str"
-                          cachedLength="10"
-                          cachedName="Account"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[Account]">
+                          cachedLength="24"
+                          cachedName="SubaccountId"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[SubaccountId]">
                           <properties>
                             <property
                               dataType="System.String"
                               description="Specifies the column in the reference table that a column joins."
-                              name="JoinToReferenceColumn">Acct</property>
+                              name="JoinToReferenceColumn">Sub</property>
                             <property
                               dataType="System.Null"
                               description="Specifies the column in the reference table from which a column is copied."
@@ -1199,19 +1201,19 @@ where [refTable].[Acct] = ?</property>
                       synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Outputs[Lookup Match Output].Columns[Acct]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Outputs[Lookup Match Output].Columns[Sub]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Copy Column"
-                          length="10"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Outputs[Lookup Match Output].Columns[Acct]"
-                          name="Acct"
+                          length="24"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Lookup.Outputs[Lookup Match Output].Columns[Sub]"
+                          name="Sub"
                           truncationRowDisposition="FailComponent">
                           <properties>
                             <property
                               dataType="System.String"
                               description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn">Acct</property>
+                              name="CopyFromReferenceColumn">Sub</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -1311,25 +1313,25 @@ where [refTable].[Acct] = ?</property>
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[Account]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[SubaccountId]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
-                          length="10"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[Account]"
-                          name="Account"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[SubaccountId]"
+                          length="24"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[SubaccountId]"
+                          name="SubaccountId"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[SubaccountId]"
                           codePage="1252"
                           dataType="str"
-                          length="10"
-                          name="Account" />
+                          length="24"
+                          name="SubaccountId" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1338,12 +1340,12 @@ where [refTable].[Acct] = ?</property>
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[SubaccountId]"
                           codePage="1252"
                           dataType="str"
-                          length="10"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[Account]"
-                          name="Account" />
+                          length="24"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[SubaccountId]"
+                          name="SubaccountId" />
                         <outputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1434,22 +1436,22 @@ where [refTable].[Acct] = ?</property>
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[Account]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[SubaccountId]"
                           cachedCodepage="1252"
                           cachedDataType="str"
-                          cachedLength="10"
-                          cachedName="Account"
-                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct]"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[Account]" />
+                          cachedLength="24"
+                          cachedName="SubaccountId"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[Sub]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[SubaccountId]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[Sub]"
                           codePage="1252"
                           dataType="str"
-                          length="10"
-                          name="Acct" />
+                          length="24"
+                          name="Sub" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -1533,7 +1535,7 @@ where [refTable].[Acct] = ?</property>
           DTS:CreationName="Microsoft.ScriptTask"
           DTS:Description="Script Task"
           DTS:Disabled="True"
-          DTS:DTSID="{07E9165F-0F95-412D-B7F6-E48E69B3CCAF}"
+          DTS:DTSID="{E7BF8C5E-884B-4EC0-9393-35B9C5D780AF}"
           DTS:ExecutableType="Microsoft.ScriptTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="View Row Counts"
@@ -1546,6 +1548,15 @@ where [refTable].[Acct] = ?</property>
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -1752,35 +1763,6 @@ where [refTable].[Acct] = ?</property>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -1918,6 +1900,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -1947,15 +1958,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2150,7 +2152,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{D3496915-0664-4C14-8308-3A9C6E1CE43D}"
+          DTS:DTSID="{46D5D50C-B40E-4B38-9B21-6FADE88A3C93}"
           DTS:From="Package\Find Deleted Rows in Source\Source Row Count"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
@@ -2158,7 +2160,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
-          DTS:DTSID="{17138553-28EF-4009-AE14-B846106D0A6D}"
+          DTS:DTSID="{EA6F6215-8ECE-4A30-82EA-C787632D1013}"
           DTS:From="Package\Find Deleted Rows in Source\Ods Row Count"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint 1"
@@ -2166,7 +2168,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint 2]"
           DTS:CreationName=""
-          DTS:DTSID="{8343587C-B6E1-4701-B2ED-9E063A560EFC}"
+          DTS:DTSID="{F58482D4-B22A-4E72-865F-C631FFCC215A}"
           DTS:EvalOp="1"
           DTS:Expression="@[User::OdsRowCount] &gt;  @[User::SourceRowCount]"
           DTS:From="Package\Find Deleted Rows in Source\View Row Counts"
@@ -2176,7 +2178,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint 3]"
           DTS:CreationName=""
-          DTS:DTSID="{CFCE56E6-4EB3-4692-B390-B4BBFABF6A40}"
+          DTS:DTSID="{6105839C-55D2-40E9-A1E3-3A15F0DF98DD}"
           DTS:EvalOp="1"
           DTS:Expression="@[User::OdsRowCount]  ==  @[User::SourceRowCount]"
           DTS:From="Package\Find Deleted Rows in Source\View Row Counts"
@@ -2185,14 +2187,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint 4]"
           DTS:CreationName=""
-          DTS:DTSID="{8325D545-5B40-4486-A18E-C262A76F530B}"
+          DTS:DTSID="{A27720B7-6224-45C3-A0E5-26805BAFEE87}"
           DTS:From="Package\Find Deleted Rows in Source\Store to Staging"
           DTS:ObjectName="Constraint 4"
           DTS:To="Package\Find Deleted Rows in Source\Find Next Start Date" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Find Deleted Rows in Source.PrecedenceConstraints[Constraint 5]"
           DTS:CreationName=""
-          DTS:DTSID="{48AAEB57-6BBF-452A-9BA5-FF7F05D3DCE6}"
+          DTS:DTSID="{F41A3461-C9D8-4CDC-8059-CC966A48BD68}"
           DTS:EvalOp="1"
           DTS:Expression="@[User::OdsRowCount] &lt;  @[User::SourceRowCount]"
           DTS:From="Package\Find Deleted Rows in Source\View Row Counts"
@@ -2205,7 +2207,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       DTS:refId="Package\Find Rows to Upsert"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{6CFE5412-55B1-4121-A34B-F5CE274C03D6}"
+      DTS:DTSID="{F0D2295A-CA19-4ECE-B136-99A252DA3662}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Find Rows to Upsert"
@@ -2215,7 +2217,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:EventHandler
           DTS:refId="Package\Find Rows to Upsert.EventHandlers[OnPostExecute]"
           DTS:CreationName="OnPostExecute"
-          DTS:DTSID="{87EC1E54-E54F-45C9-B8D3-F1E309A78798}"
+          DTS:DTSID="{6F1A3F73-7AFA-4849-8AAF-C7C5C9EED964}"
           DTS:EventID="7471174"
           DTS:EventName="OnPostExecute"
           DTS:LocaleID="-1">
@@ -2223,7 +2225,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             <DTS:Variable
               DTS:CreationName=""
               DTS:Description="The propagate property of the event"
-              DTS:DTSID="{F129B229-2383-48CD-BED7-3FECB147745A}"
+              DTS:DTSID="{9072D4EC-20ED-41B8-A695-23DCEE043ADE}"
               DTS:IncludeInDebugDump="6789"
               DTS:Namespace="System"
               DTS:ObjectName="Propagate">
@@ -2236,7 +2238,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               DTS:refId="Package\Find Rows to Upsert.EventHandlers[OnPostExecute]\Log Upsert"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Log Upsert"
-              DTS:DTSID="{D352ED49-1A0E-458C-A6D4-43E5BF960878}"
+              DTS:DTSID="{F74C275C-F770-4FF2-932F-8DCEF7A92750}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="Log Upsert"
@@ -2334,7 +2336,7 @@ Where LUpd_DateTime &gt; ?</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping">"Parameter0:Input",{1E341128-71CD-4B91-8CE0-9FD316E9F39D};</property>
+                  name="ParameterMapping">"Parameter0:Input",{6D995F17-8635-4B2C-A7BE-1FDA3E4879BA};</property>
               </properties>
               <connections>
                 <connection
@@ -2349,17 +2351,6 @@ Where LUpd_DateTime &gt; ?</property>
                   refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct]"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct]"
-                      name="Acct"
-                      truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Crtd_DateTime]"
                       dataType="dbTimeStamp"
@@ -2390,17 +2381,6 @@ Where LUpd_DateTime &gt; ?</property>
                       length="10"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Crtd_User]"
                       name="Crtd_User"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[CuryId]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[CuryId]"
-                      length="4"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[CuryId]"
-                      name="CuryId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[LUpd_DateTime]"
@@ -2639,49 +2619,6 @@ Where LUpd_DateTime &gt; ?</property>
                       name="User8"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[tstamp]"
-                      dataType="bytes"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[tstamp]"
-                      length="8"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[tstamp]"
-                      name="tstamp"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[AcctType]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[AcctType]"
-                      length="2"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[AcctType]"
-                      name="AcctType"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct_Cat]"
-                      length="16"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat]"
-                      name="Acct_Cat"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct_Cat_SW]"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat_SW]"
-                      name="Acct_Cat_SW"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Active]"
                       dataType="i2"
                       errorOrTruncationOperation="Conversion"
@@ -2689,28 +2626,6 @@ Where LUpd_DateTime &gt; ?</property>
                       externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Active]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Active]"
                       name="Active"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ClassID]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ClassID]"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ClassID]"
-                      name="ClassID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolAcct]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ConsolAcct]"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolAcct]"
-                      name="ConsolAcct"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Descr]"
@@ -2724,80 +2639,30 @@ Where LUpd_DateTime &gt; ?</property>
                       name="Descr"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Employ_Sw]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolSub]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Employ_Sw]"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Employ_Sw]"
-                      name="Employ_Sw"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ConsolSub]"
+                      length="24"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolSub]"
+                      name="ConsolSub"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RatioGrp]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Sub]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RatioGrp]"
-                      length="2"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RatioGrp]"
-                      name="RatioGrp"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[SummPost]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[SummPost]"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[SummPost]"
-                      name="SummPost"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[UnitofMeas]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[UnitofMeas]"
-                      length="6"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[UnitofMeas]"
-                      name="UnitofMeas"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Units_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Units_SW]"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Units_SW]"
-                      name="Units_SW"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ValidateID]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ValidateID]"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ValidateID]"
-                      name="ValidateID"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Sub]"
+                      length="24"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Sub]"
+                      name="Sub"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="Acct" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Crtd_DateTime]"
                       dataType="dbTimeStamp"
@@ -2814,12 +2679,6 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="10"
                       name="Crtd_User" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[CuryId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
-                      name="CuryId" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[LUpd_DateTime]"
                       dataType="dbTimeStamp"
@@ -2942,39 +2801,9 @@ Where LUpd_DateTime &gt; ?</property>
                       length="8"
                       name="tstamp" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[AcctType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      name="AcctType" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct_Cat]"
-                      codePage="1252"
-                      dataType="str"
-                      length="16"
-                      name="Acct_Cat" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Acct_Cat_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="Acct_Cat_SW" />
-                    <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Active]"
                       dataType="i2"
                       name="Active" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ClassID]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ClassID" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ConsolAcct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ConsolAcct" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Descr]"
                       codePage="1252"
@@ -2982,41 +2811,17 @@ Where LUpd_DateTime &gt; ?</property>
                       length="30"
                       name="Descr" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Employ_Sw]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ConsolSub]"
                       codePage="1252"
                       dataType="str"
-                      length="1"
-                      name="Employ_Sw" />
+                      length="24"
+                      name="ConsolSub" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RatioGrp]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Sub]"
                       codePage="1252"
                       dataType="str"
-                      length="2"
-                      name="RatioGrp" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[SummPost]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="SummPost" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[UnitofMeas]"
-                      codePage="1252"
-                      dataType="str"
-                      length="6"
-                      name="UnitofMeas" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[Units_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="Units_SW" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[ValidateID]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="ValidateID" />
+                      length="24"
+                      name="Sub" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3025,52 +2830,17 @@ Where LUpd_DateTime &gt; ?</property>
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct]"
-                      name="Acct" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[AcctType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[AcctType]"
-                      name="AcctType" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct_Cat]"
-                      codePage="1252"
-                      dataType="str"
-                      length="16"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct_Cat]"
-                      name="Acct_Cat" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct_Cat_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Acct_Cat_SW]"
-                      name="Acct_Cat_SW" />
-                    <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Active]"
                       dataType="i2"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Active]"
                       name="Active" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ClassID]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ConsolSub]"
                       codePage="1252"
                       dataType="str"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ClassID]"
-                      name="ClassID" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ConsolAcct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ConsolAcct]"
-                      name="ConsolAcct" />
+                      length="24"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ConsolSub]"
+                      name="ConsolSub" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Crtd_DateTime]"
                       dataType="dbTimeStamp"
@@ -3091,26 +2861,12 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Crtd_User]"
                       name="Crtd_User" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[CuryId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[CuryId]"
-                      name="CuryId" />
-                    <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Descr]"
                       codePage="1252"
                       dataType="str"
                       length="30"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Descr]"
                       name="Descr" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Employ_Sw]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Employ_Sw]"
-                      name="Employ_Sw" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[LUpd_DateTime]"
                       dataType="dbTimeStamp"
@@ -3135,13 +2891,6 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="i4"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[NoteID]"
                       name="NoteID" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RatioGrp]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RatioGrp]"
-                      name="RatioGrp" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[S4Future01]"
                       codePage="1252"
@@ -3211,26 +2960,12 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[S4Future12]"
                       name="S4Future12" />
                     <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[SummPost]"
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Sub]"
                       codePage="1252"
                       dataType="str"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[SummPost]"
-                      name="SummPost" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[UnitofMeas]"
-                      codePage="1252"
-                      dataType="str"
-                      length="6"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[UnitofMeas]"
-                      name="UnitofMeas" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Units_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Units_SW]"
-                      name="Units_SW" />
+                      length="24"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[Sub]"
+                      name="Sub" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[User1]"
                       codePage="1252"
@@ -3279,19 +3014,6 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="dbTimeStamp"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[User8]"
                       name="User8" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ValidateID]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ValidateID]"
-                      name="ValidateID" />
-                    <outputColumn
-                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[tstamp]"
-                      dataType="bytes"
-                      length="8"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[tstamp]"
-                      name="tstamp" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -3411,14 +3133,6 @@ Where LUpd_DateTime &gt; ?</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Acct]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="Acct"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct]" />
-                    <inputColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Crtd_DateTime]"
                       cachedDataType="dbTimeStamp"
                       cachedName="Crtd_DateTime"
@@ -3440,14 +3154,6 @@ Where LUpd_DateTime &gt; ?</property>
                       cachedName="Crtd_User"
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Crtd_User]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Crtd_User]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[CuryId]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="4"
-                      cachedName="CuryId"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[CuryId]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[CuryId]" />
                     <inputColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[LUpd_DateTime]"
                       cachedDataType="dbTimeStamp"
@@ -3613,51 +3319,11 @@ Where LUpd_DateTime &gt; ?</property>
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[User8]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[User8]" />
                     <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[AcctType]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="AcctType"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[AcctType]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[AcctType]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Acct_Cat]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="16"
-                      cachedName="Acct_Cat"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct_Cat]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Acct_Cat_SW]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="Acct_Cat_SW"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct_Cat_SW]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Acct_Cat_SW]" />
-                    <inputColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Active]"
                       cachedDataType="i2"
                       cachedName="Active"
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Active]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[ClassID]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="ClassID"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ClassID]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ClassID]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[ConsolAcct]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="ConsolAcct"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ConsolAcct]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolAcct]" />
                     <inputColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Descr]"
                       cachedCodepage="1252"
@@ -3667,62 +3333,24 @@ Where LUpd_DateTime &gt; ?</property>
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Descr]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Descr]" />
                     <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Employ_Sw]"
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[ConsolSub]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="Employ_Sw"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Employ_Sw]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Employ_Sw]" />
+                      cachedLength="24"
+                      cachedName="ConsolSub"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ConsolSub]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ConsolSub]" />
                     <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[RatioGrp]"
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Sub]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="RatioGrp"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RatioGrp]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RatioGrp]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[SummPost]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="SummPost"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SummPost]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[SummPost]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[UnitofMeas]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="6"
-                      cachedName="UnitofMeas"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[UnitofMeas]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[UnitofMeas]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[Units_SW]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="Units_SW"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Units_SW]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Units_SW]" />
-                    <inputColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[ValidateID]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="ValidateID"
-                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidateID]"
-                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[ValidateID]" />
+                      cachedLength="24"
+                      cachedName="Sub"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Sub]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[Sub]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="Acct" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Crtd_DateTime]"
                       dataType="dbTimeStamp"
@@ -3739,12 +3367,6 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="10"
                       name="Crtd_User" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[CuryId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
-                      name="CuryId" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[LUpd_DateTime]"
                       dataType="dbTimeStamp"
@@ -3867,39 +3489,9 @@ Where LUpd_DateTime &gt; ?</property>
                       length="8"
                       name="tstamp" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[AcctType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      name="AcctType" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct_Cat]"
-                      codePage="1252"
-                      dataType="str"
-                      length="16"
-                      name="Acct_Cat" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Acct_Cat_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="Acct_Cat_SW" />
-                    <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Active]"
                       dataType="i2"
                       name="Active" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ClassID]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ClassID" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ConsolAcct]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ConsolAcct" />
                     <externalMetadataColumn
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Descr]"
                       codePage="1252"
@@ -3907,41 +3499,17 @@ Where LUpd_DateTime &gt; ?</property>
                       length="30"
                       name="Descr" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Employ_Sw]"
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ConsolSub]"
                       codePage="1252"
                       dataType="str"
-                      length="1"
-                      name="Employ_Sw" />
+                      length="24"
+                      name="ConsolSub" />
                     <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RatioGrp]"
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Sub]"
                       codePage="1252"
                       dataType="str"
-                      length="2"
-                      name="RatioGrp" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[SummPost]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="SummPost" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[UnitofMeas]"
-                      codePage="1252"
-                      dataType="str"
-                      length="6"
-                      name="UnitofMeas" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[Units_SW]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="Units_SW" />
-                    <externalMetadataColumn
-                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[ValidateID]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="ValidateID" />
+                      length="24"
+                      name="Sub" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3990,7 +3558,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Get LastUpdate"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{47C9A21B-4B6D-4E73-B7BC-69DB6EFC4D41}"
+      DTS:DTSID="{5928E32A-BF39-47F4-81AE-EA5F6154B3DC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Get LastUpdate"
@@ -4018,7 +3586,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Log Success"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{0FF18C00-012B-4490-B675-0301D39AC10F}"
+      DTS:DTSID="{B1765589-7B70-4194-B32D-705C703C8142}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log Success"
@@ -4060,7 +3628,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Truncate Staging Delete Table"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Truncate Staging Delete Table"
-      DTS:DTSID="{2DBF40C2-DA5F-4584-9668-435FFCF63B0F}"
+      DTS:DTSID="{C26A4F69-F889-4D21-A6BD-2FFBD0E987DF}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Staging Delete Table"
@@ -4084,7 +3652,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Truncate Staging Table"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{8FE9121E-877C-457C-B593-9BFF72E98055}"
+      DTS:DTSID="{4F6A9834-5790-49C6-833B-60DC2139F0BB}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate Staging Table"
@@ -4108,7 +3676,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Update LastUpdate Table"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{91C9A2C3-8DFE-4C3A-BD57-0B8E426B5381}"
+      DTS:DTSID="{D8C8BC01-1887-4A7E-A3B3-8AE8AF29BE86}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Update LastUpdate Table"
@@ -4126,7 +3694,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:refId="Package\Upsert Ods"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{336C65FF-1E6F-412B-B787-6CB17ADC0329}"
+      DTS:DTSID="{7D61C6A6-2C90-4455-AA3C-3C376F13638C}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Upsert Ods"
@@ -4198,39 +3766,6 @@ Where LUpd_DateTime &gt; ?</property>
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]"
-                      name="Account"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[BaseCurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BaseCurrencyId]"
-                      length="4"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[BaseCurrencyId]"
-                      name="BaseCurrencyId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyId]"
-                      length="4"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyId]"
-                      name="CurrencyId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastUpdate]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -4249,70 +3784,6 @@ Where LUpd_DateTime &gt; ?</property>
                       name="ImportDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountType]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountType]"
-                      length="2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountType]"
-                      name="AccountType"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategory]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountCategory]"
-                      length="16"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategory]"
-                      name="AccountCategory"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategorySpecified]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountCategorySpecified]"
-                      length="1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategorySpecified]"
-                      name="AccountCategorySpecified"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]"
-                      dataType="i2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Active]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]"
-                      name="Active"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClassId]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClassId]"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClassId]"
-                      name="ClassId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsolidationAccount]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsolidationAccount]"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsolidationAccount]"
-                      name="ConsolidationAccount"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
                       codePage="1252"
                       dataType="str"
@@ -4324,48 +3795,28 @@ Where LUpd_DateTime &gt; ?</property>
                       name="Description"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RatioGroup]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubaccountId]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RatioGroup]"
-                      length="2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RatioGroup]"
-                      name="RatioGroup"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubaccountId]"
+                      length="24"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubaccountId]"
+                      name="SubaccountId"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsSummarized]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      dataType="i2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsSummarized]"
-                      length="1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsSummarized]"
-                      name="IsSummarized"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      name="IsActive"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Account]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="Account" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BaseCurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      name="BaseCurrencyId" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
-                      name="CurrencyId" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastUpdate]"
                       dataType="dbTimeStamp"
@@ -4375,57 +3826,21 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="dbTimeStamp"
                       name="ImportDate" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      name="AccountType" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountCategory]"
-                      codePage="1252"
-                      dataType="str"
-                      length="16"
-                      name="AccountCategory" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountCategorySpecified]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="AccountCategorySpecified" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Active]"
-                      dataType="i2"
-                      name="Active" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ClassId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ClassId" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsolidationAccount]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      name="ConsolidationAccount" />
-                    <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       codePage="1252"
                       dataType="str"
                       length="30"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RatioGroup]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubaccountId]"
                       codePage="1252"
                       dataType="str"
-                      length="2"
-                      name="RatioGroup" />
+                      length="24"
+                      name="SubaccountId" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsSummarized]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      name="IsSummarized" />
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      dataType="i2"
+                      name="IsActive" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4434,66 +3849,17 @@ Where LUpd_DateTime &gt; ?</property>
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubaccountId]"
                       codePage="1252"
                       dataType="str"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Account]"
-                      name="Account" />
+                      length="24"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubaccountId]"
+                      name="SubaccountId" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountType]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountType]"
-                      name="AccountType" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BaseCurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BaseCurrencyId]"
-                      name="BaseCurrencyId" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountCategory]"
-                      codePage="1252"
-                      dataType="str"
-                      length="16"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountCategory]"
-                      name="AccountCategory" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountCategorySpecified]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountCategorySpecified]"
-                      name="AccountCategorySpecified" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Active]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
                       dataType="i2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Active]"
-                      name="Active" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClassId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ClassId]"
-                      name="ClassId" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsolidationAccount]"
-                      codePage="1252"
-                      dataType="str"
-                      length="10"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsolidationAccount]"
-                      name="ConsolidationAccount" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyId]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyId]"
-                      name="CurrencyId" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      name="IsActive" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
                       codePage="1252"
@@ -4502,24 +3868,10 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RatioGroup]"
-                      codePage="1252"
-                      dataType="str"
-                      length="2"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RatioGroup]"
-                      name="RatioGroup" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
                       dataType="dbTimeStamp"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
                       name="LastUpdate" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsSummarized]"
-                      codePage="1252"
-                      dataType="str"
-                      length="1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsSummarized]"
-                      name="IsSummarized" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ImportDate]"
                       dataType="dbTimeStamp"
@@ -4560,13 +3912,13 @@ Where LUpd_DateTime &gt; ?</property>
                   expressionType="Notify"
                   name="ENABLE_IDENTITY_INSERT">false</property>
                 <property
-                  dataType="System.String"
+                  dataType="System.Null"
                   expressionType="Notify"
-                  name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                  name="INSERT_ROWS_COUNT_VARIABLE" />
                 <property
-                  dataType="System.String"
+                  dataType="System.Null"
                   expressionType="Notify"
-                  name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                  name="UPDATE_ROWS_COUNT_VARIABLE" />
                 <property
                   dataType="System.String"
                   expressionType="Notify"
@@ -4687,18 +4039,18 @@ Where LUpd_DateTime &gt; ?</property>
                   name="Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Account]"
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[SubaccountId]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="Account"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Account]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Account]">
+                      cachedLength="24"
+                      cachedName="SubaccountId"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[SubaccountId]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubaccountId]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Mapped Column for Destination"
-                          name="DestinationColumn">Account</property>
+                          name="DestinationColumn">SubaccountId</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"
@@ -4710,154 +4062,16 @@ Where LUpd_DateTime &gt; ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[AccountType]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="AccountType"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountType]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountType]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">AccountType</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[AccountCategory]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="16"
-                      cachedName="AccountCategory"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountCategory]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategory]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">AccountCategory</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[AccountCategorySpecified]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="AccountCategorySpecified"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountCategorySpecified]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountCategorySpecified]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">AccountCategorySpecified</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Active]"
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[IsActive]"
                       cachedDataType="i2"
-                      cachedName="Active"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Active]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]">
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsActive]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Mapped Column for Destination"
-                          name="DestinationColumn">Active</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[ClassId]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="ClassId"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ClassId]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ClassId]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">ClassId</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[ConsolidationAccount]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="10"
-                      cachedName="ConsolidationAccount"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ConsolidationAccount]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsolidationAccount]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">ConsolidationAccount</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[CurrencyId]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="4"
-                      cachedName="CurrencyId"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[CurrencyId]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyId]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">CurrencyId</property>
+                          name="DestinationColumn">IsActive</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"
@@ -4881,52 +4095,6 @@ Where LUpd_DateTime &gt; ?</property>
                           dataType="System.String"
                           description="Mapped Column for Destination"
                           name="DestinationColumn">Description</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[RatioGroup]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="2"
-                      cachedName="RatioGroup"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RatioGroup]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RatioGroup]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">RatioGroup</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[IsSummarized]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="1"
-                      cachedName="IsSummarized"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsSummarized]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsSummarized]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">IsSummarized</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"
@@ -4987,59 +4155,19 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="i4"
                       name="RowId" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Account]"
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[SubaccountId]"
                       dataType="wstr"
-                      length="10"
-                      name="Account" />
+                      length="24"
+                      name="SubaccountId" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountType]"
-                      dataType="wstr"
-                      length="2"
-                      name="AccountType" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountCategory]"
-                      dataType="wstr"
-                      length="16"
-                      name="AccountCategory" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[AccountCategorySpecified]"
-                      dataType="wstr"
-                      length="1"
-                      name="AccountCategorySpecified" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Active]"
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsActive]"
                       dataType="i4"
-                      name="Active" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ClassId]"
-                      dataType="wstr"
-                      length="10"
-                      name="ClassId" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ConsolidationAccount]"
-                      dataType="wstr"
-                      length="10"
-                      name="ConsolidationAccount" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[CurrencyId]"
-                      dataType="wstr"
-                      length="4"
-                      name="CurrencyId" />
+                      name="IsActive" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="30"
                       name="Description" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RatioGroup]"
-                      dataType="wstr"
-                      length="2"
-                      name="RatioGroup" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsSummarized]"
-                      dataType="wstr"
-                      length="1"
-                      name="IsSummarized" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastUpdate]"
                       dataType="dbTimeStamp"
@@ -5106,7 +4234,7 @@ Where LUpd_DateTime &gt; ?</property>
       DTS:CreationName="Microsoft.ScriptTask"
       DTS:Description="Script Task"
       DTS:Disabled="True"
-      DTS:DTSID="{17BFEEA9-A52F-487E-BEF4-135AA5F0EBDB}"
+      DTS:DTSID="{C8E2F77B-A0B3-42DF-BC56-4AD4C276E2D4}"
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="View Source Query"
@@ -5119,6 +4247,15 @@ Where LUpd_DateTime &gt; ?</property>
           VSTAMinorVersion="0"
           Language="CSharp"
           ReadOnlyVariables="User::GetSourceRowsQuery">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -5238,35 +4375,6 @@ Where LUpd_DateTime &gt; ?</property>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
-    "ings")]
-
-namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
           <ProjectItem
             Name="ST_3dd9bda90c68436bb536c6598ed20014.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -5492,6 +4600,35 @@ namespace ST_3dd9bda90c68436bb536c6598ed20014
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
+    "ings")]
+
+namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
             Name="Properties\AssemblyInfo.cs"
             Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -5521,15 +4658,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -5724,7 +4852,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{47C21219-FED3-4D51-BFA7-F8F9753C5E58}"
+      DTS:DTSID="{F9DE9289-69B3-4A46-9686-F1FD7D34CD60}"
       DTS:From="Package\Get LastUpdate"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -5732,7 +4860,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{8AF34954-0D7F-4CA2-858C-06F4E8ECB716}"
+      DTS:DTSID="{87895C96-576C-4C48-9821-86823EC1E12F}"
       DTS:From="Package\Truncate Staging Table"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -5740,7 +4868,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{7EFA0AC6-488E-4D65-B8AF-DEB14B567769}"
+      DTS:DTSID="{ACFB49C6-5DDD-448F-A8D7-7A6B2E87141B}"
       DTS:From="Package\Find Rows to Upsert"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
@@ -5748,7 +4876,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
-      DTS:DTSID="{FBD7384A-6D34-482D-92D4-EC825D7AC382}"
+      DTS:DTSID="{875E0F78-F6BF-47B8-BFD5-F42883E48035}"
       DTS:From="Package\Upsert Ods"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 3"
@@ -5756,7 +4884,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{5295DFE0-4684-4517-B4A7-4BCDA42E4750}"
+      DTS:DTSID="{D60184E3-2C90-477B-AF42-B63A1928DDE5}"
       DTS:From="Package\Update LastUpdate Table"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
@@ -5764,7 +4892,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
-      DTS:DTSID="{770CC8E0-713B-4FEB-B686-E2A3D9E7C5C5}"
+      DTS:DTSID="{0162A298-577D-46AE-A6D4-EB92AC0DE359}"
       DTS:From="Package\View Source Query"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
@@ -5772,7 +4900,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
       DTS:CreationName=""
-      DTS:DTSID="{CE610482-8AA7-4F83-BFE9-66E5065E58AB}"
+      DTS:DTSID="{93697096-7A68-4B80-85A6-3D53A61F32C7}"
       DTS:From="Package\Find Deleted Rows in Source"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
@@ -5780,7 +4908,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
       DTS:CreationName=""
-      DTS:DTSID="{1FFE1EEC-AC48-48F7-809B-00B1E6993BDA}"
+      DTS:DTSID="{9D994D0F-0A8E-4DE6-8A77-8428CE1E5E70}"
       DTS:From="Package\Truncate Staging Delete Table"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 7"
@@ -5788,7 +4916,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
       DTS:CreationName=""
-      DTS:DTSID="{D378B9E1-B2FC-4CF9-98E1-3A3736B9C2E5}"
+      DTS:DTSID="{3E9079A0-866F-471A-8F37-D17528107426}"
       DTS:From="Package\Delete From Ods"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 8"
@@ -5798,7 +4926,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:EventHandler
       DTS:refId="Package.EventHandlers[OnError]"
       DTS:CreationName="OnError"
-      DTS:DTSID="{9D5A814A-BDA7-4D93-BCE3-50013C49B227}"
+      DTS:DTSID="{FFA30F72-37D7-4298-9E97-185EEA738A3F}"
       DTS:EventID="3407923"
       DTS:EventName="OnError"
       DTS:LocaleID="-1">
@@ -5806,7 +4934,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <DTS:Variable
           DTS:CreationName=""
           DTS:Description="The propagate property of the event"
-          DTS:DTSID="{153ED138-B304-4504-8DFD-03D983C3DE69}"
+          DTS:DTSID="{83E6DDA7-013B-4F40-8D3B-A5289F08B80D}"
           DTS:IncludeInDebugDump="6789"
           DTS:Namespace="System"
           DTS:ObjectName="Propagate">
@@ -5819,7 +4947,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           DTS:refId="Package.EventHandlers[OnError]\Log Error"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{B4308D32-1460-4DCB-88DA-DE47768F1B7E}"
+          DTS:DTSID="{96C938AD-273C-4ADD-9EE1-F81075938735}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Log Error"
@@ -6503,7 +5631,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6514,7 +5642,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\Find Rows to Upsert">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="130.5,42"
           Id="Package\Find Rows to Upsert\Row Count"
@@ -6546,9 +5674,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6570,9 +5696,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6615,37 +5739,35 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\Upsert Ods">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="181,42"
-          Id="Package\Upsert Ods\TF Upsert Destination"
-          TopLeft="520,293" />
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Upsert Ods\OLE DB Source"
           TopLeft="529.666666666667,185.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Upsert Ods\TF Upsert Destination"
+          TopLeft="513.5,318.5" />
         <EdgeLayout
           Id="Package\Upsert Ods.Paths[OLE DB Source Output]"
-          TopLeft="607.583333333333,227.5">
+          TopLeft="604.333333333333,227.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,65.5"
+              EndConnector="0,91"
               Start="0,0"
-              End="0,58">
+              End="0,83.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58" />
+                    End="0,83.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
