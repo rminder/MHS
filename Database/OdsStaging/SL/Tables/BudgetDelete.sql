@@ -3,6 +3,8 @@
     [BudgetYear]     CHAR (4)  NOT NULL,
     [BudgetLedgerID] CHAR (10) NOT NULL,
     [BdgtSegment]    CHAR (24) NOT NULL,
-    CONSTRAINT [PkBudgetDelete] PRIMARY KEY NONCLUSTERED ([CpnyID] ASC, [BudgetYear] ASC, [BudgetLedgerID] ASC, [BdgtSegment] ASC)
+    [IsOds]          BIT       CONSTRAINT [DF_BudgetDelete_IsOds] DEFAULT ((0)) NOT NULL
 );
+
+
 

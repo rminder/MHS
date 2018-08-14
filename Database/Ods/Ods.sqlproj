@@ -180,6 +180,10 @@
     <Build Include="SL\Functions\GeneralLedgerSetupGetHistory.sql" />
     <Build Include="SL\Functions\BudgetGetHistory.sql" />
     <Build Include="SL\Functions\GetHistorySummary.sql" />
+    <Build Include="SL\Tables\AccountsPayableBalanceHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableBalance.sql" />
+    <Build Include="SL\Views\vwAccountsPayableBalance.sql" />
+    <Build Include="SL\Functions\AccountsPayableBalanceGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

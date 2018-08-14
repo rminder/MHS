@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 6-August, 2018
 -- Description: Delete rows from Ods.SL.SegmentDefinition
@@ -15,11 +16,17 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select FieldClassName, SegNumber, Id From OdsStaging.SL.SegDefDelete Where IsOds = 1
+		Except
+		Select FieldClassName, SegNumber, Id From OdsStaging.SL.SegDefDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.SegmentDefinition			  T
-		INNER JOIN OdsStaging.SL.SegDefDelete T2 ON RTRIM(T2.FieldClassName) = T.FieldClassName
+		INNER JOIN CTE T2 ON RTRIM(T2.FieldClassName) = T.FieldClassName
 													AND RTRIM(T2.SegNumber)	 = T.SegmentNumber
 													AND RTRIM(T2.ID)		 = T.Id;
 END;

@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 13-August, 2018
 -- Description: Delete rows from Ods.SL.Budget
@@ -16,9 +17,19 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment From OdsStaging.SL.BudgetDelete Where IsOds = 1
+		Except
+		Select CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment From OdsStaging.SL.BudgetDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.Budget T
-		INNER JOIN OdsStaging.SL.BudgetDelete T2 ON RTRIM(T2.CpnyId) = T.CompanyId And RTRIM(T2.BudgetYear) = T.BudgetYear And RTRIM(T2.BudgetLedgerId) = T.BudgetLedgerId And RTRIM(BdgtSegment) = T.BudgetSegment
+		INNER JOIN CTE T2 ON RTRIM(T2.CpnyId) = T.CompanyId
+											AND RTRIM(T2.BudgetYear)		= T.BudgetYear
+											AND RTRIM(T2.BudgetLedgerId)	= T.BudgetLedgerId
+											AND RTRIM(T2.BdgtSegment)		= T.BudgetSegment;
+
 END

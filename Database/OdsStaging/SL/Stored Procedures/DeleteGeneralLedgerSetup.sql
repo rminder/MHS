@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 7-August, 2018
 -- Description: Delete rows from Ods.SL.GeneralLedgerSetup
@@ -15,9 +16,15 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select SetupId From OdsStaging.SL.GLSetupDelete Where IsOds = 1
+		Except
+		Select SetupId From OdsStaging.SL.GLSetupDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.GeneralLedgerSetup			   T
-		INNER JOIN OdsStaging.SL.GLSetupDelete T2 ON RTRIM(T2.SetupId) = T.SetupId;
+		INNER JOIN CTE T2 ON RTRIM(T2.SetupId) = T.SetupId;
 END;

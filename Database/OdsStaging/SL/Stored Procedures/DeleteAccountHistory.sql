@@ -1,5 +1,6 @@
 ﻿
 
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 24-July, 2018
@@ -18,13 +19,19 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
-DELETE T
-FROM Ods.SL.AccountHistory					T
-	INNER JOIN OdsStaging.SL.AcctHistDelete T2 ON RTRIM(T2.CpnyID)		 = T.CompanyId
-												  AND RTRIM(T2.Acct)	 = T.Account
-												  AND RTRIM(T2.Sub)		 = T.SubaccountId
-												  AND RTRIM(T2.LedgerID) = T.LedgerId
-												  AND RTRIM(T2.FiscYr)	 = T.FiscalYear;
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select CpnyId, Acct, Sub, LedgerId, FiscYr From OdsStaging.SL.AcctHistDelete Where IsOds = 1
+		Except
+		Select CpnyId, Acct, Sub, LedgerId, FiscYr From OdsStaging.SL.AcctHistDelete Where IsOds = 0
+	)
+
+	DELETE T
+	FROM Ods.SL.AccountHistory					T
+		INNER JOIN CTE T2 ON RTRIM(T2.CpnyID) = T.CompanyId
+											AND RTRIM(T2.Acct)	 = T.Account
+											AND RTRIM(T2.Sub)	 = T.SubaccountId
+											AND RTRIM(T2.LedgerID) = T.LedgerId
+											AND RTRIM(T2.FiscYr) = T.FiscalYear;
 END

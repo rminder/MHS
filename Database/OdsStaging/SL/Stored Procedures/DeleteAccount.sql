@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 24-July, 2018
@@ -17,9 +18,15 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select Acct From OdsStaging.SL.AccountDelete Where IsOds = 1
+		Except
+		Select Acct From OdsStaging.SL.AccountDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.Account T
-		INNER JOIN OdsStaging.SL.AccountDelete T2 ON RTRIM(T2.Acct) = T.Account
+		INNER JOIN CTE T2 ON RTRIM(T2.Acct) = T.Account
 END

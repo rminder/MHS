@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 9-August, 2018
 -- Description: Delete rows from Ods.SL.SalesPerson
@@ -15,9 +16,15 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select SlsperId From OdsStaging.SL.SalespersonDelete Where IsOds = 1
+		Except
+		Select SlsperId From OdsStaging.SL.SalespersonDelete Where IsOds = 0
+	)
+
 	DELETE T
-	FROM Ods.SL.Salesperson						   T
-		INNER JOIN OdsStaging.SL.SalespersonDelete T2 ON RTRIM(T2.SlsperId) = T.SalesPersonId;
+	FROM Ods.SL.Salesperson	T
+		INNER JOIN CTE T2 ON RTRIM(T2.SlsperId) = T.SalesPersonId;
 END;

@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 5-Aug, 2018
@@ -17,10 +18,15 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select Account, SubaccountId, DocumentType, TransactionReferenceNumber, RecordId From OdsStaging.SL.APDocDelete Where IsOds = 1
+		Except
+		Select Account, SubaccountId, DocumentType, TransactionReferenceNumber, RecordId From OdsStaging.SL.APDocDelete Where IsOds = 0
+	)
 
 	DELETE T
 	FROM Ods.SL.AccountsPayableDocument T
-		INNER JOIN OdsStaging.SL.APDocDelete T2 ON T2.Account = T.Account And T2.SubaccountId = T.SubaccountId And T2.DocumentType = T.DocumentType And T2.TransactionReferenceNumber = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
+		INNER JOIN CTE T2 ON T2.Account = T.Account And T2.SubaccountId = T.SubaccountId And T2.DocumentType = T.DocumentType And T2.TransactionReferenceNumber = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
 END

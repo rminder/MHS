@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 21-July, 2018
 -- Description: Delete rows from Ods.SL.GeneralLedgerTransaction
@@ -16,9 +17,15 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select BatNbr, LineNbr, Module From OdsStaging.SL.GLTranDelete Where IsOds = 1
+		Except
+		Select BatNbr, LineNbr, Module From OdsStaging.SL.GLTranDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.GeneralLedgerTransaction T
-		INNER JOIN OdsStaging.SL.GLTranDelete T2 ON RTRIM(T2.BatNbr) = T.BatchNumber AND RTRIM(T2.LineNbr) = T.LineNumber AND RTRIM(T2.Module) = T.Module
+		INNER JOIN CTE T2 ON RTRIM(T2.BatNbr) = T.BatchNumber AND RTRIM(T2.LineNbr) = T.LineNumber AND RTRIM(T2.Module) = T.Module
 END

@@ -67,6 +67,7 @@
     <Folder Include="SL\Stored Procedures\" />
     <Folder Include="Security\" />
     <Folder Include="SL\Functions\" />
+    <Folder Include="dbo\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\LastUpdate.sql" />
@@ -102,7 +103,6 @@
     <Build Include="SL\Tables\GLSetupDelete.sql" />
     <Build Include="SL\Tables\GLSetup.sql" />
     <Build Include="SL\Views\vwGLSetup.sql" />
-    <Build Include="SL\Functions\GeneralLedgerSetupGetHistory.sql" />
     <Build Include="SL\Stored Procedures\DeleteGeneralLedgerSetup.sql" />
     <Build Include="SL\Tables\CustomerDelete.sql" />
     <Build Include="SL\Tables\Customer.sql" />
@@ -140,5 +140,11 @@
     <Build Include="SL\Tables\Budget.sql" />
     <Build Include="SL\Views\vwBudget.sql" />
     <Build Include="SL\Stored Procedures\DeleteBudget.sql" />
+    <Build Include="SL\Tables\AP_BalancesDelete.sql" />
+    <Build Include="SL\Tables\AP_Balances.sql" />
+    <Build Include="dbo\Tables\RandyTemp.sql" />
+    <Build Include="SL\Views\vwAP_Balances.sql" />
+    <Build Include="dbo\Views\SL.vwAP_Balances.sql" />
+    <Build Include="SL\Stored Procedures\DeleteAccountsPayableBalance.sql" />
   </ItemGroup>
 </Project>

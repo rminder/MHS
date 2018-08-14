@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 11-August, 2018
 -- Description: Delete rows from Ods.SL.Ledger
@@ -15,9 +16,15 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select LedgerId From OdsStaging.SL.LedgerDelete Where IsOds = 1
+		Except
+		Select LedgerId From OdsStaging.SL.LedgerDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.Ledger					      T
-		INNER JOIN OdsStaging.SL.LedgerDelete T2 ON RTRIM(T2.LedgerId) = T.LedgerId;
+		INNER JOIN CTE T2 ON RTRIM(T2.LedgerId) = T.LedgerId;
 END;

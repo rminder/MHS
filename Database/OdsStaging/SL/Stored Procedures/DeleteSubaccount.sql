@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 11-Aug, 2018
 -- Description: Delete rows from Ods.SL.Subaccount
@@ -16,9 +17,15 @@ AS
 BEGIN
     SET NOCOUNT ON
 
-	-- Delete rows in the Ods table by joining on the PK columns with the Delete table in 
-	-- OdsStaging
+	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
+	;WITH CTE AS
+	(
+		Select Sub From OdsStaging.SL.SubAcctDelete Where IsOds = 1
+		Except
+		Select Sub From OdsStaging.SL.SubAcctDelete Where IsOds = 0
+	)
+
 	DELETE T
 	FROM Ods.SL.Subaccount T
-		INNER JOIN OdsStaging.SL.SubAcctDelete T2 ON RTRIM(T2.Sub) = T.SubaccountId
+		INNER JOIN CTE T2 ON RTRIM(T2.Sub) = T.SubaccountId
 END
