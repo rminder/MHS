@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SL Budget"
   DTS:PackageType="5"
-  DTS:VersionBuild="218"
-  DTS:VersionGUID="{E00352F7-7DA6-45DE-9D91-566593A084CF}">
+  DTS:VersionBuild="220"
+  DTS:VersionGUID="{F62F9839-7AE7-411B-8B6E-DC9EA50E9D27}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -84,27 +84,27 @@ ELSE
       DTS:CreationName=""
       DTS:DTSID="{474C8B3E-57D6-4EE5-9EDE-38B4B8429D9B}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA;   CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment&quot;"
+      DTS:Expression="&quot;Select&#xA;   CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment, 1 as IsOds From &quot; + @[User::OdsFullTableName] + &quot; Where LastUpdate Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetOdsRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
-   CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment From SL.Budget Where LastUpdate Between '1/1/1901' And DateAdd(MONTH,1,'1/1/1901') Order By CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment</DTS:VariableValue>
+   CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment, 1 as IsOds From SL.Budget Where LastUpdate Between '1/1/1901' And DateAdd(MONTH,1,'1/1/1901') Order By CompanyId, BudgetYear, BudgetLedgerId, BudgetSegment</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{FF891FE9-AFDC-4DDF-9FBD-F7F7F386014F}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select&#xA;   RTrim(CpnyId) as [SL-CompanyId],&#xA;   RTRIM(BudgetYear) as [SL-BudgetYear],&#xA;   RTrim(BudgetLedgerId) as [SL-BudgetLedgerId], RTRIM(BdgtSegment) as [SL-BudgetSegment] &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment&quot;"
+      DTS:Expression="&quot;Select&#xA;   RTrim(CpnyId) as CpnyId,&#xA;   RTRIM(BudgetYear) as BudgetYear,&#xA;   RTrim(BudgetLedgerId) as BudgetLedgerId, RTRIM(BdgtSegment) as BdgtSegment, 0 as IsOds &#xA;From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime Between '&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;'&quot; + &quot; And DateAdd(MONTH,1,'&quot; + (DT_WSTR,50)@[User::BeginDate] + &quot;') Order By CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSLStagingRowsForDeleteQuery">
       <DTS:VariableValue
         DTS:DataType="8">Select
-   RTrim(CpnyId) as [SL-CompanyId],
-   RTRIM(BudgetYear) as [SL-BudgetYear],
-   RTrim(BudgetLedgerId) as [SL-BudgetLedgerId], RTRIM(BdgtSegment) as [SL-BudgetSegment] 
+   RTrim(CpnyId) as CpnyId,
+   RTRIM(BudgetYear) as BudgetYear,
+   RTrim(BudgetLedgerId) as BudgetLedgerId, RTRIM(BdgtSegment) as BdgtSegment, 0 as IsOds 
 From dbo.Budget Where LUpd_DateTime Between '1/1/1901' And DateAdd(MONTH,1,'1/1/1901') Order By CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
@@ -354,14 +354,35 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.Budget Where LUpd_DateTime Between @Begin
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -741,35 +762,14 @@ namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1152,6 +1152,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[IsOds]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[IsOds]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[IsOds]"
+                          name="IsOds"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[CompanyId]"
                           codePage="1252"
                           dataType="str"
@@ -1198,6 +1207,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[IsOds]"
+                          dataType="i4"
+                          name="IsOds" />
                         <externalMetadataColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].ExternalColumns[CompanyId]"
                           codePage="1252"
@@ -1257,6 +1270,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                           length="24"
                           lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[BudgetSegment]"
                           name="BudgetSegment" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[IsOds]"
+                          dataType="i4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[IsOds]"
+                          name="IsOds" />
                         <outputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
@@ -1347,6 +1365,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[IsOds]"
+                          cachedDataType="i4"
+                          cachedName="IsOds"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[IsOds]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[IsOds]" />
+                        <inputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[CompanyId]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="10"
+                          cachedName="CompanyId"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[CpnyID]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[CompanyId]" />
+                        <inputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[BudgetYear]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1363,14 +1395,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                           externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[BudgetLedgerID]"
                           lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]" />
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[CompanyId]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="10"
-                          cachedName="CompanyId"
-                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[CpnyID]"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[CompanyId]" />
-                        <inputColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].Columns[BudgetSegment]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1381,6 +1405,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[IsOds]"
+                          dataType="bool"
+                          name="IsOds" />
                         <externalMetadataColumn
                           refId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input].ExternalColumns[CpnyID]"
                           codePage="1252"
@@ -1434,304 +1462,369 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Find Deleted Rows in Source\Store to Staging\Row Count"
-                  componentClassID="Microsoft.RowCount"
-                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
-                  name="Row Count">
-                  <properties>
-                    <property
-                      dataType="System.String"
-                      description="Specifies the variable to hold the row count."
-                      name="VariableName">User::DeletedRowCount</property>
-                  </properties>
-                  <inputs>
-                    <input
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Inputs[Row Count Input 1]"
-                      hasSideEffects="true"
-                      name="Row Count Input 1">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Outputs[Row Count Output 1]"
-                      name="Row Count Output 1"
-                      synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Inputs[Row Count Input 1]">
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
-                  refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup"
-                  componentClassID="Microsoft.Lookup"
-                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-                  name="SL Lookup"
+                  refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
                   usesDispositions="true"
-                  version="6">
+                  version="4">
                   <properties>
                     <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
                       dataType="System.String"
-                      description="Specifies the SQL statement that generates the lookup table."
-                      expressionType="Notify"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable">User::OdsStagingDeleteTableName</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">Select 
-	
-	RTRIM(CpnyId) as CpnyId, 
-	
-	RTRIM(BudgetYear) as BudgetYear,
-	RTRIM(BudgetLedgerId) as BudgetLedgerId,
-	RTrim(BdgtSegment) as BdgtSegment
-From dbo.Budget</property>
-                    <property
-                      dataType="System.String"
-                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                      expressionType="Notify"
-                      name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (Select 
-	
-	RTRIM(CpnyId) as CpnyId, 
-	
-	RTRIM(BudgetYear) as BudgetYear,
-	RTRIM(BudgetLedgerId) as BudgetLedgerId,
-	RTrim(BdgtSegment) as BdgtSegment
-From dbo.Budget) [refTable]
-where [refTable].[CpnyId] = ? and [refTable].[BudgetYear] = ? and [refTable].[BudgetLedgerId] = ? and [refTable].[BdgtSegment] = ?</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the type of connection used to access the reference dataset."
-                      name="ConnectionType"
-                      typeConverter="LookupConnectionType">0</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the cache type of the lookup table."
-                      name="CacheType"
-                      typeConverter="CacheType">0</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                      name="NoMatchBehavior"
-                      typeConverter="LookupNoMatchBehavior">1</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                      name="NoMatchCachePercentage">0</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                      name="MaxMemoryUsage">25</property>
-                    <property
-                      dataType="System.Int64"
-                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                      name="MaxMemoryUsage64">25</property>
-                    <property
-                      dataType="System.String"
-                      description="Indicates whether to reference metadata in an XML format."
-                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CpnyId" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BudgetYear" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BudgetLedgerId" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="BdgtSegment" dataType="DT_STR" length="24" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[CompanyId]};#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetYear]};#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]};#{Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetSegment]};</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
                       name="DefaultCodePage">1252</property>
                     <property
                       dataType="System.Boolean"
-                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                      name="TreatDuplicateKeysAsError">false</property>
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">4</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Connections[OleDbConnection]"
-                      connectionManagerID="{AEC0A14E-8EFF-4200-9658-A67FEC69AC84}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[SLStaging]"
-                      description="Connection manager used to access lookup data."
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{19422D90-EFD0-4C61-ABAA-E752B6DE7A10}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OdsStaging]"
+                      description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input]"
-                      name="Lookup Input">
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input].Columns[CompanyId]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsOds]"
+                          cachedDataType="i4"
+                          cachedName="IsOds"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsOds]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[IsOds]" />
+                        <inputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CpnyId]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="10"
-                          cachedName="CompanyId"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[CompanyId]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table that a column joins."
-                              name="JoinToReferenceColumn">CpnyId</property>
-                            <property
-                              dataType="System.Null"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
+                          cachedName="CpnyId"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CpnyID]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[CpnyId]" />
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input].Columns[BudgetYear]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BudgetYear]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="4"
                           cachedName="BudgetYear"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetYear]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table that a column joins."
-                              name="JoinToReferenceColumn">BudgetYear</property>
-                            <property
-                              dataType="System.Null"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BudgetYear]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetYear]" />
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input].Columns[BudgetLedgerId]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BudgetLedgerId]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="10"
                           cachedName="BudgetLedgerId"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table that a column joins."
-                              name="JoinToReferenceColumn">BudgetLedgerId</property>
-                            <property
-                              dataType="System.Null"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BudgetLedgerID]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]" />
                         <inputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input].Columns[BudgetSegment]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BdgtSegment]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="24"
-                          cachedName="BudgetSegment"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output].Columns[BudgetSegment]">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table that a column joins."
-                              name="JoinToReferenceColumn">BdgtSegment</property>
-                            <property
-                              dataType="System.Null"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn" />
-                          </properties>
-                        </inputColumn>
+                          cachedName="BdgtSegment"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BdgtSegment]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BdgtSegment]" />
                       </inputColumns>
-                      <externalMetadataColumns />
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsOds]"
+                          dataType="bool"
+                          name="IsOds" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CpnyID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CpnyID" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BudgetYear]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="BudgetYear" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BudgetLedgerID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="BudgetLedgerID" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BdgtSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="BdgtSegment" />
+                      </externalMetadataColumns>
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output]"
-                      errorOrTruncationOperation="Lookup"
-                      exclusionGroup="1"
-                      name="Lookup Match Output"
-                      synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[CpnyId]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Copy Column"
-                          length="10"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[CpnyId]"
-                          name="CpnyId"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn">CpnyId</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BudgetYear]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Copy Column"
-                          length="4"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BudgetYear]"
-                          name="BudgetYear"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn">BudgetYear</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BudgetLedgerId]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Copy Column"
-                          length="10"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BudgetLedgerId]"
-                          name="BudgetLedgerId"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn">BudgetLedgerId</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BdgtSegment]"
-                          codePage="1252"
-                          dataType="str"
-                          errorOrTruncationOperation="Copy Column"
-                          length="24"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Match Output].Columns[BdgtSegment]"
-                          name="BdgtSegment"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              dataType="System.String"
-                              description="Specifies the column in the reference table from which a column is copied."
-                              name="CopyFromReferenceColumn">BdgtSegment</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup No Match Output]"
-                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                      exclusionGroup="1"
-                      name="Lookup No Match Output"
-                      synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input]">
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Error Output]"
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
-                      name="Lookup Error Output"
-                      synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input]">
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SL Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable">User::GetSLStagingRowsForDeleteQuery</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Connections[OleDbConnection]"
+                      connectionManagerID="{AEC0A14E-8EFF-4200-9658-A67FEC69AC84}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SLStaging]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[IsOds]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[IsOds]"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[IsOds]"
+                          name="IsOds"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[CpnyId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[CpnyId]"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[CpnyId]"
+                          name="CpnyId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetYear]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BudgetYear]"
+                          length="4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetYear]"
+                          name="BudgetYear"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BudgetLedgerId]"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BudgetLedgerId]"
+                          name="BudgetLedgerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BdgtSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BdgtSegment]"
+                          length="24"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].Columns[BdgtSegment]"
+                          name="BdgtSegment"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[IsOds]"
+                          dataType="i4"
+                          name="IsOds" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[CpnyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="CpnyId" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BudgetYear]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          name="BudgetYear" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BudgetLedgerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="BudgetLedgerId" />
+                        <externalMetadataColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output].ExternalColumns[BdgtSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          name="BdgtSegment" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[CpnyId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[CpnyId]"
+                          name="CpnyId" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BudgetYear]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BudgetYear]"
+                          name="BudgetYear" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BudgetLedgerId]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BudgetLedgerId]"
+                          name="BudgetLedgerId" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BdgtSegment]"
+                          codePage="1252"
+                          dataType="str"
+                          length="24"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[BdgtSegment]"
+                          name="BdgtSegment" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[IsOds]"
+                          dataType="i4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[IsOds]"
+                          name="IsOds" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1742,20 +1835,15 @@ where [refTable].[CpnyId] = ? and [refTable].[BudgetYear] = ? and [refTable].[Bu
               </components>
               <paths>
                 <path
-                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[Lookup No Match Output]"
-                  endId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Inputs[Row Count Input 1]"
-                  name="Lookup No Match Output"
-                  startId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Outputs[Lookup No Match Output]" />
-                <path
                   refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output]"
-                  endId="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup.Inputs[Lookup Input]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
                   startId="Package\Find Deleted Rows in Source\Store to Staging\Ods Source.Outputs[OLE DB Source Output]" />
                 <path
-                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[Row Count Output 1]"
-                  endId="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table.Inputs[OLE DB Destination Input]"
-                  name="Row Count Output 1"
-                  startId="Package\Find Deleted Rows in Source\Store to Staging\Row Count.Outputs[Row Count Output 1]" />
+                  refId="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
+                  endId="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Find Deleted Rows in Source\Store to Staging\SL Source.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -1778,36 +1866,6 @@ where [refTable].[CpnyId] = ? and [refTable].[BudgetYear] = ? and [refTable].[Bu
               VSTAMinorVersion="0"
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
-              <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -2014,6 +2072,35 @@ using System.Runtime.CompilerServices;
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2151,34 +2238,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -4938,36 +5026,6 @@ Where LUpd_DateTime &gt; ?</property>
           Language="CSharp"
           ReadOnlyVariables="User::GetSourceRowsQuery">
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -5086,6 +5144,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
+    "ings")]
+
+namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="ST_3dd9bda90c68436bb536c6598ed20014.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -5311,34 +5398,35 @@ namespace ST_3dd9bda90c68436bb536c6598ed20014
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
-    "ings")]
-
-namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Settings.settings"
             Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -6189,59 +6277,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\Find Deleted Rows in Source\Store to Staging">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="195,42"
-          Id="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table"
-          TopLeft="561.25,319.345238095238" />
-        <NodeLayout
-          Size="127.5,42"
-          Id="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup"
-          TopLeft="589.107142857143,145.059523809524" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="132.5,42"
           Id="Package\Find Deleted Rows in Source\Store to Staging\Ods Source"
-          TopLeft="585.892857142857,65.4166666666667" />
+          TopLeft="93.7946428571429,64.6041666666666" />
         <NodeLayout
-          Size="130.5,42"
-          Id="Package\Find Deleted Rows in Source\Store to Staging\Row Count"
-          TopLeft="586.607142857143,236.130952380953" />
-        <EdgeLayout
-          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Row Count Output 1]"
-          TopLeft="655.303571428572,278.130952380953">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,41.2142857142857"
-              Start="0,0"
-              End="0,33.7142857142857">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,33.7142857142857" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="195,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table"
+          TopLeft="60,159.559523809524" />
+        <NodeLayout
+          Size="125.5,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\SL Source"
+          TopLeft="367.35119047619,60" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Find Deleted Rows in Source\Store to Staging\OLE DB Destination"
+          TopLeft="348.422619047619,159.642857142857" />
         <EdgeLayout
           Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output]"
-          TopLeft="652.5,107.416666666667">
+          TopLeft="158.772321428571,106.604166666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.6428571428571"
+              EndConnector="0,52.9553571428571"
               Start="0,0"
-              End="0,30.1428571428571">
+              End="0,45.4553571428571">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.1428571428571" />
+                    End="0,45.4553571428571" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6251,27 +6317,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[Lookup No Match Output]"
-          TopLeft="652.357142857143,187.059523809524">
+          Id="Package\Find Deleted Rows in Source\Store to Staging.Paths[OLE DB Source Output1]"
+          TopLeft="432.011904761904,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49.0714285714286"
+              EndConnector="0,57.6428571428571"
               Start="0,0"
-              End="0,41.5714285714286">
+              End="0,50.1428571428571">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.5714285714286" />
+                    End="0,50.1428571428571" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,14.9810267857143,111.6127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6289,45 +6353,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
-  <PipelineComponentMetadata
-    design-time-name="Package\Find Deleted Rows in Source\Store to Staging\OdsStaging Delete Table">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Find Deleted Rows in Source\Store to Staging\SL Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Find Deleted Rows in Source\Store to Staging\Ods Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Find Rows to Upsert">
     <LayoutInfo>
@@ -6405,14 +6430,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     </LayoutInfo>
   </DtsEventHandler>
   <PipelineComponentMetadata
-    design-time-name="Package\Find Rows to Upsert\Get Source Data from Production">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Find Rows to Upsert\Store Data in Staging Table">
     <Properties>
       <Property>
@@ -6422,6 +6439,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Find Rows to Upsert\Get Source Data from Production">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
