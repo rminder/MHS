@@ -142,9 +142,11 @@
     <Build Include="SL\Stored Procedures\DeleteBudget.sql" />
     <Build Include="SL\Tables\AP_BalancesDelete.sql" />
     <Build Include="SL\Tables\AP_Balances.sql" />
-    <Build Include="dbo\Tables\RandyTemp.sql" />
     <Build Include="SL\Views\vwAP_Balances.sql" />
-    <Build Include="dbo\Views\SL.vwAP_Balances.sql" />
     <Build Include="SL\Stored Procedures\DeleteAccountsPayableBalance.sql" />
+    <Build Include="SL\Tables\AR_BalancesDelete.sql" />
+    <Build Include="SL\Tables\AR_Balances.sql" />
+    <Build Include="SL\Views\vwAR_Balances.sql" />
+    <Build Include="SL\Stored Procedures\DeleteAccountsReceivableBalance.sql" />
   </ItemGroup>
 </Project>

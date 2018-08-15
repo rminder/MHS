@@ -1,5 +1,6 @@
 ﻿
 
+
 -- =================================================================
 -- Author:		Randy Minder
 -- Create date: 13-August, 2018
@@ -116,4 +117,9 @@ SELECT 'Budget' AS [Table], __Operation AS [Operation], CONVERT(DATE,__Operation
 FROM SL.BudgetGetHistory(@StartDate,@EndDate)
 GROUP BY __Operation, CONVERT(DATE,__OperationDate)
 
+UNION
+
+SELECT 'AccountsReceivableBalance' AS [Table], __Operation AS [Operation], CONVERT(DATE,__OperationDate) AS [OperationDate], COUNT(*) AS [OperationCount]
+FROM SL.AccountsReceivableBalanceGetHistory(@StartDate,@EndDate)
+GROUP BY __Operation, CONVERT(DATE,__OperationDate)
 )

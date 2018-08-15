@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SalesForce"
+  DTS:DTSID="{447A6D6F-9BA8-419C-9E7C-74D08F81A684}"
+  DTS:CreationName="SALESFORCE TF">
+  <DTS:ObjectData>
+    <TaskFactorySalesForceConnectionManager
+      ConnectionString="ProxyAuthorizationScheme=0;Username=mnr_salesforcebi_dl@minercorp.com;ServerURL=;Timeout=60;UseProxy=False;ProxyHost=;ProxyUserName=;ProxyDomain=;ProxyPort=0;ReuseConnectionAcrossAllTasks=True;NumberOfRetries=0;">
+      <Password
+        Sensitive="1" xmlns="www.microsoft.com/SqlServer/Dts">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAAAcfPLpmAPtkFX4AmbHyhinYWi5TcZ8L/BLrdZtHI6PIgAAAAAOgAAAAAIAACAAAAD4+mhN7lsn62ZvlkjMzUy3eybf4hA+UUeFDydWKDnrPYAAAADUkG2kTz30NVAI00A+OcwSh82cdAU7D1XNn7Pwizh1X9uFYjpxvCc2T4/4O50rZE94gEJ7yA2oKpw7Kjq27Vx3Qe/zYC3DCzzXr0uUJa2ArSj0EqoG+Mg8I0Bt9Ml2/8NODWl9KhrJchHOhZMbapl2IQb9Oeqvc1qNjTssfGM9O0AAAAA68jDOZ6OpI2tAngn5n07wogKPmeRq++6dDdOqhminatroVo72BBuyhkcJVqaxrLQgxAJky9zvoM0bgJQyoGvq</Password>
+    </TaskFactorySalesForceConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
