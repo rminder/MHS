@@ -1,4 +1,5 @@
 ﻿
+
 CREATE VIEW [dbo].[fARTran]
 AS
 SELECT  COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END,'n/a')  AS 'Acct'
@@ -6,7 +7,8 @@ SELECT  COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END,'n/a')  AS 'A
 , COALESCE(CASE WHEN CompanyId  = '' THEN NULL ELSE CompanyId END,'n/a')  AS 'CpnyID'
 , COALESCE(CASE WHEN CurrencyId  = '' THEN NULL ELSE CurrencyId END,'n/a')  AS 'CuryId'
 , CASE WHEN CurrencyRate IS NULL THEN 0 ELSE CurrencyRate END AS 'CuryRate'
-, CASE WHEN CurrencyTransactionAmount  IS NULL THEN 0 ELSE CurrencyTransactionAmount END AS 'CuryTranAmt'
+, CASE WHEN CurrencyTransactionAmount  IS NULL THEN 0 ELSE 
+	CASE WHEN DebitOrCredit = 'D' THEN CurrencyTransactionAmount*-1 ELSE CurrencyTransactionAmount END END AS 'CuryTranAmt'
 , COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END,'n/a')  AS 'CustId'
 , COALESCE(CASE WHEN DebitOrCredit = '' THEN NULL ELSE  DebitOrCredit END,'n/a')  AS 'DrCr'
 , COALESCE(CASE WHEN FiscalYear = '' THEN NULL ELSE FiscalYear END,'n/a')  AS 'FiscYr'
@@ -24,7 +26,8 @@ SELECT  COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END,'n/a')  AS 'A
 , COALESCE(CASE WHEN SubSeg1  = '' THEN NULL ELSE SubSeg1 END,'n/a')  AS 'SubSeg1'
 , COALESCE(CASE WHEN SubSeg2  = '' THEN NULL ELSE SubSeg2 END,'n/a')  AS 'SubSeg2'
 , COALESCE(CASE WHEN TaskId  = '' THEN NULL ELSE TaskId END,'n/a')  AS 'TaskID'
-, CASE WHEN TransactionAmount IS NULL THEN 0 ELSE TransactionAmount END AS 'TranAmt'
+, CASE WHEN TransactionAmount IS NULL THEN 0 ELSE 
+	CASE WHEN DebitOrCredit = 'D' THEN TransactionAmount*-1 ELSE TransactionAmount END END AS 'TranAmt'
 , CASE WHEN TransactionDate IS NULL THEN CAST('1900-01-01 00:00:00' AS datetime2(7)) ELSE TransactionDate END AS 'TranDate'
 , COALESCE(CASE WHEN  TransactionType = '' THEN NULL ELSE TransactionType END,'n/a')  AS 'TranType'
 , COALESCE(CASE WHEN  WarehouseLocation  = '' THEN NULL ELSE WarehouseLocation END,'n/a')  AS 'WhseLoc'

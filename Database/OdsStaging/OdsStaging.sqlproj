@@ -148,5 +148,14 @@
     <Build Include="SL\Tables\AR_Balances.sql" />
     <Build Include="SL\Views\vwAR_Balances.sql" />
     <Build Include="SL\Stored Procedures\DeleteAccountsReceivableBalance.sql" />
+    <Build Include="SL\Tables\Budget_Dist_TypeDelete.sql" />
+    <Build Include="SL\Tables\Budget_Dist_Type.sql" />
+    <Build Include="SL\Tables\ARHistDelete.sql" />
+    <Build Include="SL\Tables\ARHist.sql" />
+    <Build Include="SL\Views\vwBudget_Dist_Type.sql" />
+    <Build Include="SL\Views\vwARHist.sql" />
+    <Build Include="SL\Stored Procedures\DeleteBudgetDistributionType.sql" />
+    <Build Include="SL\Stored Procedures\DeleteAccountsReceivableHistory.sql" />
+    <Build Include="Security\SF.sql" />
   </ItemGroup>
 </Project>

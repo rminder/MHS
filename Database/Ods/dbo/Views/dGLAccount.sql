@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dGLAccount]
 AS
 SELECT
@@ -14,7 +15,40 @@ SELECT
    ,COALESCE(CASE WHEN [Description] = '' THEN NULL ELSE [Description] END,'n/a') AS 'Descr'
    ,COALESCE(CASE WHEN RatioGroup = '' THEN NULL ELSE RatioGroup END,'n/a') AS 'RatioGrp'
    ,COALESCE(CASE WHEN IsSummarized = '' THEN NULL ELSE IsSummarized END,'n/a') AS 'SummPost'
-FROM SL.Account;
+FROM SL.Account
+
+UNION
+
+
+SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+
+FROM [fAPTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+
+WHERE b.[Account] IS NULL
+
+UNION
+
+SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+
+FROM [fARTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+
+WHERE b.[Account] IS NULL
+
+UNION
+
+SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+
+FROM [fGLTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+
+WHERE b.[Account] IS NULL
+
+UNION
+
+SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+
+FROM [fGLBudget] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+
+WHERE b.[Account] IS NULL ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dGLAccount';
 

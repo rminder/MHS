@@ -1,4 +1,5 @@
 ﻿
+
 CREATE VIEW [dbo].[dCustomer]
 AS
 SELECT       
@@ -15,6 +16,14 @@ COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END,'n/a')  AS  'Cu
 , CASE WHEN CreditLimit IS NULL THEN 0 ELSE CreditLimit END AS 'CrLimit'
 , CASE WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS datetime2(7)) ELSE LastUpdate END AS 'tstamp'
 FROM            SL.Customer
+
+UNION
+
+SELECT Distinct a.[CustId], 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0, CAST('1900-01-01 00:00:00' AS datetime2(7))
+
+FROM [fARTran] a LEFT OUTER JOIN (SELECT DISTINCT CustomerId FROM SL.Customer) b ON a.[CustId] = b.[CustomerId]
+
+WHERE b.[CustomerId] IS NULL
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCustomer';
 

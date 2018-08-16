@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dSubAcctSeg1]
 AS
 SELECT        Id AS 'SegID'
@@ -10,6 +11,38 @@ UNION ALL
 SELECT 'n/a'AS 'SegID', 'n/a' AS 'Descr'
 UNION ALL
 SELECT '0'AS 'SegID', 'n/a' AS 'Descr'
+
+UNION
+
+SELECT Distinct a.[SubSeg1], 'n/a'
+
+FROM [fAPTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg1] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '1')
+
+UNION
+
+SELECT Distinct a.[SubSeg1], 'n/a'
+
+FROM [fARTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg1] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '1')
+
+UNION
+
+SELECT Distinct a.[SubSeg1], 'n/a'
+
+FROM [fGLBudget] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg1] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '1')
+
+UNION
+
+SELECT Distinct a.[SubSeg1], 'n/a'
+
+FROM [fGLTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg1] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '1') ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSubAcctSeg1';
 

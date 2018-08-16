@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAAAgOgoSeSqCsSvJl19gE5A6KUsKL6oKgOpN8Y++1wXdzgAAAAAOgAAAAAIAACAAAABUBrf2T6x9mp3oMGAK5i0eWVuS7oh/2LZW+rlvxS+8gJAAAACAI6+lRG5eSG8nbhIwoU0+RNo2vhJacIF7VmTgwOQS2nfcJnc7zjtv/c3YsxNlCvad0ObnG14vV56S7KjyDsuOi8EyGL38a0v3y0BlfaQb2VySD17Jjw6DyKQu6ZaE/4Bi0ScQaI0mo0+9RuE6rLY5DisWHsKtHLPFIJIuWqT86ECJdlyiiSX2BGlGl2BkEltAAAAAHuVelhTXtwqEIdRgmFF5jylAxqyure1cTIsCfL4miHVZGTI9SSem4HQZWyskwpipuvbvvF7lvpOwbkoVqBLNyw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADSdD+rJk4KuttllSFSkYkiXGUUWBb+gh/1fQv2XcCkFAAAAAAOgAAAAAIAACAAAACOJhdO008ZMedmVJXhW25Op/dzcbEfSJifdckUd3lZMpAAAAChOpeFgjLPfcOz8qsSkYbcPXElGicbYqQgwh8KSAds/NKtIpc29uPXy5DF+fhdEX0ENyFbm7mGZRb2EIGaf7aI66fevVdvH2bYl079fATV6EGtQKyit59z9sNA8CPBHEXo7O0SnCiwQKIv2bwqLq151SuJUZI1zz9jZ3pl5SPp1CumjocBPasl21hEsjtDO8FAAAAAj4W49WeYBAoD+fbBrVST9e0ToSGov3UmDvnSeKUBzsSjV8xqbpLKTV6CUCp/XSLo15gDxFdwdfnT1iANNpkyww==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -52,6 +52,7 @@
           <SSIS:Package SSIS:Name="SL-AccountsReceivableBalance.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SFTest.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL.BudgetDistributionType.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SL-AccountsReceivableHistory.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="OdsProduction.conmgr" />
@@ -1284,6 +1285,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{7BF180FD-9C5E-487E-A214-EDB648894CD1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SL-AccountsReceivableHistory.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{FC8407BA-4E68-449C-A60E-2F30BDD103E2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SL-AccountsReceivableHistory</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">231</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EF64F978-547E-49CB-B1E7-F4AB27A97192}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

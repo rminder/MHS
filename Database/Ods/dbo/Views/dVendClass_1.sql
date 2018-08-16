@@ -1,7 +1,16 @@
-﻿CREATE VIEW dbo.[dVendClass]
+﻿
+CREATE VIEW [dbo].[dVendClass]
 AS
 SELECT        ClassId AS 'ClassID', COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS 'Descr'
 FROM            SL.VendorClass
+
+UNION
+
+SELECT Distinct a.[ClassID], 'n/a'
+
+FROM [dVendor] a LEFT OUTER JOIN  SL.VendorClass b ON a.[ClassID] = b.[ClassID]
+
+WHERE b.[ClassID] IS NULL ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendClass';
 

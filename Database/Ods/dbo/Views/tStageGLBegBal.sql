@@ -1,43 +1,26 @@
 ﻿
-CREATE VIEW [dbo].[dSubAcct]
+CREATE VIEW [dbo].[tStageGLBegBal]
 AS
-SELECT        COALESCE (CASE WHEN SubaccountId = '' THEN NULL ELSE SubaccountId END, 'n/a') AS Sub, IsActive AS Active, COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS Descr
-FROM            SL.Subaccount
- 
+WITH tStageGLBegBAL_CTE ([Acct],[BegBal], [CpnyID], [CuryID], [FiscYr], [LedgerId], [PerFinancialDate], [Sub], [SubSeg1], [SubSeg2])
+AS
+(
 
-UNION
 
-SELECT Distinct a.[Sub], 0, 'n/a'
-
-FROM [fAPTran] a LEFT OUTER JOIN SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
-
-WHERE b.[SubaccountId] IS NULL
-
-UNION
-
-SELECT Distinct a.[Sub], 0, 'n/a'
-
-FROM [fARTran] a LEFT OUTER JOIN SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
-
-WHERE b.[SubaccountId] IS NULL
-
-UNION
-
-SELECT Distinct a.[Sub], 0, 'n/a'
-
-FROM [fGLBudget] a LEFT OUTER JOIN SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
-
-WHERE b.[SubaccountId] IS NULL
-
-UNION
-
-SELECT Distinct a.[Sub], 0, 'n/a'
-
-FROM [fGLTran] a LEFT OUTER JOIN  SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
-
-WHERE b.[SubaccountId] IS NULL ;
+	SELECT        Account, BeginningBalance, CompanyId, CurrencyId, FiscalYear, LedgerId, Convert(nvarchar, Convert(int, FiscalYear) - 1) + '-12-01' AS 'PerFinancialDate', SubaccountId, SUBSTRING([SubaccountId], 1, 2) AS 'SubSeg1', SUBSTRING([SubaccountId], 3, 4) AS 'SubSeg2'
+	FROM            SL.AccountHistory WITH (NOLOCK)
+	WHERE        (BalanceType = 'A') AND (CompanyId IN
+								 (SELECT        CompanyId
+								   FROM            SL.Company
+								   WHERE        (IsActive = 1)))
+)
+SELECT [Acct],[BegBal], tStageGLBegBAL_CTE.[CpnyID], [CuryID], [FiscYr], [LedgerId], [PerFinancialDate], [Sub], [SubSeg1], [SubSeg2]
+FROM
+	tStageGLBegBAL_CTE JOIN 
+	(select CpnyId,MIN(FiscYr) as MinFiscYear from tStageGLBegBAL_CTE where FiscYr >= '1980' GROUP BY CpnyID) AS FiscalList
+	ON	tStageGLBegBAL_CTE.CpnyId = FiscalList.CpnyId and tStageGLBegBAL_CTE.FiscYr = FiscalList.MinFiscYear
+	WHERE BegBal <> 0;
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSubAcct';
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'tStageGLBegBal';
 
 
 GO
@@ -46,7 +29,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[41] 4[20] 2[13] 3) )"
+         Configuration = "(H (1[41] 4[20] 2[12] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -112,12 +95,12 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
-         Begin Table = "Subaccount (SL)"
+         Begin Table = "AccountHistory (SL)"
             Begin Extent = 
                Top = 6
-               Left = 246
-               Bottom = 223
-               Right = 416
+               Left = 38
+               Bottom = 342
+               Right = 233
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -159,5 +142,5 @@ Begin DesignProperties =
       End
    End
 End
-', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSubAcct';
+', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'tStageGLBegBal';
 

@@ -154,7 +154,6 @@
     <Build Include="SL\Tables\Ledger.sql" />
     <Build Include="SL\Tables\AccountsReceivableDocumentHistory.sql" />
     <Build Include="SL\Tables\AccountsReceivableDocument.sql" />
-    <Build Include="dbo\Tables\GetARBalance.sql" />
     <Build Include="SL\Views\vwLedger.sql" />
     <Build Include="SL\Views\vwCustomerClass.sql" />
     <Build Include="SL\Views\vwAccountsReceivableDocument.sql" />
@@ -188,6 +187,16 @@
     <Build Include="SL\Tables\AccountsReceivableBalance.sql" />
     <Build Include="SL\Views\vwAccountsReceivableBalance.sql" />
     <Build Include="SL\Functions\AccountsReceivableBalanceGetHistory.sql" />
+    <Build Include="SL\Tables\BudgetDistributionTypeHistory.sql" />
+    <Build Include="SL\Tables\BudgetDistributionType.sql" />
+    <Build Include="SL\Tables\AccountsReceivableHistoryHistory.sql" />
+    <Build Include="SL\Tables\AccountsReceivableHistory.sql" />
+    <Build Include="SL\Views\vwBudgetDistributionType.sql" />
+    <Build Include="SL\Views\vwAccountsReceivableHistory.sql" />
+    <Build Include="dbo\Views\tStageGLBegBal.sql" />
+    <Build Include="dbo\Views\fGLBudget.sql" />
+    <Build Include="SL\Functions\BudgetDistributionTypeGetHistory.sql" />
+    <Build Include="SL\Functions\AccountsReceivableHistoryGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

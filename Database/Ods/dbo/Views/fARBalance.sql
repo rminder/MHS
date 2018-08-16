@@ -1,7 +1,9 @@
-﻿CREATE VIEW dbo.fARBalance
+﻿
+CREATE VIEW [dbo].[fARBalance]
 AS
-SELECT        T.CompanyId, T.CustomerId, T.DocumentType, T.DueDate, T.DocumentDate, T.TransactionReferenceNumber, T.BatchNumber, T.BatchSequence, T.DocumentBalance, T.OriginalDocumentAmount, T.SubaccountId, T.ProfitCenterId, 
-                         T.LocationId, T.PeriodToPost, T.WorkOrder, T.Released, T.OpenDocument, T.LastUpdate, T.ImportDate
+SELECT        T.CompanyId AS 'CpnyID', T.CustomerId AS 'CustID', T.TransactionReferenceNumber AS 'RefNbr', T.DocumentDate AS 'DocDate',  T.DueDate AS 'DueDate', T.DocumentType AS 'DocType',  
+ T.DocumentBalance AS 'DocBal', T.OriginalDocumentAmount AS 'OrigDocAmt',  T.ProfitCenterId AS 'ProfitCenterID', T.LocationId AS 'LocationID', T.PeriodToPost AS 'PerPost',  
+ CONVERT(datetime, SUBSTRING(T.PeriodToPost, 1,4) + '-' + SUBSTRING(T.PeriodToPost, 5, 2) + '-01') AS 'PerFinancialDate',  COALESCE (CASE WHEN T.WorkOrder = '' THEN NULL ELSE T.WorkOrder END, 'n/a') AS 'WorkOrder'  
 FROM            SL.vwAccountsReceivableBalances AS T LEFT OUTER JOIN
                          SL.Company AS T2 ON T2.CompanyId = T.CompanyId
 WHERE        (T.Released = 1) AND (T.OpenDocument = 1) AND (T2.IsActive = 1)

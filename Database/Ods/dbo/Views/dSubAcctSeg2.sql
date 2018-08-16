@@ -9,3 +9,35 @@ FROM            SL.SegmentDefinition
 WHERE        (SegmentNumber = '2')
 UNION ALL
 SELECT 'n/a'AS 'SegID', 'n/a' AS 'Descr'
+
+UNION
+
+SELECT Distinct a.[SubSeg2], 'n/a'
+
+FROM [fAPTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg2] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '2')
+
+UNION
+
+SELECT Distinct a.[SubSeg2], 'n/a'
+
+FROM [fARTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg2] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '2')
+
+UNION
+
+SELECT Distinct a.[SubSeg2], 'n/a'
+
+FROM [fGLBudget] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg2] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '2')
+
+UNION
+
+SELECT Distinct a.[SubSeg2], 'n/a'
+
+FROM [fGLTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg2] = b.[ID]
+
+WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '2') ;

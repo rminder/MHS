@@ -1,7 +1,32 @@
-﻿CREATE VIEW dbo.dJrnlType
+﻿
+CREATE VIEW [dbo].[dJrnlType]
 AS
-SELECT DISTINCT JournalType AS 'JrnlType'
+SELECT DISTINCT JournalType AS 'ID'
 FROM            SL.GeneralLedgerTransaction
+
+UNION
+
+SELECT Distinct a.[JrnlType]
+
+FROM [fAPTran] a LEFT OUTER JOIN (SELECT DISTINCT JournalType AS 'ID' FROM SL.GeneralLedgerTransaction) b ON a.[JrnlType] = b.[ID]
+
+WHERE b.[ID] IS NULL
+
+UNION
+
+SELECT Distinct a.[JrnlType]
+
+FROM [fARTran] a LEFT OUTER JOIN (SELECT DISTINCT JournalType AS 'ID' FROM SL.GeneralLedgerTransaction) b ON a.[JrnlType] = b.[ID]
+
+WHERE b.[ID] IS NULL
+
+UNION
+
+SELECT Distinct a.[JrnlType]
+
+FROM [fGLTran] a LEFT OUTER JOIN (SELECT DISTINCT JournalType AS 'ID' FROM SL.GeneralLedgerTransaction) b ON a.[JrnlType] = b.[ID]
+
+WHERE b.[ID] IS NULL ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dJrnlType';
 

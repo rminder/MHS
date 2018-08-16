@@ -1,10 +1,20 @@
-﻿CREATE VIEW dbo.dVendor
+﻿
+CREATE VIEW [dbo].[dVendor]
 AS
 SELECT        COALESCE (CASE WHEN City = '' THEN NULL ELSE City END, 'n/a') AS 'City', COALESCE (CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a') AS 'ClassID', COALESCE (CASE WHEN Country = '' THEN NULL 
                          ELSE Country END, 'n/a') AS 'Country', COALESCE (CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a') AS 'Name', COALESCE (CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a') AS 'State', 
-                         COALESCE (CASE WHEN [Status] = '' THEN NULL ELSE [Status] END, 'n/a') AS 'Status', COALESCE (CASE WHEN Zip = '' THEN NULL ELSE Zip END, 'n/a') AS 'Zip', CASE WHEN LastUpdate IS NULL 
+                         COALESCE (CASE WHEN [Status] = '' THEN NULL ELSE [Status] END, 'n/a') AS 'Status', [VendorId], COALESCE (CASE WHEN Zip = '' THEN NULL ELSE Zip END, 'n/a') AS 'Zip', CASE WHEN LastUpdate IS NULL 
                          THEN CAST('1900-01-01 00:00:00' AS datetime2(7)) ELSE LastUpdate END AS 'tstamp'
 FROM            SL.Vendor
+
+UNION
+
+
+SELECT Distinct 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', a.[VendId], 'n/a', CAST('1900-01-01 00:00:00' AS datetime2(7)) 
+
+FROM [fAPTran] a LEFT OUTER JOIN  SL.Vendor b ON a.[VendId] = b.[VendorId]
+
+WHERE b.[VendorId] IS NULL ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendor';
 

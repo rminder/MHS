@@ -48,7 +48,8 @@ COALESCE(CASE WHEN  [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a') AS 'SubS
 
 COALESCE(CASE WHEN  [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a') AS 'TaskID',
 
-CASE WHEN [TransactionAmount] IS NULL THEN 0 ELSE [TransactionAmount] END AS 'TranAmt',
+CASE WHEN [TransactionAmount] IS NULL THEN 0 ELSE 
+	CASE WHEN [DebitOrCredit] = 'C' THEN [TransactionAmount] *-1 ELSE [TransactionAmount] END  END AS 'TranAmt',
 
 CASE WHEN  [TransactionDate] IS NULL THEN '1900-1-1 00:00:00' ELSE  [TransactionDate] END AS 'TranDate',
 
