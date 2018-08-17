@@ -157,5 +157,9 @@
     <Build Include="SL\Stored Procedures\DeleteBudgetDistributionType.sql" />
     <Build Include="SL\Stored Procedures\DeleteAccountsReceivableHistory.sql" />
     <Build Include="Security\SF.sql" />
+    <Build Include="SL\Tables\APHistDelete.sql" />
+    <Build Include="SL\Tables\APHist.sql" />
+    <Build Include="SL\Views\vwAPHist.sql" />
+    <Build Include="SL\Stored Procedures\DeleteAccountsPayableHistory.sql" />
   </ItemGroup>
 </Project>

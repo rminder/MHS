@@ -197,6 +197,10 @@
     <Build Include="dbo\Views\fGLBudget.sql" />
     <Build Include="SL\Functions\BudgetDistributionTypeGetHistory.sql" />
     <Build Include="SL\Functions\AccountsReceivableHistoryGetHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableHistoryHistory.sql" />
+    <Build Include="SL\Tables\AccountsPayableHistory.sql" />
+    <Build Include="dbo\Views\tStageARBegBal.sql" />
+    <Build Include="SL\Functions\AccountsPayableHistoryGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

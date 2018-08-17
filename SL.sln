@@ -9,6 +9,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Ods", "Database\Ods\Ods.sql
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OdsStaging", "Database\OdsStaging\OdsStaging.sqlproj", "{3A99E5E3-05D9-4BBD-AEF2-F4A4E209894C}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SF", "..\SF\SF.dtproj", "{4362681D-0CB5-4A8D-94E6-0ABF347880AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,12 @@ Global
 		{3A99E5E3-05D9-4BBD-AEF2-F4A4E209894C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A99E5E3-05D9-4BBD-AEF2-F4A4E209894C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A99E5E3-05D9-4BBD-AEF2-F4A4E209894C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Debug|Any CPU.ActiveCfg = Development
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Debug|Any CPU.Build.0 = Development
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Development|Any CPU.ActiveCfg = Development
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Development|Any CPU.Build.0 = Development
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Release|Any CPU.ActiveCfg = Development
+		{4362681D-0CB5-4A8D-94E6-0ABF347880AB}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

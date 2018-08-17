@@ -3,6 +3,7 @@
 
 
 
+
 -- =================================================================
 -- Author:		Randy Minder
 -- Create date: 13-August, 2018
@@ -135,5 +136,11 @@ UNION
 
 SELECT 'AccountsReceivableHistory' AS [Table], __Operation AS [Operation], CONVERT(DATE,__OperationDate) AS [OperationDate], COUNT(*) AS [OperationCount]
 FROM SL.AccountsReceivableHistoryGetHistory(@StartDate,@EndDate)
+GROUP BY __Operation, CONVERT(DATE,__OperationDate)
+
+UNION
+
+SELECT 'AccountsPayableHistory' AS [Table], __Operation AS [Operation], CONVERT(DATE,__OperationDate) AS [OperationDate], COUNT(*) AS [OperationCount]
+FROM SL.AccountsPayableHistoryGetHistory(@StartDate,@EndDate)
 GROUP BY __Operation, CONVERT(DATE,__OperationDate)
 )

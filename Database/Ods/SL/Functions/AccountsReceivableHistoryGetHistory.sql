@@ -1,4 +1,5 @@
-﻿-- =============================================
+﻿
+-- =============================================
 -- Author:		Randy Minder
 -- Create date: 16-August, 2018
 -- Description:	Get all history for the target
@@ -12,7 +13,7 @@ CREATE FUNCTION [SL].[AccountsReceivableHistoryGetHistory]
 RETURNS 
 @ResultsTable TABLE 
 (
-	[RowId] [INT] IDENTITY(1,1) NOT NULL,
+	[RowId] [INT] NOT NULL,
 	[CompanyId] [varchar](10) NOT NULL,
 	[CustomerId] [varchar](15) NOT NULL,
 	[FiscalYear] [varchar](4) NOT NULL,
@@ -417,7 +418,8 @@ BEGIN
 
 	INSERT INTO @ResultsTable
 		 (
-			 [CompanyId]
+			 [RowId]
+			,[CompanyId]
 			,[CustomerId]
 			,[FiscalYear]
 			,[AccruedRevenueBeginBalance]
@@ -568,7 +570,8 @@ BEGIN
 			,__Operation
 			,__OperationDate)
 	SELECT DISTINCT
-		 [CompanyId]
+ 		 T.[RowId]
+		,[CompanyId]
 		,[CustomerId]
 		,[FiscalYear]
 		,[AccruedRevenueBeginBalance]
