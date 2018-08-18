@@ -1,9 +1,9 @@
 ﻿
 
+
 CREATE VIEW [dbo].[fGLTran]
 AS
 SELECT 
-
 COALESCE(CASE WHEN  Account = '' THEN NULL ELSE Account	 END, 'n/a') AS 'Acct',
 COALESCE(CASE WHEN  BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS 'BaseCuryID',
 COALESCE(CASE WHEN  [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a') AS 'BatNbr',
@@ -34,6 +34,38 @@ COALESCE(CASE WHEN  [TransactionType] = '' THEN NULL ELSE [TransactionType] END,
 COALESCE(CASE WHEN  [TransactionReferenceNumber] = '' THEN NULL ELSE [TransactionReferenceNumber] END, 'n/a') AS 'RefNbr',
 CASE WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00' ELSE [LastUpdate] END AS 'tstamp'
 FROM SL.GeneralLedgerTransaction
+WHERE [JournalType] <> 'BB'
+UNION
+SELECT a.[Acct] AS 'Acct'
+      ,a.[CuryId] AS 'BaseCuryID'
+      ,'' AS 'BatNbr'
+      ,a.[CpnyID] AS 'CpnyID'
+      ,CASE b.AcctType WHEN '1A' THEN 0 ELSE a.[BegBal] END AS 'CrAmt'
+      ,CASE b.AcctType WHEN '1A' THEN 0 ELSE a.[BegBal] END AS 'CuryCrAmt'
+      ,CASE b.AcctType WHEN '1A' THEN a.[BegBal] ELSE 0 END AS 'CuryDrAmt'
+      ,a.[CuryId] 
+      ,1 AS 'CuryRate'
+      ,CASE b.AcctType WHEN '1A' THEN a.[BegBal] ELSE 0 END AS 'DrAmt'
+      ,CONVERT(nvarchar(100), CONVERT(int, a.[FiscYr]) - 1) AS 'FiscYr'
+      ,'BB' AS 'JrnlType'
+      ,[LedgerID] AS 'LedgerID'
+      ,0 AS 'LineNbr'
+      ,'GL' AS 'Module'
+      ,CONVERT(nvarchar(100), CONVERT(int, a.[FiscYr]) - 1) + '12'  AS 'PerPost'
+      ,a.[PerFinancialDate]  AS 'PerFinancialDate'
+      ,'P' AS 'Posted'
+      , 'n/a' AS 'ProjectID'
+	  ,1  AS 'Rlsed'
+      ,a.[Sub]
+      ,a.[SubSeg1]
+      ,a.[SubSeg2]
+	  ,'n/a' AS 'TaskID'
+      ,a.[PerFinancialDate] AS 'TranDate'
+      ,'Beginning Balance' AS 'TranDesc'
+      ,'GL'  AS 'TranType'
+	  ,'n/a' AS 'RefNbr'
+      ,'1900-1-1 00:00:00'  AS 'tstamp'
+  FROM [tStageGLBegBal] a INNER JOIN dGLAccount b ON a.Acct = b.Acct
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fGLTran';
 

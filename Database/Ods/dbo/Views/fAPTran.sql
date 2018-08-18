@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[fAPTran]
 AS
 SELECT 
@@ -62,6 +63,39 @@ CASE WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00' ELSE [LastUpdate] END AS
 COALESCE(CASE WHEN  [TransactionDescription] = '' THEN NULL ELSE [TransactionDescription] END, 'n/a') AS 'TranDesc'
 
 FROM SL.AccountsPayableTransaction
+WHERE [JournalType] <> 'BB'
+
+UNION
+
+SELECT [Acct] AS 'Acct'
+      ,NULL AS 'BatNbr'
+      ,[CpnyID] AS 'CpnyID'
+      ,[CuryID] AS 'CuryID'
+      , 1 AS 'CuryRate'
+      ,[BegBal] AS 'CuryTranAmt'
+      ,'C' AS 'DrCr'
+      ,NULL AS 'EmployeeID'
+      ,CONVERT(nvarchar(100), CONVERT(int, [FiscYr]) - 1) AS 'FiscYr'
+      ,NULL AS 'InvtID'
+      ,'BB' AS 'JrnlType'
+      ,[PerFinancialDate]
+      ,CONVERT(nvarchar(100), CONVERT(int, [FiscYr]) - 1) + '12'  AS 'PerPost'
+      ,NULL AS 'ProjectID'
+      ,-1 AS 'RecordID'
+      ,NULL AS 'RefNbr'
+      ,1 AS 'Rlsed'
+      ,NULL AS 'SiteId'
+      ,[Sub]
+      ,[SubSeg1]
+      ,[SubSeg2]
+      ,NULL AS 'TaskID'
+      ,[BegBal] AS 'TranAmt'
+      ,NULL AS 'TranDate'
+      ,NULL AS 'trantyp'
+      ,[VendId] AS 'VendId'
+      , '1900-1-1 00:00:00' AS 'tstamp'
+	  ,NULL AS 'TranDesc'
+ FROM [tStageAPBegBal]
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fAPTran';
 

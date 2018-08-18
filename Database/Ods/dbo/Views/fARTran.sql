@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[fARTran]
 AS
 SELECT  COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END,'n/a')  AS 'Acct'
@@ -34,6 +35,38 @@ SELECT  COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END,'n/a')  AS 'A
 , CASE WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS datetime2(7)) ELSE LastUpdate END AS 'tstamp'
 , COALESCE(CASE WHEN TransactionDescription = '' THEN NULL ELSE TransactionDescription END,'n/a')  AS 'TranDesc'
 FROM SL.AccountsReceivableTransaction
+WHERE [JournalType] <> 'BB'
+UNION
+SELECT [Acct] AS 'Acct'
+      ,NULL AS 'BatNbr'
+      ,[CpnyID] AS 'CpnyID'
+      ,[CuryID] AS 'CuryId'
+      ,1 AS 'CuryRate'
+      ,[BegBal] AS 'CuryTranAmt'
+      ,[CustId] AS 'CustID'
+      ,'D' AS 'DrCr'
+      ,CONVERT(nvarchar(100), CONVERT(int, [FiscYr]) - 1) AS 'FiscYr'
+      ,NULL AS 'InvtId'
+      ,'BB' AS 'JrnlType'
+      ,CONVERT(nvarchar(100), CONVERT(int, [FiscYr]) - 1) + '12' AS 'PerPost'
+      ,[PerFinancialDate] AS 'PerFinancialDate'
+      ,NULL AS 'ProjectID'
+      ,-1 AS 'RecordID'
+      ,NULL AS 'RefNbr'
+      ,1 AS 'Rlsed'
+      ,NULL AS 'SiteId'
+      ,NULL AS 'SlsperId'
+	  ,[Sub] 
+      ,[SubSeg1] 
+      ,[SubSeg2] 
+	  ,NULL AS 'TaskID'
+      ,[BegBal] AS 'TranAmt'
+      ,[PerFinancialDate] AS 'TranDate'
+      ,'IN' AS 'TranType'
+      ,NULL AS 'WhseLoc'
+      ,CAST('1900-01-01 00:00:00' AS datetime2(7)) AS 'tstamp'
+	  ,NULL AS 'TranDesc'
+ FROM [tStageARBegBal]
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fARTran';
 

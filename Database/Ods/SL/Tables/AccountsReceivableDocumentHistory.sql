@@ -3,7 +3,7 @@
     [CompanyId]                  VARCHAR (10)     NOT NULL,
     [CustomerId]                 VARCHAR (15)     NOT NULL,
     [DocumentType]               VARCHAR (2)      NOT NULL,
-    [TransactionReferenceNumber] CHAR (10)        NOT NULL,
+    [TransactionReferenceNumber] VARCHAR (10)     NOT NULL,
     [BatchNumber]                VARCHAR (10)     NOT NULL,
     [BatchSequence]              INT              NOT NULL,
     [DocumentDate]               DATE             NULL,
@@ -21,6 +21,8 @@
     [ValidFrom]                  DATETIME2 (7)    NOT NULL,
     [ValidTo]                    DATETIME2 (7)    NOT NULL
 );
+
+
 
 
 GO

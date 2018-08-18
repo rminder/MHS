@@ -69,6 +69,8 @@
     <Folder Include="Security\" />
     <Folder Include="SL\Views\" />
     <Folder Include="dbo\Views\" />
+    <Folder Include="SF\" />
+    <Folder Include="SF\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SL\Tables\Company.sql" />
@@ -140,7 +142,6 @@
     <Build Include="SL\Tables\CustomerClassHistory_1.sql" />
     <Build Include="SL\Tables\CustomerClass_1.sql" />
     <Build Include="SL\Views\vwSalesPerson.sql" />
-    <Build Include="dbo\Views\vwCustomerClass_1.sql" />
     <Build Include="dbo\Views\dCustClass.sql" />
     <Build Include="SL\Functions\SalesPersonGetHistory.sql" />
     <Build Include="SL\Functions\CustomerClassGetHistory_1.sql" />
@@ -201,6 +202,11 @@
     <Build Include="SL\Tables\AccountsPayableHistory.sql" />
     <Build Include="dbo\Views\tStageARBegBal.sql" />
     <Build Include="SL\Functions\AccountsPayableHistoryGetHistory.sql" />
+    <Build Include="SF\Tables\MaterialHandlingInvoiceHistory.sql" />
+    <Build Include="SF\Tables\MaterialHandlingInvoice.sql" />
+    <Build Include="dbo\Views\tStageAPBegBal.sql" />
+    <Build Include="dbo\Stored Procedures\sp_WhoIsActive.sql" />
+    <Build Include="Security\SF.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

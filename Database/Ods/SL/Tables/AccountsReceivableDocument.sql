@@ -3,7 +3,7 @@
     [CompanyId]                  VARCHAR (10)                                NOT NULL,
     [CustomerId]                 VARCHAR (15)                                NOT NULL,
     [DocumentType]               VARCHAR (2)                                 NOT NULL,
-    [TransactionReferenceNumber] CHAR (10)                                   NOT NULL,
+    [TransactionReferenceNumber] VARCHAR (10)                                NOT NULL,
     [BatchNumber]                VARCHAR (10)                                NOT NULL,
     [BatchSequence]              INT                                         NOT NULL,
     [DocumentDate]               DATE                                        NULL,
@@ -24,4 +24,11 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableDocumentHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsReceivableDocument_CustomerId_DocumentType_TransactonReferenceNumber_BatchNumber_BatchSequence]
+    ON [SL].[AccountsReceivableDocument]([CustomerId] ASC, [DocumentType] ASC, [TransactionReferenceNumber] ASC, [BatchNumber] ASC, [BatchSequence] ASC);
 
