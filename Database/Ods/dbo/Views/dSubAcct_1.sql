@@ -1,12 +1,56 @@
 ﻿
+
 CREATE VIEW [dbo].[dSubAcct]
 AS
-SELECT        COALESCE (CASE WHEN SubaccountId = '' THEN NULL ELSE SubaccountId END, 'n/a') AS Sub, IsActive AS Active, COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS Descr
-FROM            SL.Subaccount
- 
-
+WITH CTE
+AS
+(
+	SELECT
+		COALESCE(CASE WHEN SubaccountId = '' THEN NULL ELSE SubaccountId END, 'n/a') AS Sub
+	   ,IsActive																	 AS Active
+	   ,COALESCE(CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a')	 AS Descr
+	FROM SL.Subaccount
+)
+SELECT
+	Sub
+   ,Active
+   ,Descr
+FROM CTE
 UNION
+SELECT DISTINCT
+	   SubaccountId AS [Sub]
+	  ,0
+	  ,'n/a'
+FROM SL.AccountsPayableTransaction
+WHERE
+	SubaccountId NOT IN ( SELECT Sub FROM CTE )
+UNION
+SELECT DISTINCT
+	   SubaccountId AS [Sub]
+	  ,0
+	  ,'n/a'
+FROM SL.AccountsReceivableTransaction
+WHERE
+	SubaccountId NOT IN ( SELECT Sub FROM CTE )
+UNION
+SELECT DISTINCT
+	   SubaccountId AS [Sub]
+	  ,0
+	  ,'n/a'
+FROM SL.GeneralLedgerTransaction
+WHERE
+	SubaccountId NOT IN ( SELECT Sub FROM CTE )
+UNION
+SELECT DISTINCT
+	   SubaccountId AS [Sub]
+	  ,0
+	  ,'n/a'
+FROM SL.AccountHistory
+WHERE
+	SubaccountId NOT IN ( SELECT Sub FROM CTE );
 
+
+/*
 SELECT Distinct a.[Sub], 0, 'n/a'
 
 FROM [fAPTran] a LEFT OUTER JOIN SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
@@ -36,6 +80,7 @@ SELECT Distinct a.[Sub], 0, 'n/a'
 FROM [fGLTran] a LEFT OUTER JOIN  SL.Subaccount b ON a.[Sub] = b.[SubaccountId]
 
 WHERE b.[SubaccountId] IS NULL ;
+*/
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSubAcct';
 

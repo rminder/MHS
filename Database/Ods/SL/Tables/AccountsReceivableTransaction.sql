@@ -1,4 +1,4 @@
-CREATE TABLE [SL].[AccountsReceivableTransaction] (
+﻿CREATE TABLE [SL].[AccountsReceivableTransaction] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [Account]                    VARCHAR (10)                                NOT NULL,
     [BatchNumber]                VARCHAR (10)                                NOT NULL,
@@ -45,6 +45,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableTransactionH
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransaction_LastUpdate]
     ON [SL].[AccountsReceivableTransaction]([LastUpdate] ASC);
@@ -54,4 +56,10 @@ GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransaction_CustomerId, TransactionReferenceNumber_TransactionType_LineNumber,RecordId]
     ON [SL].[AccountsReceivableTransaction]([CustomerId] ASC, [TransactionReferenceNumber] ASC, [TransactionType] ASC, [LineNumber] ASC, [RecordId] ASC)
     INCLUDE([SubaccountId]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableTransaction_JournalType]
+    ON [SL].[AccountsReceivableTransaction]([JournalType] ASC)
+    INCLUDE([Account], [BatchNumber], [CompanyId], [CurrencyId], [CurrencyRate], [CurrencyTransactionAmount], [CustomerId], [DebitOrCredit], [FiscalYear], [InventoryId], [PeriodToPost], [PeriodFinancialDate], [ProjectId], [RecordId], [TransactionReferenceNumber], [Released], [SiteId], [SalesPersonId], [SubaccountId], [SubSeg1], [SubSeg2], [TaskId], [TransactionAmount], [TransactionDate], [TransactionType], [WarehouseLocation], [TransactionDescription], [LastUpdate]);
 

@@ -1,21 +1,52 @@
 ﻿
+
 CREATE VIEW [dbo].[dSalesPerson]
 AS
-SELECT        COALESCE (CASE WHEN City = '' THEN NULL ELSE City END, 'n/a') AS 'City', COALESCE (CASE WHEN Country = '' THEN NULL ELSE Country END, 'n/a') AS 'Country', COALESCE (CASE WHEN [Name] = '' THEN NULL 
-                         ELSE [Name] END, 'n/a') AS 'Name', COALESCE (CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsprsID', COALESCE (CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a') AS 'State', 
-                         COALESCE (CASE WHEN [Territory] = '' THEN NULL ELSE [Territory] END, 'n/a') AS 'Territory'
-FROM            SL.Salesperson
+WITH CTE
+AS
+(
+	SELECT
+		COALESCE(CASE WHEN City = '' THEN NULL ELSE City END, 'n/a')				   AS 'City'
+	   ,COALESCE(CASE WHEN Country = '' THEN NULL ELSE Country END, 'n/a')			   AS 'Country'
+	   ,COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a')			   AS 'Name'
+	   ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsprsID'
+	   ,COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a')			   AS 'State'
+	   ,COALESCE(CASE WHEN [Territory] = '' THEN NULL ELSE [Territory] END, 'n/a')	   AS 'Territory'
+	FROM SL.Salesperson
+)
+SELECT
+	City
+   ,Country
+   ,Name
+   ,SlsprsID
+   ,State
+   ,Territory
+FROM CTE
 UNION
-SELECT 'n/a','n/a','n/a','n/a','n/a','n/a'
-
+SELECT
+	'n/a'
+   ,'n/a'
+   ,'n/a'
+   ,'n/a'
+   ,'n/a'
+   ,'n/a'
 UNION
+SELECT DISTINCT
+	   'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,SalesPersonId AS [SlsperId]
+	  ,'n/a'
+	  ,'n/a'
+FROM SL.AccountsReceivableTransaction
+WHERE
+	SalesPersonId NOT IN ( SELECT SlsprsID FROM CTE );
 
 
-SELECT Distinct  'n/a', 'n/a', 'n/a',a.[SlsperId], 'n/a', 'n/a'
-
+/*
 FROM [fARTran] a LEFT OUTER JOIN  SL.Salesperson b ON a.[SlsperId] = b.[SalesPersonId]
-
 WHERE b.[SalesPersonId] IS NULL ;
+*/
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSalesPerson';
 

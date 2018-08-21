@@ -1,13 +1,37 @@
-﻿
-CREATE VIEW [dbo].[dLedger]
+﻿CREATE VIEW [dbo].[dLedger]
 AS
-SELECT        COALESCE (CASE WHEN LedgerId = '' THEN NULL ELSE LedgerId END, 'n/a') AS LedgerID, COALESCE (CASE WHEN BalanceType = '' THEN NULL ELSE BalanceType END, 'n/a') AS BalanceType, 
-                         CASE WHEN BalanceRequired IS NULL THEN 0 ELSE BalanceRequired END AS BalRequired, COALESCE (CASE WHEN BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS BaseCuryID, 
-                         COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS Descr
-FROM            SL.Ledger
+WITH CTE
+AS
+(
+	SELECT
+		COALESCE(CASE WHEN LedgerId = '' THEN NULL ELSE LedgerId END, 'n/a')			 AS LedgerID
+	   ,COALESCE(CASE WHEN BalanceType = '' THEN NULL ELSE BalanceType END, 'n/a')		 AS BalanceType
+	   ,CASE
+			WHEN BalanceRequired IS NULL THEN 0
+			ELSE BalanceRequired
+		END																				 AS BalRequired
+	   ,COALESCE(CASE WHEN BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS BaseCuryID
+	   ,COALESCE(CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a')		 AS Descr
+	FROM SL.Ledger
+)
+SELECT
+	LedgerID
+   ,BalanceType
+   ,BalRequired
+   ,BaseCuryID
+   ,Descr
+FROM CTE
 
 UNION
 
+SELECT Distinct LedgerID, 'n/a', 0, 'n/a', 'n/a'
+FROM SL.GeneralLedgerTransaction 
+WHERE LedgerId NOT IN (SELECT LedgerId FROM CTE)
+
+
+
+
+/*
 SELECT Distinct a.[LedgerID], 'n/a', 0, 'n/a', 'n/a'
 
 FROM [fGLTran] a LEFT OUTER JOIN (SELECT DISTINCT LedgerID FROM SL.Ledger) b ON a.[LedgerID] = b.[LedgerID]
@@ -29,6 +53,7 @@ SELECT Distinct a.[LedgerID], 'n/a', 0, 'n/a', 'n/a'
 FROM SL.vwGeneralLedgerSetup a LEFT OUTER JOIN (SELECT DISTINCT LedgerID FROM SL.Ledger) b ON a.[LedgerID] = b.[LedgerID]
 
 WHERE b.[LedgerID] IS NULL ;
+*/
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dLedger';
 

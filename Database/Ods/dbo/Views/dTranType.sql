@@ -1,13 +1,26 @@
-﻿CREATE VIEW dbo.dTranType
+﻿
+CREATE VIEW [dbo].[dTranType]
 AS
-SELECT DISTINCT  
-        CASE WHEN TranType = '' THEN 'n/a' ELSE TranType END AS 'ID' from fGLTran 
+SELECT DISTINCT
+	   CASE
+		   WHEN TransactionType = '' THEN 'n/a'
+		   ELSE TransactionType
+	   END AS 'ID'
+FROM SL.GeneralLedgerTransaction
 UNION
 SELECT DISTINCT
-        CASE WHEN TranType = '' THEN 'n/a' ELSE TranType END AS 'ID' from fAPTran 
+	   CASE
+		   WHEN TransactionType = '' THEN 'n/a'
+		   ELSE TransactionType
+	   END AS 'ID'
+FROM SL.AccountsPayableTransaction
 UNION
-SELECT DISTINCT 
-        CASE WHEN TranType = '' THEN 'n/a' ELSE TranType END AS 'ID' from fARTran
+SELECT DISTINCT
+	   CASE
+		   WHEN TransactionType = '' THEN 'n/a'
+		   ELSE TransactionType
+	   END AS 'ID'
+FROM SL.AccountsReceivableTransaction
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dTranType';
 

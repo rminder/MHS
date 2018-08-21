@@ -1,29 +1,60 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dCustomer]
 AS
-SELECT       
-
-COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END,'n/a')  AS  'CustID'
-, COALESCE(CASE WHEN City = '' THEN NULL ELSE City END,'n/a') AS 'City'
-, COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END,'n/a') AS 'ClassID'
-, COALESCE(CASE WHEN Country = '' THEN NULL ELSE Country END,'n/a') AS 'Country' 
-, COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END,'n/a') AS 'Name' 
-, COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END,'n/a') AS 'SlsPerID'
-, COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END,'n/a') AS 'State'
-, COALESCE(CASE WHEN [Status] = '' THEN NULL ELSE [Status] END,'n/a') AS 'Status'
-, COALESCE(CASE WHEN Zip = '' THEN NULL ELSE Zip END,'n/a') AS 'Zip'
-, CASE WHEN CreditLimit IS NULL THEN 0 ELSE CreditLimit END AS 'CrLimit'
-, CASE WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS datetime2(7)) ELSE LastUpdate END AS 'tstamp'
-FROM            SL.Customer
-
+SELECT
+	COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END, 'n/a')	   AS 'CustID'
+   ,COALESCE(CASE WHEN City = '' THEN NULL ELSE City END, 'n/a')				   AS 'City'
+   ,COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a')			   AS 'ClassID'
+   ,COALESCE(CASE WHEN Country = '' THEN NULL ELSE Country END, 'n/a')			   AS 'Country'
+   ,COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a')			   AS 'Name'
+   ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsPerID'
+   ,COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a')			   AS 'State'
+   ,COALESCE(CASE WHEN [Status] = '' THEN NULL ELSE [Status] END, 'n/a')		   AS 'Status'
+   ,COALESCE(CASE WHEN Zip = '' THEN NULL ELSE Zip END, 'n/a')					   AS 'Zip'
+   ,CASE
+		WHEN CreditLimit IS NULL THEN 0
+		ELSE CreditLimit
+	END																			   AS 'CrLimit'
+   ,CASE
+		WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
+		ELSE LastUpdate
+	END																			   AS 'tstamp'
+FROM SL.Customer
 UNION
+SELECT DISTINCT
+	   CustomerId AS [CustId]
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,'n/a'
+	  ,0
+	  ,CAST('1900-01-01 00:00:00' AS DATETIME2(7))
+FROM SL.AccountsReceivableTransaction
+WHERE CustomerId NOT IN (SELECT CustomerId FROM SL.Customer)
 
-SELECT Distinct a.[CustId], 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 0, CAST('1900-01-01 00:00:00' AS datetime2(7))
 
-FROM [fARTran] a LEFT OUTER JOIN (SELECT DISTINCT CustomerId FROM SL.Customer) b ON a.[CustId] = b.[CustomerId]
-
-WHERE b.[CustomerId] IS NULL
+--SELECT DISTINCT
+--	   a.[CustId]
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,'n/a'
+--	  ,0
+--	  ,CAST('1900-01-01 00:00:00' AS DATETIME2(7))
+--FROM [fARTran]									  a
+--	LEFT OUTER JOIN
+--	(SELECT DISTINCT CustomerId FROM SL.Customer) b ON a.[CustId] = b.[CustomerId]
+--WHERE b.[CustomerId] IS NULL;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCustomer';
 

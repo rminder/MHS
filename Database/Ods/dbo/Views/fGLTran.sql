@@ -1,71 +1,224 @@
 ﻿
 
 
+
+
 CREATE VIEW [dbo].[fGLTran]
 AS
-SELECT 
-COALESCE(CASE WHEN  Account = '' THEN NULL ELSE Account	 END, 'n/a') AS 'Acct',
-COALESCE(CASE WHEN  BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS 'BaseCuryID',
-COALESCE(CASE WHEN  [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a') AS 'BatNbr',
-COALESCE(CASE WHEN  [CompanyId] = '' THEN NULL ELSE [CompanyId] END, 'n/a') AS 'CpnyID',
-CASE WHEN [CreditAmount] IS NULL THEN 0 ELSE [CreditAmount] END AS 'CrAmt',
-CASE WHEN [CurrencyCreditAmount] IS NULL THEN 0 ELSE [CurrencyCreditAmount] END AS 'CuryCrAmt',
-CASE WHEN [CurrencyDebitAmount] IS NULL THEN 0 ELSE [CurrencyDebitAmount] END AS 'CuryDrAmt',
-COALESCE(CASE WHEN [CurrencyId] = '' THEN NULL ELSE [CurrencyId] END, 'n/a') AS 'CuryId',
-CASE WHEN [CurrencyRate] IS NULL THEN 0 ELSE [CurrencyRate] END AS 'CuryRate',
-CASE WHEN [DebitAmount] IS NULL THEN 0 ELSE [DebitAmount] END AS 'DrAmt',
-COALESCE(CASE WHEN  [FiscalYear] = '' THEN NULL ELSE [FiscalYear] END, 'n/a') AS 'FiscYr',
-COALESCE(CASE WHEN  [JournalType] = '' THEN NULL ELSE [JournalType] END, 'n/a') AS 'JrnlType',
-COALESCE(CASE WHEN  [LedgerId] = '' THEN NULL ELSE [LedgerId] END, 'n/a') AS 'LedgerID',
-CASE WHEN [LineNumber] IS NULL THEN 0 ELSE [LineNumber] END AS 'LineNbr',
-COALESCE(CASE WHEN  [Module] = '' THEN NULL ELSE [Module] END, 'n/a') AS 'Module',
-COALESCE(CASE WHEN  [PeriodToPost] = '' THEN NULL ELSE [PeriodToPost] END, 'n/a') AS 'PerPost',
-CASE WHEN  [PeriodFinancialDate] IS NULL THEN '1900-1-1 00:00:00' ELSE  [PeriodFinancialDate] END AS 'PerFinancialDate',
-COALESCE(CASE WHEN  [Posted] = '' THEN NULL ELSE [Posted] END, 'n/a') AS 'Posted',
-COALESCE(CASE WHEN  [ProjectId] = '' THEN NULL ELSE [ProjectId] END, 'n/a') AS 'ProjectID',
-CASE WHEN [Released] IS NULL THEN 0 ELSE [Released] END AS 'Rlsed',
-COALESCE(CASE WHEN  [SubaccountId] = '' THEN NULL ELSE [SubaccountId] END, 'n/a') AS 'Sub',
-COALESCE(CASE WHEN  [SubSeg1] = '' THEN NULL ELSE [SubSeg1] END, 'n/a') AS 'SubSeg1',
-COALESCE(CASE WHEN  [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a') AS 'SubSeg2',
-COALESCE(CASE WHEN  [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a') AS 'TaskID',
-CASE WHEN  [TransactionDate] IS NULL THEN '1900-1-1 00:00:00' ELSE  [TransactionDate] END AS 'TranDate',
-COALESCE(CASE WHEN  [TransactionDesc] = '' THEN NULL ELSE [TransactionDesc] END, 'n/a') AS 'TranDesc',
-COALESCE(CASE WHEN  [TransactionType] = '' THEN NULL ELSE [TransactionType] END, 'n/a') AS 'trantype',
-COALESCE(CASE WHEN  [TransactionReferenceNumber] = '' THEN NULL ELSE [TransactionReferenceNumber] END, 'n/a') AS 'RefNbr',
-CASE WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00' ELSE [LastUpdate] END AS 'tstamp'
+SELECT
+	COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END, 'n/a')				 AS 'Acct'
+   ,COALESCE(CASE WHEN BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS 'BaseCuryID'
+   ,COALESCE(CASE WHEN [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a')	 AS 'BatNbr'
+   ,COALESCE(CASE WHEN [CompanyId] = '' THEN NULL ELSE [CompanyId] END, 'n/a')		 AS 'CpnyID'
+   ,CASE
+		WHEN [CreditAmount] IS NULL THEN 0
+		ELSE [CreditAmount]
+	END																				 AS 'CrAmt'
+   ,CASE
+		WHEN [CurrencyCreditAmount] IS NULL THEN 0
+		ELSE [CurrencyCreditAmount]
+	END																				 AS 'CuryCrAmt'
+   ,CASE
+		WHEN [CurrencyDebitAmount] IS NULL THEN 0
+		ELSE [CurrencyDebitAmount]
+	END																				 AS 'CuryDrAmt'
+   ,COALESCE(CASE WHEN [CurrencyId] = '' THEN NULL ELSE [CurrencyId] END, 'n/a')	 AS 'CuryId'
+   ,CASE
+		WHEN [CurrencyRate] IS NULL THEN 0
+		ELSE [CurrencyRate]
+	END																				 AS 'CuryRate'
+   ,CASE
+		WHEN [DebitAmount] IS NULL THEN 0
+		ELSE [DebitAmount]
+	END																				 AS 'DrAmt'
+   ,COALESCE(CASE WHEN [FiscalYear] = '' THEN NULL ELSE [FiscalYear] END, 'n/a')	 AS 'FiscYr'
+   ,COALESCE(CASE WHEN [JournalType] = '' THEN NULL ELSE [JournalType] END, 'n/a')	 AS 'JrnlType'
+   ,COALESCE(CASE WHEN [LedgerId] = '' THEN NULL ELSE [LedgerId] END, 'n/a')		 AS 'LedgerID'
+   ,CASE
+		WHEN [LineNumber] IS NULL THEN 0
+		ELSE [LineNumber]
+	END																				 AS 'LineNbr'
+   ,COALESCE(CASE WHEN [Module] = '' THEN NULL ELSE [Module] END, 'n/a')			 AS 'Module'
+   ,COALESCE(CASE WHEN [PeriodToPost] = '' THEN NULL ELSE [PeriodToPost] END, 'n/a') AS 'PerPost'
+   ,CASE
+		WHEN [PeriodFinancialDate] IS NULL THEN '1900-1-1 00:00:00'
+		ELSE [PeriodFinancialDate]
+	END																				 AS 'PerFinancialDate'
+   ,COALESCE(CASE WHEN [Posted] = '' THEN NULL ELSE [Posted] END, 'n/a')			 AS 'Posted'
+   ,COALESCE(CASE WHEN [ProjectId] = '' THEN NULL ELSE [ProjectId] END, 'n/a')		 AS 'ProjectID'
+   ,CASE
+		WHEN [Released] IS NULL THEN 0
+		ELSE [Released]
+	END																				 AS 'Rlsed'
+   ,COALESCE(CASE WHEN [SubaccountId] = '' THEN NULL ELSE [SubaccountId] END, 'n/a') AS 'Sub'
+   ,COALESCE(CASE WHEN [SubSeg1] = '' THEN NULL ELSE [SubSeg1] END, 'n/a')			 AS 'SubSeg1'
+   ,COALESCE(CASE WHEN [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a')			 AS 'SubSeg2'
+   ,COALESCE(CASE WHEN [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a')			 AS 'TaskID'
+   ,CASE
+		WHEN [TransactionDate] IS NULL THEN '1900-1-1 00:00:00'
+		ELSE [TransactionDate]
+	END																				 AS 'TranDate'
+   ,COALESCE(	CASE
+					WHEN [TransactionDesc] = '' THEN NULL
+					ELSE [TransactionDesc]
+				END
+			   ,'n/a'
+			)																		 AS 'TranDesc'
+   ,COALESCE(	CASE
+					WHEN [TransactionType] = '' THEN NULL
+					ELSE [TransactionType]
+				END
+			   ,'n/a'
+			)																		 AS 'trantype'
+   ,COALESCE(	CASE
+					WHEN [TransactionReferenceNumber] = '' THEN NULL
+					ELSE [TransactionReferenceNumber]
+				END
+			   ,'n/a'
+			)																		 AS 'RefNbr'
+   ,CASE
+		WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00'
+		ELSE [LastUpdate]
+	END																				 AS 'tstamp'
 FROM SL.GeneralLedgerTransaction
 WHERE [JournalType] <> 'BB'
 UNION
-SELECT a.[Acct] AS 'Acct'
-      ,a.[CuryId] AS 'BaseCuryID'
-      ,'' AS 'BatNbr'
-      ,a.[CpnyID] AS 'CpnyID'
-      ,CASE b.AcctType WHEN '1A' THEN 0 ELSE a.[BegBal] END AS 'CrAmt'
-      ,CASE b.AcctType WHEN '1A' THEN 0 ELSE a.[BegBal] END AS 'CuryCrAmt'
-      ,CASE b.AcctType WHEN '1A' THEN a.[BegBal] ELSE 0 END AS 'CuryDrAmt'
-      ,a.[CuryId] 
-      ,1 AS 'CuryRate'
-      ,CASE b.AcctType WHEN '1A' THEN a.[BegBal] ELSE 0 END AS 'DrAmt'
-      ,CONVERT(nvarchar(100), CONVERT(int, a.[FiscYr]) - 1) AS 'FiscYr'
-      ,'BB' AS 'JrnlType'
-      ,[LedgerID] AS 'LedgerID'
-      ,0 AS 'LineNbr'
-      ,'GL' AS 'Module'
-      ,CONVERT(nvarchar(100), CONVERT(int, a.[FiscYr]) - 1) + '12'  AS 'PerPost'
-      ,a.[PerFinancialDate]  AS 'PerFinancialDate'
-      ,'P' AS 'Posted'
-      , 'n/a' AS 'ProjectID'
-	  ,1  AS 'Rlsed'
-      ,a.[Sub]
-      ,a.[SubSeg1]
-      ,a.[SubSeg2]
-	  ,'n/a' AS 'TaskID'
-      ,a.[PerFinancialDate] AS 'TranDate'
-      ,'Beginning Balance' AS 'TranDesc'
-      ,'GL'  AS 'TranType'
-	  ,'n/a' AS 'RefNbr'
-      ,'1900-1-1 00:00:00'  AS 'tstamp'
-  FROM [tStageGLBegBal] a INNER JOIN dGLAccount b ON a.Acct = b.Acct
+SELECT
+	a.[Acct]													AS 'Acct'
+   ,a.[CuryID]													AS 'BaseCuryID'
+   ,''															AS 'BatNbr'
+   ,a.[CpnyID]													AS 'CpnyID'
+   ,CASE b.AcctType
+		WHEN '1A' THEN 0
+		ELSE a.[BegBal]
+	END															AS 'CrAmt'
+   ,CASE b.AcctType
+		WHEN '1A' THEN 0
+		ELSE a.[BegBal]
+	END															AS 'CuryCrAmt'
+   ,CASE b.AcctType
+		WHEN '1A' THEN a.[BegBal]
+		ELSE 0
+	END															AS 'CuryDrAmt'
+   ,a.[CuryID]
+   ,1															AS 'CuryRate'
+   ,CASE b.AcctType
+		WHEN '1A' THEN a.[BegBal]
+		ELSE 0
+	END															AS 'DrAmt'
+   ,CONVERT(NVARCHAR(100), CONVERT(INT, a.[FiscYr]) - 1)		AS 'FiscYr'
+   ,'BB'														AS 'JrnlType'
+   ,[LedgerId]													AS 'LedgerID'
+   ,0															AS 'LineNbr'
+   ,'GL'														AS 'Module'
+   ,CONVERT(NVARCHAR(100), CONVERT(INT, a.[FiscYr]) - 1) + '12' AS 'PerPost'
+   ,a.[PerFinancialDate]										AS 'PerFinancialDate'
+   ,'P'															AS 'Posted'
+   ,'n/a'														AS 'ProjectID'
+   ,1															AS 'Rlsed'
+   ,a.[Sub]
+   ,a.[SubSeg1]
+   ,a.[SubSeg2]
+   ,'n/a'														AS 'TaskID'
+   ,a.[PerFinancialDate]										AS 'TranDate'
+   ,'Beginning Balance'											AS 'TranDesc'
+   ,'GL'														AS 'TranType'
+   ,'n/a'														AS 'RefNbr'
+   ,'1900-1-1 00:00:00'											AS 'tstamp'
+FROM [tStageGLBegBal] a
+	INNER JOIN
+	(
+		SELECT
+			COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END, 'n/a')				   AS 'Acct'
+		   ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
+		   ,COALESCE(CASE WHEN AccountCategory = '' THEN NULL ELSE AccountCategory END, 'n/a') AS 'Acct_Cat'
+		   ,COALESCE(	CASE
+							WHEN AccountCategorySpecified = '' THEN NULL
+							ELSE AccountCategorySpecified
+						END
+					   ,'n/a'
+					)																		   AS 'Acct_Cat_SW'
+		   ,CASE
+				WHEN Active IS NULL THEN 0
+				ELSE Active
+			END																				   AS 'Active'
+		   ,COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a')				   AS 'ClassID'
+		   ,COALESCE(	CASE
+							WHEN ConsolidationAccount = '' THEN NULL
+							ELSE ConsolidationAccount
+						END
+					   ,'n/a'
+					)																		   AS 'ConsolAcct'
+		   ,COALESCE(CASE WHEN CurrencyId = '' THEN NULL ELSE CurrencyId END, 'n/a')		   AS 'CuryId'
+		   ,COALESCE(CASE WHEN [Description] = '' THEN NULL ELSE [Description] END, 'n/a')	   AS 'Descr'
+		   ,COALESCE(CASE WHEN RatioGroup = '' THEN NULL ELSE RatioGroup END, 'n/a')		   AS 'RatioGrp'
+		   ,COALESCE(CASE WHEN IsSummarized = '' THEN NULL ELSE IsSummarized END, 'n/a')	   AS 'SummPost'
+		FROM SL.Account
+		UNION
+		SELECT DISTINCT
+			   a.[Acct]
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,0
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+		FROM [fAPTran]				   a
+			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+		WHERE b.[Account] IS NULL
+		UNION
+		SELECT DISTINCT
+			   a.[Acct]
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,0
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+		FROM [fARTran]				   a
+			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+		WHERE b.[Account] IS NULL
+		UNION
+		SELECT DISTINCT
+			   a.[Account]
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,0
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+		FROM [SL].[GeneralLedgerTransaction] a
+			LEFT OUTER JOIN SL.Account		 b ON a.[Account] = b.[Account]
+		WHERE b.[Account] IS NULL
+		UNION
+		SELECT DISTINCT
+			   a.[Acct]
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,0
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+			  ,'n/a'
+		FROM [fGLBudget]			   a
+			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+		WHERE b.[Account] IS NULL
+	)				  b ON a.Acct = b.Acct;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fGLTran';
 

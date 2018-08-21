@@ -46,6 +46,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[GeneralLedgerTransactionHistor
 
 
 
+
+
 GO
 
 
@@ -68,4 +70,14 @@ CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_PeriodToPost]
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_BatchNumber_LineNumber_Module]
     ON [SL].[GeneralLedgerTransaction]([BatchNumber] ASC, [LineNumber] ASC, [Module] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_LedgerId]
+    ON [SL].[GeneralLedgerTransaction]([LedgerId] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_JournalType_Module]
+    ON [SL].[GeneralLedgerTransaction]([JournalType] ASC, [Module] ASC);
 

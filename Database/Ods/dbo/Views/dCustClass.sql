@@ -1,14 +1,38 @@
 ﻿
+
+
 CREATE VIEW [dbo].[dCustClass]
 AS
-SELECT        COALESCE (CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a') AS 'ClassID', COALESCE (CASE WHEN [Description] = '' THEN NULL ELSE [Description] END, 'n/a') AS 'Descr'
-FROM            SL.CustomerClass
+
+-- Retrieve all customer class rows from SL.CustomerClass
+SELECT
+	COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a')			   AS 'ClassID'
+   ,COALESCE(CASE WHEN [Description] = '' THEN NULL ELSE [Description] END, 'n/a') AS 'Descr'
+FROM SL.CustomerClass
 UNION
-SELECT Distinct a.[ClassID], 'n/a'
 
-FROM [dCustomer] a LEFT OUTER JOIN [dCustClass] b ON a.[ClassID] = b.[ClassID]
+-- Add any customer class Id values from SL.Customer that are not in SL.CustomerClass
+SELECT DISTINCT
+	   ClassId
+	  ,'n/a'
+FROM SL.Customer
+WHERE
+	ClassId NOT IN ( SELECT ClassId FROM SL.CustomerClass );
 
-WHERE b.[ClassID] IS NULL
+/*
+SELECT DISTINCT
+	   a.[ClassID]
+	  ,'n/a'
+FROM [dCustomer] a
+	LEFT OUTER JOIN
+	(
+		SELECT
+			COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a')			   AS 'ClassID'
+		   ,COALESCE(CASE WHEN [Description] = '' THEN NULL ELSE [Description] END, 'n/a') AS 'Descr'
+		FROM SL.CustomerClass
+	) b ON a.[ClassID] = b.[ClassID]
+WHERE b.[ClassID] IS NULL;
+*/
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCustClass';
 

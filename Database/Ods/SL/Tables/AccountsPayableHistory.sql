@@ -87,7 +87,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableHistoryHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableHistory_LastUpdate]
     ON [SL].[AccountsPayableHistory]([LastUpdate] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableHistory_CompanyId]
+    ON [SL].[AccountsPayableHistory]([CompanyId] ASC);
 

@@ -171,5 +171,13 @@
     <Build Include="dbo\Stored Procedures\sp_WhoIsActive.sql" />
     <Build Include="SF\Tables\MH_Invoice__cDelete.sql" />
     <Build Include="SF\Stored Procedures\DeleteMaterialHandlingInvoice.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Group__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Group__c.sql" />
+    <Build Include="SF\Tables\MH_Invoice_Details__cDelete.sql" />
+    <Build Include="SF\Tables\MH_Invoice_Details__c.sql" />
+    <Build Include="SF\Views\vwSVMXC__Service_Group__c.sql" />
+    <Build Include="SF\Views\vwMH_Invoice_Details__c.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceGroup.sql" />
+    <Build Include="SF\Stored Procedures\DeleteMaterialHandlingInvoiceDetail.sql" />
   </ItemGroup>
 </Project>

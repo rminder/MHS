@@ -207,6 +207,10 @@
     <Build Include="dbo\Views\tStageAPBegBal.sql" />
     <Build Include="dbo\Stored Procedures\sp_WhoIsActive.sql" />
     <Build Include="Security\SF.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceGroupHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceGroup.sql" />
+    <Build Include="SF\Tables\MaterialHandlingInvoiceDetailHistory.sql" />
+    <Build Include="SF\Tables\MaterialHandlingInvoiceDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

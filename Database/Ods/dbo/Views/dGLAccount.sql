@@ -1,6 +1,8 @@
 ﻿
 
 
+
+
 CREATE VIEW [dbo].[dGLAccount]
 AS
 SELECT
@@ -20,35 +22,38 @@ FROM SL.Account
 UNION
 
 
-SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
-FROM [fAPTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
-
-WHERE b.[Account] IS NULL
-
-UNION
-
-SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
-
-FROM [fARTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+FROM [SL].[AccountsPayableTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
 WHERE b.[Account] IS NULL
 
 UNION
 
-SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
-FROM [fGLTran] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+FROM [SL].[AccountsReceivableTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
 WHERE b.[Account] IS NULL
 
 UNION
 
-SELECT Distinct a.[Acct], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
-FROM [fGLBudget] a LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+FROM [SL].[GeneralLedgerTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
-WHERE b.[Account] IS NULL ;
+WHERE b.[Account] IS NULL
+
+UNION
+
+SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+	FROM            SL.AccountHistory AS a INNER JOIN
+                         SL.Account AS b ON a.Account = b.Account
+	WHERE        (a.BalanceType = 'B') AND (a.CompanyId IN
+                             (SELECT        CompanyId
+                               FROM            SL.Company
+                               WHERE        (IsActive = 1)))
+	AND b.[Account] IS NULL ;
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dGLAccount';
 

@@ -156,7 +156,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableHistoryHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableHistory_LastUpdate]
     ON [SL].[AccountsReceivableHistory]([LastUpdate] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableHistory_CompanyId]
+    ON [SL].[AccountsReceivableHistory]([CompanyId] ASC);
 

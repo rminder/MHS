@@ -90,7 +90,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[MaterialHandlingInvoiceHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_MaterialHandlingInvoice_LastUpdate]
     ON [SF].[MaterialHandlingInvoice]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_MaterialHandlingInvoice_Id]
+    ON [SF].[MaterialHandlingInvoice]([Id] ASC);
 
