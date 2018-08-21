@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 CREATE VIEW [dbo].[fGLTran]
 AS
 SELECT
@@ -10,8 +7,8 @@ SELECT
    ,COALESCE(CASE WHEN BaseCurrencyId = '' THEN NULL ELSE BaseCurrencyId END, 'n/a') AS 'BaseCuryID'
    ,COALESCE(CASE WHEN [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a')	 AS 'BatNbr'
    ,COALESCE(CASE WHEN [CompanyId] = '' THEN NULL ELSE [CompanyId] END, 'n/a')		 AS 'CpnyID'
-   ,CASE
-		WHEN [CreditAmount] IS NULL THEN 0
+   ,CASE 
+    WHEN [CreditAmount] IS NULL THEN 0
 		ELSE [CreditAmount]
 	END																				 AS 'CrAmt'
    ,CASE
@@ -129,92 +126,34 @@ FROM [tStageGLBegBal] a
 	INNER JOIN
 	(
 		SELECT
-			COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END, 'n/a')				   AS 'Acct'
-		   ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
-		   ,COALESCE(CASE WHEN AccountCategory = '' THEN NULL ELSE AccountCategory END, 'n/a') AS 'Acct_Cat'
-		   ,COALESCE(	CASE
-							WHEN AccountCategorySpecified = '' THEN NULL
-							ELSE AccountCategorySpecified
-						END
-					   ,'n/a'
-					)																		   AS 'Acct_Cat_SW'
-		   ,CASE
-				WHEN Active IS NULL THEN 0
-				ELSE Active
-			END																				   AS 'Active'
-		   ,COALESCE(CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a')				   AS 'ClassID'
-		   ,COALESCE(	CASE
-							WHEN ConsolidationAccount = '' THEN NULL
-							ELSE ConsolidationAccount
-						END
-					   ,'n/a'
-					)																		   AS 'ConsolAcct'
-		   ,COALESCE(CASE WHEN CurrencyId = '' THEN NULL ELSE CurrencyId END, 'n/a')		   AS 'CuryId'
-		   ,COALESCE(CASE WHEN [Description] = '' THEN NULL ELSE [Description] END, 'n/a')	   AS 'Descr'
-		   ,COALESCE(CASE WHEN RatioGroup = '' THEN NULL ELSE RatioGroup END, 'n/a')		   AS 'RatioGrp'
-		   ,COALESCE(CASE WHEN IsSummarized = '' THEN NULL ELSE IsSummarized END, 'n/a')	   AS 'SummPost'
+			COALESCE(CASE WHEN Account  = '' THEN NULL ELSE Account  END, 'n/a')	AS 'Acct'
+			,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
 		FROM SL.Account
 		UNION
 		SELECT DISTINCT
-			   a.[Acct]
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,0
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-		FROM [fAPTran]				   a
-			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+			  COALESCE(CASE WHEN a.Account  = '' THEN NULL ELSE a.Account  END, 'n/a')	AS 'Acct'
+			  ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
+		FROM SL.AccountsPayableTransaction				   a
+			LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 		WHERE b.[Account] IS NULL
 		UNION
 		SELECT DISTINCT
-			   a.[Acct]
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,0
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-		FROM [fARTran]				   a
-			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
+			  COALESCE(CASE WHEN a.Account  = '' THEN NULL ELSE a.Account  END, 'n/a')	AS 'Acct'
+			  ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
+		FROM SL.AccountsReceivableTransaction				   a
+			LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 		WHERE b.[Account] IS NULL
 		UNION
 		SELECT DISTINCT
-			   a.[Account]
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,0
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
+			  COALESCE(CASE WHEN a.Account  = '' THEN NULL ELSE a.Account  END, 'n/a')	AS 'Acct'
+			   ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType'
 		FROM [SL].[GeneralLedgerTransaction] a
 			LEFT OUTER JOIN SL.Account		 b ON a.[Account] = b.[Account]
 		WHERE b.[Account] IS NULL
 		UNION
 		SELECT DISTINCT
-			   a.[Acct]
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,0
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
-			  ,'n/a'
+				  COALESCE(CASE WHEN a.Acct  = '' THEN NULL ELSE a.Acct  END, 'n/a')	AS 'Acct'
+			 ,COALESCE(CASE WHEN AccountType = '' THEN NULL ELSE AccountType END, 'n/a')		   AS 'AcctType' 
 		FROM [fGLBudget]			   a
 			LEFT OUTER JOIN SL.Account b ON a.[Acct] = b.[Account]
 		WHERE b.[Account] IS NULL
@@ -332,4 +271,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fGLTran';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[fGLTran] TO [OdsUser]
+    AS [dbo];
 

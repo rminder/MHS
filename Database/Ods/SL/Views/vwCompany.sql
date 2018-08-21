@@ -18,3 +18,8 @@ SELECT
    ,[State]
    ,[Zip]
 FROM [SL].[Company];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwCompany] TO [OdsUser]
+    AS [dbo];
+

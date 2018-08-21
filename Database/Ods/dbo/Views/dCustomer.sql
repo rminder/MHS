@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [dbo].[dCustomer]
 AS
 SELECT
@@ -24,7 +25,7 @@ SELECT
 FROM SL.Customer
 UNION
 SELECT DISTINCT
-	   CustomerId AS [CustId]
+	   COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END, 'n/a') AS [CustId]
 	  ,'n/a'
 	  ,'n/a'
 	  ,'n/a'
@@ -179,4 +180,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCustomer';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dCustomer] TO [OdsUser]
+    AS [dbo];
 

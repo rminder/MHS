@@ -75,3 +75,8 @@ SELECT
    ,InitialQuery.LastUpdate
    ,InitialQuery.ImportDate
 FROM InitialQuery;
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountsReceivableBalances] TO [OdsUser]
+    AS [dbo];
+

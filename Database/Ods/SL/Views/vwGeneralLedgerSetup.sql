@@ -29,3 +29,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[GeneralLedgerSetup];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwGeneralLedgerSetup] TO [OdsUser]
+    AS [dbo];
+

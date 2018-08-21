@@ -10,3 +10,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[CustomerClass];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwCustomerClass] TO [OdsUser]
+    AS [dbo];
+

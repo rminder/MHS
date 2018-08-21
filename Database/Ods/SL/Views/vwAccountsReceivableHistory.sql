@@ -152,3 +152,8 @@ SELECT [RowId]
       ,[ValidFrom]
       ,[ValidTo]
   FROM [SL].[AccountsReceivableHistory]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountsReceivableHistory] TO [OdsUser]
+    AS [dbo];
+

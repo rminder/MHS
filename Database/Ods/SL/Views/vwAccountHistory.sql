@@ -29,3 +29,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[AccountHistory];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountHistory] TO [OdsUser]
+    AS [dbo];
+

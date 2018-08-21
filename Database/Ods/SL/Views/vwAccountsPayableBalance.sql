@@ -47,3 +47,8 @@ SELECT [RowId]
       ,[ValidFrom]
       ,[ValidTo]
   FROM [SL].[AccountsPayableBalance]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountsPayableBalance] TO [OdsUser]
+    AS [dbo];
+

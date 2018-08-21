@@ -29,3 +29,17 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableDocumentHistory
 
 
 
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_DocumentType_OpenDocument_Released]
+    ON [SL].[AccountsPayableDocument]([DocumentType] ASC, [OpenDocument] ASC, [Released] ASC)
+    INCLUDE([CompanyId], [VendorId], [TransactionReferenceNumber], [DocumentDate], [DueDate], [DiscountDate], [CurrencyDocumentBalance], [PeriodToPost], [InvoiceNumber]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_CompanyId_OpenDocument_Released]
+    ON [SL].[AccountsPayableDocument]([CompanyId] ASC, [OpenDocument] ASC, [Released] ASC)
+    INCLUDE([VendorId], [TransactionReferenceNumber], [DocumentDate], [DueDate], [DiscountDate], [DocumentType], [CurrencyDocumentBalance], [PeriodToPost], [InvoiceNumber]);
+

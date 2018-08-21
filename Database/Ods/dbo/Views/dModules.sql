@@ -1,4 +1,4 @@
-﻿
+
 
 
 CREATE VIEW [dbo].[dModules]
@@ -166,5 +166,7 @@ GO
 
 
 GO
-
+GRANT SELECT
+    ON OBJECT::[dbo].[dModules] TO [OdsUser]
+    AS [dbo];
 

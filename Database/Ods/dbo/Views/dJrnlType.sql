@@ -1,24 +1,25 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dJrnlType]
 AS
-Select Distinct JournalType 
+Select Distinct JournalType AS 'ID'
 FROM            SL.GeneralLedgerTransaction
 UNION
 
-SELECT Distinct a.[JournalType]
+SELECT Distinct a.[JournalType]  AS 'ID'
 
 FROM  SL.AccountsPayableTransaction a
 
 UNION
 
-SELECT Distinct a.[JournalType]
+SELECT Distinct a.[JournalType]  AS 'ID'
 
 FROM SL.AccountsReceivableTransaction a
 
 UNION
 
-SELECT Distinct a.[JournalType]
+SELECT Distinct a.[JournalType]  AS 'ID'
 
 FROM SL.GeneralLedgerTransaction a ;
 GO
@@ -145,4 +146,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dJrnlType';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dJrnlType] TO [OdsUser]
+    AS [dbo];
 

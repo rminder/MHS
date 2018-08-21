@@ -28,7 +28,15 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableDocumentHist
 
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsReceivableDocument_CustomerId_DocumentType_TransactonReferenceNumber_BatchNumber_BatchSequence]
     ON [SL].[AccountsReceivableDocument]([CustomerId] ASC, [DocumentType] ASC, [TransactionReferenceNumber] ASC, [BatchNumber] ASC, [BatchSequence] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableDocument_Released_OpenDocument]
+    ON [SL].[AccountsReceivableDocument]([Released] ASC, [OpenDocument] ASC)
+    INCLUDE([CompanyId], [CustomerId], [DocumentType], [TransactionReferenceNumber], [DocumentDate], [DueDate], [CurrencyDocumentBalance], [OriginalDocumentAmount], [PeriodToPost], [WorkOrder]);
 

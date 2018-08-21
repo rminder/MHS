@@ -166,3 +166,9 @@ Begin DesignProperties =
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dTranType';
 
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dTranType] TO [OdsUser]
+    AS [dbo];
+

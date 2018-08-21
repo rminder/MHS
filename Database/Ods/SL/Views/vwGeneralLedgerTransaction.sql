@@ -35,3 +35,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[GeneralLedgerTransaction];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwGeneralLedgerTransaction] TO [OdsUser]
+    AS [dbo];
+

@@ -23,3 +23,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[AccountsReceivableDocument];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountsReceivableDocument] TO [OdsUser]
+    AS [dbo];
+

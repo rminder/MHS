@@ -41,3 +41,8 @@ SELECT Distinct a.[SubSeg2], 'n/a'
 FROM [fGLTran] a LEFT OUTER JOIN SL.SegmentDefinition b ON a.[SubSeg2] = b.[ID]
 
 WHERE b.[ID] IS NULL AND  (b.SegmentNumber = '2') ;
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dSubAcctSeg2] TO [OdsUser]
+    AS [dbo];
+

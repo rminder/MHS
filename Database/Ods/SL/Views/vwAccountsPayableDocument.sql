@@ -54,3 +54,8 @@ Select
 	,LastUpdate
 	,ImportDate
 From CTE
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccountsPayableDocument] TO [OdsUser]
+    AS [dbo];
+

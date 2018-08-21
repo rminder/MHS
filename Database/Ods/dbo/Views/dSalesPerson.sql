@@ -1,6 +1,8 @@
 ﻿
 
-CREATE VIEW [dbo].[dSalesPerson]
+
+
+CREATE VIEW [dbo].[dSalesperson]
 AS
 WITH CTE
 AS
@@ -9,7 +11,7 @@ AS
 		COALESCE(CASE WHEN City = '' THEN NULL ELSE City END, 'n/a')				   AS 'City'
 	   ,COALESCE(CASE WHEN Country = '' THEN NULL ELSE Country END, 'n/a')			   AS 'Country'
 	   ,COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a')			   AS 'Name'
-	   ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsprsID'
+	   ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsperId'
 	   ,COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a')			   AS 'State'
 	   ,COALESCE(CASE WHEN [Territory] = '' THEN NULL ELSE [Territory] END, 'n/a')	   AS 'Territory'
 	FROM SL.Salesperson
@@ -18,7 +20,7 @@ SELECT
 	City
    ,Country
    ,Name
-   ,SlsprsID
+   ,SlsperId
    ,State
    ,Territory
 FROM CTE
@@ -40,7 +42,7 @@ SELECT DISTINCT
 	  ,'n/a'
 FROM SL.AccountsReceivableTransaction
 WHERE
-	SalesPersonId NOT IN ( SELECT SlsprsID FROM CTE );
+	SalesPersonId NOT IN ( SELECT SlsperId FROM CTE );
 
 
 /*
@@ -171,4 +173,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSalesPerson';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dSalesperson] TO [OdsUser]
+    AS [dbo];
 

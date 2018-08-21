@@ -1,4 +1,4 @@
-﻿CREATE TABLE [SL].[AccountHistory] (
+CREATE TABLE [SL].[AccountHistory] (
     [RowId]              INT                                         IDENTITY (1, 1) NOT NULL,
     [Account]            VARCHAR (10)                                NOT NULL,
     [BalanceType]        CHAR (1)                                    NOT NULL,
@@ -34,10 +34,26 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountHistoryHistory], DATA_C
 
 
 
+
+
 GO
 
 
 
 GO
+CREATE NONCLUSTERED INDEX [IX_AccountHistory_FiscalYear_BalanceType]
+    ON [SL].[AccountHistory]([FiscalYear] ASC, [BalanceType] ASC)
+    INCLUDE([CompanyId]);
 
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountHistory_CompanyId_ FiscalYear_BalanceType]
+    ON [SL].[AccountHistory]([CompanyId] ASC, [FiscalYear] ASC, [BalanceType] ASC)
+    INCLUDE([Account], [BeginningBalance], [CurrencyId], [LedgerId], [SubaccountId]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountHistory_BeginningBalance_BalanceType]
+    ON [SL].[AccountHistory]([BeginningBalance] ASC, [BalanceType] ASC)
+    INCLUDE([Account], [CompanyId], [CurrencyId], [FiscalYear], [LedgerId], [SubaccountId]);
 

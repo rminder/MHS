@@ -1,17 +1,16 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dCompany]
 AS
-SELECT        
-CASE WHEN LEN(LTRIM(RTRIM(CompanyId))) = 1 
-				THEN 
-					'0' +  LTRIM(RTRIM(CompanyId)) 
-				ELSE
-					CompanyId 
-				END AS CpnyID
-, COALESCE(CASE WHEN CompanyName = '' THEN NULL ELSE CompanyName END,'n/a')  AS CpnyName
-FROM            SL.Company
-WHERE        (IsActive = 1)
+SELECT
+	CASE
+		WHEN LEN(LTRIM(RTRIM(CompanyId))) = 1 THEN '0' + LTRIM(RTRIM(CompanyId))
+		ELSE CompanyId
+	END																		   AS CpnyID
+   ,COALESCE(CASE WHEN CompanyName = '' THEN NULL ELSE CompanyName END, 'n/a') AS CpnyName
+FROM SL.Company
+WHERE (IsActive = 1);
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCompany';
 
@@ -136,4 +135,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCompany';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dCompany] TO [OdsUser]
+    AS [dbo];
 

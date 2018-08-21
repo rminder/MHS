@@ -21,3 +21,8 @@ SELECT
 	,[LastUpdate]
 	,[ImportDate]
 FROM [SL].[BudgetDistributionType]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwBudgetDistributionType] TO [OdsUser]
+    AS [dbo];
+

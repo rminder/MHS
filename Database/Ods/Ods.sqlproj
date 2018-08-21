@@ -169,7 +169,6 @@
     <Build Include="SL\Views\vwVendorClass_1.sql" />
     <Build Include="SL\Views\vwVendor_1.sql" />
     <Build Include="SL\Views\vwSubaccount.sql" />
-    <Build Include="dbo\Views\vwBudget.sql" />
     <Build Include="dbo\Views\dVendClass_1.sql" />
     <Build Include="dbo\Views\dSubAcct_1.sql" />
     <Build Include="dbo\Views\dLedger_1.sql" />
@@ -211,6 +210,14 @@
     <Build Include="SF\Tables\ServiceMaxServiceGroup.sql" />
     <Build Include="SF\Tables\MaterialHandlingInvoiceDetailHistory.sql" />
     <Build Include="SF\Tables\MaterialHandlingInvoiceDetail.sql" />
+    <Build Include="SL\Views\vwBudget.sql" />
+    <Build Include="Security\OdsUser.sql" />
+    <Build Include="Security\MINERCORPORATIO_SVCMNR707.sql" />
+    <Build Include="Security\MINERCORPORATIO_SVCMNR702.sql" />
+    <Build Include="Security\GGarcia.sql" />
+    <Build Include="Security\AValdez.sql" />
+    <Build Include="Security\AEllis.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

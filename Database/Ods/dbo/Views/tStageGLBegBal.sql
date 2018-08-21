@@ -144,3 +144,9 @@ Begin DesignProperties =
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'tStageGLBegBal';
 
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[tStageGLBegBal] TO [OdsUser]
+    AS [dbo];
+

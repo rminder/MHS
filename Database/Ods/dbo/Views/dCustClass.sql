@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [dbo].[dCustClass]
 AS
 
@@ -17,7 +18,9 @@ SELECT DISTINCT
 	  ,'n/a'
 FROM SL.Customer
 WHERE
-	ClassId NOT IN ( SELECT ClassId FROM SL.CustomerClass );
+	ClassId NOT IN ( SELECT ClassId FROM SL.CustomerClass )
+UNION
+SELECT 'n/a', 'n/a'
 
 /*
 SELECT DISTINCT
@@ -157,4 +160,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dCustClass';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dCustClass] TO [OdsUser]
+    AS [dbo];
 

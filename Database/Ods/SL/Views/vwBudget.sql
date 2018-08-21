@@ -1,4 +1,5 @@
-﻿Create View dbo.vwBudget AS
+﻿
+CREATE VIEW [SL].[vwBudget] AS
 
 SELECT 
 	 [RowId]
@@ -16,3 +17,8 @@ SELECT
 	,[ValidFrom]
 	,[ValidTo]
 FROM [SL].[Budget]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwBudget] TO [OdsUser]
+    AS [dbo];
+

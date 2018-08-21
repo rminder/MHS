@@ -10,3 +10,8 @@ SELECT
 	,[LastUpdate]
 	,[ImportDate]
 FROM [SL].[Ledger]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwLedger] TO [OdsUser]
+    AS [dbo];
+

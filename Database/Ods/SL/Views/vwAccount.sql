@@ -18,3 +18,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[Account];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwAccount] TO [OdsUser]
+    AS [dbo];
+

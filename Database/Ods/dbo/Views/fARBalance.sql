@@ -1,12 +1,27 @@
 ﻿
+
 CREATE VIEW [dbo].[fARBalance]
 AS
-SELECT        T.CompanyId AS 'CpnyID', T.CustomerId AS 'CustID', T.TransactionReferenceNumber AS 'RefNbr', T.DocumentDate AS 'DocDate',  T.DueDate AS 'DueDate', T.DocumentType AS 'DocType',  
- T.DocumentBalance AS 'DocBal', T.OriginalDocumentAmount AS 'OrigDocAmt',  T.ProfitCenterId AS 'ProfitCenterID', T.LocationId AS 'LocationID', T.PeriodToPost AS 'PerPost',  
- CONVERT(datetime, SUBSTRING(T.PeriodToPost, 1,4) + '-' + SUBSTRING(T.PeriodToPost, 5, 2) + '-01') AS 'PerFinancialDate',  COALESCE (CASE WHEN T.WorkOrder = '' THEN NULL ELSE T.WorkOrder END, 'n/a') AS 'WorkOrder'  
-FROM            SL.vwAccountsReceivableBalances AS T LEFT OUTER JOIN
-                         SL.Company AS T2 ON T2.CompanyId = T.CompanyId
-WHERE        (T.Released = 1) AND (T.OpenDocument = 1) AND (T2.IsActive = 1)
+SELECT
+	T.CompanyId																						   AS 'CpnyID'
+   ,T.CustomerId																					   AS 'CustID'
+   ,T.TransactionReferenceNumber																	   AS 'RefNbr'
+   ,T.DocumentDate																					   AS 'DocDate'
+   ,T.DueDate																						   AS 'DueDate'
+   ,T.DocumentType																					   AS 'DocType'
+   ,T.DocumentBalance																				   AS 'DocBal'
+   ,T.OriginalDocumentAmount																		   AS 'OrigDocAmt'
+   ,T.ProfitCenterId																				   AS 'ProfitCenterID'
+   ,T.LocationId																					   AS 'LocationID'
+   ,T.PeriodToPost																					   AS 'PerPost'
+   ,CONVERT(DATETIME, SUBSTRING(T.PeriodToPost, 1, 4) + '-' + SUBSTRING(T.PeriodToPost, 5, 2) + '-01') AS 'PerFinancialDate'
+   ,COALESCE(CASE WHEN T.WorkOrder = '' THEN NULL ELSE T.WorkOrder END, 'n/a')						   AS 'WorkOrder'
+FROM SL.vwAccountsReceivableBalances AS T
+	LEFT OUTER JOIN SL.Company		 AS T2 ON T2.CompanyId = T.CompanyId
+WHERE
+	(T.Released			= 1)
+	AND (T.OpenDocument = 1)
+	AND (T2.IsActive =	  1);
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fARBalance';
 
@@ -141,4 +156,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fARBalance';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[fARBalance] TO [OdsUser]
+    AS [dbo];
 

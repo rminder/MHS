@@ -142,3 +142,9 @@ Begin DesignProperties =
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'fAPBalance';
 
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[fAPBalance] TO [OdsUser]
+    AS [dbo];
+

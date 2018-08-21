@@ -13,3 +13,8 @@ SELECT
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[SegmentDefinition];
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwSegmentDefinition] TO [OdsUser]
+    AS [dbo];
+

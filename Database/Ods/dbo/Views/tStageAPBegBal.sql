@@ -29,3 +29,8 @@ FROM
 	(select CpnyId,MIN(FiscYr) as MinFiscYear from tStageAPBegBAL_CTE where FiscYr >= '1980' GROUP BY CpnyID) AS FiscalList
 	ON	tStageAPBegBAL_CTE.CpnyId = FiscalList.CpnyId and tStageAPBegBAL_CTE.FiscYr = FiscalList.MinFiscYear
 	WHERE BegBal <> 0;
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[tStageAPBegBal] TO [OdsUser]
+    AS [dbo];
+

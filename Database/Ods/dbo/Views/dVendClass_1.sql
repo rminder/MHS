@@ -1,22 +1,23 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dVendClass]
 AS
 
 WITH CTE AS
 (
-SELECT        ClassId, COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS 'Descr'
+SELECT        COALESCE (CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a') AS 'ClassID', COALESCE (CASE WHEN Description = '' THEN NULL ELSE Description END, 'n/a') AS 'Descr'
 FROM            SL.VendorClass
 )
 
-SELECT ClassId, Descr
+SELECT ClassID, Descr
 FROM CTE
 
 UNION
 
-SELECT Distinct ClassID, 'n/a'
+SELECT Distinct  COALESCE (CASE WHEN ClassId = '' THEN NULL ELSE ClassId END, 'n/a') AS 'ClassID', 'n/a' AS 'Descr'
 FROM SL.Vendor
-WHERE ClassId NOT IN (SELECT ClassId FROM CTE)
+WHERE ClassId NOT IN (SELECT ClassID FROM CTE)
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendClass';
 
@@ -141,4 +142,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendClass';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dVendClass] TO [OdsUser]
+    AS [dbo];
 

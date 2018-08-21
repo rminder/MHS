@@ -1,24 +1,44 @@
-﻿CREATE VIEW dbo.[dAPDocType]
+﻿CREATE VIEW [dbo].[dAPDocType]
 AS
-SELECT'CK' AS 'ID', 'Check'AS 'Value'
+SELECT
+	'CK'	AS 'ID'
+   ,'Check' AS 'Value'
 UNION ALL
-SELECT'EP' AS 'ID', 'Electronic Payment'AS 'Value'
-UNION ALL 
-SELECT'HC' AS 'ID', 'Hand Check'AS 'Value'
+SELECT
+	'EP'				 AS 'ID'
+   ,'Electronic Payment' AS 'Value'
 UNION ALL
-SELECT'VC' AS 'ID', 'Void Check'AS 'Value'
-UNION ALL 
-SELECT'AC' AS 'ID', 'Credit Adjustment'AS 'Value'
-UNION ALL 
-SELECT'AD' AS 'ID', 'Debit Adjustment'AS 'Value'
-UNION ALL 
-SELECT'VO' AS 'ID', 'Voucher'AS 'Value'
-UNION ALL 
-SELECT'QC' AS 'ID', 'Quick Check'AS 'Value'
-UNION ALL 
-SELECT'PP' AS 'ID', 'Prepayment'AS 'Value'
-UNION ALL 
-SELECT'DT' AS 'ID', 'Discount'AS 'Value'
+SELECT
+	'HC'		 AS 'ID'
+   ,'Hand Check' AS 'Value'
+UNION ALL
+SELECT
+	'VC'		 AS 'ID'
+   ,'Void Check' AS 'Value'
+UNION ALL
+SELECT
+	'AC'				AS 'ID'
+   ,'Credit Adjustment' AS 'Value'
+UNION ALL
+SELECT
+	'AD'			   AS 'ID'
+   ,'Debit Adjustment' AS 'Value'
+UNION ALL
+SELECT
+	'VO'	  AS 'ID'
+   ,'Voucher' AS 'Value'
+UNION ALL
+SELECT
+	'QC'		  AS 'ID'
+   ,'Quick Check' AS 'Value'
+UNION ALL
+SELECT
+	'PP'		 AS 'ID'
+   ,'Prepayment' AS 'Value'
+UNION ALL
+SELECT
+	'DT'	   AS 'ID'
+   ,'Discount' AS 'Value';
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dAPDocType';
 
@@ -133,4 +153,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dAPDocType';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dAPDocType] TO [OdsUser]
+    AS [dbo];
 

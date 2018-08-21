@@ -1,33 +1,60 @@
-﻿CREATE VIEW dbo.dARDocType
+﻿CREATE VIEW [dbo].[dARDocType]
 AS
-
-SELECT  'IN' AS 'ID', 'Invoice' AS 'VALUE'
- UNION ALL 
-SELECT  'RC' AS 'ID', 'Recurring Invoice' AS 'VALUE' 
- UNION ALL 
-SELECT  'PA' AS 'ID', 'Payment' AS 'VALUE' 
- UNION ALL 
-SELECT  'DM' AS 'ID', 'Debit Memo' AS 'VALUE' 
- UNION ALL 
-SELECT  'CM' AS 'ID', 'Credit Memo' AS 'VALUE' 
- UNION ALL 
-SELECT  'FI' AS 'ID', 'Finance Charge' AS 'VALUE' 
- UNION ALL 
-SELECT  'DA' AS 'ID', 'Discount Allowed' AS 'VALUE' 
- UNION ALL 
-SELECT  'CS' AS 'ID', 'Cash Sale' AS 'VALUE' 
- UNION ALL 
-SELECT  'PP' AS 'ID', 'Prepayment' AS 'VALUE' 
- UNION ALL 
-SELECT  'NS' AS 'ID', 'NSF Check Reversal' AS 'VALUE' 
- UNION ALL 
-SELECT  'RP' AS 'ID', 'Reclassified Payment' AS 'VALUE' 
- UNION ALL 
-SELECT  'NC' AS 'ID', 'NSF Check charge' AS 'VALUE' 
- UNION ALL 
-SELECT  'RF' AS 'ID', 'Refund' AS 'VALUE' 
- UNION ALL 
-SELECT  'SB' AS 'ID', 'Small Balance Write-Off' AS 'VALUE'
+SELECT
+	'IN'	  AS 'ID'
+   ,'Invoice' AS 'VALUE'
+UNION ALL
+SELECT
+	'RC'				AS 'ID'
+   ,'Recurring Invoice' AS 'VALUE'
+UNION ALL
+SELECT
+	'PA'	  AS 'ID'
+   ,'Payment' AS 'VALUE'
+UNION ALL
+SELECT
+	'DM'		 AS 'ID'
+   ,'Debit Memo' AS 'VALUE'
+UNION ALL
+SELECT
+	'CM'		  AS 'ID'
+   ,'Credit Memo' AS 'VALUE'
+UNION ALL
+SELECT
+	'FI'			 AS 'ID'
+   ,'Finance Charge' AS 'VALUE'
+UNION ALL
+SELECT
+	'DA'			   AS 'ID'
+   ,'Discount Allowed' AS 'VALUE'
+UNION ALL
+SELECT
+	'CS'		AS 'ID'
+   ,'Cash Sale' AS 'VALUE'
+UNION ALL
+SELECT
+	'PP'		 AS 'ID'
+   ,'Prepayment' AS 'VALUE'
+UNION ALL
+SELECT
+	'NS'				 AS 'ID'
+   ,'NSF Check Reversal' AS 'VALUE'
+UNION ALL
+SELECT
+	'RP'				   AS 'ID'
+   ,'Reclassified Payment' AS 'VALUE'
+UNION ALL
+SELECT
+	'NC'			   AS 'ID'
+   ,'NSF Check charge' AS 'VALUE'
+UNION ALL
+SELECT
+	'RF'	 AS 'ID'
+   ,'Refund' AS 'VALUE'
+UNION ALL
+SELECT
+	'SB'					  AS 'ID'
+   ,'Small Balance Write-Off' AS 'VALUE';
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dARDocType';
 
@@ -142,4 +169,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dARDocType';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dARDocType] TO [OdsUser]
+    AS [dbo];
 

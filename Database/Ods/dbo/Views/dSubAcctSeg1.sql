@@ -168,3 +168,9 @@ Begin DesignProperties =
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dSubAcctSeg1';
 
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dSubAcctSeg1] TO [OdsUser]
+    AS [dbo];
+

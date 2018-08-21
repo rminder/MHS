@@ -168,3 +168,9 @@ Begin DesignProperties =
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dGLAccount';
 
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dGLAccount] TO [OdsUser]
+    AS [dbo];
+

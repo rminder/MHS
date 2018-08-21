@@ -9,3 +9,8 @@ SELECT [RowId]
       ,[ValidFrom]
       ,[ValidTo]
   FROM [SL].[Subaccount]
+GO
+GRANT SELECT
+    ON OBJECT::[SL].[vwSubaccount] TO [OdsUser]
+    AS [dbo];
+

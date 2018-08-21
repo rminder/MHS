@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[dVendor]
 AS
 WITH CTE
@@ -28,7 +29,7 @@ SELECT
    ,State
    ,Status
    ,Zip
-   ,VendorId
+   ,VendorId AS 'VendID'
    ,tstamp
 FROM CTE
 UNION
@@ -175,4 +176,10 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendor';
+
+
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[dVendor] TO [OdsUser]
+    AS [dbo];
 

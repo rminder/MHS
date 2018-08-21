@@ -60,3 +60,8 @@ GROUP BY
    ,d.MonthNumber
    ,d.YearNumber;
 --	ORDER BY  m.Region, m.[Parent], m.Location, p.SegID, RTRIM(B.Account) + ' - ' +  RTRIM(a.Descr), B.PeriodToPost
+GO
+GRANT SELECT
+    ON OBJECT::[dbo].[fGLStat] TO [OdsUser]
+    AS [dbo];
+
