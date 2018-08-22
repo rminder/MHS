@@ -41,12 +41,13 @@
 
 
 
+
+
 GO
 CREATE UNIQUE CLUSTERED INDEX [CDX_01_Dim_Date]
     ON [dbo].[DimDate]([DateKey] ASC);
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_DimDate_DateValue]
-    ON [dbo].[DimDate]([DateValue] ASC);
+
 

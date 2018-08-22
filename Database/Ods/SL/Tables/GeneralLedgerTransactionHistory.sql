@@ -1,4 +1,4 @@
-﻿CREATE TABLE [SL].[GeneralLedgerTransactionHistory] (
+CREATE TABLE [SL].[GeneralLedgerTransactionHistory] (
     [RowId]                      INT              NOT NULL,
     [Account]                    VARCHAR (10)     NOT NULL,
     [BaseCurrencyId]             VARCHAR (4)      NOT NULL,
@@ -28,11 +28,14 @@
     [TransactionDesc]            VARCHAR (30)     NOT NULL,
     [TransactionType]            VARCHAR (2)      NOT NULL,
     [TransactionReferenceNumber] VARCHAR (10)     NOT NULL,
+    [BalanceType]                CHAR (1)         NOT NULL,
     [LastUpdate]                 DATETIME2 (7)    NOT NULL,
     [ImportDate]                 DATETIME2 (7)    NOT NULL,
     [ValidFrom]                  DATETIME2 (7)    NOT NULL,
     [ValidTo]                    DATETIME2 (7)    NOT NULL
 );
+
+
 
 
 
@@ -43,5 +46,6 @@ CREATE CLUSTERED INDEX [ix_GeneralLedgerTransactionHistory]
 
 
 GO
-
+CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransactionHistory_RowId]
+    ON [SL].[GeneralLedgerTransactionHistory]([RowId] ASC);
 

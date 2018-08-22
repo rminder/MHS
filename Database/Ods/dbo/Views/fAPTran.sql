@@ -1,13 +1,11 @@
 ﻿
 
-
-
 CREATE VIEW [dbo].[fAPTran]
 AS
 SELECT
-	COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END, 'n/a')				   AS 'Acct'
-   ,COALESCE(CASE WHEN [BatchNumber] = '' THEN NULL ELSE [BatchNumber] END, 'n/a')	   AS 'BatNbr'
-   ,COALESCE(CASE WHEN [CompanyId] = '' THEN NULL ELSE [CompanyId] END, 'n/a')		   AS 'CpnyID'
+	COALESCE(CASE WHEN a.Account = '' THEN NULL ELSE a.Account END, 'n/a')				   AS 'Acct'
+   ,COALESCE(CASE WHEN a.[BatchNumber] = '' THEN NULL ELSE a.[BatchNumber] END, 'n/a')	   AS 'BatNbr'
+   ,COALESCE(CASE WHEN a.[CompanyId] = '' THEN NULL ELSE a.[CompanyId] END, 'n/a')		   AS 'CpnyID'
    ,COALESCE(CASE WHEN [CurrencyId] = '' THEN NULL ELSE [CurrencyId] END, 'n/a')	   AS 'CuryId'
    ,CASE
 		WHEN [CurrencyRate] IS NULL THEN 0
@@ -26,24 +24,24 @@ SELECT
 		WHEN [PeriodFinancialDate] IS NULL THEN '1900-1-1 00:00:00'
 		ELSE [PeriodFinancialDate]
 	END																				   AS 'PerFinancialDate'
-   ,COALESCE(CASE WHEN [PeriodToPost] = '' THEN NULL ELSE [PeriodToPost] END, 'n/a')   AS 'PerPost'
+   ,COALESCE(CASE WHEN a.[PeriodToPost] = '' THEN NULL ELSE a.[PeriodToPost] END, 'n/a')   AS 'PerPost'
    ,COALESCE(CASE WHEN [ProjectId] = '' THEN NULL ELSE [ProjectId] END, 'n/a')		   AS 'ProjectID'
    ,CASE
-		WHEN [RecordId] IS NULL THEN 0
-		ELSE [RecordId]
+		WHEN a.[RecordId] IS NULL THEN 0
+		ELSE a.[RecordId]
 	END																				   AS 'RecordID'
    ,COALESCE(	CASE
-					WHEN [TransactionReferenceNumber] = '' THEN NULL
-					ELSE [TransactionReferenceNumber]
+					WHEN a.[TransactionReferenceNumber] = '' THEN NULL
+					ELSE a.[TransactionReferenceNumber]
 				END
 			   ,'n/a'
 			)																		   AS 'RefNbr'
    ,CASE
-		WHEN [Released] IS NULL THEN 0
-		ELSE [Released]
+		WHEN a.[Released] IS NULL THEN 0
+		ELSE a.[Released]
 	END																				   AS 'Rlsed'
    ,COALESCE(CASE WHEN [SiteId] = '' THEN NULL ELSE [SiteId] END, 'n/a')			   AS 'SiteId'
-   ,COALESCE(CASE WHEN [SubaccountId] = '' THEN NULL ELSE [SubaccountId] END, 'n/a')   AS 'Sub'
+   ,COALESCE(CASE WHEN a.[SubaccountId] = '' THEN NULL ELSE a.[SubaccountId] END, 'n/a')   AS 'Sub'
    ,COALESCE(CASE WHEN [SubSeg1] = '' THEN NULL ELSE [SubSeg1] END, 'n/a')			   AS 'SubSeg1'
    ,COALESCE(CASE WHEN [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a')			   AS 'SubSeg2'
    ,COALESCE(CASE WHEN [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a')			   AS 'TaskID'
@@ -64,10 +62,10 @@ SELECT
 				END
 			   ,'n/a'
 			)																		   AS 'trantype'
-   ,COALESCE(CASE WHEN [VendorId] = '' THEN NULL ELSE [VendorId] END, 'n/a')		   AS 'VendId'
+   ,COALESCE(CASE WHEN a.[VendorId] = '' THEN NULL ELSE LTRIM(RTRIM(a.VendorId)) END, 'n/a')		   AS 'VendId'
    ,CASE
-		WHEN [LastUpdate] IS NULL THEN '1900-1-1 00:00:00'
-		ELSE [LastUpdate]
+		WHEN a.[LastUpdate] IS NULL THEN '1900-1-1 00:00:00'
+		ELSE a.[LastUpdate]
 	END																				   AS 'tstamp'
    ,COALESCE(	CASE
 					WHEN [TransactionDescription] = '' THEN NULL
@@ -75,8 +73,23 @@ SELECT
 				END
 			   ,'n/a'
 			)																		   AS 'TranDesc'
-FROM SL.AccountsPayableTransaction
-WHERE [JournalType] <> 'BB'
+FROM SL.AccountsPayableTransaction a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsPayableDocument] b  WITH(NOLOCK) ON
+  a.BatchNumber = b.BatchNumber
+ AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
+ AND LTRIM(RTRIM(a.VendorId)) = LTRIM(RTRIM(b.VendorId))
+  WHERE
+  a.[Released] = 1
+  AND ((a.[TransactionType] = 'CK' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'HC' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'PP' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'VC' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'AC' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'AD' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'VO' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'DT'))
+ AND b.TransactionReferenceNumber IS NOT NULL
+ AND a.[CompanyId] IN (SELECT CompanyId FROM SL.Company WHERE IsActive = 1)
+ AND [JournalType] <> 'BB'
 UNION
 SELECT
 	[Acct]													  AS 'Acct'

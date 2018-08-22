@@ -5,6 +5,7 @@
     [CompanyId]                  VARCHAR (10)     NOT NULL,
     [VendorId]                   VARCHAR (15)     NOT NULL,
     [TransactionReferenceNumber] VARCHAR (10)     NOT NULL,
+    [BatchNumber]                VARCHAR (10)     NOT NULL,
     [DocumentDate]               DATE             NULL,
     [DueDate]                    DATE             NULL,
     [DiscountDate]               DATE             NULL,
@@ -27,7 +28,14 @@
 
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_AccountsPayableDocumentHistory]
     ON [SL].[AccountsPayableDocumentHistory]([ValidTo] ASC, [ValidFrom] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocumentHistory_RowId]
+    ON [SL].[AccountsPayableDocumentHistory]([RowId] ASC);
 

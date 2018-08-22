@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [SL].[vwGLTran] AS
 
 --
@@ -40,6 +41,7 @@ SELECT
    ,RTRIM([TranDesc])	   AS TransactionDescription
    ,RTRIM([TranType])	   AS TransactionType
    ,GETUTCDATE()		   AS ImportDate
+   ,BalanceType
    ,CASE
 		WHEN LEN(RTRIM(Sub)) >= 2 THEN  SUBSTRING([Sub], 1, 2)
 		ELSE ''

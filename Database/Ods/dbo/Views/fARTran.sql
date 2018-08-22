@@ -2,12 +2,14 @@
 
 
 
+
+
 CREATE VIEW [dbo].[fARTran]
 AS
 SELECT
 	COALESCE(CASE WHEN Account = '' THEN NULL ELSE Account END, 'n/a')				   AS 'Acct'
-   ,COALESCE(CASE WHEN BatchNumber = '' THEN NULL ELSE BatchNumber END, 'n/a')		   AS 'BatNbr'
-   ,COALESCE(CASE WHEN CompanyId = '' THEN NULL ELSE CompanyId END, 'n/a')			   AS 'CpnyID'
+   ,COALESCE(CASE WHEN a.BatchNumber = '' THEN NULL ELSE a.BatchNumber END, 'n/a')		   AS 'BatNbr'
+   ,COALESCE(CASE WHEN a.CompanyId = '' THEN NULL ELSE a.CompanyId END, 'n/a')			   AS 'CpnyID'
    ,COALESCE(CASE WHEN CurrencyId = '' THEN NULL ELSE CurrencyId END, 'n/a')		   AS 'CuryId'
    ,CASE
 		WHEN CurrencyRate IS NULL THEN 0
@@ -20,12 +22,12 @@ SELECT
 				 ELSE CurrencyTransactionAmount
 			 END
 	END																				   AS 'CuryTranAmt'
-   ,COALESCE(CASE WHEN CustomerId = '' THEN NULL ELSE CustomerId END, 'n/a')		   AS 'CustId'
+   ,COALESCE(CASE WHEN a.CustomerId = '' THEN NULL ELSE a.CustomerId END, 'n/a')		   AS 'CustId'
    ,COALESCE(CASE WHEN DebitOrCredit = '' THEN NULL ELSE DebitOrCredit END, 'n/a')	   AS 'DrCr'
    ,COALESCE(CASE WHEN FiscalYear = '' THEN NULL ELSE FiscalYear END, 'n/a')		   AS 'FiscYr'
    ,COALESCE(CASE WHEN InventoryId = '' THEN NULL ELSE InventoryId END, 'n/a')		   AS 'InvtId'
    ,COALESCE(CASE WHEN JournalType = '' THEN NULL ELSE JournalType END, 'n/a')		   AS 'JrnlType'
-   ,COALESCE(CASE WHEN PeriodToPost = '' THEN NULL ELSE PeriodToPost END, 'n/a')	   AS 'PerPost'
+   ,COALESCE(CASE WHEN a.PeriodToPost = '' THEN NULL ELSE a.PeriodToPost END, 'n/a')	   AS 'PerPost'
    ,CASE
 		WHEN PeriodFinancialDate = '' THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
 		ELSE PeriodFinancialDate
@@ -36,18 +38,18 @@ SELECT
 		ELSE RecordId
 	END																				   AS 'RecordID'
    ,COALESCE(	CASE
-					WHEN TransactionReferenceNumber = '' THEN NULL
-					ELSE TransactionReferenceNumber
+					WHEN a.TransactionReferenceNumber = '' THEN NULL
+					ELSE a.TransactionReferenceNumber
 				END
 			   ,'n/a'
 			)																		   AS 'RefNbr'
    ,CASE
-		WHEN Released IS NULL THEN 0
-		ELSE Released
+		WHEN a.Released IS NULL THEN 0
+		ELSE a.Released
 	END																				   AS 'Rlsed'
    ,COALESCE(CASE WHEN SiteId = '' THEN NULL ELSE SiteId END, 'n/a')				   AS SiteId
    ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a')	   AS 'SlsperId'
-   ,COALESCE(CASE WHEN SubaccountId = '' THEN NULL ELSE SubaccountId END, 'n/a')	   AS 'Sub'
+   ,COALESCE(CASE WHEN a.SubaccountId = '' THEN NULL ELSE a.SubaccountId END, 'n/a')	   AS 'Sub'
    ,COALESCE(CASE WHEN SubSeg1 = '' THEN NULL ELSE SubSeg1 END, 'n/a')				   AS 'SubSeg1'
    ,COALESCE(CASE WHEN SubSeg2 = '' THEN NULL ELSE SubSeg2 END, 'n/a')				   AS 'SubSeg2'
    ,COALESCE(CASE WHEN TaskId = '' THEN NULL ELSE TaskId END, 'n/a')				   AS 'TaskID'
@@ -60,7 +62,8 @@ SELECT
 	END																				   AS 'TranAmt'
    ,CASE
 		WHEN TransactionDate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
-		ELSE TransactionDate
+-- modified to match on day only, not time DWS 8/22/2018
+		ELSE DATEADD(dd, 0, DATEDIFF(dd, 0, TransactionDate)) 
 	END																				   AS 'TranDate'
    ,COALESCE(CASE WHEN TransactionType = '' THEN NULL ELSE TransactionType END, 'n/a') AS 'TranType'
    ,COALESCE(	CASE
@@ -70,8 +73,8 @@ SELECT
 			   ,'n/a'
 			)																		   AS 'WhseLoc'
    ,CASE
-		WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
-		ELSE LastUpdate
+		WHEN a.LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
+		ELSE a.LastUpdate
 	END																				   AS 'tstamp'
    ,COALESCE(	CASE
 					WHEN TransactionDescription = '' THEN NULL
@@ -80,7 +83,28 @@ SELECT
 			   ,'n/a'
 			)																		   AS 'TranDesc'
 FROM SL.AccountsReceivableTransaction
-WHERE [JournalType] <> 'BB'
+
+
+a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsReceivableDocument] b WITH(NOLOCK) 
+  ON a.BatchNumber = b.BatchNumber 
+  AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
+  AND a.CustomerID = b.CustomerID
+  AND a.[Released] = 1
+  AND ((a.[TransactionType] = 'CM' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'DM' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'IN' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'CS' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'PA' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'NS' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'RP' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'SB' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'SC' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'FI' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'PP' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'DA'))
+  AND b.BatchNumber IS  NOT NULL
+AND  a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
+AND [JournalType] <> 'BB'
 UNION
 SELECT
 	[Acct]													  AS 'Acct'

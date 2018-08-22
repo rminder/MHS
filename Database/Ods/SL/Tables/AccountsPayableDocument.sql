@@ -1,10 +1,11 @@
-﻿CREATE TABLE [SL].[AccountsPayableDocument] (
+CREATE TABLE [SL].[AccountsPayableDocument] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [Account]                    VARCHAR (10)                                NOT NULL,
     [RecordId]                   INT                                         NOT NULL,
     [CompanyId]                  VARCHAR (10)                                NOT NULL,
     [VendorId]                   VARCHAR (15)                                NOT NULL,
     [TransactionReferenceNumber] VARCHAR (10)                                NOT NULL,
+    [BatchNumber]                VARCHAR (10)                                NOT NULL,
     [DocumentDate]               DATE                                        NULL,
     [DueDate]                    DATE                                        NULL,
     [DiscountDate]               DATE                                        NULL,
@@ -32,14 +33,13 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableDocumentHistory
 
 
 
-GO
-CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_DocumentType_OpenDocument_Released]
-    ON [SL].[AccountsPayableDocument]([DocumentType] ASC, [OpenDocument] ASC, [Released] ASC)
-    INCLUDE([CompanyId], [VendorId], [TransactionReferenceNumber], [DocumentDate], [DueDate], [DiscountDate], [CurrencyDocumentBalance], [PeriodToPost], [InvoiceNumber]);
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_CompanyId_OpenDocument_Released]
-    ON [SL].[AccountsPayableDocument]([CompanyId] ASC, [OpenDocument] ASC, [Released] ASC)
-    INCLUDE([VendorId], [TransactionReferenceNumber], [DocumentDate], [DueDate], [DiscountDate], [DocumentType], [CurrencyDocumentBalance], [PeriodToPost], [InvoiceNumber]);
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_LastUpdate]
+    ON [SL].[AccountsPayableDocument]([LastUpdate] ASC);
 

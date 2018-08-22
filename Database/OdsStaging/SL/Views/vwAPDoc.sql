@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [SL].[vwAPDoc]
 AS
 
@@ -14,19 +15,20 @@ SELECT
    ,RTRIM([CpnyID])	 AS CompanyId
    ,RTRIM(VendId)	 AS VendorId
    ,RTRIM(RefNbr)	 AS TransactionReferenceNumber
+   ,RTRIM(BatNbr)	 AS BatchNumber
    ,DocDate			 AS DocumentDate
    ,DueDate			 AS DueDate
    ,DiscDate		 AS DiscountDate
    ,CuryDocBal		 AS CurrencyDocumentBalance
    ,RTRIM(DocType)	 AS DocumentType
-   ,DocBal		     AS DocumentBalance
-   ,RTRIM(Sub)	     AS SubaccountId
+   ,DocBal			 AS DocumentBalance
+   ,RTRIM(Sub)		 AS SubaccountId
    ,''				 AS ProfitCenterId
    ,''				 AS LocationId
    ,RTRIM([PerPost]) AS PeriodToPost
    ,RTRIM(InvcNbr)	 AS InvoiceNumber
-   ,OpenDoc          AS OpenDocument
-   ,Rlsed            AS Released
+   ,OpenDoc			 AS OpenDocument
+   ,Rlsed			 AS Released
    ,RecordID		 AS RecordId
    ,[LUpd_DateTime]	 AS LastUpdate
    ,GETUTCDATE()	 AS ImportDate

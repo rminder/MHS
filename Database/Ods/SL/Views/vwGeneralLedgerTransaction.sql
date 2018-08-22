@@ -1,4 +1,5 @@
-﻿CREATE VIEW SL.vwGeneralLedgerTransaction
+﻿
+CREATE VIEW [SL].[vwGeneralLedgerTransaction]
 AS
 SELECT
 	[RowId]
@@ -30,6 +31,7 @@ SELECT
    ,[TransactionDesc]
    ,[TransactionType]
    ,[TransactionReferenceNumber]
+   ,[BalanceType]
    ,[LastUpdate]
    ,[ImportDate]
    ,[ValidFrom]

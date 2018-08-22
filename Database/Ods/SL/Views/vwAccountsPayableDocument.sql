@@ -1,4 +1,5 @@
-﻿CREATE VIEW [SL].[vwAccountsPayableDocument] AS
+﻿
+CREATE VIEW [SL].[vwAccountsPayableDocument] AS
 
 WITH CTE AS
 (
@@ -7,6 +8,7 @@ WITH CTE AS
 	   ,CompanyId
 	   ,VendorId
 	   ,TransactionReferenceNumber
+	   ,BatchNumber
 	   ,DocumentDate
 	   ,DueDate
 	   ,DiscountDate
@@ -37,6 +39,7 @@ Select
 	,CompanyId
 	,VendorId
 	,TransactionReferenceNumber
+	,BatchNumber
 	,DocumentDate
 	,DueDate
 	,DiscountDate

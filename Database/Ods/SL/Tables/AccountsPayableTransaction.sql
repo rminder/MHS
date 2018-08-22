@@ -39,6 +39,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableTransactionHist
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableTransaction_LastUpdate]
     ON [SL].[AccountsPayableTransaction]([LastUpdate] ASC);
@@ -53,4 +55,10 @@ GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableTransaction_TransactionReferenceNumber]
     ON [SL].[AccountsPayableTransaction]([TransactionReferenceNumber] ASC)
     INCLUDE([SubaccountId]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsPayableTransaction_JournalType_Released]
+    ON [SL].[AccountsPayableTransaction]([JournalType] ASC, [Released] ASC)
+    INCLUDE([Account], [BatchNumber], [CompanyId], [CurrencyId], [CurrencyRate], [CurrencyTransactionAmount], [DebitOrCredit], [EmployeeId], [FiscalYear], [InventoryId], [PeriodFinancialDate], [PeriodToPost], [ProjectId], [RecordId], [TransactionReferenceNumber], [SiteId], [SubaccountId], [SubSeg1], [SubSeg2], [TaskId], [TransactionAmount], [TransactionDate], [TransactionType], [VendorId], [TransactionDescription], [LastUpdate]);
 

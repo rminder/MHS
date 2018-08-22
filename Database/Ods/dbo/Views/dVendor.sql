@@ -1,6 +1,8 @@
 ﻿
 
 
+
+
 CREATE VIEW [dbo].[dVendor]
 AS
 WITH CTE
@@ -40,8 +42,8 @@ SELECT DISTINCT
 	  ,'n/a'
 	  ,'n/a'
 	  ,'n/a'
-	  ,VendorId AS [VendId]
-	  ,'n/a'
+	   ,'n/a'
+	  ,LTRIM(RTRIM(VendorId)) AS [VendId]
 	  ,CAST('1900-01-01 00:00:00' AS DATETIME2(7))
 FROM SL.AccountsPayableTransaction
 WHERE

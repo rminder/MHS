@@ -28,6 +28,7 @@
     [TransactionDesc]            VARCHAR (30)                                NOT NULL,
     [TransactionType]            VARCHAR (2)                                 NOT NULL,
     [TransactionReferenceNumber] VARCHAR (10)                                NOT NULL,
+    [BalanceType]                CHAR (1)                                    NOT NULL,
     [LastUpdate]                 DATETIME2 (7)                               NOT NULL,
     [ImportDate]                 DATETIME2 (7)                               NOT NULL,
     [ValidFrom]                  DATETIME2 (7) GENERATED ALWAYS AS ROW START NOT NULL,
@@ -36,6 +37,8 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[GeneralLedgerTransactionHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 
@@ -58,26 +61,21 @@ CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_LastUpdate]
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_JournalType]
-    ON [SL].[GeneralLedgerTransaction]([JournalType] ASC);
 
-
-GO
-CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_PeriodToPost]
-    ON [SL].[GeneralLedgerTransaction]([PeriodToPost] ASC);
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_BatchNumber_LineNumber_Module]
-    ON [SL].[GeneralLedgerTransaction]([BatchNumber] ASC, [LineNumber] ASC, [Module] ASC);
 
-
-GO
-CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_LedgerId]
-    ON [SL].[GeneralLedgerTransaction]([LedgerId] ASC);
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_JournalType_Module]
-    ON [SL].[GeneralLedgerTransaction]([JournalType] ASC, [Module] ASC);
+
+
+
+GO
+
+
+
+GO
+
 
