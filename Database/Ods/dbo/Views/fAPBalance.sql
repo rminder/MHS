@@ -1,8 +1,9 @@
 ﻿
+
 CREATE VIEW [dbo].[fAPBalance]
 AS
 SELECT        T.CompanyId AS 'CpnyId', T.VendorId AS 'VendId', T.TransactionReferenceNumber AS 'RefNbr', T.DocumentDate AS 'DocDate', T.DueDate, T.DiscountDate AS DiscDate, T.DocumentType AS 'DocType', 
-                         T.DocumentBalance AS DocBal, T.ProfitCenterId AS 'ProfitCenterID' , T.LocationId AS 'LocationID', T.PeriodToPost AS 'PerPost'
+                         T.DocumentBalance AS DocBal, T.ProfitCenterId AS 'ProfitCenterID' , COALESCE(CASE WHEN T.LocationId ='' THEN NULL ELSE T.LocationId END, '0000')  AS 'LocationID', T.PeriodToPost AS 'PerPost'
 						 , CONVERT(datetime, SUBSTRING( T.PeriodToPost, 1,4) + '-' + SUBSTRING( T.PeriodToPost, 5, 2) + '-01') AS 'PerFinancialDate', T.InvoiceNumber AS 'InvcNbr'
 FROM            SL.vwAccountsPayableDocument AS T LEFT OUTER JOIN
                          SL.Company AS T2 ON T.CompanyId = T2.CompanyId

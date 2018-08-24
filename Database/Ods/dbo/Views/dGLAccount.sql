@@ -3,6 +3,7 @@
 
 
 
+
 CREATE VIEW [dbo].[dGLAccount]
 AS
 SELECT
@@ -22,7 +23,7 @@ FROM SL.Account
 UNION
 
 
-SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct COALESCE(CASE WHEN a.[Account] = '' THEN NULL ELSE a.[Account] END,'n/a'), 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
 FROM [SL].[AccountsPayableTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
@@ -30,7 +31,7 @@ WHERE b.[Account] IS NULL
 
 UNION
 
-SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct COALESCE(CASE WHEN a.[Account] = '' THEN NULL ELSE a.[Account] END,'n/a'), 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
 FROM [SL].[AccountsReceivableTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
@@ -38,7 +39,7 @@ WHERE b.[Account] IS NULL
 
 UNION
 
-SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct COALESCE(CASE WHEN a.[Account] = '' THEN NULL ELSE a.[Account] END,'n/a'), 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 
 FROM [SL].[GeneralLedgerTransaction] a LEFT OUTER JOIN SL.Account b ON a.[Account] = b.[Account]
 
@@ -46,7 +47,7 @@ WHERE b.[Account] IS NULL
 
 UNION
 
-SELECT Distinct a.[Account], 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
+SELECT Distinct COALESCE(CASE WHEN a.[Account] = '' THEN NULL ELSE a.[Account] END,'n/a'), 'n/a', 'n/a', 'n/a', 0, 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'
 	FROM            SL.AccountHistory AS a INNER JOIN
                          SL.Account AS b ON a.Account = b.Account
 	WHERE        (a.BalanceType = 'B') AND (a.CompanyId IN

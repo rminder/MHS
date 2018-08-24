@@ -218,6 +218,7 @@
     <Build Include="Security\AValdez.sql" />
     <Build Include="Security\AEllis.sql" />
     <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="SL\Views\vwMissingMasterData.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

@@ -1,9 +1,4 @@
 ﻿
-
-
-
-
-
 CREATE VIEW [dbo].[fARTran]
 AS
 SELECT
@@ -82,10 +77,7 @@ SELECT
 				END
 			   ,'n/a'
 			)																		   AS 'TranDesc'
-FROM SL.AccountsReceivableTransaction
-
-
-a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsReceivableDocument] b WITH(NOLOCK) 
+FROM SL.AccountsReceivableTransaction a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsReceivableDocument] b WITH(NOLOCK) 
   ON a.BatchNumber = b.BatchNumber 
   AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
   AND a.CustomerID = b.CustomerID
@@ -103,8 +95,10 @@ a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsReceivableDocument] b WITH(NOLOCK)
   (a.[TransactionType] = 'PP' AND a.DebitOrCredit = 'D') OR
   (a.[TransactionType] = 'DA'))
   AND b.BatchNumber IS  NOT NULL
-AND  a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
+--AND  a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
+WHERE a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
 AND [JournalType] <> 'BB'
+
 UNION
 SELECT
 	[Acct]													  AS 'Acct'
