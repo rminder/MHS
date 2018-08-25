@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [dbo].[fGLTran]
 AS
 SELECT
@@ -78,8 +79,12 @@ SELECT
 		ELSE [LastUpdate]
 	END																				 AS 'tstamp'
 FROM SL.GeneralLedgerTransaction
-WHERE [JournalType] <> 'BB'
+WHERE   [BalanceType] = 'A' AND [Released] = 1
+  AND [CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
+  AND [JournalType] <> 'BB'
+
 UNION
+
 SELECT
 	a.[Acct]													AS 'Acct'
    ,a.[CuryID]													AS 'BaseCuryID'

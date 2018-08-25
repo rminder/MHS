@@ -179,5 +179,13 @@
     <Build Include="SF\Views\vwMH_Invoice_Details__c.sql" />
     <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceGroup.sql" />
     <Build Include="SF\Stored Procedures\DeleteMaterialHandlingInvoiceDetail.sql" />
+    <Build Include="SF\Tables\SVMXC__Site__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__Site__c.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Group_Members__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Group_Members__c.sql" />
+    <Build Include="SF\Views\vwSVMXC__Site__c.sql" />
+    <Build Include="SF\Views\vwSVMXC__Service_Group_Members__c.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxSite.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceGroupMembers.sql" />
   </ItemGroup>
 </Project>

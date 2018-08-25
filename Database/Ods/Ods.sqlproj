@@ -219,6 +219,10 @@
     <Build Include="Security\AEllis.sql" />
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="SL\Views\vwMissingMasterData.sql" />
+    <Build Include="SF\Tables\ServiceMaxSiteHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxSite.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceGroupMembersHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceGroupMembers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />
