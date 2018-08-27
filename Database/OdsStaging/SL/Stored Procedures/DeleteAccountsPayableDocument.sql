@@ -1,6 +1,4 @@
-﻿
-
--- ===============================================================
+﻿-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 5-Aug, 2018
 -- Description: Delete rows from Ods.SL.AccountsPayableDocument
@@ -29,4 +27,7 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsPayableDocument T
 		INNER JOIN CTE T2 ON T2.Account = T.Account And T2.SubaccountId = T.SubaccountId And T2.DocumentType = T.DocumentType And T2.TransactionReferenceNumber = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
+
+	SELECT @@ROWCOUNT
+
 END

@@ -187,5 +187,11 @@
     <Build Include="SF\Views\vwSVMXC__Service_Group_Members__c.sql" />
     <Build Include="SF\Stored Procedures\DeleteServiceMaxSite.sql" />
     <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceGroupMembers.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Order_Line__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Order_Line__c.sql" />
+    <Build Include="SF\Tables\Note.sql" />
+    <Build Include="SF\Views\vwSVMXC__Service_Order_Line__c.sql" />
+    <Build Include="SF\Views\vwNote.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxOrderLine.sql" />
   </ItemGroup>
 </Project>

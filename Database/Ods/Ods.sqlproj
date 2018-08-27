@@ -223,6 +223,12 @@
     <Build Include="SF\Tables\ServiceMaxSite.sql" />
     <Build Include="SF\Tables\ServiceMaxServiceGroupMembersHistory.sql" />
     <Build Include="SF\Tables\ServiceMaxServiceGroupMembers.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceOrderLineHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceOrderLine.sql" />
+    <Build Include="SF\Tables\NoteHistory.sql" />
+    <Build Include="SF\Tables\Note.sql" />
+    <Build Include="dbo\Tables\tmp.sql" />
+    <Build Include="dbo\Tables\tempfAPBalance.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

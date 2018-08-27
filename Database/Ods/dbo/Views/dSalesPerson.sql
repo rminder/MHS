@@ -2,6 +2,7 @@
 
 
 
+
 CREATE VIEW [dbo].[dSalesperson]
 AS
 WITH CTE
@@ -11,7 +12,7 @@ AS
 		COALESCE(CASE WHEN City = '' THEN NULL ELSE City END, 'n/a')				   AS 'City'
 	   ,COALESCE(CASE WHEN Country = '' THEN NULL ELSE Country END, 'n/a')			   AS 'Country'
 	   ,COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a')			   AS 'Name'
-	   ,COALESCE(CASE WHEN SalesPersonId = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsperId'
+	   ,COALESCE(CASE WHEN LTRIM(RTRIM(SalesPersonId)) = '' THEN NULL ELSE SalesPersonId END, 'n/a') AS 'SlsperId'
 	   ,COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a')			   AS 'State'
 	   ,COALESCE(CASE WHEN [Territory] = '' THEN NULL ELSE [Territory] END, 'n/a')	   AS 'Territory'
 	FROM SL.Salesperson
@@ -37,7 +38,7 @@ SELECT DISTINCT
 	   'n/a'
 	  ,'n/a'
 	  ,'n/a'
-	  ,SalesPersonId AS [SlsperId]
+	  ,COALESCE(CASE WHEN LTRIM(RTRIM(SalesPersonId)) = '' THEN NULL ELSE SalesPersonId END, 'n/a')
 	  ,'n/a'
 	  ,'n/a'
 FROM SL.AccountsReceivableTransaction
