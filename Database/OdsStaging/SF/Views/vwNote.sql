@@ -1,4 +1,5 @@
-﻿CREATE VIEW SF.vwNote
+﻿
+CREATE VIEW [SF].[vwNote]
 AS
 SELECT
 	[Id]
@@ -9,9 +10,11 @@ SELECT
    ,ISNULL([Body],'') AS Body
    ,ISNULL([OwnerId],'') AS OwnerId
    ,[CreatedDate]
-   ,ISNULL([CreatedById],'') AS CreatedBy
+   ,ISNULL([CreatedById],'') AS CreatedById
    ,[LastModifiedDate]
-   ,ISNULL([LastModifiedById],'') AS LastModifiedBy
+   ,ISNULL([LastModifiedById],'') AS LastModifiedById
    ,[SystemModstamp]
    ,ISNULL([User_Owner_UNITY_Agent_ID__c],'') AS UnityAgentId
+   ,[LastModifiedDate] AS LastUpdate
+   ,GETUTCDATE() AS ImportDate
 FROM [SF].[Note];

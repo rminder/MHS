@@ -1,4 +1,5 @@
 ﻿
+
 CREATE VIEW [dbo].[dTranType]
 AS
 SELECT DISTINCT
@@ -7,20 +8,60 @@ SELECT DISTINCT
 		   ELSE TransactionType
 	   END AS 'ID'
 FROM SL.GeneralLedgerTransaction
+  WHERE   [BalanceType] = 'A' AND [Released] = 1
+  AND  [CompanyId] IN (SELECT CompanyId FROM SL.Company WHERE IsActive = 1)
+
+
 UNION
+
 SELECT DISTINCT
 	   CASE
 		   WHEN TransactionType = '' THEN 'n/a'
 		   ELSE TransactionType
 	   END AS 'ID'
-FROM SL.AccountsPayableTransaction
+FROM SL.AccountsPayableTransaction a  WITH(NOLOCK) LEFT JOIN 
+[SL].[AccountsPayableDocument] b  WITH(NOLOCK) ON
+  a.BatchNumber = b.BatchNumber
+ AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
+ AND a.VendorId = b.VendorId
+ WHERE a.[Released] = 1
+  AND ((a.[TransactionType] = 'CK' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'HC' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'PP' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'VC' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'AC' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'AD' AND a.DebitOrCredit = 'C') OR
+ (a.[TransactionType] = 'VO' AND a.DebitOrCredit = 'D') OR
+ (a.[TransactionType] = 'DT'))
+ AND b.TransactionReferenceNumber IS NOT NULL
+ AND a.[CompanyId] IN (SELECT CompanyId FROM SL.Company WHERE IsActive = 1)
+
 UNION
+
 SELECT DISTINCT
 	   CASE
 		   WHEN TransactionType = '' THEN 'n/a'
 		   ELSE TransactionType
 	   END AS 'ID'
-FROM SL.AccountsReceivableTransaction
+FROM SL.AccountsReceivableTransaction a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsReceivableDocument] b WITH(NOLOCK) 
+  ON a.BatchNumber = b.BatchNumber 
+  AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
+  AND a.CustomerId = b.CustomerId
+  WHERE  a.[Released] = 1
+  AND ((a.[TransactionType] = 'CM' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'DM' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'IN' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'CS' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'PA' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'NS' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'RP' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'SB' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'SC' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'FI' AND a.DebitOrCredit = 'C') OR
+  (a.[TransactionType] = 'PP' AND a.DebitOrCredit = 'D') OR
+  (a.[TransactionType] = 'DA'))
+  AND b.BatchNumber IS  NOT NULL
+AND  a.[CompanyId] IN (SELECT CompanyId FROM SL.Company WHERE IsActive = 1)
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dTranType';
 

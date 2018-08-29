@@ -1,0 +1,47 @@
+﻿CREATE VIEW SF.vwServiceMaxServiceGroup
+AS
+SELECT
+	[RowId]
+   ,[Id]
+   ,[OwnerId]
+   ,[IsDeleted]
+   ,[Name]
+   ,[RecordTypeId]
+   ,[CreatedDate]
+   ,[CreatedById]
+   ,[LastModifiedDate]
+   ,[LastModifiedById]
+   ,[SystemModStamp]
+   ,[LastActivityDate]
+   ,[LastViewedDate]
+   ,[LastReferencedDate]
+   ,[IsActive]
+   ,[City]
+   ,[Country]
+   ,[Description]
+   ,[Email]
+   ,[GroupCode]
+   ,[GroupType]
+   ,[Latitude]
+   ,[Longitude]
+   ,[Phone]
+   ,[Select]
+   ,[State]
+   ,[Street]
+   ,[Zip]
+   ,[SuperCenter]
+   ,[Segment]
+   ,[CompanyCode]
+   ,[Company]
+   ,[CompanyLegalName]
+   ,[OptimizerConnectionName]
+   ,[LastUpdate]
+   ,[ImportDate]
+   ,[ValidFrom]
+   ,[ValidTo]
+FROM [SF].[ServiceMaxServiceGroup];
+GO
+GRANT SELECT
+    ON OBJECT::[SF].[vwServiceMaxServiceGroup] TO [OdsUser]
+    AS [dbo];
+

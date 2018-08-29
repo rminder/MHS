@@ -1,4 +1,5 @@
 ﻿
+
 CREATE VIEW [dbo].[fARTran]
 AS
 SELECT
@@ -82,7 +83,8 @@ FROM SL.AccountsReceivableTransaction a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsRe
   AND a.TransactionReferenceNumber = b.TransactionReferenceNumber
   AND a.CustomerID = b.CustomerID
   AND a.[Released] = 1
-  AND ((a.[TransactionType] = 'CM' AND a.DebitOrCredit = 'D') OR
+	WHERE
+  ((a.[TransactionType] = 'CM' AND a.DebitOrCredit = 'D') OR
   (a.[TransactionType] = 'DM' AND a.DebitOrCredit = 'C') OR
   (a.[TransactionType] = 'IN' AND a.DebitOrCredit = 'C') OR
   (a.[TransactionType] = 'CS' AND a.DebitOrCredit = 'C') OR
@@ -96,7 +98,7 @@ FROM SL.AccountsReceivableTransaction a  WITH(NOLOCK) LEFT JOIN [SL].[AccountsRe
   (a.[TransactionType] = 'DA'))
   AND b.BatchNumber IS  NOT NULL
 --AND  a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
-WHERE a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
+ AND a.[CompanyID] IN (SELECT CompanyID FROM SL.Company WHERE IsActive = 1)
 AND [JournalType] <> 'BB'
 
 UNION

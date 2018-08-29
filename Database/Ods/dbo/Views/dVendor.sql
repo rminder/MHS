@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 CREATE VIEW [dbo].[dVendor]
 AS
 WITH CTE
@@ -15,7 +11,7 @@ AS
 	   ,COALESCE(CASE WHEN [Name] = '' THEN NULL ELSE [Name] END, 'n/a')	 AS 'Name'
 	   ,COALESCE(CASE WHEN [State] = '' THEN NULL ELSE [State] END, 'n/a')	 AS 'State'
 	   ,COALESCE(CASE WHEN [Status] = '' THEN NULL ELSE [Status] END, 'n/a') AS 'Status'
-	   ,[VendorId]
+	   ,LTRIM(RTRIM([VendorId])) AS VendorId
 	   ,COALESCE(CASE WHEN Zip = '' THEN NULL ELSE Zip END, 'n/a')			 AS 'Zip'
 	   ,CASE
 			WHEN LastUpdate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
@@ -30,8 +26,8 @@ SELECT
    ,Name
    ,State
    ,Status
-   ,Zip
    ,VendorId AS 'VendID'
+   ,Zip
    ,tstamp
 FROM CTE
 UNION
@@ -42,18 +38,12 @@ SELECT DISTINCT
 	  ,'n/a'
 	  ,'n/a'
 	  ,'n/a'
-	   ,'n/a'
 	  ,LTRIM(RTRIM(VendorId)) AS [VendId]
+	  ,'n/a'
 	  ,CAST('1900-01-01 00:00:00' AS DATETIME2(7))
 FROM SL.AccountsPayableTransaction
 WHERE
-	VendorId NOT IN ( SELECT VendorId FROM CTE );
-
-
-/*
-FROM [fAPTran] a LEFT OUTER JOIN  SL.Vendor b ON a.[VendId] = b.[VendorId]
-WHERE b.[VendorId] IS NULL ;
-*/
+VendorId NOT IN ( SELECT VendorId FROM CTE );
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dVendor';
 

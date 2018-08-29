@@ -1,5 +1,4 @@
-﻿
--- ====================================================================
+﻿-- ====================================================================
 -- Author:      Randy Minder
 -- Create Date: 2-Aug, 2018
 -- Description: Delete rows from Ods.SL.AccountsReceivableTransaction
@@ -28,4 +27,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsReceivableTransaction T
 		INNER JOIN CTE T2 ON RTRIM(T2.CustId) = T.CustomerId AND T2.LineNbr = T.LineNumber AND T2.RecordId = T.RecordId AND T2.RefNbr = T.TransactionReferenceNumber AND RTrim(T2.TranType) = T.TransactionType
+
+	SELECT @@ROWCOUNT
 END

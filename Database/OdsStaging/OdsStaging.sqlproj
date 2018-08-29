@@ -193,5 +193,11 @@
     <Build Include="SF\Views\vwSVMXC__Service_Order_Line__c.sql" />
     <Build Include="SF\Views\vwNote.sql" />
     <Build Include="SF\Stored Procedures\DeleteServiceMaxOrderLine.sql" />
+    <Build Include="SF\Tables\Product2Delete.sql" />
+    <Build Include="SF\Tables\Product2.sql" />
+    <Build Include="SF\Tables\NoteDelete.sql" />
+    <Build Include="SF\Views\vwProduct2.sql" />
+    <Build Include="SF\Stored Procedures\DeleteProduct2.sql" />
+    <Build Include="SF\Stored Procedures\DeleteNote.sql" />
   </ItemGroup>
 </Project>

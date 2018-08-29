@@ -1,6 +1,4 @@
-﻿
-
--- ===============================================================
+﻿-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 9-Aug, 2018
 -- Description: Delete rows from Ods.SL.AccountsReceivableDocument
@@ -32,4 +30,6 @@ BEGIN
 												AND RTRIM(T2.RefNbr)  = T.TransactionReferenceNumber
 												AND RTRIM(T2.BatNbr)  = T.BatchNumber
 												AND T2.BatSeq		  = T.BatchSequence;
+
+	SELECT @@ROWCOUNT
 END;

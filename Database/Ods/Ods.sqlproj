@@ -71,6 +71,7 @@
     <Folder Include="dbo\Views\" />
     <Folder Include="SF\" />
     <Folder Include="SF\Tables\" />
+    <Folder Include="SF\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SL\Tables\Company.sql" />
@@ -227,8 +228,17 @@
     <Build Include="SF\Tables\ServiceMaxServiceOrderLine.sql" />
     <Build Include="SF\Tables\NoteHistory.sql" />
     <Build Include="SF\Tables\Note.sql" />
-    <Build Include="dbo\Tables\tmp.sql" />
-    <Build Include="dbo\Tables\tempfAPBalance.sql" />
+    <Build Include="SF\Tables\Product2History.sql" />
+    <Build Include="SF\Tables\Product2.sql" />
+    <Build Include="SF\Views\vwServiceMaxSite.sql" />
+    <Build Include="SF\Views\vwServiceMaxServiceOrderLine.sql" />
+    <Build Include="SF\Views\vwServiceMaxServiceGroupMembers.sql" />
+    <Build Include="SF\Views\vwServiceMaxServiceGroup.sql" />
+    <Build Include="SF\Views\vwProduct2.sql" />
+    <Build Include="SF\Views\vwNote.sql" />
+    <Build Include="SF\Views\vwMaterialHandlingInvoiceDetail.sql" />
+    <Build Include="SF\Views\vwMaterialHandlingInvoice.sql" />
+    <Build Include="Security\BBeasley.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

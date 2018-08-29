@@ -2,6 +2,8 @@
     AUTHORIZATION [dbo];
 
 
+
+
 GO
 ALTER ROLE [OdsUser] ADD MEMBER [AValdez];
 
@@ -12,4 +14,8 @@ ALTER ROLE [OdsUser] ADD MEMBER [GGarcia];
 
 GO
 ALTER ROLE [OdsUser] ADD MEMBER [AEllis];
+
+
+GO
+ALTER ROLE [OdsUser] ADD MEMBER [BBeasley];
 
