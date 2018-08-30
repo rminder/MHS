@@ -26,11 +26,10 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABU+sClwUcz5DSfKTVAJ08QNxItsSx6I8rQUbcDv8u8UwAAAAAOgAAAAAIAACAAAACW0g0qVC0cpkfwf2ex8adxz7y368jXYPhzGryarr3BwpAAAADvcYykDmjYPyyciSkbgqCxpY3r6kKg9cH6ub68JHHDOss4DEzilGa8pzCQqep3gEnAvjNNDI17ioNAW5pjkX4ipurNRzu/xxHHXXnxuxnkY45oqFBwl7uVde5zfI2dl0LM+jV7PidhWEXbsH9LeR+c4KyhpfffOZJbxbvGtvzLBGIohUKjDPRQJ3BSaHKz75JAAAAACdYGTLNyDH1eFCW5dFHM+hqdv40/p3ZDKfjhDBc477U/NMAr+cr7shSxCYg6dtyLwiINHSeCQumm+gQ1ewYFXQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABc9OglRw3ZsMmuYXC7z1UTg+Qh0MZyj/QZTMwZwdZ21AAAAAAOgAAAAAIAACAAAAAwIUxCdzyvvZlvdcqY0XotbNO+lq8CUv1Uc1mWNYV53pAAAAAR8vgM9qV3l6kHmRus45Xz9cl/S/bjrYRD3larmz2g9c8xF/xxf/6ln9qEW4NOfyM37sZQQFuazwSL+1UEbYWZVXy+DIQfA5ZrqMrI6VJDYSDADye9eUYyMWjPopZZ6OQ/l+/jPEP7CwnKhA90d7B4UsmjrluHpEepKWXZWSHdz7S+K88GpEGkvxWx8wSvzpxAAAAAhJOOjJHa47fgkbQ6E/n5EXbU/jnGfI3x1fY/Ckl2mRDxhgu0gTEGl+ZvsMl0eNBjQHSo7T/o8iW3CgRofwVyHw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="DynamicsSL-Dev.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-Account.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-AccountHistory.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-AccountsReceivableTransaction.dtsx" SSIS:EntryPoint="1" />
@@ -918,23 +917,6 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="DynamicsSL-Dev.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{EEC4E42D-1506-4E02-BD4F-70015894903E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DynamicsSL-Dev</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{13E5868E-C735-435B-B944-841869006D07}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="SL-Account.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{CF118C0E-1458-421B-82FE-83BD5A39CC87}</SSIS:Property>
@@ -975,10 +957,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsReceivableTransaction</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">215</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">229</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{05A5041D-E789-42E1-91EE-84E3DD84D164}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E3C59041-C526-4158-936B-EEB0EEE46197}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1213,10 +1195,10 @@
                 <SSIS:Property SSIS:Name="Name">SL Budget</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">221</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">223</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A0133973-783D-4980-93D7-11801B84DB7E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8DD564DE-2F99-4EC1-B939-C3EA434B3BDF}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
