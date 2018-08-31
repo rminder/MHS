@@ -1,0 +1,27 @@
+﻿CREATE TABLE [SF].[Super_Center__c] (
+    [Id]                                       NVARCHAR (18) NOT NULL,
+    [OwnerId]                                  NVARCHAR (18) NULL,
+    [IsDeleted]                                TINYINT       NULL,
+    [Name]                                     NVARCHAR (80) NULL,
+    [CreatedDate]                              DATETIME      NULL,
+    [CreatedById]                              NVARCHAR (18) NULL,
+    [LastModifiedDate]                         DATETIME      NULL,
+    [LastModifiedById]                         NVARCHAR (18) NULL,
+    [SystemModstamp]                           DATETIME      NULL,
+    [LastActivityDate]                         DATETIME      NULL,
+    [LastViewedDate]                           DATETIME      NULL,
+    [LastReferencedDate]                       DATETIME      NULL,
+    [Projected_Equipment_Revenue_to_Target__c] FLOAT (53)    NULL,
+    [Projected_Service_Revenue_to_Targe__c]    FLOAT (53)    NULL,
+    [Projected_Total_Equipment_Revenue__c]     FLOAT (53)    NULL,
+    [Projected_Total_Service_Revenue__c]       FLOAT (53)    NULL,
+    [Total_Equipment_Gross_Profit_Actual__c]   FLOAT (53)    NULL,
+    [Total_Equipment_Revenue_Actual__c]        FLOAT (53)    NULL,
+    [Total_Service_Gross_Profit_Actual__c]     FLOAT (53)    NULL,
+    [Total_Service_Revenue_Actual__c]          FLOAT (53)    NULL,
+    [Total_Monthly_Sales_Average__c]           FLOAT (53)    NULL,
+    [Total_Monthly_Sales_Average_Target__c]    FLOAT (53)    NULL,
+    [Adjusted_Total_MSA_Target__c]             FLOAT (53)    NULL,
+    CONSTRAINT [PK_Super_Center__c] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

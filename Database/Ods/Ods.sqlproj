@@ -72,6 +72,7 @@
     <Folder Include="SF\" />
     <Folder Include="SF\Tables\" />
     <Folder Include="SF\Views\" />
+    <Folder Include="SF\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SL\Tables\Company.sql" />
@@ -239,6 +240,23 @@
     <Build Include="SF\Views\vwMaterialHandlingInvoiceDetail.sql" />
     <Build Include="SF\Views\vwMaterialHandlingInvoice.sql" />
     <Build Include="Security\BBeasley.sql" />
+    <Build Include="SF\Tables\SuperCenterHistory.sql" />
+    <Build Include="SF\Tables\SuperCenter.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceOrderHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxServiceOrder.sql" />
+    <Build Include="dbo\Tables\GetARBalance.sql" />
+    <Build Include="SF\Views\vwSuperCenter.sql" />
+    <Build Include="SF\Views\vwServiceMaxServiceOrder.sql" />
+    <Build Include="SF\Functions\SuperCenterGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxSiteGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxServiceOrderLineGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxServiceOrderGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxServiceGroupMembersGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxServiceGroupGetHistory.sql" />
+    <Build Include="SF\Functions\Product2GetHistory.sql" />
+    <Build Include="SF\Functions\NoteGetHistory.sql" />
+    <Build Include="SF\Functions\MaterialHandlingInvoiceGetHistory.sql" />
+    <Build Include="SF\Functions\MaterialHandlingInvoiceDetailGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

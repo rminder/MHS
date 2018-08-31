@@ -53,9 +53,14 @@ SELECT
    ,COALESCE(CASE WHEN [SubSeg2] = '' THEN NULL ELSE [SubSeg2] END, 'n/a')			 AS 'SubSeg2'
    ,COALESCE(CASE WHEN [TaskId] = '' THEN NULL ELSE [TaskId] END, 'n/a')			 AS 'TaskID'
    ,CASE
-		WHEN [TransactionDate] IS NULL THEN '1900-1-1 00:00:00'
-		ELSE [TransactionDate]
+		WHEN TransactionDate IS NULL THEN CAST('1900-01-01 00:00:00' AS DATETIME2(7))
+-- modified to match on day only, not time DWS 8/22/2018
+		ELSE DATEADD(dd, 0, DATEDIFF(dd, 0, TransactionDate)) 
 	END																				 AS 'TranDate'
+  --   CASE
+--		WHEN [TransactionDate] IS NULL THEN '1900-1-1 00:00:00'
+--		ELSE [TransactionDate]
+--	END																				 AS 'TranDate'
    ,COALESCE(	CASE
 					WHEN [TransactionDesc] = '' THEN NULL
 					ELSE [TransactionDesc]

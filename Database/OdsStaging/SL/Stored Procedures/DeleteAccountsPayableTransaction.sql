@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 4-Aug, 2018
@@ -28,4 +29,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsPayableTransaction T
 		INNER JOIN CTE T2 ON RTRIM(T2.BatNbr) = T.BatchNumber AND RTRIM(T2.Acct) = T.Account AND RTRIM(T2.Sub) = T.SubaccountId AND RTRIM(T2.RefNbr) = T.TransactionReferenceNumber AND T2.RecordId = T.RecordId
+
+	SELECT @@ROWCOUNT
 END

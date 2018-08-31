@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 16-August, 2018
 -- Description: Delete rows from Ods.SL.AccountsReceivableHistory
@@ -26,4 +27,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsReceivableHistory T
 		INNER JOIN CTE T2 ON RTRIM(T2.CustId) = T.CustomerId And RTRIM(T2.CpnyId) = T.CompanyId And RTRIM(T2.FiscYr) = T.FiscalYear
+
+	SELECT @@ROWCOUNT
 END;

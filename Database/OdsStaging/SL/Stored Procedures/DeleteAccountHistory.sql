@@ -1,7 +1,4 @@
-﻿
-
-
--- ===============================================================
+﻿-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 24-July, 2018
 -- Description: Delete rows from Ods.SL.AccountHistory
@@ -34,4 +31,6 @@ BEGIN
 											AND RTRIM(T2.Sub)	 = T.SubaccountId
 											AND RTRIM(T2.LedgerID) = T.LedgerId
 											AND RTRIM(T2.FiscYr) = T.FiscalYear;
+
+	SELECT @@ROWCOUNT
 END

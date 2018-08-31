@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 21-July, 2018
@@ -28,4 +29,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.GeneralLedgerTransaction T
 		INNER JOIN CTE T2 ON RTRIM(T2.BatNbr) = T.BatchNumber AND RTRIM(T2.LineNbr) = T.LineNumber AND RTRIM(T2.Module) = T.Module
+
+	SELECT @@ROWCOUNT
 END

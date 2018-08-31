@@ -1,5 +1,6 @@
 ﻿
 
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 9-August, 2018
@@ -28,4 +29,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.Vendor						  T
 		INNER JOIN CTE T2 ON RTRIM(T2.VendId) = T.VendorId;
+
+	SELECT @@ROWCOUNT
 END;

@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 11-August, 2018
@@ -27,4 +28,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.Ledger					      T
 		INNER JOIN CTE T2 ON RTRIM(T2.LedgerId) = T.LedgerId;
+
+	SELECT @@ROWCOUNT
 END;

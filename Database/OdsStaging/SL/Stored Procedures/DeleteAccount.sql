@@ -1,5 +1,6 @@
 ﻿
 
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 24-July, 2018
@@ -29,4 +30,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.Account T
 		INNER JOIN CTE T2 ON RTRIM(T2.Acct) = T.Account
+
+	SELECT @@ROWCOUNT
 END

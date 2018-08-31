@@ -1,4 +1,6 @@
-﻿CREATE VIEW SL.vwAccountsReceivableDocument
+﻿
+
+CREATE VIEW [SL].[vwAccountsReceivableDocument]
 AS
 SELECT
 	[RowId]
@@ -13,7 +15,16 @@ SELECT
    ,[DocumentBalance]
    ,[CurrencyDocumentBalance]
    ,[OriginalDocumentAmount]
-   ,[SubaccountId]
+   ,ISNULL((
+		SELECT TOP 1 SubaccountId
+		FROM SL.AccountsReceivableTransaction
+		WHERE
+			TransactionReferenceNumber = T.TransactionReferenceNumber
+			AND TransactionType		   = T.DocumentType
+			AND CustomerId			   = T.CustomerId
+			AND SubaccountId <> '000000'
+			AND SubaccountId <> ''
+	),'000000') AS SubaccountId
    ,[PeriodToPost]
    ,[WorkOrder]
    ,[Released]
@@ -22,7 +33,7 @@ SELECT
    ,[ImportDate]
    ,[ValidFrom]
    ,[ValidTo]
-FROM [SL].[AccountsReceivableDocument];
+FROM [SL].[AccountsReceivableDocument] T;
 GO
 GRANT SELECT
     ON OBJECT::[SL].[vwAccountsReceivableDocument] TO [OdsUser]

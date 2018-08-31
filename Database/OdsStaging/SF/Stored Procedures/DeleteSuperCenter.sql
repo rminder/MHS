@@ -1,16 +1,16 @@
 ﻿-- ===============================================================
 -- Author:      Randy Minder
--- Create Date: 25-August, 2018
--- Description: Delete rows from Ods.SL.ServiceMaxSiteDetail
---		that are contained in OdsStaging.SL.ServiceMaxSiteDetail.
+-- Create Date: 30-August, 2018
+-- Description: Delete rows from Ods.SL.SuperCenter
+--		that are contained in OdsStaging.SL.SuperCenter.
 --
--- NOTE: The name of this stored proc must mimic the name of the
+-- SuperCenter: The name of this stored proc must mimic the name of the
 --    name of the table in Ods, with 'Delete' prepended to the
 --    name.
 --
--- Exec SL.DeleteServiceMaxSite
+-- Exec SL.DeleteSuperCenter
 -- ===============================================================
-CREATE PROCEDURE [SF].[DeleteServiceMaxSite]
+CREATE PROCEDURE [SF].[DeleteSuperCenter]
 AS
 
 BEGIN
@@ -19,13 +19,13 @@ BEGIN
 	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
 	;WITH CTE AS
 	(
-		Select Id From Ods.SF.ServiceMaxSite
+		Select Id From Ods.SF.SuperCenter
 		Except
-		Select Id FROM SF.SVMXC__Site__cDelete
+		Select Id FROM SF.Super_Center__cDelete
 	)
 
 	DELETE T
-	FROM Ods.SF.ServiceMaxSite T
+	FROM Ods.SF.SuperCenter T
 		INNER JOIN CTE T2 ON T2.Id = T.Id
 
 	Select @@ROWCOUNT

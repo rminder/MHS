@@ -199,5 +199,13 @@
     <Build Include="SF\Views\vwProduct2.sql" />
     <Build Include="SF\Stored Procedures\DeleteProduct2.sql" />
     <Build Include="SF\Stored Procedures\DeleteNote.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Order__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__Service_Order__c.sql" />
+    <Build Include="SF\Tables\Super_Center__cDelete.sql" />
+    <Build Include="SF\Tables\Super_Center__c.sql" />
+    <Build Include="SF\Views\vwSVMXC__Service_Order__c.sql" />
+    <Build Include="SF\Views\vwSuper_Center__C.sql" />
+    <Build Include="SF\Stored Procedures\DeleteSuperCenter.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceOrder.sql" />
   </ItemGroup>
 </Project>

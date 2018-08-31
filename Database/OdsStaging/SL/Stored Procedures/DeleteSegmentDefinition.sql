@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 6-August, 2018
@@ -29,4 +30,6 @@ BEGIN
 		INNER JOIN CTE T2 ON RTRIM(T2.FieldClassName) = T.FieldClassName
 													AND RTRIM(T2.SegNumber)	 = T.SegmentNumber
 													AND RTRIM(T2.ID)		 = T.Id;
+
+	SELECT @@ROWCOUNT
 END;

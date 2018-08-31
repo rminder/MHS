@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 15-August, 2018
 -- Description: Delete rows from Ods.SL.BudgetDistributionType
@@ -28,4 +29,5 @@ BEGIN
 	FROM Ods.SL.BudgetDistributionType T
 		INNER JOIN CTE T2 ON RTRIM(T2.DistType) = T.DistributionType
 
+	SELECT @@ROWCOUNT
 END

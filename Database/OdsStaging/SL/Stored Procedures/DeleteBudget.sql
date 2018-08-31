@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 13-August, 2018
@@ -20,9 +21,9 @@ BEGIN
 	-- Find rows coming from ODS that don't exist in the non-Ods source and remove them from Ods.
 	;WITH CTE AS
 	(
-		Select CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment From OdsStaging.SL.BudgetDelete Where IsOds = 1
-		Except
-		Select CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment From OdsStaging.SL.BudgetDelete Where IsOds = 0
+		SELECT CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment FROM OdsStaging.SL.BudgetDelete WHERE IsOds = 1
+		EXCEPT
+		SELECT CpnyId, BudgetYear, BudgetLedgerId, BdgtSegment FROM OdsStaging.SL.BudgetDelete WHERE IsOds = 0
 	)
 
 	DELETE T
@@ -32,4 +33,5 @@ BEGIN
 											AND RTRIM(T2.BudgetLedgerId)	= T.BudgetLedgerId
 											AND RTRIM(T2.BdgtSegment)		= T.BudgetSegment;
 
+	SELECT @@ROWCOUNT
 END

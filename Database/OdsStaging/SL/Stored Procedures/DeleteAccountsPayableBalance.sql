@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 13-August, 2018
@@ -27,4 +28,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsPayableBalance T
 		INNER JOIN CTE T2 ON RTRIM(T2.VendId) = T.VendorId And RTRIM(T2.CpnyId) = T.CompanyId;
+
+	SELECT @@ROWCOUNT
 END;

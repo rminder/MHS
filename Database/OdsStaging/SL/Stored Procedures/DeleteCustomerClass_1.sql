@@ -1,4 +1,5 @@
 ﻿
+
 -- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 8-August, 2018
@@ -27,4 +28,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.CustomerClass					 T
 		INNER JOIN CTE T2 ON RTRIM(T2.ClassId) = T.ClassId;
+
+	SELECT @@ROWCOUNT
 END;

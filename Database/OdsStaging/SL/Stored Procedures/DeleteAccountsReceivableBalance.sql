@@ -1,4 +1,5 @@
-﻿-- ===============================================================
+﻿
+-- ===============================================================
 -- Author:      Randy Minder
 -- Create Date: 15-August, 2018
 -- Description: Delete rows from Ods.SL.AccountsReceivableBalance
@@ -26,4 +27,6 @@ BEGIN
 	DELETE T
 	FROM Ods.SL.AccountsReceivableBalance T
 		INNER JOIN CTE T2 ON RTRIM(T2.CustId) = T.CustomerId And RTRIM(T2.CpnyId) = T.CompanyId;
+
+	SELECT @@ROWCOUNT
 END;
