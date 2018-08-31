@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OdsProduction"
+  DTS:DTSID="{1552D940-2878-42C0-899C-3BF7562C7F12}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADvbEJnpwlDErKOrvkGXeSb07KfF3FYTtLbVLJwY8kmwgAAAAAOgAAAAAIAACAAAAA97u/bpg7CFCe9ir/Ge1iF1Aavy47sRy7zoZnEH5nOJIAAAADMwUWlNAbADAXcdGhBqC9TD2TlGqncnff7P3DMKibR4vojchbaMd/G4qOIc/37dtXdVaBpJWqp8s/IIfig/xxYJ/D8WJ5SvJlGlq2dNLDYsI6qvNlnfZpCi2fNluTK2UJzZBJso6beQ6YEmhV+ATEGOJOn/mZCXnV8MbtZGZ7zH0AAAABJXFFNAR8F6mHXL4ST1UVRN0Xa0KxhAhl+T5a7OmhB3WYoNZejl4565eAGUWp8jAMGAYhFeusNQp+L/yvffYbV</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
