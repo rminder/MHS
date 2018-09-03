@@ -244,7 +244,6 @@
     <Build Include="SF\Tables\SuperCenter.sql" />
     <Build Include="SF\Tables\ServiceMaxServiceOrderHistory.sql" />
     <Build Include="SF\Tables\ServiceMaxServiceOrder.sql" />
-    <Build Include="dbo\Tables\GetARBalance.sql" />
     <Build Include="SF\Views\vwSuperCenter.sql" />
     <Build Include="SF\Views\vwServiceMaxServiceOrder.sql" />
     <Build Include="SF\Functions\SuperCenterGetHistory.sql" />
@@ -257,6 +256,18 @@
     <Build Include="SF\Functions\NoteGetHistory.sql" />
     <Build Include="SF\Functions\MaterialHandlingInvoiceGetHistory.sql" />
     <Build Include="SF\Functions\MaterialHandlingInvoiceDetailGetHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxRmaShipmentOrderHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxRmaShipmentOrder.sql" />
+    <Build Include="SF\Tables\ServiceMaxRmaShipmentLineHistory.sql" />
+    <Build Include="SF\Tables\ServiceMaxRmaShipmentLine.sql" />
+    <Build Include="SF\Tables\RecordTypeHistory.sql" />
+    <Build Include="SF\Tables\RecordType.sql" />
+    <Build Include="SF\Views\vwServiceMaxRmaShipmentOrder.sql" />
+    <Build Include="SF\Views\vwServiceMaxRmaShipmentLine.sql" />
+    <Build Include="SF\Views\vwRecordType.sql" />
+    <Build Include="SF\Functions\ServiceMaxRmaShipmentOrderGetHistory.sql" />
+    <Build Include="SF\Functions\ServiceMaxRmaShipmentLineGetHistory.sql" />
+    <Build Include="SF\Functions\RecordTypeGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

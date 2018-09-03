@@ -207,5 +207,17 @@
     <Build Include="SF\Views\vwSuper_Center__C.sql" />
     <Build Include="SF\Stored Procedures\DeleteSuperCenter.sql" />
     <Build Include="SF\Stored Procedures\DeleteServiceMaxServiceOrder.sql" />
+    <Build Include="SF\Tables\SVMXC__RMA_Shipment_Order__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__RMA_Shipment_Order__c.sql" />
+    <Build Include="SF\Tables\SVMXC__RMA_Shipment_Line__cDelete.sql" />
+    <Build Include="SF\Tables\SVMXC__RMA_Shipment_Line__c.sql" />
+    <Build Include="SF\Tables\RecordTypeDelete.sql" />
+    <Build Include="SF\Tables\RecordType.sql" />
+    <Build Include="SF\Views\vwSVMXC__RMA_Shipment_Order__c.sql" />
+    <Build Include="SF\Views\vwSVMXC__RMA_Shipment_Line__c.sql" />
+    <Build Include="SF\Views\vwRecordType.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxRmaShipmentOrder.sql" />
+    <Build Include="SF\Stored Procedures\DeleteServiceMaxRmaShipmentLine.sql" />
+    <Build Include="SF\Stored Procedures\DeleteRecordType.sql" />
   </ItemGroup>
 </Project>
