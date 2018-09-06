@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABc9OglRw3ZsMmuYXC7z1UTg+Qh0MZyj/QZTMwZwdZ21AAAAAAOgAAAAAIAACAAAAAwIUxCdzyvvZlvdcqY0XotbNO+lq8CUv1Uc1mWNYV53pAAAAAR8vgM9qV3l6kHmRus45Xz9cl/S/bjrYRD3larmz2g9c8xF/xxf/6ln9qEW4NOfyM37sZQQFuazwSL+1UEbYWZVXy+DIQfA5ZrqMrI6VJDYSDADye9eUYyMWjPopZZ6OQ/l+/jPEP7CwnKhA90d7B4UsmjrluHpEepKWXZWSHdz7S+K88GpEGkvxWx8wSvzpxAAAAAhJOOjJHa47fgkbQ6E/n5EXbU/jnGfI3x1fY/Ckl2mRDxhgu0gTEGl+ZvsMl0eNBjQHSo7T/o8iW3CgRofwVyHw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADPtgh0nssg5GLfHP3l55xZUL3wvOj7PYg98ZKBN4o70QAAAAAOgAAAAAIAACAAAACprANQm6iZHdc7Nhgi+aAJDoapkMJWa5r3x+f4TxmYvpAAAACozVEBTQI96yy5D1/o+e20vlXu8+q2uDXGgML0bbm6RqQffXm9fGyi2vF0DXGhGaUNRYoNCWHFYVG68WKFOKG1B1Ho0s6uYT5PIEzq3Ad6tnW56Tu4nFsI0zlKbycqO65egsr7sS4mHnFOYXbO4Z3snSun5eP2UUJofuuM/G6wHD2rZsKxeEdSZmpJfqBXsBBAAAAAHMRCacMAh0/FvOy8+jmVqiR6KSI4vBYb2PQBCrReiZyN5WcSTRIotIHBdsWuA76ApC1a9zZM77cceF1t57npNg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -52,6 +52,7 @@
           <SSIS:Package SSIS:Name="SL.BudgetDistributionType.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-AccountsReceivableHistory.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SL-AccountsPayableHistory.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SL.BudgetGroup.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="OdsProduction.conmgr" />
@@ -923,10 +924,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-Account</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">220</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">229</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{7AC64A86-2080-4C77-89BF-399F2EB1D456}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6564BD3C-C94A-4734-A009-D6A5B179F499}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -940,10 +941,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountHistory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">229</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">242</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CBE95D1C-4E53-4F03-8432-861C8B14ECCA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F2C31674-DAD8-4FD6-9E00-198E7EB546F5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -974,10 +975,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-GeneralLedgerTransaction</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">207</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">225</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{AC772BF6-4C11-4BC3-A2B1-DEEEF92A0730}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{26FAEDE3-451E-4843-B903-11E29C11D861}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -991,10 +992,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsPayableTransaction</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">214</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">229</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{48C8DFBB-47F3-421D-A3D8-905B5F995CA6}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D00A7AA5-48DA-49A7-AA3A-6952058808EF}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1008,10 +1009,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsPayableDocument</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">231</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">276</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CC2276C4-1C16-4EA2-BB3B-F9B613F3E935}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E808E449-5E19-476A-99A9-14405D8A1016}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1025,10 +1026,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-SegmentDefinition</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">219</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">231</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{99B5E6C6-6824-4F5C-A159-DCE99525FB70}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D0A75E37-FBB6-4F6E-9761-9DCA3E3052B6}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1042,10 +1043,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-GeneralLedgerSetup</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">212</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">224</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{CC3410AD-2F5A-4681-BA65-9B08F0F49D97}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{211582C8-8D9C-4E16-91AF-9C3E49A44E42}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1059,10 +1060,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-Customer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">223</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">234</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9E1F3F7E-A6B0-46ED-8C57-DE17AF0DFB0E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{95F37201-25FB-4FD9-A9FE-80F53CE7E1A1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1076,10 +1077,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-CustomerClass</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">227</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">239</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D263811D-08F8-4F91-B5A7-5D356F56AE7A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{73E99B43-47DA-4AA5-BADE-60F82C37E1BB}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1093,10 +1094,10 @@
                 <SSIS:Property SSIS:Name="Name">SL SalesPerson</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">230</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">240</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{AEC91CD1-445C-41A3-A1FB-3F1F6F246CC9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{99C13D2D-89F0-4DE7-A4B4-8F291244F78C}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1110,10 +1111,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsReceivableDocument</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">235</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">274</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1A93DFFA-1E15-430A-9F50-858B621D5B02}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{439B287B-93B4-4DD5-9C2D-618C00E55F22}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1127,10 +1128,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-Vendor</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">232</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">236</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B0F612B9-2F4F-42CC-BF88-B4A91CEB1528}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C4070A4D-AB2E-4EBF-8E89-DA27367EECE0}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1144,10 +1145,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-VendorClass</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">237</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">244</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9371B391-D83B-4850-96AF-513C3DBEAD56}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5AAFDF1F-546D-41A8-A018-EB9A3CF52A66}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1161,10 +1162,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-Subaccount</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">223</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">230</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E10DDCE8-4D35-4D98-AFDA-AFADC267BB1C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8F002989-39F1-40AA-8B20-C4401F204CD7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1178,10 +1179,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-Ledger</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">244</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">251</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A0115435-1D8A-4190-B3F7-3638F1219495}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{491E6C1D-F37C-49AE-9D95-059B91A550EE}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1195,10 +1196,10 @@
                 <SSIS:Property SSIS:Name="Name">SL Budget</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">223</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">225</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8DD564DE-2F99-4EC1-B939-C3EA434B3BDF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{056CC847-0A02-4701-93BB-B2AD9E37236F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1212,10 +1213,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsPayableBalance</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">236</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">245</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E4EAF636-701B-422C-AF75-B92D7B4D2EE3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{18F049C8-78E3-4AFD-ABAB-225742AF9B2E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1229,10 +1230,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsReceivableBalance</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">247</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">249</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F03837CE-3A01-4C1F-BAB8-9DF1E74FB639}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D842D95A-7CB9-4219-9867-709A20AFC439}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1246,10 +1247,10 @@
                 <SSIS:Property SSIS:Name="Name">SL BudgetDistributionType</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">225</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">227</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{7BF180FD-9C5E-487E-A214-EDB648894CD1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{38C65BD1-7EA5-4A1C-95DD-7616B7B19C68}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1263,10 +1264,10 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsReceivableHistory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">231</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">233</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{EF64F978-547E-49CB-B1E7-F4AB27A97192}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FD9B8677-E95E-4EFD-B1A5-5C9142D4BC2E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1280,10 +1281,27 @@
                 <SSIS:Property SSIS:Name="Name">SL-AccountsPayableHistory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">235</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">237</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F24D09CC-2832-43A3-B25B-E50CAB54D424}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7E118DC8-919F-4B89-96E0-A208B0E5E8BD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SL.BudgetGroup.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{1B926D25-A6CB-47ED-A44C-7B427AAC48B8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SL BudgetGroup</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">230</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{316E8BB6-E9A5-4F15-B303-539200E24D3D}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

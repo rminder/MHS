@@ -268,6 +268,18 @@
     <Build Include="SF\Functions\ServiceMaxRmaShipmentOrderGetHistory.sql" />
     <Build Include="SF\Functions\ServiceMaxRmaShipmentLineGetHistory.sql" />
     <Build Include="SF\Functions\RecordTypeGetHistory.sql" />
+    <Build Include="SL\Tables\BudgetGroupHistory.sql" />
+    <Build Include="SL\Tables\BudgetGroup.sql" />
+    <Build Include="SF\Tables\UserHistory.sql" />
+    <Build Include="SF\Tables\User.sql" />
+    <Build Include="SF\Tables\AccountHistory.sql" />
+    <Build Include="SF\Tables\Account.sql" />
+    <Build Include="SL\Views\vwBudgetGroup.sql" />
+    <Build Include="SF\Views\vwUser.sql" />
+    <Build Include="SF\Views\vwAccount.sql" />
+    <Build Include="SL\Functions\BudgetGroupGetHistory.sql" />
+    <Build Include="SF\Functions\UserGetHistory.sql" />
+    <Build Include="SF\Functions\AccountGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />
