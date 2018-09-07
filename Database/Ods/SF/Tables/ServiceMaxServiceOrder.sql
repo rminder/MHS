@@ -76,7 +76,7 @@
     [WorkOrderDeniedReason]                        NVARCHAR (255)                              NOT NULL,
     [AdditionalServiceRecommended]                 TINYINT                                     NULL,
     [EmergencyService]                             TINYINT                                     NULL,
-    [SerialNumber]                                 NVARCHAR (100)                              NOT NULL,
+    [SerialNumber]                                 NVARCHAR (150)                              NOT NULL,
     [AssetTag]                                     NVARCHAR (100)                              NOT NULL,
     [CustomerPurchaseOrder]                        NVARCHAR (35)                               NOT NULL,
     [InvoiceTotal]                                 DECIMAL (32, 16)                            NULL,
@@ -251,6 +251,8 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[ServiceMaxServiceOrderHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 GO

@@ -76,7 +76,7 @@
     [WorkOrderDeniedReason]                        NVARCHAR (255)   NOT NULL,
     [AdditionalServiceRecommended]                 TINYINT          NULL,
     [EmergencyService]                             TINYINT          NULL,
-    [SerialNumber]                                 NVARCHAR (100)   NOT NULL,
+    [SerialNumber]                                 NVARCHAR (150)   NOT NULL,
     [AssetTag]                                     NVARCHAR (100)   NOT NULL,
     [CustomerPurchaseOrder]                        NVARCHAR (35)    NOT NULL,
     [InvoiceTotal]                                 DECIMAL (32, 16) NULL,
@@ -248,6 +248,8 @@
     [ValidFrom]                                    DATETIME2 (7)    NOT NULL,
     [ValidTo]                                      DATETIME2 (7)    NOT NULL
 );
+
+
 
 
 GO

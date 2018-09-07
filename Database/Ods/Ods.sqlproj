@@ -280,6 +280,10 @@
     <Build Include="SL\Functions\BudgetGroupGetHistory.sql" />
     <Build Include="SF\Functions\UserGetHistory.sql" />
     <Build Include="SF\Functions\AccountGetHistory.sql" />
+    <Build Include="SL\Tables\BudgetSetupHistory.sql" />
+    <Build Include="SL\Tables\BudgetSetup.sql" />
+    <Build Include="SL\Views\vwBudgetSetup.sql" />
+    <Build Include="SL\Functions\BudgetSetupGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

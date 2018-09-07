@@ -4,6 +4,7 @@
 
 
 
+
 -- =================================================================
 -- Author:		Randy Minder
 -- Create date: 13-August, 2018
@@ -142,5 +143,11 @@ UNION
 
 SELECT 'AccountsPayableHistory' AS [Table], __Operation AS [Operation], CONVERT(DATE,__OperationDate) AS [OperationDate], COUNT(*) AS [OperationCount]
 FROM SL.AccountsPayableHistoryGetHistory(@StartDate,@EndDate)
+GROUP BY __Operation, CONVERT(DATE,__OperationDate)
+
+UNION
+
+SELECT 'BudgetSetup' AS [Table], __Operation AS [Operation], CONVERT(DATE,__OperationDate) AS [OperationDate], COUNT(*) AS [OperationCount]
+FROM SL.BudgetSetupGetHistory(@StartDate,@EndDate)
 GROUP BY __Operation, CONVERT(DATE,__OperationDate)
 )

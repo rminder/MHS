@@ -231,5 +231,9 @@
     <Build Include="SL\Stored Procedures\DeleteBudgetGroup.sql" />
     <Build Include="SF\Stored Procedures\DeleteUser.sql" />
     <Build Include="SF\Stored Procedures\DeleteAccount.sql" />
+    <Build Include="SL\Tables\BUSetupDelete.sql" />
+    <Build Include="SL\Tables\BUSetup.sql" />
+    <Build Include="SL\Views\vwBuSetup.sql" />
+    <Build Include="SL\Stored Procedures\DeleteBudgetSetup.sql" />
   </ItemGroup>
 </Project>
