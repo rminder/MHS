@@ -42,3 +42,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[ServiceMaxServiceGroupHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_ServiceMaxServiceGroup_Id]
+    ON [SF].[ServiceMaxServiceGroup]([Id] ASC);
+

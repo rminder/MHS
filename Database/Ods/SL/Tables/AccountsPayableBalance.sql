@@ -50,3 +50,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableBalanceHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsPayableBalance_CompanyId_VendorId]
+    ON [SL].[AccountsPayableBalance]([CompanyId] ASC, [VendorID] ASC);
+

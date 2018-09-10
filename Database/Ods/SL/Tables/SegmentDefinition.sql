@@ -15,3 +15,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[SegmentDefinitionHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_SegmentDefintion_FieldClassName_SegmentNumber_Id]
+    ON [SL].[SegmentDefinition]([FieldClassName] ASC, [SegmentNumber] ASC, [Id] ASC);
+

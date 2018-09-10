@@ -1,4 +1,4 @@
-﻿CREATE TABLE [SL].[AccountsReceivableHistory] (
+CREATE TABLE [SL].[AccountsReceivableHistory] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [CompanyId]                  VARCHAR (10)                                NOT NULL,
     [CustomerId]                 VARCHAR (15)                                NOT NULL,
@@ -158,12 +158,14 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableHistoryHisto
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableHistory_LastUpdate]
     ON [SL].[AccountsReceivableHistory]([LastUpdate] ASC);
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_AccountsReceivableHistory_CompanyId]
-    ON [SL].[AccountsReceivableHistory]([CompanyId] ASC);
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsReceivableHistory_CompanyId_CustomerId_FiscalYear]
+    ON [SL].[AccountsReceivableHistory]([CompanyId] ASC, [CustomerId] ASC, [FiscalYear] ASC);
 

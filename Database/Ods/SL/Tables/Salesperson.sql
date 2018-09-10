@@ -15,3 +15,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[SalesPersonHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Salesperson_SalespersonId]
+    ON [SL].[Salesperson]([SalesPersonId] ASC);
+

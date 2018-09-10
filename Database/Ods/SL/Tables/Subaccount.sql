@@ -13,7 +13,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[SubaccountHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_Subaccount_LastUpdate]
     ON [SL].[Subaccount]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Subaccount_SubaccountId]
+    ON [SL].[Subaccount]([SubaccountId] ASC);
 

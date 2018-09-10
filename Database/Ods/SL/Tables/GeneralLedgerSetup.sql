@@ -32,7 +32,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[GeneralLedgerSetupHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_GeneralLedgerSetup_LastUpdate]
     ON [SL].[GeneralLedgerSetup]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerSetup_SetupId]
+    ON [SL].[GeneralLedgerSetup]([SetupId] ASC);
 

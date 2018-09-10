@@ -20,3 +20,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountHist], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Account_Account]
+    ON [SL].[Account]([Account] ASC);
+

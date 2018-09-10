@@ -35,3 +35,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[BudgetSetupHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_BudgetSetup_BudgetLedgerId_CompanyId]
+    ON [SL].[BudgetSetup]([BudgetLedgerId] ASC, [CompanyId] ASC);
+

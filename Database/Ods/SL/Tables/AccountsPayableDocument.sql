@@ -1,4 +1,4 @@
-CREATE TABLE [SL].[AccountsPayableDocument] (
+﻿CREATE TABLE [SL].[AccountsPayableDocument] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [Account]                    VARCHAR (10)                                NOT NULL,
     [RecordId]                   INT                                         NOT NULL,
@@ -35,6 +35,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableDocumentHistory
 
 
 
+
+
 GO
 
 
@@ -42,4 +44,9 @@ GO
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableDocument_LastUpdate]
     ON [SL].[AccountsPayableDocument]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsPayableDocument_Account_SubaccountId_DocumentType_TransactionReferenceNumber_RecordId]
+    ON [SL].[AccountsPayableDocument]([Account] ASC, [SubaccountId] ASC, [DocumentType] ASC, [TransactionReferenceNumber] ASC, [RecordId] ASC);
 

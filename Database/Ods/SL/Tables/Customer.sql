@@ -20,7 +20,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[CustomerHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_Customer_LastUpdate]
     ON [SL].[Customer]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Customer_CustomerId]
+    ON [SL].[Customer]([CustomerId] ASC);
 

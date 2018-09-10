@@ -18,7 +18,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[VendorHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_Vendor_LastUpdate]
     ON [SL].[Vendor]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Vendor_VendorId]
+    ON [SL].[Vendor]([VendorId] ASC);
 

@@ -11,3 +11,10 @@
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[VendorClassHistory], DATA_CONSISTENCY_CHECK=ON));
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_VendorClass_ClassId]
+    ON [SL].[VendorClass]([ClassId] ASC);
+

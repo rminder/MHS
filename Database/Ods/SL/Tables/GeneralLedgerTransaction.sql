@@ -1,4 +1,4 @@
-﻿CREATE TABLE [SL].[GeneralLedgerTransaction] (
+CREATE TABLE [SL].[GeneralLedgerTransaction] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [Account]                    VARCHAR (10)                                NOT NULL,
     [BaseCurrencyId]             VARCHAR (4)                                 NOT NULL,
@@ -51,6 +51,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[GeneralLedgerTransactionHistor
 
 
 
+
+
 GO
 
 
@@ -77,5 +79,6 @@ GO
 
 
 GO
-
+CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction]
+    ON [SL].[GeneralLedgerTransaction]([BatchNumber] ASC, [LineNumber] ASC, [Module] ASC);
 

@@ -89,6 +89,8 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsPayableHistoryHistory]
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableHistory_LastUpdate]
     ON [SL].[AccountsPayableHistory]([LastUpdate] ASC);
@@ -97,4 +99,9 @@ CREATE NONCLUSTERED INDEX [IX_AccountsPayableHistory_LastUpdate]
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsPayableHistory_CompanyId]
     ON [SL].[AccountsPayableHistory]([CompanyId] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsPayableHistory_CompanyId_FiscalYear_VendorId]
+    ON [SL].[AccountsPayableHistory]([CompanyId] ASC, [FiscalYear] ASC, [VendorId] ASC);
 

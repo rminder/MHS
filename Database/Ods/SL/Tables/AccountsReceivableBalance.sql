@@ -40,7 +40,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableBalanceHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_AccountsReceivableBalance_LastUpdate]
     ON [SL].[AccountsReceivableBalance]([LastUpdate] ASC);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AccountsReceivableBalance_CompanyId_CustomerId]
+    ON [SL].[AccountsReceivableBalance]([CompanyId] ASC, [CustomerId] ASC);
 

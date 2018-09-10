@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE VIEW [SL].[vwAccountsReceivableDocument]
 AS
 SELECT
@@ -16,7 +17,7 @@ SELECT
    ,[CurrencyDocumentBalance]
    ,[OriginalDocumentAmount]
    ,ISNULL((
-		SELECT TOP 1 SubaccountId
+		SELECT TOP (1) SubaccountId
 		FROM SL.AccountsReceivableTransaction
 		WHERE
 			TransactionReferenceNumber = T.TransactionReferenceNumber
@@ -24,6 +25,7 @@ SELECT
 			AND CustomerId			   = T.CustomerId
 			AND SubaccountId <> '000000'
 			AND SubaccountId <> ''
+		ORDER BY RecordId
 	),'000000') AS SubaccountId
    ,[PeriodToPost]
    ,[WorkOrder]
