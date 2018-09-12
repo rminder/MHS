@@ -284,6 +284,7 @@
     <Build Include="SL\Tables\BudgetSetup.sql" />
     <Build Include="SL\Views\vwBudgetSetup.sql" />
     <Build Include="SL\Functions\BudgetSetupGetHistory.sql" />
+    <Build Include="dbo\Views\vwWorkOrderInvoiceDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />
