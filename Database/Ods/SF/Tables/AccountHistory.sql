@@ -319,7 +319,14 @@
 );
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_AccountHistory]
     ON [SF].[AccountHistory]([ValidTo] ASC, [ValidFrom] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountHistory_RowId]
+    ON [SF].[AccountHistory]([RowId] ASC);
 

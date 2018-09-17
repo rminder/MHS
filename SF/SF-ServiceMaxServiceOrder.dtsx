@@ -11,27 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-ServiceMaxServiceOrder"
   DTS:PackageType="5"
-  DTS:VersionBuild="265"
-  DTS:VersionGUID="{6EFD8680-0166-465C-94EE-7A9212E57239}">
+  DTS:VersionBuild="266"
+  DTS:VersionGUID="{D91AFE8A-3F2C-442A-BFE2-5978CF641210}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[OdsProduction-AdoNet]"
-      DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{0F0D41C5-1ACE-4A34-ADD8-9F5AE5693EC2}"
-      DTS:ObjectName="OdsProduction-AdoNet">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{0F0D41C5-1ACE-4A34-ADD8-9F5AE5693EC2}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABhzWeOzgmSMYeGtCumSG0vrdg89g8BvhXEfZw0Jld3KQAAAAAOgAAAAAIAACAAAAAAd5GQqi9qglnxLr1J/oPdL80sPOxlCxfQWeF/wjaJqSAAAABcFghnFuKp0ceRIrnE5pJnoNdgsRR9Iic+aAJeYQWqoEAAAADIyeVVmsjjnyjINfDMgrJWb2qELfoMMoOxLVDGuVxqpyk1Li9I+VYX+QV9greZfbpvpaO0KLg1Tq1rrAAVXLvb</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -14506,8 +14489,8 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
               <connections>
                 <connection
                   refId="Package\Upsert Ods\TF Upsert Destination.Connections[DestinationConnection]"
-                  connectionManagerID="Package.ConnectionManagers[OdsProduction-AdoNet]"
-                  connectionManagerRefId="Package.ConnectionManagers[OdsProduction-AdoNet]"
+                  connectionManagerID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OdsProduction-AdoNet]"
                   description="Connection for the destination"
                   name="DestinationConnection" />
               </connections>

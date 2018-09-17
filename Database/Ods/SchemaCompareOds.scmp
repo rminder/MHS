@@ -3,14 +3,13 @@
   <Version>10</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;Initial Catalog=Ods;Persist Security Info=True;User ID=LucidDeveloper;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</ConnectionString>
+      <ConnectionString>Data Source=RDSBI-PRO-DB.mhd.local;Initial Catalog=ODS;Persist Security Info=True;User ID=LucidDeveloper;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</ConnectionString>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>
-    <ProjectBasedModelProvider>
-      <ProjectGuid>{53011cc6-5a28-4cae-9a21-9d2795740e91}</ProjectGuid>
-      <Name>Ods</Name>
-    </ProjectBasedModelProvider>
+    <ConnectionBasedModelProvider>
+      <ConnectionString>Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;Initial Catalog=Ods;Persist Security Info=True;User ID=LucidDeveloper;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</ConnectionString>
+    </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -302,7 +301,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>
-        <Value>Integrated Security=True;Pooling=False;Connect Timeout=30</Value>
+        <Value>Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;Initial Catalog=Ods;Persist Security Info=True;User ID=LucidDeveloper;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True;Application Name="Microsoft SQL Server Data Tools, Schema Compare"</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>TreatVerificationErrorsAsWarnings</Name>
@@ -802,7 +801,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>ExcludeUsers</Name>
-        <Value>False</Value>
+        <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>ExcludeViews</Name>
@@ -902,6 +901,14 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>Microsoft.Data.Tools.Schema.Sql.SchemaModel.SqlAssemblyFile</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Tools.Schema.Sql.SchemaModel.SqlUser</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Tools.Schema.Sql.SchemaModel.SqlRoleMembership</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
     </ConfigurationOptionsElement>

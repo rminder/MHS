@@ -11,27 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-MaterialHandlingInvoice"
   DTS:PackageType="5"
-  DTS:VersionBuild="249"
-  DTS:VersionGUID="{5355C8BE-BAA7-4768-B27D-30C88630A302}">
+  DTS:VersionBuild="250"
+  DTS:VersionGUID="{ADEFEE3E-5A8B-4BA0-9B61-44683DCC6779}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper1]"
-      DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{65007ABA-983A-4E04-AB15-4E575EC31159}"
-      DTS:ObjectName="PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{65007ABA-983A-4E04-AB15-4E575EC31159}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA8LhSA+miiGi4M7ieDU1EA/WPIwE3SdLiRfzwy188rcQAAAAAOgAAAAAIAACAAAAChINEQIGoDS2cXrJ+tEEJNF1ojMNznDazjvxE4p7zYzyAAAADBSuB+/DcNX9cdxyddrZBK1WVCUzTGfPTr1kIgF5gvh0AAAACL34+vB1LdW1r8UBP/N+huWnceapFMxojh44qokbN/pmmnyLDMI8+FprX7IXKv/JoJglxgCe4HONEqh2/xl4sL</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -4982,8 +4965,8 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
               <connections>
                 <connection
                   refId="Package\Upsert Ods\TF Upsert Destination.Connections[DestinationConnection]"
-                  connectionManagerID="Package.ConnectionManagers[PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper1]"
-                  connectionManagerRefId="Package.ConnectionManagers[PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper1]"
+                  connectionManagerID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OdsProduction-AdoNet]"
                   description="Connection for the destination"
                   name="DestinationConnection" />
               </connections>
@@ -7640,7 +7623,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
     design-time-name="Package\Upsert Ods">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="181,42"
           Id="Package\Upsert Ods\TF Upsert Destination"
@@ -7668,9 +7651,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

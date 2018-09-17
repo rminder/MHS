@@ -25,7 +25,14 @@
 
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_AccountsReceivableDocumentHistory]
     ON [SL].[AccountsReceivableDocumentHistory]([ValidTo] ASC, [ValidFrom] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_AccountsReceivableDocument_RowID]
+    ON [SL].[AccountsReceivableDocumentHistory]([RowId] ASC);
 

@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MinderVM</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADCne2P190aXIlpIuzks5XEBYrmkVm0j3SYkcI5BGV0RwAAAAAOgAAAAAIAACAAAADat+u0tJD+yYKMooYdRCxHRACl8iuW8szpKScIZFYzipAAAADmUAflYm4pHiqHarPFkJ0iaxZ7oIvZaRPUbFH26GfwOTTd/Qwxu+AQqz7CH4w08FLmYt3blMgzHAXhy9XBs9Qz/M+QMfbQ0YYttqUVH8ORdIw5nH02JQ0+HJGzck+OA3tv6n8wqRLCaNBbQVb7iNQ/aENEwc+P5Sf+AgCEIaaiyLEjlJSVT8iEIXpJ4zMZrWRAAAAALCVQ9CBQjm2QlMN7LlEuxs2F/8mGMBi6FWSYsth5nBhkCsSNAz9Vc+ZLsT/9mYFxS048UwQluicYSPtmwmNlUw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAABBTuqy6G/t42jBUiDmfKlARS83P9Vp450yk+ED6NP6OAAAAAAOgAAAAAIAACAAAAACA2x5/mUyNRQz1UcWAIWDHJytR26bdJ0xPq4LQlpt3pAAAABBIontLZqGCSKWOLTW22GAbZ6yRoe8QrkMl2NHDMyRPW+Hb0toyAiaSjIH/z5NMZ+jkaNyVk454HG/sup5NxVV1Hj3O96JrSeUVky1e4KFRicKHYZkVs78CpUWycvAouUbdhQY4FOBI8eo/UKGBPM75J5POyNvgWsVMUriNnsQ97tKPUd2iOTCPxAYgRsSAvRAAAAAN4Tiz+hZ9DYn/3Ifogfd+N/s84SMmSJ1mVzLtsYUDaIExIZEMNitywpzvZHrd8P2G77a5g0EY5RHosj7f6GMUg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -62,7 +62,6 @@
           <SSIS:ConnectionManager SSIS:Name="OdsStaging-OleDb.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="OdsStaging-AdoNet.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="OdsProduction-AdoNet.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="DynamicsSL-Dev-AdoNet.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="SalesForce.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
@@ -78,7 +77,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=Ods;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -137,7 +136,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">RDSBI-PRO-DB.mhd.local</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -167,7 +166,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -226,7 +225,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">RDSBI-PRO-DB.mhd.local</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -345,7 +344,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -404,7 +403,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">RDSBI-PRO-DB.mhd.local</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -434,7 +433,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Application Name=SSIS-SL-{44DF0C99-DB19-451B-9761-9E9DE33E5C88}PROTXSQLBI01.minercorporation.com\Warehouse.OdsStaging.LucidDeveloper2;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Persist Security Info=True;Application Name=SSIS-SL-{44DF0C99-DB19-451B-9761-9E9DE33E5C88}PROTXSQLBI01.minercorporation.com\Warehouse.OdsStaging.LucidDeveloper2;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -493,7 +492,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">RDSBI-PRO-DB.mhd.local</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -523,7 +522,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Application Name=SSIS-SL-{9E42E0BC-5D0C-4C66-8CDE-07F57ADA9579}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper2;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=Ods;Application Name=SSIS-SL-{9E42E0BC-5D0C-4C66-8CDE-07F57ADA9579}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper2;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -582,100 +581,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01.minercorporation.com\Warehouse</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">RDSBI-PRO-DB.mhd.local</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
             <SSIS:Parameter SSIS:Name="CM.OdsProduction-AdoNet.UserName">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">LucidDeveloper</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.ConnectionString">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=PROTXSQLBI01\WAREHOUSE;User ID=LucidDeveloper;Initial Catalog=DynamicsSL;Application Name=SSIS-SL-{4CD1FAC3-4058-480C-8DA9-89F520B167A1}PROTXSQLBI01\WAREHOUSE.DynamicsSL.LucidDeveloper;</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.InitialCatalog">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">DynamicsSL</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.Password">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.RetainSameConnection">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.ServerName">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="CreationName">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">PROTXSQLBI01\WAREHOUSE</SSIS:Property>
-                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-              </SSIS:Properties>
-            </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.DynamicsSL-Dev-AdoNet.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>

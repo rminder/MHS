@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [SF].[Product2] (
-    [Id]                                   NVARCHAR (18)   NULL,
+    [Id]                                   NVARCHAR (18)   NOT NULL,
     [Name]                                 NVARCHAR (255)  NULL,
     [ProductCode]                          NVARCHAR (255)  NULL,
     [Description]                          NVARCHAR (MAX)  NULL,
@@ -44,6 +44,9 @@
     [UNITY_Asset_Type__c]                  NVARCHAR (255)  NULL,
     [UNITY_Bumper_Thickness__c]            NVARCHAR (50)   NULL,
     [SVMXC__Product_Type__c]               NVARCHAR (255)  NULL,
-    [UNITY_Is_Stockable__c]                TINYINT         NULL
+    [UNITY_Is_Stockable__c]                TINYINT         NULL,
+    CONSTRAINT [PK_Product2] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

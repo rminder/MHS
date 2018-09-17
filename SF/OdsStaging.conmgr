@@ -5,10 +5,10 @@
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      DTS:ConnectionString="Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=OdsStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAACMXBwtpdHFo0tjuInwZeSAQWUejvPW7WInqOYHbivr2QAAAAAOgAAAAAIAACAAAAA919ByQxB7hZHo+rQjDGAOhLxUVfHyKnoqT5alptMoS4AAAADrHsNaiFn1iyKpDiROe17upsFZwpj362bFxu2VwM9+FzGh4pCBV8yybCqYswvtT+mAdYLZkgYCqfT+b7gj7ZLV5sdFteoTS093J4DsRuCVrVU1Gg2XyIOOsvayHaQROCBeOfNkTfoh3gKiddDUcfgLxgnxXrauGl3Q5kbfGxwijkAAAAAlixPGIi5VEE0LOCPifc1yqxqOHPW7KK8cyciZE6n2tTkkx98CWHe/o4MZlOJz4mYccPgy3Ioox+9Rg+3+4a3W</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAACLKIQm5CN8nKbwa6a1fM9XZxSFiTZP+SYg25gQl4B74wAAAAAOgAAAAAIAACAAAACSCwRH2Pe6RiAeJu2XgnWxmlSZdCg8PdAGuEKKjnDSNoAAAADUeAgMBvHh2HR/nEQA1sHGDTIn6+5yh0IMEz4pzV2C5CmU1RWjo8t/lmawIa7qM4bLrMu3UlmiSBpcC1KuqmKH46OT0W/FHRGLDr//RmUNDrAEqNrWgnl/g5W0C/gCxG4RolQo5bS9pYGv7LjBOrJv6VIHpUdiotrUGNi3nG3i/0AAAAC6VH0FGHD9fJv5jlPVAj8TZA0fzdsmZ/sG2+ItNa179jjWvhPSgNgGshup/j48jmh49TzD6F+l3tVdi6ayG3fi</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>

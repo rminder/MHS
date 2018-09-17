@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OdsProduction-AdoNet"
+  DTS:DTSID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}"
+  DTS:CreationName="ADO.NET:SQL">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{E3C25D6C-F253-41F0-83D3-0D2C191B2571}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAAC1MWFg8PEQU5qbqDIr5tPQVSO91CI8aLv75/wVHQSpfAAAAAAOgAAAAAIAACAAAACO7/XEaty9PeBNsZutohXagNEbyFchmxobgKiYUKJPNoAAAABZUkSbn7tWxmGyy25BnncKPTkNBrGLa0Lp5cYhTMju5n3BYUt6hyde89P5e/hpB1dAPB8PXxNlptxHIbWL7MUnYtsV+Y/rYcsZyt5rBi7+frDbDn9y2oIySCZbUr4vbVjHObF5+TuGO9/rRILBIgZkLKx884cPjUwTokeHv19tcEAAAABjPZZf+p7/4LduIh5VOdYqRdO+9dCGNo+eoNWGJD7AIiA1HuOMVhGB0re/wd8ls8hn8c0UPL+cfYCiTCfmlf6W</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

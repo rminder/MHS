@@ -11,27 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-Note"
   DTS:PackageType="5"
-  DTS:VersionBuild="269"
-  DTS:VersionGUID="{BEC26013-7217-498A-AA9C-67C94F96C47E}">
+  DTS:VersionBuild="275"
+  DTS:VersionGUID="{BE10BDAD-D572-4C9C-8C11-2280638709A4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[OdsProduction-AdoNet]"
-      DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{8FF2F173-95D0-4E5C-ABD1-C083A9475AED}"
-      DTS:ObjectName="OdsProduction-AdoNet">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{8FF2F173-95D0-4E5C-ABD1-C083A9475AED}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADLI3q+L4b18dm/uzn0LILIdreQVeXHwLMUWP0Q15gV/gAAAAAOgAAAAAIAACAAAABJi2Eq7VeXIY+e8j/g7Fjms/guwCX6qOlHkiqWViGWRyAAAADS2bhGZzslrWPGwTngEn8bMKeM5PzYfrpYcSFix0nA/kAAAAAz2rK79ylin4UBekySyfgvziAyydvXoS/WAcbIkfxmrNTguF/Q/ZrP19pNwRs/GDheCDtuU7vTAeqXCabMYhBp</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -1499,8 +1482,8 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
               <connections>
                 <connection
                   refId="Package\Upsert Ods\TF Upsert Destination.Connections[DestinationConnection]"
-                  connectionManagerID="Package.ConnectionManagers[OdsProduction-AdoNet]"
-                  connectionManagerRefId="Package.ConnectionManagers[OdsProduction-AdoNet]"
+                  connectionManagerID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OdsProduction-AdoNet]"
                   description="Connection for the destination"
                   name="DestinationConnection" />
               </connections>
@@ -2110,7 +2093,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
         <NodeLayout
           Size="131,42"
           Id="Package\Upsert Ods"
-          TopLeft="63.6666666666667,370.666666666666" />
+          TopLeft="63.25,370.249999999999" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="137.321428571428,92.047619047619">
@@ -2157,18 +2140,18 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="130.345238095238,293.857142857142">
+          TopLeft="130.136904761905,293.857142857142">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,76.809523809524"
+              EndConnector="0,76.3928571428574"
               Start="0,0"
-              End="0,69.309523809524">
+              End="0,68.8928571428574">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69.309523809524" />
+                    End="0,68.8928571428574" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2179,18 +2162,18 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="131.047619047619,412.666666666666">
+          TopLeft="130.839285714285,412.249999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,73.1666666666666"
+              EndConnector="0,73.5833333333336"
               Start="0,0"
-              End="0,65.6666666666666">
+              End="0,66.0833333333336">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,65.6666666666666" />
+                    End="0,66.0833333333336" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2246,35 +2229,13 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
           Id="Package\Find Rows to Upsert\Store Data in Staging Table"
           TopLeft="193.5,298.833333333333" />
         <NodeLayout
-          Size="179.5,42"
-          Id="Package\Find Rows to Upsert\TF SalesForce Source"
-          TopLeft="207.125,80.75" />
-        <NodeLayout
           Size="130.5,42"
           Id="Package\Find Rows to Upsert\Row Count"
           TopLeft="234.166666666667,189.166666666667" />
-        <EdgeLayout
-          Id="Package\Find Rows to Upsert.Paths[Row Count Output 1]"
-          TopLeft="298.458333333333,231.166666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,67.666666666666"
-              Start="0,0"
-              End="0,60.166666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,60.166666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="179.5,42"
+          Id="Package\Find Rows to Upsert\TF SalesForce Source"
+          TopLeft="207.125,80.75" />
         <EdgeLayout
           Id="Package\Find Rows to Upsert.Paths[SalesForce Data]"
           TopLeft="298.145833333333,122.75">
@@ -2289,6 +2250,28 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,58.916666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Find Rows to Upsert.Paths[Row Count Output 1]"
+          TopLeft="298.458333333333,231.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67.666666666666"
+              Start="0,0"
+              End="0,60.166666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.166666666666" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2331,13 +2314,13 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\Upsert Ods\OLE DB Source"
-          TopLeft="528.666666666667,184.5" />
-        <NodeLayout
           Size="181,42"
           Id="Package\Upsert Ods\TF Upsert Destination"
           TopLeft="518,305" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Upsert Ods\OLE DB Source"
+          TopLeft="528.666666666667,184.5" />
         <EdgeLayout
           Id="Package\Upsert Ods.Paths[OLE DB Source Output]"
           TopLeft="606.083333333333,226.5">

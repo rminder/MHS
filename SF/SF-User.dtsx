@@ -11,27 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-User"
   DTS:PackageType="5"
-  DTS:VersionBuild="275"
-  DTS:VersionGUID="{24A19B6B-65EF-4631-A5E8-17B633176474}">
+  DTS:VersionBuild="276"
+  DTS:VersionGUID="{A48BFFA2-8B16-4411-93D7-3C3310393822}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[OdsProduction-AdoNet]"
-      DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{B436EB9E-2592-495D-B9D8-3A5EDCC103DA}"
-      DTS:ObjectName="OdsProduction-AdoNet">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{B436EB9E-2592-495D-B9D8-3A5EDCC103DA}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACBT8MBLe7h1d9/JtaMvoEp14NXq0hyVBfwjpxlMmqWkgAAAAAOgAAAAAIAACAAAABYHXxVFpCxOVFpYO535MrBtiTHqfPS6JK9K6l3GJkkySAAAABaJ+7NOhy+Rs8JqMX2ha2foT3FC4UB4VMuAHzQ83qIzUAAAABVMHN4YbghDBVPv0T+ybmZ61kin8X/FY081H3MUrHTLZ7dRWCf5SbERCRcYi5w13mfbaQunQXJcYQne5O06pAK</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -10241,13 +10224,13 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                   expressionType="Notify"
                   name="ENABLE_IDENTITY_INSERT">false</property>
                 <property
-                  dataType="System.Null"
+                  dataType="System.String"
                   expressionType="Notify"
-                  name="INSERT_ROWS_COUNT_VARIABLE" />
+                  name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
                 <property
-                  dataType="System.Null"
+                  dataType="System.String"
                   expressionType="Notify"
-                  name="UPDATE_ROWS_COUNT_VARIABLE" />
+                  name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
                 <property
                   dataType="System.String"
                   expressionType="Notify"
@@ -10354,8 +10337,8 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
               <connections>
                 <connection
                   refId="Package\Upsert Ods\TF Upsert Destination.Connections[DestinationConnection]"
-                  connectionManagerID="Package.ConnectionManagers[OdsProduction-AdoNet]"
-                  connectionManagerRefId="Package.ConnectionManagers[OdsProduction-AdoNet]"
+                  connectionManagerID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OdsProduction-AdoNet]"
                   description="Connection for the destination"
                   name="DestinationConnection" />
               </connections>

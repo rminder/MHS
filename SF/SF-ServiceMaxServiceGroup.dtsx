@@ -11,27 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-ServiceMaxServiceGroup"
   DTS:PackageType="5"
-  DTS:VersionBuild="253"
-  DTS:VersionGUID="{047930E5-83D8-4A6E-8A67-728BE82A64A2}">
+  DTS:VersionBuild="254"
+  DTS:VersionGUID="{24564739-B6AB-411B-A817-FFAC5227ADD3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[OdsProduction-AdoNet]"
-      DTS:CreationName="ADO.NET:SQL"
-      DTS:DTSID="{3DB3D2E7-41A5-41D8-ADCB-763E147A1E3A}"
-      DTS:ObjectName="OdsProduction-AdoNet">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Persist Security Info=True;Application Name=SSIS-SF-MaterialHandlingInvoice-{3DB3D2E7-41A5-41D8-ADCB-763E147A1E3A}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDev;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACVKHkI0b1RcMkzYn3CDRvEVs8yz1/4Q4VlbzvE5+uh8wAAAAAOgAAAAAIAACAAAADmHicwhS13A+Ea0oFzMR1LyxVFcQ1xBsIS5dq3UG6PgiAAAAAOf6kXzdSkQTaCfJRsNsqR4s7HD2dJxVdzq3be+ZiBUEAAAACMU5cNG0qvfzIxE9weANWbNr+3Leumn48LTR08lOanwOnpUMS+YSCly+huC1huv8meNpJHCIJvmcR5MgjpPsy6</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -2497,13 +2480,13 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                   expressionType="Notify"
                   name="ENABLE_IDENTITY_INSERT">false</property>
                 <property
-                  dataType="System.Null"
+                  dataType="System.String"
                   expressionType="Notify"
-                  name="INSERT_ROWS_COUNT_VARIABLE" />
+                  name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
                 <property
-                  dataType="System.Null"
+                  dataType="System.String"
                   expressionType="Notify"
-                  name="UPDATE_ROWS_COUNT_VARIABLE" />
+                  name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
                 <property
                   dataType="System.String"
                   expressionType="Notify"
@@ -2610,8 +2593,8 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
               <connections>
                 <connection
                   refId="Package\Upsert Ods\TF Upsert Destination.Connections[DestinationConnection]"
-                  connectionManagerID="Package.ConnectionManagers[OdsProduction-AdoNet]"
-                  connectionManagerRefId="Package.ConnectionManagers[OdsProduction-AdoNet]"
+                  connectionManagerID="{E3C25D6C-F253-41F0-83D3-0D2C191B2571}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[OdsProduction-AdoNet]"
                   description="Connection for the destination"
                   name="DestinationConnection" />
               </connections>
@@ -3892,13 +3875,13 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150,42"
-          Id="Package\Upsert Ods\OLE DB Source"
-          TopLeft="529.166666666667,185" />
-        <NodeLayout
           Size="181,42"
           Id="Package\Upsert Ods\TF Upsert Destination"
           TopLeft="513.5,317.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Upsert Ods\OLE DB Source"
+          TopLeft="529.166666666667,185" />
         <EdgeLayout
           Id="Package\Upsert Ods.Paths[OLE DB Source Output]"
           TopLeft="604.083333333333,227">

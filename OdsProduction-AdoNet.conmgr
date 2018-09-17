@@ -5,10 +5,10 @@
   DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=PROTXSQLBI01.minercorporation.com\Warehouse;User ID=LucidDeveloper;Initial Catalog=Ods;Application Name=SSIS-SL-{9E42E0BC-5D0C-4C66-8CDE-07F57ADA9579}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper2;">
+      DTS:ConnectionString="Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=Ods;Application Name=SSIS-SL-{9E42E0BC-5D0C-4C66-8CDE-07F57ADA9579}PROTXSQLBI01.minercorporation.com\Warehouse.Ods.LucidDeveloper2;">
       <DTS:Password
         DTS:Name="Password"
-        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADTVYWpn/c5HUGidx8LGACT+Tutz1tOGcN3p8Rzz6hS/gAAAAAOgAAAAAIAACAAAAArAchQ+tltviltVOleXVZ6uthnkp444Whs9H9YoPW/AYAAAAAFKbvKpNhExzLdYe0cJkNhcb13mdSVpJgVIpl/HEXGklODPwvSUCjJ3+kLI2yzdMW6+QprYLIVfvfRXG6J4DTxel5GbeQ8HKVxZrIdxd3vIHzwRk9iN90FqB8pTBQjbvH4j37mlowX4sGgRWUTe9EaTj7KnuE3XNCEn8kgvxEeIUAAAAAPsTeO6HnSUEBAPCeeWMMpDfbbPFBCPXaVhSiySkvPDDK60FUuaqakfx7AEeGVNsMLEs+gtWrODnooAhzBubTM</DTS:Password>
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAACP2aSqTjFGuVDA/0UT399gjtvStkCEV4KyRbXuTaX81QAAAAAOgAAAAAIAACAAAAAXXpAb0sODRZcH1CLlHiQ3JdlVI1ts0D4VHUuFPyDsGIAAAAClLrLObARXRd+wCaokFA54pHpqEjvggLtRGK7GQTgqshSoRYTZiPrILwt0vmUdeLlzhBIiq1Z2meNAA0zeJU9RLF/pMgfLEKTm3WjWI143ola0G7JIGvXXHVck3PS0YUimS3HwdezlS5YDMZQ+0YrHZbv0JTk2lzxVLLFGN/eowkAAAACmSR8DQ+pL3HBVXKcz47yhasVedJbSmJAZTHxwdonQlw22u6ZCG7b5IhO8tWY2w+Cz/4X4cizxEKsBYeGnhOrX</DTS:Password>
     </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
