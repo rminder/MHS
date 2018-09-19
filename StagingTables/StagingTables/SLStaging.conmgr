@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SLStaging"
+  DTS:DTSID="{ACE82275-72FD-4344-A61D-E6C58D03F7C4}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=PROCLSQLREPL01\INST01;User ID=LucidDeveloper;Initial Catalog=MinerSLAPP;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqbpE65cUMUuqjA51xprEIgAAAAACAAAAAAAQZgAAAAEAACAAAADAHJg8uhbetNHRZPIQpk9u6Cp/al6oqsbnCf5bKDjw1gAAAAAOgAAAAAIAACAAAABGx7wB7YI7DgfBY+h/7JteUK9vGi4fSs6mj73c05lZ4YAAAAD+xbuCKLT6OQB8NMwMR0nL6xLBaLmjlEdHSD3E5hfAb2Rl+s8B7/cFC+5r/oKgpKFk6t0GT1u37n3smfzmO40JkTvGCawfdGMWMkK8rnpOfH5zpQZTc7bbM3DaXDd/I19yy5ctikTFvStLK4GI4EtVqKVqhGeUZ0QqVjEal05m10AAAAD77iKJ1XzdxoIbdqOb+u3lk7IZg3s0uQ5C87KgM6VlWA5rK1aMf8as6QzPQ0rMVQ1m2HzAjrpvwUA5gxUoLDbH</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
