@@ -1,4 +1,5 @@
 ﻿
+
 CREATE VIEW [SL].[vwAccount] AS
 
 --
@@ -12,7 +13,7 @@ SELECT
    ,RTRIM([AcctType]) AS AccountType
    ,RTRIM([AcctType]) AS BaseCurrencyId
    ,RTRIM([Acct_Cat]) AS AccountCategory
-   ,RTRIM([Acct_Cat_SW]) AS AccountCategorySpecified
+   ,CAST(RTRIM([Acct_Cat_SW]) as CHAR(1)) AS AccountCategorySpecified
    ,[Active]
    ,RTRIM([ClassId]) AS ClassId
    ,RTRIM([ConsolAcct]) AS ConsolidationAccount

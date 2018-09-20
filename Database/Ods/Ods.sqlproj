@@ -286,6 +286,9 @@
     <Build Include="SL\Functions\BudgetSetupGetHistory.sql" />
     <Build Include="dbo\Views\vwWorkOrderInvoiceDetail.sql" />
     <Build Include="SF\Views\vwWorkOrderInvoiceDetail.sql" />
+    <Build Include="dbo\Tables\DataIntegrity.sql" />
+    <Build Include="SL\Views\vwAccountHash.sql" />
+    <Build Include="dbo\Stored Procedures\SL-AccountHistoryIntegrityCheck.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

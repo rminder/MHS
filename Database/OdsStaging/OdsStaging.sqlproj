@@ -235,5 +235,6 @@
     <Build Include="SL\Tables\BUSetup.sql" />
     <Build Include="SL\Views\vwBuSetup.sql" />
     <Build Include="SL\Stored Procedures\DeleteBudgetSetup.sql" />
+    <Build Include="SL\Views\vwAccountHash.sql" />
   </ItemGroup>
 </Project>
