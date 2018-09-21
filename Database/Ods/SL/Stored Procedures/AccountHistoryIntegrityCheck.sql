@@ -1,12 +1,11 @@
-﻿
--- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
+﻿-- ===================================================
+-- Author:		Randy Minder
+-- Create date: 20-September, 2018
+-- Description:	Ods table data integrity check
 --
--- Exec [dbo].[SL-AccountHistoryIntegrityCheck]
--- =============================================
-CREATE PROCEDURE [dbo].[SL-AccountHistoryIntegrityCheck]
+-- Exec [SL].[AccountHistoryIntegrityCheck]
+-- ===================================================
+CREATE PROCEDURE [SL].[AccountHistoryIntegrityCheck]
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -28,7 +27,8 @@ BEGIN
 			 ('SL-AccountHistory', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
 
 		--=======================================================================================================
-		-- Now do a row by row comparison of column values for all rows that exist in both tables.
+		-- Now do a row by row comparison of column values for all rows that exist in both tables. We do that
+		-- by using the INTERSECT command on the PK columns of the tables.
 		--=======================================================================================================
 
 		;

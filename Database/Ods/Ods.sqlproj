@@ -73,6 +73,7 @@
     <Folder Include="SF\Tables\" />
     <Folder Include="SF\Views\" />
     <Folder Include="SF\Functions\" />
+    <Folder Include="SL\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SL\Tables\Company.sql" />
@@ -288,7 +289,15 @@
     <Build Include="SF\Views\vwWorkOrderInvoiceDetail.sql" />
     <Build Include="dbo\Tables\DataIntegrity.sql" />
     <Build Include="SL\Views\vwAccountHash.sql" />
-    <Build Include="dbo\Stored Procedures\SL-AccountHistoryIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsReceivableHistoryIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsReceivableDocumentIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsReceivableBalanceIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsPayableTransactionIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsPayableHistoryIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsPayableDocumentIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountsPayableBalanceIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountIntegrityCheck.sql" />
+    <Build Include="SL\Stored Procedures\AccountHistoryIntegrityCheck.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

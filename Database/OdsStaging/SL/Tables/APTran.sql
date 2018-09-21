@@ -110,7 +110,7 @@
     [TxblAmt01]       FLOAT (53)    NOT NULL,
     [TxblAmt02]       FLOAT (53)    NOT NULL,
     [TxblAmt03]       FLOAT (53)    NOT NULL,
-    [UnitDesc]        CHAR (10)     NOT NULL,
+    [UnitDesc]        CHAR (50)     NOT NULL,
     [UnitPrice]       FLOAT (53)    NOT NULL,
     [User1]           CHAR (30)     NOT NULL,
     [User2]           CHAR (30)     NOT NULL,
@@ -126,4 +126,6 @@
     [tstamp]          ROWVERSION    NOT NULL,
     CONSTRAINT [APTran0] PRIMARY KEY CLUSTERED ([BatNbr] ASC, [Acct] ASC, [Sub] ASC, [RefNbr] ASC, [RecordID] ASC)
 );
+
+
 
