@@ -124,7 +124,9 @@
     [User7]           SMALLDATETIME NOT NULL,
     [User8]           SMALLDATETIME NOT NULL,
     [WSID]            INT           NOT NULL,
-    [tstamp]          ROWVERSION    NOT NULL,
+    [RowVersion]      BIGINT        NOT NULL,
     CONSTRAINT [ARDoc0] PRIMARY KEY CLUSTERED ([CustId] ASC, [DocType] ASC, [RefNbr] ASC, [BatNbr] ASC, [BatSeq] ASC)
 );
+
+
 

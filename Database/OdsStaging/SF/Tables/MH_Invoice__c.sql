@@ -83,3 +83,10 @@
     CONSTRAINT [PK_MH_Invoice__c] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_MH_Invoice__c_Id]
+    ON [SF].[MH_Invoice__c]([Id] ASC);
+

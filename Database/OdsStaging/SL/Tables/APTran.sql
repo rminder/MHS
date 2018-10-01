@@ -124,8 +124,11 @@
     [WONbr]           CHAR (10)     NOT NULL,
     [WOStepNbr]       CHAR (5)      NOT NULL,
     [tstamp]          ROWVERSION    NOT NULL,
+    [RowVersion]      BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [APTran0] PRIMARY KEY CLUSTERED ([BatNbr] ASC, [Acct] ASC, [Sub] ASC, [RefNbr] ASC, [RecordID] ASC)
 );
+
+
 
 
 

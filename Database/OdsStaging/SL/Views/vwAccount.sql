@@ -22,5 +22,6 @@ SELECT
    ,RTRIM([RatioGrp]) AS RatioGroup
    ,[LUpd_DateTime] AS LastUpdate
    ,[SummPost] AS IsSummarized
+   ,[RowVersion] AS [RowVersion]
    ,GETUTCDATE() AS ImportDate
 FROM SL.Account;

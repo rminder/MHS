@@ -1,4 +1,5 @@
-﻿CREATE VIEW [SL].[vwARDoc]
+﻿
+CREATE VIEW [SL].[vwARDoc]
 AS
 
 --
@@ -25,5 +26,6 @@ SELECT
    ,Rlsed			 AS Released
    ,OpenDoc			 AS OpenDocument
    ,[LUpd_DateTime]	 AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()	 AS ImportDate
 FROM SL.ARDoc;

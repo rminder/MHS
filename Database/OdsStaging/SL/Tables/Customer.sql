@@ -110,6 +110,9 @@
     [User8]             SMALLDATETIME NOT NULL,
     [Zip]               CHAR (10)     NOT NULL,
     [tstamp]            ROWVERSION    NOT NULL,
+    [RowVersion]        BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [Customer0] PRIMARY KEY CLUSTERED ([CustId] ASC)
 );
+
+
 

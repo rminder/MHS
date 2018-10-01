@@ -1,5 +1,4 @@
-﻿
-CREATE VIEW [SL].[vwAPTran] AS
+﻿CREATE VIEW [SL].[vwAPTran] AS
 
 --
 -- This view is intended to read rows from the Ods Staging table and
@@ -45,5 +44,6 @@ SELECT
    ,RTRIM(VendId)		   AS VendorId
    ,RTRIM(TranDesc)		   AS TransactionDescription
    ,[LUpd_DateTime]		   AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()		   AS ImportDate
 FROM SL.APTran;

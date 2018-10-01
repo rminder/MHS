@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [SL].[vwAccountsReceivableDocument]
 AS
 SELECT
@@ -33,6 +34,7 @@ SELECT
    ,[OpenDocument]
    ,[LastUpdate]
    ,[ImportDate]
+   ,[RowVersion]
    ,[ValidFrom]
    ,[ValidTo]
 FROM [SL].[AccountsReceivableDocument] T;

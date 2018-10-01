@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-Account"
   DTS:PackageType="5"
-  DTS:VersionBuild="277"
-  DTS:VersionGUID="{F722509E-AFF4-40A6-88D1-7A543F16AF07}">
+  DTS:VersionBuild="280"
+  DTS:VersionGUID="{02418F76-3780-4757-B588-C646E8B1746E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -26054,14 +26054,14 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64.7380952380943"
+              EndConnector="0,64.738095238094"
               Start="0,0"
-              End="0,57.2380952380943">
+              End="0,57.238095238094">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.2380952380943" />
+                    End="0,57.238095238094" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -26155,17 +26155,17 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
     design-time-name="Package\Find Rows to Upsert">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="208,42"
           Id="Package\Find Rows to Upsert\Store Data in Staging Table"
           TopLeft="193.5,298.833333333333" />
         <NodeLayout
-          Size="130.5,42"
+          Size="130,42"
           Id="Package\Find Rows to Upsert\Row Count"
           TopLeft="234.166666666667,189.166666666667" />
         <NodeLayout
-          Size="179.5,42"
+          Size="180,42"
           Id="Package\Find Rows to Upsert\TF SalesForce Source"
           TopLeft="207.125,80.75" />
         <EdgeLayout
@@ -26187,7 +26187,9 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -26209,7 +26211,9 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -26244,7 +26248,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
     design-time-name="Package\Upsert Ods">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Upsert Ods\OLE DB Source"
@@ -26272,7 +26276,9 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

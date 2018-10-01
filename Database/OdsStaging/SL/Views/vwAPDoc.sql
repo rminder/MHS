@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [SL].[vwAPDoc]
 AS
 
@@ -31,5 +32,6 @@ SELECT
    ,Rlsed			 AS Released
    ,RecordID		 AS RecordId
    ,[LUpd_DateTime]	 AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()	 AS ImportDate
 FROM SL.APDoc;

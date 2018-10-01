@@ -1,4 +1,4 @@
-﻿CREATE VIEW SL.vwCustomer
+﻿CREATE VIEW [SL].[vwCustomer]
 AS
 SELECT
 	RTRIM([CustID]) AS CustomerId
@@ -12,5 +12,6 @@ SELECT
    ,RTRIM([Zip]) AS Zip
    ,[CrLmt] AS CreditLimit
    ,[LUpd_DateTime] AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]   
    ,GETUTCDATE() AS ImportDate
 FROM [SL].[Customer];

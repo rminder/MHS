@@ -34,10 +34,13 @@
     [ImportDate]                 DATETIME2 (7)                               NOT NULL,
     [ValidFrom]                  DATETIME2 (7) GENERATED ALWAYS AS ROW START NOT NULL,
     [ValidTo]                    DATETIME2 (7) GENERATED ALWAYS AS ROW END   NOT NULL,
+    [RowVersion]                 BIGINT                                      DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PKAccountsReceivableBalance] PRIMARY KEY CLUSTERED ([RowId] ASC),
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableBalanceHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 

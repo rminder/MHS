@@ -1,6 +1,7 @@
 ﻿
 
 
+
 CREATE VIEW [SF].[vwMH_Invoice_c]
 AS
 SELECT
@@ -26,7 +27,7 @@ SELECT
    ,[Voucher__c] AS Voucher
    ,CAST(ISNULL([Activity_Type__c],'') AS VARCHAR(255)) AS ActivityType
    ,[Date_Invoiced__c] AS DateInvoiced
-   ,CAST(ISNULL([Call_Type__c],'') AS VARCHAR(max)) AS CallType
+   ,CAST(ISNULL([Call_Type__c],'') AS VARCHAR(MAX)) AS CallType
    ,[Invoice_Total_Rollup__c] AS InvoiceTotalRollup
    ,CAST(ISNULL([Location_Address_c__c] ,'') AS VARCHAR(100)) AS LocationAddress
    ,CAST(ISNULL([Location_City_c__c],'') AS VARCHAR(50)) AS LocationCity
@@ -52,7 +53,7 @@ SELECT
    ,CAST(ISNULL([Service_Team_Zip_ic__c],'') AS VARCHAR(255)) AS ServiceTeamZip
    ,CAST(ISNULL([Service_Team_ic__c],'') AS VARCHAR(255)) AS ServiceTeam
    ,CAST(ISNULL([SL_Invoice_ID__c],'') AS VARCHAR(30)) AS SlInvoiceId
-   ,CAST(ISNULL([Status__c],'') AS VARCHAR(1)) AS Status
+   ,CAST(ISNULL([Status__c],'') AS VARCHAR(255)) AS Status
    ,CAST(ISNULL([Company__c],'') AS VARCHAR(MAX)) AS Company
    ,CAST(ISNULL([Recommended_Service__c],'') AS VARCHAR(MAX)) AS RecommendedService
    ,ISNULL([SP_Work_Performed_c__c],'') AS SpWorkPerformed

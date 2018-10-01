@@ -103,6 +103,9 @@
     [YtdPaymt]      FLOAT (53)    NOT NULL,
     [YtdPurch]      FLOAT (53)    NOT NULL,
     [tstamp]        ROWVERSION    NOT NULL,
+    [RowVersion]    BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [APHist0] PRIMARY KEY CLUSTERED ([VendId] ASC, [CpnyID] ASC, [FiscYr] ASC)
 );
+
+
 

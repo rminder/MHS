@@ -15,5 +15,6 @@ SELECT
    ,RTRIM([State])	   AS State
    ,RTRIM([Territory]) AS Territory
    ,[LUpd_DateTime]	   AS LastUpdate
+   ,[RowVersion]	   AS [RowVersion]
    ,GETUTCDATE()	   AS ImportDate
 FROM [SL].[Salesperson];

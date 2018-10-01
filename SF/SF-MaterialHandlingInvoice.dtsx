@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-MaterialHandlingInvoice"
   DTS:PackageType="5"
-  DTS:VersionBuild="250"
-  DTS:VersionGUID="{ADEFEE3E-5A8B-4BA0-9B61-44683DCC6779}">
+  DTS:VersionBuild="253"
+  DTS:VersionGUID="{5DD60BC1-8620-42FE-9A26-C48D10613991}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -3583,7 +3583,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
-                      length="1"
+                      length="255"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]"
                       name="Status"
                       truncationRowDisposition="FailComponent" />
@@ -4158,7 +4158,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
                       codePage="1252"
                       dataType="str"
-                      length="1"
+                      length="255"
                       name="Status" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Company]"
@@ -4620,7 +4620,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       codePage="1252"
                       dataType="str"
-                      length="1"
+                      length="255"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       name="Status" />
                     <outputColumn
@@ -6402,7 +6402,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Status]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="1"
+                      cachedLength="255"
                       cachedName="Status"
                       externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Status]"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]">
@@ -7530,17 +7530,17 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
     design-time-name="Package\Find Rows to Upsert">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="208,42"
           Id="Package\Find Rows to Upsert\Store Data in Staging Table"
           TopLeft="193.5,298.833333333333" />
         <NodeLayout
-          Size="179.5,42"
+          Size="180,42"
           Id="Package\Find Rows to Upsert\TF SalesForce Source"
           TopLeft="207.125,80.75" />
         <NodeLayout
-          Size="130.5,42"
+          Size="130,42"
           Id="Package\Find Rows to Upsert\Row Count"
           TopLeft="234.166666666667,189.166666666667" />
         <EdgeLayout
@@ -7562,9 +7562,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7586,9 +7584,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

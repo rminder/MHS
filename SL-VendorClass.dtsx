@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SL-VendorClass"
   DTS:PackageType="5"
-  DTS:VersionBuild="244"
-  DTS:VersionGUID="{5AAFDF1F-546D-41A8-A018-EB9A3CF52A66}">
+  DTS:VersionBuild="248"
+  DTS:VersionGUID="{B99479B0-5D96-48FE-A0D0-0366FA94C8B8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -109,12 +109,12 @@ From dbo.VendClass Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1
       DTS:CreationName=""
       DTS:DTSID="{67EBC781-B855-4AF6-B2E6-7C10E332564E}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select * From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime &gt; '&quot; + (DT_WSTR,50)@[User::SourceLastUpdate] + &quot;'&quot;"
+      DTS:Expression="&quot;Select *, CAST(tstamp as BIGINT) as [RowVersion] From &quot; + @[User::SourceTableName] + &quot; Where tstamp &gt;=  &quot; + (DT_WSTR,50)@[User::SourceLastUpdate]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSourceRowsQuery">
       <DTS:VariableValue
-        DTS:DataType="8">Select * From dbo.VendClass Where LUpd_DateTime &gt; '1/1/1900'</DTS:VariableValue>
+        DTS:DataType="8">Select *, CAST(tstamp as BIGINT) as [RowVersion] From dbo.VendClass Where tstamp &gt;=  0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -140,16 +140,16 @@ From dbo.VendClass Where LUpd_DateTime Between '1/1/1900' And DateAdd(MONTH,1,'1
       DTS:CreationName=""
       DTS:DTSID="{9A5A1040-3CC9-42B5-BA0C-1EA02F6E1642}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;IF (Select Count(*) From &quot; + @[User::OdsStagingTableName] +&quot;) &gt; 0 BEGIN &#xA;DECLARE @LastUpdateDate datetime2(7) &#xA;Set @LastUpdateDate = (Select Max(LUpd_DateTime) From &quot; + @[User::OdsStagingTableName] + &quot;) &#xA;&#xA;UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  &#xA;WHERE TableName = '&quot; + @[User::LastUpdateColumn] + &quot;' END&quot;"
+      DTS:Expression="&quot;IF (Select Count(*) From &quot; + @[User::OdsStagingTableName] +&quot;) &gt; 0 BEGIN &#xA;DECLARE @LastRowVersion BIGINT &#xA;Set @LastRowVersion = (Select Max([RowVersion]) From &quot; + @[User::OdsStagingTableName] + &quot;) &#xA;&#xA;UPDATE dbo.LastUpdate SET LastRowVersion = @LastRowVersion &#xA;WHERE TableName = '&quot; + @[User::LastUpdateColumn] + &quot;' END&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="LastUpdateQuery">
       <DTS:VariableValue
         DTS:DataType="8">IF (Select Count(*) From SL.VendClass) &gt; 0 BEGIN 
-DECLARE @LastUpdateDate datetime2(7) 
-Set @LastUpdateDate = (Select Max(LUpd_DateTime) From SL.VendClass) 
+DECLARE @LastRowVersion BIGINT 
+Set @LastRowVersion = (Select Max([RowVersion]) From SL.VendClass) 
 
-UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  
+UPDATE dbo.LastUpdate SET LastRowVersion = @LastRowVersion 
 WHERE TableName = '[SL-VendClass]' END</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
@@ -239,7 +239,7 @@ SELECT COUNT(*) AS [RowCount] FROM SL.VendorClass Where LastUpdate Between @Begi
       DTS:Namespace="User"
       DTS:ObjectName="SourceLastUpdate">
       <DTS:VariableValue
-        DTS:DataType="7">1/1/1900</DTS:VariableValue>
+        DTS:DataType="20">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -428,36 +428,6 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.VendClass Where LUpd_DateTime Between @Be
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -576,6 +546,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
               <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
@@ -807,34 +806,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -1665,6 +1665,15 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -1870,35 +1879,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
-              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2036,6 +2016,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="Properties\AssemblyInfo.cs"
                 Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -2065,15 +2074,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -2833,6 +2833,15 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[PPaySub]"
                       name="PPaySub"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3027,6 +3036,10 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="24"
                       name="PPaySub" />
+                    <externalMetadataColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3262,6 +3275,11 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i8"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
@@ -3632,6 +3650,12 @@ Where LUpd_DateTime &gt; ?</property>
                       cachedName="PPaySub"
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[PPaySub]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[PPaySub]" />
+                    <inputColumn
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[RowVersion]"
+                      cachedDataType="i8"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3826,6 +3850,10 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="24"
                       name="PPaySub" />
+                    <externalMetadataColumn
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3884,7 +3912,7 @@ Where LUpd_DateTime &gt; ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1461EBC-9CB8-4586-8E0A-27ED48EA2879}"
-          SQLTask:SqlStatementSource="Select LastUpdate &#xA;From dbo.LastUpdate&#xA;Where TableName = ?"
+          SQLTask:SqlStatementSource="Select CAST(LastRowVersion AS BIGINT) AS LastUpdate&#xA;From dbo.LastUpdate&#xA;Where TableName = ?&#xA;"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="LastUpdate"
@@ -4121,6 +4149,15 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4144,6 +4181,10 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="30"
                       name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4165,6 +4206,11 @@ Where LUpd_DateTime &gt; ?</property>
                       length="30"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i8"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastUpdate]"
                       dataType="dbTimeStamp"
@@ -4424,6 +4470,12 @@ Where LUpd_DateTime &gt; ?</property>
                           name="IsIdentityColumn">false</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[RowVersion]"
+                      cachedDataType="i8"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4443,20 +4495,28 @@ Where LUpd_DateTime &gt; ?</property>
                       name="Description" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastUpdate]"
-                      dataType="dbTimeStamp"
-                      name="LastUpdate" />
+                      dataType="dbTimeStamp2"
+                      name="LastUpdate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ImportDate]"
-                      dataType="dbTimeStamp"
-                      name="ImportDate" />
+                      dataType="dbTimeStamp2"
+                      name="ImportDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidFrom]"
-                      dataType="dbTimeStamp"
-                      name="ValidFrom" />
+                      dataType="dbTimeStamp2"
+                      name="ValidFrom"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidTo]"
-                      dataType="dbTimeStamp"
-                      name="ValidTo" />
+                      dataType="dbTimeStamp2"
+                      name="ValidTo"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -4520,6 +4580,15 @@ Where LUpd_DateTime &gt; ?</property>
           VSTAMinorVersion="0"
           Language="CSharp"
           ReadOnlyVariables="User::GetSourceRowsQuery">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -4639,35 +4708,6 @@ Where LUpd_DateTime &gt; ?</property>
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
-//
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
-
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
-    "ings")]
-
-namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
           <ProjectItem
             Name="ST_3dd9bda90c68436bb536c6598ed20014.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -4893,6 +4933,35 @@ namespace ST_3dd9bda90c68436bb536c6598ed20014
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
+    "ings")]
+
+namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
             Name="Properties\AssemblyInfo.cs"
             Encoding="UTF8"><![CDATA[using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -4922,15 +4991,6 @@ using System.Runtime.CompilerServices;
 // by using the '*' as shown below:
 
 [assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-          <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -5768,6 +5828,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Delete From Ods.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="129.5,42"
+          Id="Package\Delete From Ods.EventHandlers[OnPostExecute]\Log Delete"
+          TopLeft="671.5,121.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\Find Deleted Rows in Source\Store to Staging">
     <LayoutInfo>
@@ -5858,13 +5930,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
           Id="Package\Find Rows to Upsert\Store Data in Staging Table"
           TopLeft="193.5,298.833333333333" />
         <NodeLayout
-          Size="130.5,42"
-          Id="Package\Find Rows to Upsert\Row Count"
-          TopLeft="234.166666666667,189.166666666667" />
-        <NodeLayout
           Size="234,42"
           Id="Package\Find Rows to Upsert\Get Source Data from Production"
           TopLeft="181,91" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Find Rows to Upsert\Row Count"
+          TopLeft="234.166666666667,189.166666666667" />
         <EdgeLayout
           Id="Package\Find Rows to Upsert.Paths[Row Count Output 1]"
           TopLeft="298.458333333333,231.166666666667">
@@ -5991,17 +6063,5 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <DtsEventHandler
-    design-time-name="Package\Delete From Ods.EventHandlers[OnPostExecute]">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
-        <NodeLayout
-          Size="129.5,42"
-          Id="Package\Delete From Ods.EventHandlers[OnPostExecute]\Log Delete"
-          TopLeft="671.5,121.5" />
-      </GraphLayout>
-    </LayoutInfo>
-  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

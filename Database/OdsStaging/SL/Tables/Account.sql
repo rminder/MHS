@@ -42,8 +42,11 @@
     [User8]         SMALLDATETIME NOT NULL,
     [ValidateID]    CHAR (1)      NOT NULL,
     [tstamp]        ROWVERSION    NOT NULL,
+    [RowVersion]    BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED ([Acct] ASC)
 );
+
+
 
 
 

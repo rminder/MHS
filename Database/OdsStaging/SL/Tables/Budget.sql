@@ -35,6 +35,9 @@
     [User7]          SMALLDATETIME NOT NULL,
     [User8]          SMALLDATETIME NOT NULL,
     [tstamp]         ROWVERSION    NOT NULL,
+    [RowVersion]     BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [Budget0] PRIMARY KEY NONCLUSTERED ([CpnyID] ASC, [BudgetYear] ASC, [BudgetLedgerID] ASC, [BdgtSegment] ASC)
 );
+
+
 

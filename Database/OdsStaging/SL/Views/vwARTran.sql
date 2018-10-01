@@ -1,5 +1,4 @@
-﻿
-CREATE VIEW [SL].[vwARTran] AS
+﻿CREATE VIEW [SL].[vwARTran] AS
 
 --
 -- This view is intended to read rows from the Ods Staging table and
@@ -41,5 +40,6 @@ SELECT
    ,RTRIM(WhseLoc)		   AS WarehouseLocation
    ,RTRIM([TranDesc])	   AS TransactionDescription
    ,[LUpd_DateTime]		   AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()		   AS ImportDate
 FROM SL.ARTran;

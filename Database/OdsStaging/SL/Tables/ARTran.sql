@@ -109,6 +109,9 @@
     [User8]              SMALLDATETIME NOT NULL,
     [WhseLoc]            CHAR (10)     NOT NULL,
     [tstamp]             ROWVERSION    NOT NULL,
+    [RowVersion]         BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [ARTran0] PRIMARY KEY CLUSTERED ([CustId] ASC, [TranType] ASC, [RefNbr] ASC, [LineNbr] ASC, [RecordID] ASC)
 );
+
+
 

@@ -33,10 +33,13 @@ CREATE TABLE [SL].[GeneralLedgerTransaction] (
     [ImportDate]                 DATETIME2 (7)                               NOT NULL,
     [ValidFrom]                  DATETIME2 (7) GENERATED ALWAYS AS ROW START NOT NULL,
     [ValidTo]                    DATETIME2 (7) GENERATED ALWAYS AS ROW END   NOT NULL,
+    [RowVersion]                 BIGINT                                      DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PKGeneralLedgerTransaction] PRIMARY KEY CLUSTERED ([RowId] ASC),
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[GeneralLedgerTransactionHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 
@@ -79,6 +82,6 @@ GO
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction]
+CREATE UNIQUE NONCLUSTERED INDEX [IX_GeneralLedgerTransaction_BatchNumber_LineNumber_Module]
     ON [SL].[GeneralLedgerTransaction]([BatchNumber] ASC, [LineNumber] ASC, [Module] ASC);
 

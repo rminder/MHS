@@ -91,3 +91,10 @@
     CONSTRAINT [PK_SVMXC__RMA_Shipment_Line__c] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_SVMXC__RMA_Shipment_Line__c_Id]
+    ON [SF].[SVMXC__RMA_Shipment_Line__c]([Id] ASC);
+

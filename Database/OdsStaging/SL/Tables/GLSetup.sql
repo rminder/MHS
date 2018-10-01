@@ -101,6 +101,9 @@
     [Zip]               CHAR (10)     NOT NULL,
     [Zp]                CHAR (256)    NOT NULL,
     [tstamp]            ROWVERSION    NOT NULL,
+    [RowVersion]        BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [GLSetup0] PRIMARY KEY CLUSTERED ([SetupId] ASC)
 );
+
+
 

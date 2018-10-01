@@ -11,5 +11,6 @@ SELECT
    ,Active as IsActive
    ,RTRIM([Descr]) AS Description
    ,[LUpd_DateTime] AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]   
    ,GETUTCDATE() AS ImportDate
 FROM SL.SubAcct;

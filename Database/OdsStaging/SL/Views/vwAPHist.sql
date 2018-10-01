@@ -1,4 +1,4 @@
-﻿CREATE View SL.vwAPHist AS
+﻿CREATE View [SL].[vwAPHist] AS
 
 SELECT 
 	 [BegBal] as BeginBalance
@@ -78,6 +78,7 @@ SELECT
 	,[YtdDrAdjs] as YearToDateDebitAdjustments
 	,[YtdPaymt] as YearToDatePayments
 	,[YtdPurch] as YearToDatePurchases
+    ,[RowVersion]	 AS [RowVersion]    
 	,[LUpd_DateTime] AS LastUpdate
 	,GETUTCDATE() AS ImportDate
 FROM [SL].[APHist]

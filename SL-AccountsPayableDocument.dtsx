@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SL-AccountsPayableDocument"
   DTS:PackageType="5"
-  DTS:VersionBuild="278"
-  DTS:VersionGUID="{431D436D-3FEC-4A2E-8F7F-831387BEDC24}">
+  DTS:VersionBuild="284"
+  DTS:VersionGUID="{A76719A3-8421-4C2A-A566-BAC40B0E06CD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -118,12 +118,12 @@ ELSE
       DTS:CreationName=""
       DTS:DTSID="{4917C207-A6C9-4BF3-8F77-B6D6A357F589}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;Select * From &quot; + @[User::SourceTableName] + &quot; Where LUpd_DateTime &gt;= '&quot; + (DT_WSTR,50)@[User::SourceLastUpdate] + &quot;'&quot;"
+      DTS:Expression="&quot;Select *, CAST(tstamp as BIGINT) as [RowVersion] From &quot; + @[User::SourceTableName] + &quot; Where tstamp &gt;=  &quot; + (DT_WSTR,50)@[User::SourceLastUpdate]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="GetSourceRowsQuery">
       <DTS:VariableValue
-        DTS:DataType="8">Select * From dbo.APDoc Where LUpd_DateTime &gt;= '1/1/1900'</DTS:VariableValue>
+        DTS:DataType="8">Select *, CAST(tstamp as BIGINT) as [RowVersion] From dbo.APDoc Where tstamp &gt;=  0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -149,16 +149,16 @@ ELSE
       DTS:CreationName=""
       DTS:DTSID="{3A9B5495-68B3-430E-B0A4-75709CB65575}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="&quot;IF (Select Count(*) From &quot; + @[User::OdsStagingTableName] +&quot;) &gt; 0 BEGIN &#xA;DECLARE @LastUpdateDate datetime2(7) &#xA;Set @LastUpdateDate = (Select Max(LUpd_DateTime) From &quot; + @[User::OdsStagingTableName] + &quot;) &#xA;&#xA;UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  &#xA;WHERE TableName = '&quot; + @[User::LastUpdateColumn] + &quot;' END&quot;"
+      DTS:Expression="&quot;IF (Select Count(*) From &quot; + @[User::OdsStagingTableName] +&quot;) &gt; 0 BEGIN &#xA;DECLARE @LastRowVersion BIGINT &#xA;Set @LastRowVersion = (Select Max([RowVersion]) From &quot; + @[User::OdsStagingTableName] + &quot;) &#xA;&#xA;UPDATE dbo.LastUpdate SET LastRowVersion = @LastRowVersion &#xA;WHERE TableName = '&quot; + @[User::LastUpdateColumn] + &quot;' END&quot;"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="LastUpdateQuery">
       <DTS:VariableValue
         DTS:DataType="8">IF (Select Count(*) From SL.APDoc) &gt; 0 BEGIN 
-DECLARE @LastUpdateDate datetime2(7) 
-Set @LastUpdateDate = (Select Max(LUpd_DateTime) From SL.APDoc) 
+DECLARE @LastRowVersion BIGINT 
+Set @LastRowVersion = (Select Max([RowVersion]) From SL.APDoc) 
 
-UPDATE dbo.LastUpdate SET LastUpdate = @LastUpdateDate  
+UPDATE dbo.LastUpdate SET LastRowVersion = @LastRowVersion 
 WHERE TableName = '[SL-APDoc]' END</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
@@ -248,7 +248,7 @@ SELECT COUNT(*) AS [RowCount] FROM SL.AccountsPayableDocument Where LastUpdate B
       DTS:Namespace="User"
       DTS:ObjectName="SourceLastUpdate">
       <DTS:VariableValue
-        DTS:DataType="7">1/1/1900</DTS:VariableValue>
+        DTS:DataType="20">0</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -437,14 +437,35 @@ SELECT COUNT(*) AS [RowCount] FROM dbo.APDoc Where LUpd_DateTime Between @BeginD
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
-                Name="Properties\Settings.settings"
-                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -824,35 +845,14 @@ namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
     }
 }]]></ProjectItem>
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Resources.Designer.cs"
                 Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -1958,36 +1958,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
               Language="CSharp"
               ReadOnlyVariables="User::BeginDate,User::EndDate,User::GetOdsRowsForDeleteQuery,User::OdsRowCount,User::SourceRowCount">
               <ProjectItem
-                Name="Properties\AssemblyInfo.cs"
-                Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
-              <ProjectItem
                 Name="Properties\Resources.resx"
                 Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -2193,6 +2163,35 @@ using System.Runtime.CompilerServices;
   </ProjectExtensions>
 </Project>]]></ProjectItem>
               <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
+    "ings")]
+
+namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
                 Name="ScriptMain.cs"
                 Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
 /* The Script Task allows you to perform virtually any operation that can be accomplished in
@@ -2330,34 +2329,35 @@ namespace ST_b999b381790e41f4b2484a83485716f0
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
               <ProjectItem
-                Name="Properties\Settings.Designer.cs"
-                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_b999b381790e41f4b2484a83485716f0")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_b999b381790e41f4b2484a83485716f0.Properties.Settings.get_Default():ST_b999b381790e41f4b2484a83485716f0.Properties.Sett" +
-    "ings")]
-
-namespace ST_b999b381790e41f4b2484a83485716f0.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
               <ProjectItem
                 Name="Properties\Settings.settings"
                 Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -3980,6 +3980,15 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[TxblTot03]"
                       name="TxblTot03"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4588,6 +4597,10 @@ Where LUpd_DateTime &gt; ?</property>
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[TxblTot03]"
                       dataType="r8"
                       name="TxblTot03" />
+                    <externalMetadataColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -5325,6 +5338,11 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i8"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
                     <outputColumn
                       refId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
@@ -6285,6 +6303,12 @@ Where LUpd_DateTime &gt; ?</property>
                       cachedName="TxblTot03"
                       externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[TxblTot03]"
                       lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[TxblTot03]" />
+                    <inputColumn
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].Columns[RowVersion]"
+                      cachedDataType="i8"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Find Rows to Upsert\Get Source Data from Production.Outputs[OLE DB Source Output].Columns[RowVersion]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6893,6 +6917,10 @@ Where LUpd_DateTime &gt; ?</property>
                       refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[TxblTot03]"
                       dataType="r8"
                       name="TxblTot03" />
+                    <externalMetadataColumn
+                      refId="Package\Find Rows to Upsert\Store Data in Staging Table.Inputs[OLE DB Destination Input].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -6951,7 +6979,7 @@ Where LUpd_DateTime &gt; ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1461EBC-9CB8-4586-8E0A-27ED48EA2879}"
-          SQLTask:SqlStatementSource="Select DATEADD(SECOND,86399,CAST(DATEADD(DAY,-1,CAST(LastUpdate AS DATE)) AS Datetime2)) AS LastUpdate&#xA;From dbo.LastUpdate&#xA;Where TableName = ?"
+          SQLTask:SqlStatementSource="Select CAST(LastRowVersion AS BIGINT) AS LastUpdate&#xA;From dbo.LastUpdate&#xA;Where TableName = ?"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="LastUpdate"
@@ -7359,6 +7387,15 @@ Where LUpd_DateTime &gt; ?</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[BatchNumber]"
                       name="BatchNumber"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]"
+                      name="RowVersion"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -7468,6 +7505,10 @@ Where LUpd_DateTime &gt; ?</property>
                       dataType="str"
                       length="10"
                       name="BatchNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -7595,6 +7636,11 @@ Where LUpd_DateTime &gt; ?</property>
                       length="15"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VendorId]"
                       name="VendorId" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      dataType="i8"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RowVersion]"
+                      name="RowVersion" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransactionReferenceNumber]"
                       codePage="1252"
@@ -8226,6 +8272,27 @@ Where LUpd_DateTime &gt; ?</property>
                           name="IsIdentityColumn">false</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[RowVersion]"
+                      cachedDataType="i8"
+                      cachedName="RowVersion"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RowVersion]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[RowVersion]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">RowVersion</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -8264,15 +8331,15 @@ Where LUpd_DateTime &gt; ?</property>
                       name="BatchNumber" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[DocumentDate]"
-                      dataType="dbTimeStamp"
+                      dataType="dbDate"
                       name="DocumentDate" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[DueDate]"
-                      dataType="dbTimeStamp"
+                      dataType="dbDate"
                       name="DueDate" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[DiscountDate]"
-                      dataType="dbTimeStamp"
+                      dataType="dbDate"
                       name="DiscountDate" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[DocumentType]"
@@ -8326,20 +8393,28 @@ Where LUpd_DateTime &gt; ?</property>
                       name="OpenDocument" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastUpdate]"
-                      dataType="dbTimeStamp"
-                      name="LastUpdate" />
+                      dataType="dbTimeStamp2"
+                      name="LastUpdate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ImportDate]"
-                      dataType="dbTimeStamp"
-                      name="ImportDate" />
+                      dataType="dbTimeStamp2"
+                      name="ImportDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidFrom]"
-                      dataType="dbTimeStamp"
-                      name="ValidFrom" />
+                      dataType="dbTimeStamp2"
+                      name="ValidFrom"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidTo]"
-                      dataType="dbTimeStamp"
-                      name="ValidTo" />
+                      dataType="dbTimeStamp2"
+                      name="ValidTo"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[RowVersion]"
+                      dataType="i8"
+                      name="RowVersion" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -8403,36 +8478,6 @@ Where LUpd_DateTime &gt; ?</property>
           VSTAMinorVersion="0"
           Language="CSharp"
           ReadOnlyVariables="User::GetSourceRowsQuery">
-          <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
-[assembly: AssemblyCopyright("Copyright @  2018")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -8552,6 +8597,35 @@ using System.Runtime.CompilerServices;
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 </root>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
+    "ings")]
+
+namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
           <ProjectItem
             Name="ST_3dd9bda90c68436bb536c6598ed20014.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -8777,34 +8851,35 @@ namespace ST_3dd9bda90c68436bb536c6598ed20014
   </msb:ItemGroup>
 </c:Project>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.Designer.cs"
-            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
-// <auto-generated>
-//     This code was generated by a tool.
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
 //
-//     Changes to this file may cause incorrect behavior and will be lost if
-//     the code is regenerated.
-// </auto-generated>
-//------------------------------------------------------------------------------
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_3dd9bda90c68436bb536c6598ed20014")]
+[assembly: AssemblyCopyright("Copyright @  2018")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
 
-[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_3dd9bda90c68436bb536c6598ed20014.Properties.Settings.get_Default():ST_3dd9bda90c68436bb536c6598ed20014.Properties.Sett" +
-    "ings")]
-
-namespace ST_3dd9bda90c68436bb536c6598ed20014.Properties {
-    
-    
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        private static Settings defaultInstance = new Settings();
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
-    }
-}]]></ProjectItem>
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Settings.settings"
             Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
@@ -9747,9 +9822,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\Find Rows to Upsert">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="130.5,42"
+          Size="130,42"
           Id="Package\Find Rows to Upsert\Row Count"
           TopLeft="234.166666666667,189.166666666667" />
         <NodeLayout
@@ -9779,9 +9854,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9803,9 +9876,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -9848,7 +9919,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     design-time-name="Package\Upsert Ods">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="181,42"
           Id="Package\Upsert Ods\TF Upsert Destination"
@@ -9876,9 +9947,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

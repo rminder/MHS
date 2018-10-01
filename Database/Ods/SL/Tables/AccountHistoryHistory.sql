@@ -1,4 +1,4 @@
-CREATE TABLE [SL].[AccountHistoryHistory] (
+﻿CREATE TABLE [SL].[AccountHistoryHistory] (
     [RowId]              INT              NOT NULL,
     [Account]            VARCHAR (10)     NOT NULL,
     [BalanceType]        CHAR (1)         NOT NULL,
@@ -25,8 +25,11 @@ CREATE TABLE [SL].[AccountHistoryHistory] (
     [LastUpdate]         DATETIME2 (7)    NOT NULL,
     [ImportDate]         DATETIME2 (7)    NOT NULL,
     [ValidFrom]          DATETIME2 (7)    NOT NULL,
-    [ValidTo]            DATETIME2 (7)    NOT NULL
+    [ValidTo]            DATETIME2 (7)    NOT NULL,
+    [RowVersion]         BIGINT           NOT NULL
 );
+
+
 
 
 

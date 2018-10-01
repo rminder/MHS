@@ -39,6 +39,9 @@
     [User7]         SMALLDATETIME NOT NULL,
     [User8]         SMALLDATETIME NOT NULL,
     [tstamp]        ROWVERSION    NOT NULL,
+    [RowVersion]    BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [CustClass0] PRIMARY KEY CLUSTERED ([ClassId] ASC)
 );
+
+
 

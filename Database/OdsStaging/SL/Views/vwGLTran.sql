@@ -1,8 +1,4 @@
-﻿
-
-
-
-CREATE VIEW [SL].[vwGLTran] AS
+﻿CREATE VIEW [SL].[vwGLTran] AS
 
 --
 -- This view is intended to read rows from the Ods Staging table and
@@ -51,4 +47,5 @@ SELECT
 		ELSE ''
 	END AS SubSeg2
    ,RefNbr				   AS TransactionReferenceNumber
-FROM SL.GLTran;
+   ,[RowVersion]	       AS [RowVersion]
+ FROM SL.GLTran;

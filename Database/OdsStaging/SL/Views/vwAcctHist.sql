@@ -1,7 +1,4 @@
-﻿
-
-
-CREATE VIEW [SL].[vwAcctHist] AS
+﻿CREATE VIEW [SL].[vwAcctHist] AS
 
 --
 -- This view is intended to read rows from the Ods Staging table and
@@ -33,5 +30,6 @@ SELECT
    ,PtdBal11 AS PostedBalance11
    ,PtdBal12 AS PostedBalance12
    ,[LUpd_DateTime] AS LastUpdate
+   ,[RowVersion] AS [RowVersion]
    ,GETUTCDATE() AS ImportDate
 FROM [SL].[AcctHist];

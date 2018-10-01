@@ -13,8 +13,11 @@
     [LastUpdate]    DATETIME2 (7)    NOT NULL,
     [ImportDate]    DATETIME2 (7)    NOT NULL,
     [ValidFrom]     DATETIME2 (7)    NOT NULL,
-    [ValidTo]       DATETIME2 (7)    NOT NULL
+    [ValidTo]       DATETIME2 (7)    NOT NULL,
+    [RowVersion]    BIGINT           NOT NULL
 );
+
+
 
 
 GO

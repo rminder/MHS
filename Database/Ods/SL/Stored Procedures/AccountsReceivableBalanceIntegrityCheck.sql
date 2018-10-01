@@ -56,7 +56,7 @@ BEGIN
 		   ,ROUND(T.AgeBalance02, 2)			  AS AgeBalance02
 		   ,ROUND(T.AgeBalance03, 2)			  AS AgeBalance03
 		   ,ROUND(T.AgeBalance04, 2)			  AS AgeBalance04
-		   ,T.AverageDaysToPay
+		   ,ROUND(T.AverageDaysToPay, 2)		  AS AverageDaysToPay
 		   ,T.[CompanyId]
 		   ,ROUND(T.CreditLImit, 2)				  AS CreditLImit
 		   ,ROUND(T.CurrentBalance, 2)			  AS CurrentBalance
@@ -92,7 +92,7 @@ BEGIN
 		   ,ROUND(T.AgeBalance02, 2)			  AS AgeBalance02
 		   ,ROUND(T.AgeBalance03, 2)			  AS AgeBalance03
 		   ,ROUND(T.AgeBalance04, 2)			  AS AgeBalance04
-		   ,T.AverageDaysToPay
+		   ,ROUND(T.AverageDaysToPay, 2)		  AS AverageDaysToPay
 		   ,T.[CompanyId]
 		   ,ROUND(T.CreditLimit, 2)				  AS CreditLImit
 		   ,ROUND(T.CurrentBalance, 2)			  AS CurrentBalance

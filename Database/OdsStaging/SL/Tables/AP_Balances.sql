@@ -67,6 +67,9 @@
     [User8]         SMALLDATETIME NOT NULL,
     [VendID]        CHAR (15)     NOT NULL,
     [tstamp]        ROWVERSION    NOT NULL,
+    [RowVersion]    BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [AP_Balances0] PRIMARY KEY CLUSTERED ([VendID] ASC, [CpnyID] ASC)
 );
+
+
 

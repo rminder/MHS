@@ -9,6 +9,7 @@
 SELECT
 	RTRIM([ClassId]) AS ClassId
    ,RTRIM([Descr]) AS Description
+   ,[RowVersion]	 AS [RowVersion]   
    ,[LUpd_DateTime] AS LastUpdate
    ,GETUTCDATE() AS ImportDate
 FROM SL.VendClass;

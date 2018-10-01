@@ -94,6 +94,9 @@
     [YtdBal12]        FLOAT (53)    NOT NULL,
     [YTDEstimated]    FLOAT (53)    NOT NULL,
     [tstamp]          ROWVERSION    NOT NULL,
+    [RowVersion]      BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [AcctHist0] PRIMARY KEY CLUSTERED ([CpnyID] ASC, [Acct] ASC, [Sub] ASC, [LedgerID] ASC, [FiscYr] ASC)
 );
+
+
 

@@ -1,4 +1,4 @@
-﻿Create View [SL].[vwAP_Balances] AS
+﻿CREATE View [SL].[vwAP_Balances] AS
 
 SELECT 
 	 RTRIM([CpnyID]) as CompanyId
@@ -43,5 +43,6 @@ SELECT
 	,[PerNbr] as PeriodNumber
 	,RTRIM([VendID]) as VendorId
 	,[LUpd_DateTime] AS LastUpdate
+    ,[RowVersion]	 AS [RowVersion]    
 	,GETUTCDATE() AS ImportDate
 FROM [SL].[AP_Balances]

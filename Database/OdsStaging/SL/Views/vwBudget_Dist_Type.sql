@@ -1,5 +1,4 @@
-﻿
-CREATE View [SL].[vwBudget_Dist_Type] As
+﻿CREATE View [SL].[vwBudget_Dist_Type] As
 
 SELECT 
 	 RTRIM([Descr]) as Description
@@ -18,6 +17,7 @@ SELECT
 	,[Pct10] as BudgetPercent10
 	,[Pct11] as BudgetPercent11
 	,[PctTot] as BudgetPercentTotal
+    ,[RowVersion]	 AS [RowVersion]    
     ,[LUpd_DateTime] AS LastUpdate
     ,GETUTCDATE() AS ImportDate
 FROM [SL].[Budget_Dist_Type]

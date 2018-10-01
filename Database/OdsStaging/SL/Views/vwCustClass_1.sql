@@ -11,5 +11,6 @@ SELECT
 	RTRIM([ClassId]) AS ClassId
    ,RTRIM([Descr])	 AS Description
    ,[LUpd_DateTime]	 AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()	 AS ImportDate
 FROM [SL].[CustClass];

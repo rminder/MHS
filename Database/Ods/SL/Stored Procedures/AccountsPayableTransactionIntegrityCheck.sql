@@ -1,4 +1,5 @@
-﻿-- ===================================================
+﻿
+-- ===================================================
 -- Author:		Randy Minder
 -- Create date: 20-September, 2018
 -- Description:	Ods table data integrity check
@@ -12,13 +13,20 @@ BEGIN
 
 	DECLARE @OdsRowCount INT = 0;
 	DECLARE @SLRowCount INT = 0;
+	DECLARE @FirstStagingDate DATETIME2(7);
+
+	-- Because of the volume of data in this table, and the time constraints we have (less than 1 hour between iterations)
+	-- we're dealing with a subset of ATTran data. Find the earliest last update time in the staging table and we'll
+	-- validate all rows equal to and after that date.
+	SELECT @FirstStagingDate = MIN(LUpd_DateTime) FROM OdsStaging.SL.APTran;
 
 	--=======================================================================================================
 	-- Perform a row count check of the table in Ods and the source table
 	--=======================================================================================================
 
 	SELECT @OdsRowCount = COUNT(*)
-	FROM SL.AccountsPayableTransaction;
+	FROM SL.AccountsPayableTransaction
+	WHERE LastUpdate >= @FirstStagingDate
 
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SL.APTran;

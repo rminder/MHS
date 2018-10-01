@@ -1,4 +1,5 @@
-﻿-- ===================================================
+﻿
+-- ===================================================
 -- Author:		Randy Minder
 -- Create date: 20-September, 2018
 -- Description:	Ods table data integrity check
@@ -65,9 +66,9 @@ BEGIN
 		   ,T.[BatchSequence]
 		   ,T.DocumentDate
 		   ,T.DueDate
-		   ,T.DocumentBalance
-		   ,T.CurrencyDocumentBalance
-		   ,T.OriginalDocumentAmount
+		   ,ROUND(T.DocumentBalance, 3) AS DocumentBalance
+		   ,ROUND(T.CurrencyDocumentBalance, 3) AS CurrencyDocumentBalance
+		   ,ROUND(T.OriginalDocumentAmount, 3) AS OriginalDocumentAmount
 		   ,T.SubaccountId
 		   ,T.PeriodToPost
 		   ,T.WorkOrder
@@ -88,11 +89,11 @@ BEGIN
 		   ,T.[TransactionReferenceNumber]
 		   ,T.[BatchNumber]
 		   ,T.[BatchSequence]
-		   ,T.DocumentDate
-		   ,T.DueDate
-		   ,T.DocumentBalance
-		   ,T.CurrencyDocumentBalance
-		   ,T.OriginalDocumentAmount
+		   ,CAST(T.DocumentDate AS DATE) AS DocumentDate
+		   ,CAST(T.DueDate AS DATE) AS DueDate
+		   ,ROUND(T.DocumentBalance, 3) AS DocumentBalance
+		   ,ROUND(T.CurrencyDocumentBalance, 3) AS CurrencyDocumentBalance
+		   ,ROUND(T.OriginalDocumentAmount, 3) AS OriginalDocumentAmount
 		   ,T.SubaccountId
 		   ,T.PeriodToPost
 		   ,T.WorkOrder

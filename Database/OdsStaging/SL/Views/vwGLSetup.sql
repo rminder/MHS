@@ -1,5 +1,4 @@
-﻿
-CREATE VIEW [SL].[vwGLSetup]
+﻿CREATE VIEW [SL].[vwGLSetup]
 AS
 
 --
@@ -32,5 +31,6 @@ SELECT
    ,RTRIM([RetEarnAcct])	AS RetainedEarningsAccount
    ,RTRIM([YtdNetIncAcct])	AS NetIncomeAccount
    ,LUpd_DateTime			AS LastUpdate
+   ,[RowVersion]	        AS [RowVersion]   
    ,GETUTCDATE()			AS ImportDate
 FROM [SL].[GLSetup];

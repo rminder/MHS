@@ -1,5 +1,4 @@
-﻿
-CREATE VIEW [SL].[vwVendor]
+﻿CREATE VIEW [SL].[vwVendor]
 AS
 
 --
@@ -18,5 +17,6 @@ SELECT
    ,RTRIM([Zip])	  AS Zip
    ,[Status]		  AS [Status]
    ,[LUpd_DateTime]	  AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]
    ,GETUTCDATE()	  AS ImportDate
 FROM [SL].[Vendor];

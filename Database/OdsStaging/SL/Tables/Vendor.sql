@@ -93,6 +93,9 @@
     [VendId]            CHAR (15)     NOT NULL,
     [Zip]               CHAR (10)     NOT NULL,
     [tstamp]            ROWVERSION    NOT NULL,
+    [RowVersion]        BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [Vendor0] PRIMARY KEY CLUSTERED ([VendId] ASC)
 );
+
+
 

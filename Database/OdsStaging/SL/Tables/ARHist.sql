@@ -151,6 +151,9 @@
     [YtdFinChrg]       FLOAT (53)    NOT NULL,
     [YtdRcpt]          FLOAT (53)    NOT NULL,
     [YtdSales]         FLOAT (53)    NOT NULL,
+    [RowVersion]       BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [ARHist0] PRIMARY KEY CLUSTERED ([CustId] ASC, [CpnyID] ASC, [FiscYr] ASC)
 );
+
+
 

@@ -15,5 +15,6 @@ SELECT
    ,RTRIM([ID])				AS Id
    ,RTRIM([SegNumber])		AS SegmentNumber
    ,[LUpd_DateTime]			AS LastUpdate
+   ,[RowVersion]	        AS [RowVersion]   
    ,GETUTCDATE()			AS ImportDate
 FROM [SL].[SegDef];

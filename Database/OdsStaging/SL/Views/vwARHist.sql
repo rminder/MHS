@@ -147,6 +147,7 @@ SELECT
 	,[YtdFinChrg] as YearTODateFinanceCharge
 	,[YtdRcpt] as YearToDateReceipts
 	,[YtdSales] as YearToDateSales
+    ,[RowVersion]	 AS [RowVersion]
 	,[LUpd_DateTime] AS LastUpdate
 	,GETUTCDATE() AS ImportDate
 FROM [SL].[ARHist]

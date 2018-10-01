@@ -1,5 +1,4 @@
-﻿
-CREATE View [SL].[vwAR_Balances] AS
+﻿CREATE View [SL].[vwAR_Balances] AS
 
 SELECT 
 	 [AgeBal00] as AgeBalance00
@@ -33,5 +32,6 @@ SELECT
 	,[TotPrePay] as TotalPrePaid
 	,[TotShipped] as TotalShipped
 	,[LUpd_DateTime] AS LastUpdate
+    ,[RowVersion]	 AS [RowVersion]    
 	,GETUTCDATE() AS ImportDate
   FROM [SL].[AR_Balances]

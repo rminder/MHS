@@ -1,4 +1,4 @@
-﻿Create View SL.vwBudget AS
+﻿CREATE View [SL].[vwBudget] AS
 
 SELECT 
 	 RTRIM([ActualLedgerID]) as ActualLedgerId
@@ -11,5 +11,6 @@ SELECT
 	,RTRIM([NoteID]) as NoteId
 	,RTRIM([ShortDescr]) as ShortDescription
    ,[LUpd_DateTime] AS LastUpdate
+   ,[RowVersion]	 AS [RowVersion]   
    ,GETUTCDATE() AS ImportDate
 FROM [SL].[Budget]

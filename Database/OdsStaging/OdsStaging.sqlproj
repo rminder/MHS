@@ -73,6 +73,8 @@
     <Folder Include="SF\Views\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="SF\Stored Procedures\" />
+    <Folder Include="Pay\" />
+    <Folder Include="Pay\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\LastUpdate.sql" />
@@ -235,6 +237,9 @@
     <Build Include="SL\Tables\BUSetup.sql" />
     <Build Include="SL\Views\vwBuSetup.sql" />
     <Build Include="SL\Stored Procedures\DeleteBudgetSetup.sql" />
-    <Build Include="SL\Views\vwAccountHash.sql" />
+    <Build Include="dbo\Tables\GLTran.sql" />
+    <Build Include="dbo\Tables\ARTran.sql" />
+    <Build Include="Pay\Tables\WebTime.sql" />
+    <Build Include="Security\Pay.sql" />
   </ItemGroup>
 </Project>

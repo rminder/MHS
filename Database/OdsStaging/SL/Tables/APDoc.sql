@@ -124,6 +124,9 @@
     [User8]          SMALLDATETIME NOT NULL,
     [VendId]         CHAR (15)     NOT NULL,
     [tstamp]         ROWVERSION    NOT NULL,
+    [RowVersion]     BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [APDoc0] PRIMARY KEY CLUSTERED ([Acct] ASC, [Sub] ASC, [DocType] ASC, [RefNbr] ASC, [RecordID] ASC)
 );
+
+
 

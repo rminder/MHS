@@ -1,4 +1,4 @@
-CREATE TABLE [SL].[AccountsReceivableHistory] (
+﻿CREATE TABLE [SL].[AccountsReceivableHistory] (
     [RowId]                      INT                                         IDENTITY (1, 1) NOT NULL,
     [CompanyId]                  VARCHAR (10)                                NOT NULL,
     [CustomerId]                 VARCHAR (15)                                NOT NULL,
@@ -150,10 +150,13 @@ CREATE TABLE [SL].[AccountsReceivableHistory] (
     [ImportDate]                 DATETIME2 (7)                               NOT NULL,
     [ValidFrom]                  DATETIME2 (7) GENERATED ALWAYS AS ROW START NOT NULL,
     [ValidTo]                    DATETIME2 (7) GENERATED ALWAYS AS ROW END   NOT NULL,
+    [RowVersion]                 BIGINT                                      DEFAULT ((0)) NOT NULL,
     CONSTRAINT [PKAccountsReceivableHistory] PRIMARY KEY CLUSTERED ([RowId] ASC),
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SL].[AccountsReceivableHistoryHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 

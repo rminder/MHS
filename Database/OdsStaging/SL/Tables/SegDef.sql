@@ -16,6 +16,9 @@
     [User3]          FLOAT (53)    NOT NULL,
     [User4]          FLOAT (53)    NOT NULL,
     [tstamp]         ROWVERSION    NOT NULL,
+    [RowVersion]     BIGINT        DEFAULT ((0)) NOT NULL,
     CONSTRAINT [SegDef0] PRIMARY KEY CLUSTERED ([FieldClassName] ASC, [SegNumber] ASC, [ID] ASC)
 );
+
+
 
