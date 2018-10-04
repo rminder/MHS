@@ -9,7 +9,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "OdsStaging", "Database\OdsS
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SF", "SF\SF.dtproj", "{A5665482-C1CA-4E19-AF09-67FAC29C8252}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DataIntegrity", "DataIntegrity\DataIntegrity\DataIntegrity.dtproj", "{A5B78AED-FCEC-488C-9B5D-9C8DDBFC03D9}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DataIntegrity", "StagingTables\StagingTables\DataIntegrity.dtproj", "{A5B78AED-FCEC-488C-9B5D-9C8DDBFC03D9}"
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SL", "SL\SL.dtproj", "{93111E2D-87E2-4BE0-8204-BB969FDB0269}"
 EndProject
