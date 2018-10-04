@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-Account"
   DTS:PackageType="5"
-  DTS:VersionBuild="280"
-  DTS:VersionGUID="{02418F76-3780-4757-B588-C646E8B1746E}">
+  DTS:VersionBuild="282"
+  DTS:VersionGUID="{0780EE40-5CB7-430E-BE27-3A5E3DDFF646}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>

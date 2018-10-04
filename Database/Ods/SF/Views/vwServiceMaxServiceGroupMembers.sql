@@ -1,4 +1,5 @@
-﻿CREATE VIEW SF.vwServiceMaxServiceGroupMembers
+﻿
+CREATE VIEW [SF].[vwServiceMaxServiceGroupMembers]
 AS
 SELECT
 	[RowId]
@@ -28,9 +29,9 @@ SELECT
    ,[InventoryLocation]
    ,[Latitude]
    ,[Longitude]
-   ,[MaxDailyHours]
-   ,[MaxDistance]
-   ,[MaxHours]
+   ,[MaxDailyHours]								  AS MaximumDailyHours
+   ,[MaxDistance]								  AS MaximumDistance
+   ,[MaxHours]									  AS MaximumHours
    ,[Memberinformation]
    ,[OvertimeHours]
    ,[PerHourCost]

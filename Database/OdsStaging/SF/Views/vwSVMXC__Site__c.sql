@@ -1,4 +1,5 @@
-﻿CREATE VIEW [SF].[vwSVMXC__Site__c]
+﻿
+CREATE VIEW [SF].[vwSVMXC__Site__c]
 AS
 SELECT
 	[Id]												 AS [Id]
@@ -42,7 +43,7 @@ SELECT
    ,[SVMXC__IsStaging_Location__c]						 AS [IsStagingLocation]
    ,ISNULL([SVMXC__Location_Type__c], '')				 AS [LocationType]
    ,ISNULL([SVMXC__Parent__c], '')						 AS [Parent]
-   ,ISNULL([Mass_SL_Location_ID_ID__c], '')				 AS [MassSLLocationIdId]
+   ,ISNULL([Mass_SL_Location_ID_ID__c], '')				 AS [MassSLLocationId]
    ,ISNULL([Contact__c], '')							 AS [Contact]
    ,[Location_Established__c]							 AS [LocationEstablished]
    ,[Labor_PM_Rate_DDM__c]								 AS [LaborPMRateDDM]

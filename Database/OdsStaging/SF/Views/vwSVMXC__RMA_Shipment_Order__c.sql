@@ -1,4 +1,5 @@
-﻿CREATE VIEW SF.vwSVMXC__RMA_Shipment_Order__c
+﻿
+CREATE VIEW [SF].[vwSVMXC__RMA_Shipment_Order__c]
 AS
 SELECT
 	[Id]											 AS [Id]
@@ -23,7 +24,7 @@ SELECT
    ,[SVMXC__Closed_On__c]							 AS [ClosedOn]
    ,ISNULL([SVMXC__Company__c], '')					 AS [Company]
    ,ISNULL([SVMXC__Contact__c], '')					 AS [Contact]
-   ,ISNULL([SVMXC__Delivery_Option__c], '')			 AS [,'')Delivery_Option]
+   ,ISNULL([SVMXC__Delivery_Option__c], '')			 AS [DeliveryOption]
    ,ISNULL([SVMXC__Destination_City__c], '')		 AS [DestinationCity]
    ,ISNULL([SVMXC__Destination_Country__c], '')		 AS [DestinationCountry]
    ,ISNULL([SVMXC__Destination_Location__c], '')	 AS [DestinationLocation]

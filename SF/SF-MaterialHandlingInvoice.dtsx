@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-MaterialHandlingInvoice"
   DTS:PackageType="5"
-  DTS:VersionBuild="253"
-  DTS:VersionGUID="{5DD60BC1-8620-42FE-9A26-C48D10613991}">
+  DTS:VersionBuild="254"
+  DTS:VersionGUID="{0BDABFB7-C26C-4ABE-A1F2-999C3B23492E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -3101,8 +3101,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Id]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Id]"
@@ -3191,15 +3190,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       length="18"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastModifiedById]"
                       name="LastModifiedById"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModStamp]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SystemModStamp]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModStamp]"
-                      name="SystemModStamp"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[LastActivityDate]"
@@ -3895,6 +3885,15 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[WorkDescription]"
                       name="WorkDescription"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SystemModstamp]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModstamp]"
+                      name="SystemModstamp"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3914,8 +3913,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="ImportDate" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Id]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="18"
                       name="Id" />
                     <externalMetadataColumn
@@ -3960,10 +3958,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       dataType="str"
                       length="18"
                       name="LastModifiedById" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SystemModStamp]"
-                      dataType="dbTimeStamp"
-                      name="SystemModStamp" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LastActivityDate]"
                       dataType="dbTimeStamp"
@@ -4313,6 +4307,10 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       codePage="1252"
                       dataType="text"
                       name="WorkDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SystemModstamp]"
+                      dataType="dbTimeStamp"
+                      name="SystemModstamp" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4322,8 +4320,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                   <outputColumns>
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Id]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="18"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Id]"
                       name="Id" />
@@ -4378,10 +4375,10 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastModifiedById]"
                       name="LastModifiedById" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SystemModStamp]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SystemModstamp]"
                       dataType="dbTimeStamp"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SystemModStamp]"
-                      name="SystemModStamp" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SystemModstamp]"
+                      name="SystemModstamp" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastActivityDate]"
                       dataType="dbTimeStamp"
@@ -5474,8 +5471,7 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                     </inputColumn>
                     <inputColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
+                      cachedDataType="wstr"
                       cachedLength="18"
                       cachedName="Id"
                       externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Id]"
@@ -6488,11 +6484,11 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[SystemModStamp]"
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[SystemModstamp]"
                       cachedDataType="dbTimeStamp"
-                      cachedName="SystemModStamp"
+                      cachedName="SystemModstamp"
                       externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[SystemModstamp]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModStamp]">
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SystemModstamp]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -7623,14 +7619,14 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
         <NodeLayout
           Size="181,42"
           Id="Package\Upsert Ods\TF Upsert Destination"
-          TopLeft="519.5,298.5" />
+          TopLeft="291.25,169.25" />
         <NodeLayout
           Size="150,42"
           Id="Package\Upsert Ods\OLE DB Source"
-          TopLeft="529.166666666667,185" />
+          TopLeft="300.916666666667,55.75" />
         <EdgeLayout
           Id="Package\Upsert Ods.Paths[OLE DB Source Output]"
-          TopLeft="607.083333333333,227">
+          TopLeft="378.833333333333,97.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

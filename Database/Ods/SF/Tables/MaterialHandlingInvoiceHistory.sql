@@ -22,7 +22,7 @@
     [EndDateAndTime]                    DATETIME2 (7)    NULL,
     [FieldOffice]                       VARCHAR (18)     NOT NULL,
     [HideLine]                          TINYINT          NULL,
-    [Id]                                VARCHAR (18)     NOT NULL,
+    [Id]                                NVARCHAR (18)    NOT NULL,
     [InvoiceDetailsCost]                DECIMAL (32, 16) NULL,
     [InvoiceDetailsRevenue]             DECIMAL (32, 16) NULL,
     [InvoiceDetailsSubTotal]            DECIMAL (32, 16) NULL,
@@ -85,6 +85,8 @@
     [ValidFrom]                         DATETIME2 (7)    NOT NULL,
     [ValidTo]                           DATETIME2 (7)    NOT NULL
 );
+
+
 
 
 GO

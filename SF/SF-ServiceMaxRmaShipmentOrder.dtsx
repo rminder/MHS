@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-ServiceMaxRmaShipmentOrder"
   DTS:PackageType="5"
-  DTS:VersionBuild="259"
-  DTS:VersionGUID="{D01AC1ED-4CFC-4F14-8EE3-42F206431000}">
+  DTS:VersionBuild="260"
+  DTS:VersionGUID="{6FF7D2F3-F78E-47EA-BBFB-4B0A751E0827}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -3955,16 +3955,6 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                       name="Contact"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[,'')Delivery_Option]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[,'')Delivery_Option]"
-                      length="255"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[,'')Delivery_Option]"
-                      name=",'')Delivery_Option"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[DestinationCity]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -4664,6 +4654,16 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[VendorInvoiceNumber]"
                       name="VendorInvoiceNumber"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[DeliveryOption]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DeliveryOption]"
+                      length="255"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[DeliveryOption]"
+                      name="DeliveryOption"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4781,11 +4781,6 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                       dataType="wstr"
                       length="18"
                       name="Contact" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[,'')Delivery_Option]"
-                      dataType="wstr"
-                      length="255"
-                      name=",'')Delivery_Option" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DestinationCity]"
                       dataType="wstr"
@@ -5126,6 +5121,11 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                       dataType="wstr"
                       length="50"
                       name="VendorInvoiceNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DeliveryOption]"
+                      dataType="wstr"
+                      length="255"
+                      name="DeliveryOption" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -5257,11 +5257,11 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Contact]"
                       name="Contact" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[,'')Delivery_Option]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DeliveryOption]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[,'')Delivery_Option]"
-                      name=",'')Delivery_Option" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DeliveryOption]"
+                      name="DeliveryOption" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DestinationCity]"
                       dataType="wstr"
@@ -7944,6 +7944,28 @@ Where LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;	</property>
                           dataType="System.String"
                           description="Mapped Column for Destination"
                           name="DestinationColumn">ImportDate</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[DeliveryOption]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DeliveryOption"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Delivery_Option]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[DeliveryOption]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">Delivery_Option</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"

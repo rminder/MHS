@@ -1,4 +1,5 @@
-﻿CREATE VIEW SF.vwServiceMaxRmaShipmentOrder
+﻿
+CREATE VIEW [SF].[vwServiceMaxRmaShipmentOrder]
 AS
 SELECT
 	[RowId]
@@ -24,7 +25,7 @@ SELECT
    ,[ClosedOn]
    ,[Company]
    ,[Contact]
-   ,[Delivery_Option]
+   ,[Delivery_Option] AS DeliveryOption
    ,[DestinationCity]
    ,[DestinationCountry]
    ,[DestinationLocation]

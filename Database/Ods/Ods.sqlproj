@@ -319,6 +319,16 @@
     <Build Include="SF\Stored Procedures\AccountIntegrityCheck.sql" />
     <Build Include="dbo\Stored Procedures\TruncateHistoryTables.sql" />
     <Build Include="Security\Pay.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxSiteIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxServiceOrderLineIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxServiceOrderIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxServiceGroupMembersIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxServiceGroupIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\ServiceMaxRmaShipmentOrderIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\RecordTypeIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\Product2IntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\NoteIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\MaterialHandlingInvoiceDetailIntegrityCheck.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

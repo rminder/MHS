@@ -22,7 +22,7 @@
     [EndDateAndTime]                    DATETIME2 (7)                               NULL,
     [FieldOffice]                       VARCHAR (18)                                NOT NULL,
     [HideLine]                          TINYINT                                     NULL,
-    [Id]                                VARCHAR (18)                                NOT NULL,
+    [Id]                                NVARCHAR (18)                               NOT NULL,
     [InvoiceDetailsCost]                DECIMAL (32, 16)                            NULL,
     [InvoiceDetailsRevenue]             DECIMAL (32, 16)                            NULL,
     [InvoiceDetailsSubTotal]            DECIMAL (32, 16)                            NULL,
@@ -88,6 +88,8 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[MaterialHandlingInvoiceHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 

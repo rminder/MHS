@@ -1,8 +1,9 @@
-﻿CREATE VIEW SF.vwServiceMaxServiceOrderLine
+﻿
+CREATE VIEW [SF].[vwServiceMaxServiceOrderLine]
 AS
 SELECT
 	[RowId]
-   ,[Id]
+   ,CAST([Id] AS NVARCHAR(18))	AS Id
    ,[IsDeleted]
    ,[Name]
    ,[RecordTypeId]

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-ServiceMaxServiceGroup"
   DTS:PackageType="5"
-  DTS:VersionBuild="254"
-  DTS:VersionGUID="{24564739-B6AB-411B-A817-FFAC5227ADD3}">
+  DTS:VersionBuild="255"
+  DTS:VersionGUID="{7A2DDCCC-E45A-4998-9773-1E61213AA189}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -1883,15 +1883,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="LastReferencedDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Active__c]"
-                      dataType="ui1"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Active__c]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Active__c]"
-                      name="SVMXC__Active__c"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -1952,24 +1943,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="GroupType"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Latitude__c]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Latitude__c]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Latitude__c]"
-                      name="SVMXC__Latitude__c"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Longitude__c]"
-                      dataType="r8"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Longitude__c]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Longitude__c]"
-                      name="SVMXC__Longitude__c"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -1978,15 +1951,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       length="40"
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
                       name="Phone"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Select__c]"
-                      dataType="ui1"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Select__c]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[SVMXC__Select__c]"
-                      name="SVMXC__Select__c"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
@@ -2076,6 +2040,42 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImportDate]"
                       name="ImportDate"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      name="IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]"
+                      name="Latitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]"
+                      name="Longitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Select]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Select]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Select]"
+                      name="Select"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2148,10 +2148,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       dataType="dbTimeStamp"
                       name="LastReferencedDate" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Active__c]"
-                      dataType="ui1"
-                      name="SVMXC__Active__c" />
-                    <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
                       dataType="wstr"
                       length="100"
@@ -2182,22 +2178,10 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       length="255"
                       name="GroupType" />
                     <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Latitude__c]"
-                      dataType="r8"
-                      name="SVMXC__Latitude__c" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Longitude__c]"
-                      dataType="r8"
-                      name="SVMXC__Longitude__c" />
-                    <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
                       dataType="wstr"
                       length="40"
                       name="Phone" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SVMXC__Select__c]"
-                      dataType="ui1"
-                      name="SVMXC__Select__c" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[State]"
                       dataType="wstr"
@@ -2241,6 +2225,22 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ImportDate]"
                       dataType="dbTimeStamp"
                       name="ImportDate" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      dataType="ui1"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                      dataType="r8"
+                      name="Latitude" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                      dataType="r8"
+                      name="Longitude" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Select]"
+                      dataType="ui1"
+                      name="Select" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2320,10 +2320,10 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LastReferencedDate]"
                       name="LastReferencedDate" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Active__c]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
                       dataType="ui1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Active__c]"
-                      name="SVMXC__Active__c" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      name="IsActive" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
                       dataType="wstr"
@@ -2361,15 +2361,15 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GroupType]"
                       name="GroupType" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Latitude__c]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Latitude]"
                       dataType="r8"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Latitude__c]"
-                      name="SVMXC__Latitude__c" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                      name="Latitude" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Longitude__c]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Longitude]"
                       dataType="r8"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Longitude__c]"
-                      name="SVMXC__Longitude__c" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                      name="Longitude" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
                       dataType="wstr"
@@ -2377,10 +2377,10 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
                       name="Phone" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Select__c]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Select]"
                       dataType="ui1"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SVMXC__Select__c]"
-                      name="SVMXC__Select__c" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Select]"
+                      name="Select" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[State]"
                       dataType="wstr"
@@ -3279,6 +3279,30 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                           name="IsIdentityColumn">false</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[IsActive]"
+                      cachedDataType="ui1"
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsActive]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[IsActive]" />
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Latitude]"
+                      cachedDataType="r8"
+                      cachedName="Latitude"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Latitude]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Latitude]" />
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Longitude]"
+                      cachedDataType="r8"
+                      cachedName="Longitude"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Longitude]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Longitude]" />
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[Select]"
+                      cachedDataType="ui1"
+                      cachedName="Select"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[Select]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Select]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3312,8 +3336,9 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="RecordTypeId" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[CreatedDate]"
-                      dataType="dbTimeStamp"
-                      name="CreatedDate" />
+                      dataType="dbTimeStamp2"
+                      name="CreatedDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[CreatedById]"
                       dataType="wstr"
@@ -3321,8 +3346,9 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="CreatedById" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastModifiedDate]"
-                      dataType="dbTimeStamp"
-                      name="LastModifiedDate" />
+                      dataType="dbTimeStamp2"
+                      name="LastModifiedDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastModifiedById]"
                       dataType="wstr"
@@ -3330,20 +3356,24 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="LastModifiedById" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[SystemModStamp]"
-                      dataType="dbTimeStamp"
-                      name="SystemModStamp" />
+                      dataType="dbTimeStamp2"
+                      name="SystemModStamp"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastActivityDate]"
-                      dataType="dbTimeStamp"
-                      name="LastActivityDate" />
+                      dataType="dbTimeStamp2"
+                      name="LastActivityDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastViewedDate]"
-                      dataType="dbTimeStamp"
-                      name="LastViewedDate" />
+                      dataType="dbTimeStamp2"
+                      name="LastViewedDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastReferencedDate]"
-                      dataType="dbTimeStamp"
-                      name="LastReferencedDate" />
+                      dataType="dbTimeStamp2"
+                      name="LastReferencedDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[IsActive]"
                       dataType="ui1"
@@ -3446,20 +3476,24 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="OptimizerConnectionName" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[LastUpdate]"
-                      dataType="dbTimeStamp"
-                      name="LastUpdate" />
+                      dataType="dbTimeStamp2"
+                      name="LastUpdate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ImportDate]"
-                      dataType="dbTimeStamp"
-                      name="ImportDate" />
+                      dataType="dbTimeStamp2"
+                      name="ImportDate"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidFrom]"
-                      dataType="dbTimeStamp"
-                      name="ValidFrom" />
+                      dataType="dbTimeStamp2"
+                      name="ValidFrom"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[ValidTo]"
-                      dataType="dbTimeStamp"
-                      name="ValidTo" />
+                      dataType="dbTimeStamp2"
+                      name="ValidTo"
+                      scale="7" />
                   </externalMetadataColumns>
                 </input>
               </inputs>

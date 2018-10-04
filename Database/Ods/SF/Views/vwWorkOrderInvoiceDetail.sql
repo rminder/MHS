@@ -1,4 +1,6 @@
-﻿CREATE VIEW [SF].[vwWorkOrderInvoiceDetail]
+﻿
+
+CREATE VIEW [SF].[vwWorkOrderInvoiceDetail]
 AS
 WITH WorkOrder
 AS
@@ -31,11 +33,11 @@ AS
 	   ,L.CreatedDate			  AS WorkOrderLineCreatedDate
 	   ,L.Id					  AS WorkOrderLineIdW
 	FROM SF.ServiceMaxServiceOrder					  W
-		INNER JOIN SF.[User]						  U1 ON W.SalespersonWorkOrder	  = U1.Id
-		INNER JOIN SF.[User]						  U2 ON W.Salesperson2ndWorkOrder = U2.Id
-		INNER JOIN SF.ServiceMaxServiceGroupMembers	  G ON W.ServiceMaxGroupMember	  = G.Id
-		INNER JOIN SF.Account						  A ON W.ServiceMaxCompany		  = A.Id
-		INNER JOIN SF.ServiceMaxSite				  S ON W.Location				  = S.Id
+		LEFT JOIN SF.[User]						  U1 ON W.SalespersonWorkOrder	  = U1.Id
+		LEFT JOIN SF.[User]						  U2 ON W.Salesperson2ndWorkOrder = U2.Id
+		LEFT JOIN SF.ServiceMaxServiceGroupMembers	  G ON W.ServiceMaxGroupMember	  = G.Id
+		LEFT JOIN SF.Account						  A ON W.ServiceMaxCompany		  = A.Id
+		LEFT JOIN SF.ServiceMaxSite				  S ON W.Location				  = S.Id
 		LEFT OUTER JOIN SF.ServiceMaxServiceOrderLine L ON L.ServiceOrder			  = W.Id
 )
 ,Invoice
@@ -54,6 +56,7 @@ AS
 	   ,I.Segment		 AS InvoiceSegment
 	   ,I.SlInvoiceDate	 AS InvoiceSlInvoiceDate
 	   ,I.WorkOrderType	 AS InvoiceWorkOrderType
+	   ,I.WorkOrder		 AS WorkOrderId
 	   ,D.CreatedDate	 AS InvoiceDetailCreatedDate
 	   ,D.Name			 AS InvoiceDetailname
 	   ,D.LineType		 AS InvoiceDetailLineType
@@ -64,26 +67,43 @@ AS
 	   ,D.SalesTax		 AS InvoiceDetailSalesTax
 	   ,D.WorkDetail	 AS WorkOrderLineId
 	FROM SF.MaterialHandlingInvoice						 I
-		INNER JOIN SF.Account							 A ON I.Account	 = A.Id
-		INNER JOIN SF.ServiceMaxSite					 S ON I.Location = S.Id
+		LEFT JOIN SF.Account							 A ON I.Account	 = A.Id
+		LEFT JOIN SF.ServiceMaxSite					 S ON I.Location = S.Id
 		LEFT OUTER JOIN SF.MaterialHandlingInvoiceDetail D ON D.Invoice	 = I.Id
 )
 SELECT
-	WorkOrder.WorkOrderId
-   ,WorkOrder.WorkOrderName
-   ,WorkOrder.WorkOrderCreatedDate
-   ,WorkOrder.Salesperson2ndWorkOrderID
-   ,WorkOrder.Salesperson2ndWorkOrderName
-   ,WorkOrder.SalespersonWorkOrderId
-   ,WorkOrder.SalespersonWorkOrderName
-   ,WorkOrder.WorkOrderServiceMaxGroupMemberId
-   ,WorkOrder.WorkOrderServiceMaxGroupMemberName
-   ,WorkOrder.WorkOrderStatus
-   ,WorkOrder.WorkOrderType
-   ,WorkOrder.WorkOrderSite
-   ,WorkOrder.WorkOrderLocationName
-   ,WorkOrder.WorkOrderCompanyId
-   ,WorkOrder.WorkOrderCompanyName
+	CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderId FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderId END AS WorkOrderId
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderName END AS WorkOrderName
+ --,CASE WHEN WorkOrder.WorkOrderName IS NULL THEN (SELECT O.Name FROM SF.ServiceMaxServiceOrder O 
+	--	WHERE  O.Id = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderName END AS WorkOrderName
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderCreatedDate FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderCreatedDate END AS WorkOrderCreatedDate
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.Salesperson2ndWorkOrderID FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.Salesperson2ndWorkOrderID END AS Salesperson2ndWorkOrderID
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.Salesperson2ndWorkOrderName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.Salesperson2ndWorkOrderName END AS Salesperson2ndWorkOrderName
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.SalespersonWorkOrderID FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.SalespersonWorkOrderID END AS SalespersonWorkOrderID
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.SalespersonWorkOrderName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.SalespersonWorkOrderName END AS SalespersonWorkOrderName
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderServiceMaxGroupMemberId FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderServiceMaxGroupMemberId END AS WorkOrderServiceMaxGroupMemberId
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderServiceMaxGroupMemberName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderServiceMaxGroupMemberName END AS WorkOrderServiceMaxGroupMemberName
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderStatus FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderStatus END AS WorkOrderStatus
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderType FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderType END AS WorkOrderType
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderSite FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderSite END AS WorkOrderSite
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderLocationName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderLocationName END AS WorkOrderLocationName
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderCompanyId FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderCompanyId END AS WorkOrderCompanyId
+   ,CASE WHEN WorkOrder.WorkOrderId IS NULL THEN (SELECT TOP 1 O.WorkOrderCompanyName FROM WorkOrder O 
+		WHERE  O.WorkOrderId = Invoice.WorkOrderId ) ELSE WorkOrder.WorkOrderCompanyName END AS WorkOrderCompanyName
    ,WorkOrder.WorkOrderLineName
    ,WorkOrder.WorkOrderLineActivityType
    ,WorkOrder.WorkOrderLineType
@@ -117,7 +137,9 @@ SELECT
    ,Invoice.InvoiceDetailSalesTax
    ,Invoice.WorkOrderLineId
 FROM WorkOrder
-	FULL OUTER JOIN Invoice ON WorkOrder.WorkOrderLineIdW = Invoice.WorkOrderLineId;
+	FULL OUTER JOIN Invoice ON WorkOrder.WorkOrderLineIdW = Invoice.WorkOrderLineId 
+	--WHERE Invoice.InvoiceName = 'IN-0272169'
+	;
 GO
 GRANT SELECT
     ON OBJECT::[SF].[vwWorkOrderInvoiceDetail] TO [OdsUser]

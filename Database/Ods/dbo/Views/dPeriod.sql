@@ -1,8 +1,7 @@
-﻿
-CREATE VIEW [dbo].[dPeriod]
+﻿CREATE VIEW [dbo].[dPeriod]
 AS
 SELECT        CONVERT(datetime, DateValue) AS TheDate, YearNumber, YearQuarterNumber AS QuarterNumber, 'Q' + CONVERT(varchar(2), YearQuarterNumber) AS QuarterName, MonthName, YearMonthNumber AS MonthNumber, 
-                         WeekDayNumber AS DateNumber, DayName AS 'DateName', YearNumber AS YearName, RIGHT('0' + CONVERT(varchar(2), YearMonthNumber), 2) + '-' + CONVERT(varchar(4), YearNumber) AS 'Period'
+                         WeekDayNumber AS DateNumber, CONVERT(VARCHAR(10), CAST(DATEVALUE AS DATETIME), 101) AS 'DateName', YearNumber AS YearName, RIGHT('0' + CONVERT(varchar(2), YearMonthNumber), 2) + '-' + CONVERT(varchar(4), YearNumber) AS 'Period'
 FROM            dbo.DimDate
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'dPeriod';

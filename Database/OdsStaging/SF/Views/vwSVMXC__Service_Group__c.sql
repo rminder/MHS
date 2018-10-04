@@ -1,4 +1,5 @@
-﻿CREATE VIEW SF.vwSVMXC__Service_Group__c
+﻿
+CREATE VIEW [SF].[vwSVMXC__Service_Group__c]
 AS
 SELECT
 	[Id]
@@ -14,17 +15,17 @@ SELECT
    ,[LastActivityDate]
    ,[LastViewedDate]
    ,[LastReferencedDate]
-   ,[SVMXC__Active__c]
+   ,[SVMXC__Active__c]								  AS IsActive
    ,ISNULL([SVMXC__City__c], '')					  AS City
    ,ISNULL([SVMXC__Country__c], '')					  AS Country
    ,ISNULL([SVMXC__Description__c], '')				  AS Description
    ,ISNULL([SVMXC__Email__c], '')					  AS Email
    ,ISNULL([SVMXC__Group_Code__c], '')				  AS GroupCode
    ,ISNULL([SVMXC__Group_Type__c], '')				  AS GroupType
-   ,[SVMXC__Latitude__c]
-   ,[SVMXC__Longitude__c]
+   ,[SVMXC__Latitude__c]							  AS Latitude
+   ,[SVMXC__Longitude__c]							  AS Longitude
    ,ISNULL([SVMXC__Phone__c], '')					  AS Phone
-   ,[SVMXC__Select__c]
+   ,[SVMXC__Select__c]								  AS [Select]
    ,ISNULL([SVMXC__State__c], '')					  AS State
    ,ISNULL([SVMXC__Street__c], '')					  AS Street
    ,ISNULL([SVMXC__Zip__c], '')						  AS Zip
