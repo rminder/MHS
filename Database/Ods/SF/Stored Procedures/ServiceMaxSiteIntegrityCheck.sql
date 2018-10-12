@@ -23,7 +23,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.SVMXC__Site__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-ServiceMaxSite', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -68,8 +68,8 @@ BEGIN
 		   ,T.InventoryAccount
 		   ,T.IsPartnerRecord
 		   ,T.IsPartner
-		   ,ROUND(T.Latitude, 6)			AS Latitude
-		   ,ROUND(T.Longitude, 6)			AS Longitude
+		   ,ROUND(T.Latitude, 7)			AS Latitude
+		   ,ROUND(T.Longitude, 7)			AS Longitude
 		   ,T.PartnerAccount
 		   ,T.PartnerContact
 		   ,T.ServiceEngineer
@@ -91,35 +91,35 @@ BEGIN
 		   ,T.[MassSlLocationId]
 		   ,T.Contact
 		   ,T.LocationEstablished
-		   ,ROUND(T.LaborPMRateDDM, 3)		AS LaborPMRateDDM
-		   ,ROUND(T.LaborPMRateMHE, 3)		AS LaborPMRateMHE
+		   ,ROUND(T.LaborPMRateDDM, 4)		AS LaborPMRateDDM
+		   ,ROUND(T.LaborPMRateMHE, 4)		AS LaborPMRateMHE
 		   ,T.MergerAcquisition
 		   ,T.BusinessUnit
 		   ,T.Priority
-		   ,ROUND(T.OpenWorkOrders, 3)		AS OpenWorkOrders
+		   ,ROUND(T.OpenWorkOrders, 4)		AS OpenWorkOrders
 		   ,T.TerritoryId
-		   ,ROUND(T.TravelTime, 3)			AS TravelTime
+		   ,ROUND(T.TravelTime, 4)			AS TravelTime
 		   ,T.Organization
 		   ,T.Ar
-		   ,ROUND(T.NteThreshold, 3)		AS NteThreshold
+		   ,ROUND(T.NteThreshold, 4)		AS NteThreshold
 		   ,T.SuperCenter
 		   ,T.Segment
-		   ,ROUND(T.LaborRateStandard, 3)	AS LaborRateStandard
-		   ,ROUND(T.LaborRatePremium, 3)	AS LaborRatePremium
-		   ,ROUND(T.LaborRateTwoMan, 3)		AS LaborRateTwoMan
+		   ,ROUND(T.LaborRateStandard, 4)	AS LaborRateStandard
+		   ,ROUND(T.LaborRatePremium, 4)	AS LaborRatePremium
+		   ,ROUND(T.LaborRateTwoMan, 4)		AS LaborRateTwoMan
 		   ,T.CustomerPo
 		   ,T.Contact2
 		   ,T.Contact3
 		   ,T.Contact4
 		   ,T.SiteMobile
-		   ,ROUND(T.LaborStandardDDM, 3)	AS LaborStandardDDM
-		   ,ROUND(T.LaborStandardMHE, 3)	AS LaborStandardMHE
-		   ,ROUND(T.Labor2ManDDM, 3)		AS Labor2ManDDM
-		   ,ROUND(T.Labor2ManMHE, 3)		AS Labor2ManMHE
-		   ,ROUND(T.LaborOTDDMDDM, 3)		AS LaborOTDDMDDM
-		   ,ROUND(T.LaborOTMHEMHE, 3)		AS LaborOTMHEMHE
-		   ,ROUND(T.LaborDTDDMDDM, 3)		AS LaborDTDDMDDM
-		   ,ROUND(T.LaborDTMHEMHE, 3)		LaborDTMHEMHE
+		   ,ROUND(T.LaborStandardDDM, 4)	AS LaborStandardDDM
+		   ,ROUND(T.LaborStandardMHE, 4)	AS LaborStandardMHE
+		   ,ROUND(T.Labor2ManDDM, 4)		AS Labor2ManDDM
+		   ,ROUND(T.Labor2ManMHE, 4)		AS Labor2ManMHE
+		   ,ROUND(T.LaborOTDDMDDM, 4)		AS LaborOTDDMDDM
+		   ,ROUND(T.LaborOTMHEMHE, 4)		AS LaborOTMHEMHE
+		   ,ROUND(T.LaborDTDDMDDM, 4)		AS LaborDTDDMDDM
+		   ,ROUND(T.LaborDTMHEMHE, 4)		LaborDTMHEMHE
 		   ,T.CopyAddress
 		   ,T.BillingCity
 		   ,T.BillingStateProvince
@@ -127,7 +127,6 @@ BEGIN
 		   ,T.BillingStreet
 		   ,T.CallType
 		   ,T.AccountCreditHold
-		   ,T.TESTDATADONOTUSE
 		   ,T.Chain
 		   ,T.LocationSalesPerson
 		   ,T.Company
@@ -137,33 +136,33 @@ BEGIN
 		   ,T.SalesPersons
 		   ,T.DocumentNumberLoc
 		   ,T.SalesPerson2ndLoc
-		   ,ROUND(T.PmFrequencyMeter, 3)	AS PmFrequencyMeter
+		   ,ROUND(T.PmFrequencyMeter, 4)	AS PmFrequencyMeter
 		   ,T.PmFrequencyTime
 		   ,T.AssetManagementBillingDate
-		   ,ROUND(T.AssetManagementFees, 3) AS AssetManagementFees
+		   ,ROUND(T.AssetManagementFees, 4) AS AssetManagementFees
 		   ,T.StaticDocumentNumber
 		   ,T.InvoiceDocumentDate
-		   ,ROUND(T.Retainage, 3)			AS Retainage
+		   ,ROUND(T.Retainage, 4)			AS Retainage
 		   ,T.InvoiceDueDate
 		   ,T.RequiresDepartmentRecord
 		   ,T.DrawDate
-		   ,ROUND(T.CongaTemplate, 3)		AS CongaTemplate
+		   ,ROUND(T.CongaTemplate, 4)		AS CongaTemplate
 		   ,T.CongaCase
 		   ,T.PreferredBusinessHours
-		   ,ROUND(T.RecurringRentalFees, 3) AS RecurringRentalFees
+		   ,ROUND(T.RecurringRentalFees, 4) AS RecurringRentalFees
 		   ,T.CongaPostToPeriod
 		   ,T.CongaTFSInvoiceQueryStringField
 		   ,T.CongaTFSInvoiceQueryStringField1
 		   ,T.CongaTFSInvoiceQueryStringField2
 		   ,T.Conga1P2P
 		   ,T.CongaMonth
-		   ,ROUND(T.LocationCount, 3)		AS LocationCount
+		   ,ROUND(T.LocationCount, 4)		AS LocationCount
 		   ,T.LastUpdate
 		FROM ODS.SF.vwServiceMaxSite T
 			INNER JOIN CommonRows	 T2 ON T2.Id = T.Id
 		EXCEPT
 		SELECT
-			T.[Id]
+			CAST(T.[Id] AS VARCHAR(18))		AS Id
 		   ,T.OwnerId
 		   ,T.IsDeleted
 		   ,T.Name
@@ -184,8 +183,8 @@ BEGIN
 		   ,T.InventoryAccount
 		   ,T.IsPartnerRecord
 		   ,T.IsPartner
-		   ,ROUND(T.Latitude, 6)			AS Latitude
-		   ,ROUND(T.Longitude, 6)			AS Longitude
+		   ,ROUND(T.Latitude, 7)			AS Latitude
+		   ,ROUND(T.Longitude, 7)			AS Longitude
 		   ,T.PartnerAccount
 		   ,T.PartnerContact
 		   ,T.ServiceEngineer
@@ -207,35 +206,35 @@ BEGIN
 		   ,T.[MassSLLocationId]
 		   ,T.Contact
 		   ,T.LocationEstablished
-		   ,ROUND(T.LaborPMRateDDM, 3)		AS LaborPMRateDDM
-		   ,ROUND(T.LaborPMRateMHE, 3)		AS LaborPMRateMHE
+		   ,ROUND(T.LaborPMRateDDM, 4)		AS LaborPMRateDDM
+		   ,ROUND(T.LaborPMRateMHE, 4)		AS LaborPMRateMHE
 		   ,T.MergerAcquisition
 		   ,T.BusinessUnit
 		   ,T.Priority
-		   ,ROUND(T.OpenWorkOrders, 3)		AS OpenWorkOrders
+		   ,ROUND(T.OpenWorkOrders, 4)		AS OpenWorkOrders
 		   ,T.TerritoryId
-		   ,ROUND(T.TravelTime, 3)			AS TravelTime
+		   ,ROUND(T.TravelTime, 4)			AS TravelTime
 		   ,T.Organization
 		   ,T.Ar
-		   ,ROUND(T.NteThreshold, 3)		AS NteThreshold
+		   ,ROUND(T.NteThreshold, 4)		AS NteThreshold
 		   ,T.SuperCenter
 		   ,T.Segment
-		   ,ROUND(T.LaborRateStandard, 3)	AS LaborRateStandard
-		   ,ROUND(T.LaborRatePremium, 3)	AS LaborRatePremium
-		   ,ROUND(T.LaborRateTwoMan, 3)		AS LaborRateTwoMan
+		   ,ROUND(T.LaborRateStandard, 4)	AS LaborRateStandard
+		   ,ROUND(T.LaborRatePremium, 4)	AS LaborRatePremium
+		   ,ROUND(T.LaborRateTwoMan, 4)		AS LaborRateTwoMan
 		   ,T.CustomerPO
 		   ,T.Contact2
 		   ,T.Contact3
 		   ,T.Contact4
 		   ,T.SiteMobile
-		   ,ROUND(T.LaborStandardDDM, 3)	AS LaborStandardDDM
-		   ,ROUND(T.LaborStandardMHE, 3)	AS LaborStandardMHE
-		   ,ROUND(T.Labor2ManDDM, 3)		AS Labor2ManDDM
-		   ,ROUND(T.Labor2ManMHE, 3)		AS Labor2ManMHE
-		   ,ROUND(T.LaborOTDDMDDM, 3)		AS LaborOTDDMDDM
-		   ,ROUND(T.LaborOTMHEMHE, 3)		AS LaborOTMHEMHE
-		   ,ROUND(T.LaborDTDDMDDM, 3)		AS LaborDTDDMDDM
-		   ,ROUND(T.LaborDTMHEMHE, 3)		LaborDTMHEMHE
+		   ,ROUND(T.LaborStandardDDM, 4)	AS LaborStandardDDM
+		   ,ROUND(T.LaborStandardMHE, 4)	AS LaborStandardMHE
+		   ,ROUND(T.Labor2ManDDM, 4)		AS Labor2ManDDM
+		   ,ROUND(T.Labor2ManMHE, 4)		AS Labor2ManMHE
+		   ,ROUND(T.LaborOTDDMDDM, 4)		AS LaborOTDDMDDM
+		   ,ROUND(T.LaborOTMHEMHE, 4)		AS LaborOTMHEMHE
+		   ,ROUND(T.LaborDTDDMDDM, 4)		AS LaborDTDDMDDM
+		   ,ROUND(T.LaborDTMHEMHE, 4)		LaborDTMHEMHE
 		   ,T.CopyAddress
 		   ,T.BillingCity
 		   ,T.BillingStateProvince
@@ -243,7 +242,6 @@ BEGIN
 		   ,T.BillingStreet
 		   ,T.CallType
 		   ,T.AccountCreditHold
-		   ,T.TESTDATADONOTUSE
 		   ,T.Chain
 		   ,T.LocationSalesPerson
 		   ,T.Company
@@ -253,27 +251,27 @@ BEGIN
 		   ,T.SalesPersons
 		   ,T.DocumentNumberLoc
 		   ,T.Salesperson2ndLoc
-		   ,ROUND(T.PmFrequencyMeter, 3)	AS PmFrequencyMeter
+		   ,ROUND(T.PmFrequencyMeter, 4)	AS PmFrequencyMeter
 		   ,T.PmFrequencyTime
 		   ,T.AssetManagementBillingDate
-		   ,ROUND(T.AssetManagementFees, 3) AS AssetManagementFees
+		   ,ROUND(T.AssetManagementFees, 4) AS AssetManagementFees
 		   ,T.StaticDocumentNumber
 		   ,T.InvoiceDocumentDate
-		   ,ROUND(T.Retainage, 3)			AS Retainage
+		   ,ROUND(T.Retainage, 4)			AS Retainage
 		   ,T.InvoiceDueDate
 		   ,T.RequiresDepartmentRecord
 		   ,T.DrawDate
-		   ,ROUND(T.CongaTemplate, 3)		AS CongaTemplate
+		   ,ROUND(T.CongaTemplate, 4)		AS CongaTemplate
 		   ,T.CongaCase
 		   ,T.PreferredBusinessHours
-		   ,ROUND(T.RecurringRentalFees, 3) AS RecurringRentalFees
+		   ,ROUND(T.RecurringRentalFees, 4) AS RecurringRentalFees
 		   ,T.CongaPostToPeriod
 		   ,T.CongaTFSInvoiceQueryStringField
 		   ,T.CongaTFSInvoiceQueryStringField1
 		   ,T.CongaTFSInvoiceQueryStringField2
 		   ,T.Conga1P2P
 		   ,T.CongaMonth
-		   ,ROUND(T.LocationCount, 3)		AS LocationCount
+		   ,ROUND(T.LocationCount, 4)		AS LocationCount
 		   ,T.LastUpdate
 		FROM ODSStaging.SF.vwSVMXC__Site__c T
 			INNER JOIN CommonRows			T2 ON T2.Id = T.Id
@@ -285,13 +283,12 @@ BEGIN
 	-- yet.
 	SELECT
 		T.Id
-	   ,T2.LastModifiedDate AS SfLastModifiedDate
-	   ,T3.LastModifiedDate AS OdsLastModifiedDate
+	   ,T2.LastModifiedDate AS SFLastModifiedDate
+	   ,T.LastModifiedDate	AS OdsLastModifiedDate
 	INTO #TempTable
 	FROM RowDifferences							  T
-		INNER JOIN ODSStaging.SF.MH_Invoice__c	  T2 ON T.Id = T2.Id
-		INNER JOIN ODS.SF.MaterialHandlingInvoice T3 ON T.Id = T3.Id
-	WHERE T2.LastModifiedDate <= T3.LastModifiedDate;
+		INNER JOIN ODSStaging.SF.vwSVMXC__Site__c T2 WITH (FORCESEEK) ON T.Id = T2.Id
+	WHERE T2.LastModifiedDate <= T.LastModifiedDate;
 
 	-- If there are differences, store them in the dbo.DataIntegrity table
 	IF @@ROWCOUNT > 0

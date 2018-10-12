@@ -56,7 +56,7 @@
     [Ar]                               VARCHAR (MAX)    NOT NULL,
     [NteThreshold]                     DECIMAL (32, 16) NULL,
     [SuperCenter]                      VARCHAR (255)    NOT NULL,
-    [Segment]                          VARCHAR (255)    NOT NULL,
+    [Segment]                          NVARCHAR (255)   NOT NULL,
     [LaborRateStandard]                DECIMAL (32, 16) NULL,
     [LaborRatePremium]                 DECIMAL (32, 16) NULL,
     [LaborRateTwoMan]                  DECIMAL (32, 16) NULL,
@@ -116,6 +116,8 @@
     [ValidFrom]                        DATETIME2 (7)    NOT NULL,
     [ValidTo]                          DATETIME2 (7)    NOT NULL
 );
+
+
 
 
 GO

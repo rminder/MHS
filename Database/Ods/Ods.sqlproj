@@ -303,11 +303,9 @@
     <Build Include="SL\Stored Procedures\AccountIntegrityCheck.sql" />
     <Build Include="SL\Stored Procedures\AccountHistoryIntegrityCheck.sql" />
     <Build Include="Pay\Tables\WebPayHistory.sql" />
-    <Build Include="Pay\Tables\WebPay.sql" />
     <Build Include="Pay\Tables\AccrualBalanceHistory.sql" />
     <Build Include="Pay\Tables\AccrualBalance.sql" />
     <Build Include="Pay\Tables\Company.sql" />
-    <Build Include="Pay\Views\vwWebPay.sql" />
     <Build Include="Pay\Views\vwAccrualBalance.sql" />
     <Build Include="Pay\Views\vwCompany.sql" />
     <Build Include="SL\Stored Procedures\VendorIntegrityCheck.sql" />
@@ -329,6 +327,14 @@
     <Build Include="SF\Stored Procedures\Product2IntegrityCheck.sql" />
     <Build Include="SF\Stored Procedures\NoteIntegrityCheck.sql" />
     <Build Include="SF\Stored Procedures\MaterialHandlingInvoiceDetailIntegrityCheck.sql" />
+    <Build Include="Pay\Tables\WebTimeHistory.sql" />
+    <Build Include="Pay\Tables\WebTime.sql" />
+    <Build Include="Pay\Tables\ImportLog.sql" />
+    <Build Include="SF\Views\vwWorkOrderInvoice.sql" />
+    <Build Include="Pay\Views\vwWebTime.sql" />
+    <Build Include="Pay\Views\TechPayrollHours.sql" />
+    <Build Include="SF\Stored Procedures\UserIntegrityCheck.sql" />
+    <Build Include="SF\Stored Procedures\SuperCenterIntegrityCheck.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />

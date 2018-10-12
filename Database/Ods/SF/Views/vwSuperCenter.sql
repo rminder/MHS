@@ -1,10 +1,10 @@
-﻿CREATE VIEW SF.vwSuperCenter
+﻿CREATE VIEW [SF].[vwSuperCenter]
 AS
 SELECT
 	[RowId]
    ,[Id]
    ,[OwnerId]
-   ,[IsDeleted]
+   ,IIF([IsDeleted] = 255, 1, [IsDeleted]) AS [IsDeleted]
    ,[Name]
    ,[CreatedDate]
    ,[CreatedById]

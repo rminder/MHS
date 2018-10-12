@@ -23,7 +23,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.SVMXC__Service_Group_Members__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-ServiceMaxServiceGroupMembers', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -48,7 +48,6 @@ BEGIN
 	(
 		SELECT
 			T.[Id]
-		   --,T.IsDeleted
 		   ,T.Name
 		   ,T.CreatedDate
 		   ,T.CreatedById
@@ -102,7 +101,6 @@ BEGIN
 		EXCEPT
 		SELECT
 			CAST(T.[Id] AS VARCHAR(18)) AS Id
-		   --,T.IsDeleted
 		   ,CAST(T.Name AS VARCHAR(80)) AS Name
 		   ,T.CreatedDate
 		   ,T.CreatedById

@@ -1,12 +1,12 @@
-﻿CREATE VIEW SF.vwNote
+﻿CREATE VIEW [SF].[vwNote]
 AS
 SELECT
 	[RowId]
    ,[Id]
-   ,[IsDeleted]
+   ,IIF([IsDeleted] = 255, 1, [IsDeleted]) AS [IsDeleted]
    ,[ParentId]
    ,[Title]
-   ,[IsPrivate]
+   ,IIF([IsPrivate] = 255, 1, [IsPrivate]) AS [IsPrivate]
    ,[Body]
    ,[OwnerId]
    ,[CreatedDate]

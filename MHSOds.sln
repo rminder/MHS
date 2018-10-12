@@ -13,6 +13,10 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DataIntegrity", "DataIntegr
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SL", "SL\SL.dtproj", "{93111E2D-87E2-4BE0-8204-BB969FDB0269}"
 EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Cubes", "Cubes\Cubes.dtproj", "{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "WebTime", "WebTime\WebTime.dtproj", "{AE1BE18E-27E6-4581-812D-1CDD22040E17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,18 @@ Global
 		{93111E2D-87E2-4BE0-8204-BB969FDB0269}.Development|Any CPU.Build.0 = Development
 		{93111E2D-87E2-4BE0-8204-BB969FDB0269}.Release|Any CPU.ActiveCfg = Development
 		{93111E2D-87E2-4BE0-8204-BB969FDB0269}.Release|Any CPU.Build.0 = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Debug|Any CPU.ActiveCfg = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Debug|Any CPU.Build.0 = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Development|Any CPU.ActiveCfg = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Development|Any CPU.Build.0 = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Release|Any CPU.ActiveCfg = Development
+		{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}.Release|Any CPU.Build.0 = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Debug|Any CPU.ActiveCfg = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Debug|Any CPU.Build.0 = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Development|Any CPU.ActiveCfg = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Development|Any CPU.Build.0 = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Release|Any CPU.ActiveCfg = Development
+		{AE1BE18E-27E6-4581-812D-1CDD22040E17}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

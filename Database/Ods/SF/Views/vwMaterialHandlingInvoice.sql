@@ -1,4 +1,4 @@
-﻿CREATE VIEW SF.vwMaterialHandlingInvoice
+﻿CREATE VIEW [SF].[vwMaterialHandlingInvoice]
 AS
 SELECT
 	[RowId]
@@ -23,7 +23,7 @@ SELECT
    ,[DateInvoiced]
    ,[EndDateAndTime]
    ,[FieldOffice]
-   ,[HideLine]
+   ,IIF([HideLine] = 255, 1, [HideLine]) AS [HideLine]
    ,[Id]
    ,[InvoiceDetailsCost]
    ,[InvoiceDetailsRevenue]
@@ -35,7 +35,7 @@ SELECT
    ,[InvoiceTotalFormula]
    ,[InvoiceTotalRollup]
    ,[InvoiceTotalRollup1]
-   ,[IsDeleted]
+   ,IIF([IsDeleted] = 255, 1, [IsDeleted]) AS IsDeleted
    ,[LaborTime]
    ,[LastActivityDate]
    ,[LastViewedDate]
@@ -73,7 +73,7 @@ SELECT
    ,[SystemModstamp]
    ,[TaxAdded]
    ,[TotalTax]
-   ,[Voucher]
+   ,IIF([Voucher] = 255, 1, [Voucher]) AS [Voucher]
    ,[VoucherRollupTotal]
    ,[WorkOrderLaborTotal]
    ,[WorkOrderType]
@@ -84,8 +84,6 @@ SELECT
    ,[WorkOrderDocumentNumber]
    ,[LastUpdate]
    ,[ImportDate]
-   ,[ValidFrom]
-   ,[ValidTo]
 FROM [SF].[MaterialHandlingInvoice];
 GO
 GRANT SELECT

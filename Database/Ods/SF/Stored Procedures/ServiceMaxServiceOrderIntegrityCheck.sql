@@ -23,7 +23,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.SVMXC__Service_Order__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-ServiceMaxServiceOrder', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -206,7 +206,7 @@ BEGIN
 		   ,ROUND(T.ChangeOrderAmt4, 4)						   AS ChangeOrderAmt4
 		   ,T.SignatureName
 		   ,T.Companycode
-		   ,T.PartsNeededc
+		   ,T.PartsNeeded
 		   ,T.EstimatePartsNotes
 		   ,ROUND(T.WorkOrderMarginc2, 4)					   AS WorkOrderMarginc2
 		   ,ROUND(T.ContractTotal, 4)						   AS ContractTotal

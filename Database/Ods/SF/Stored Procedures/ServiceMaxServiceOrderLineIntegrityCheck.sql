@@ -23,7 +23,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.SVMXC__Service_Order_Line__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-ServiceMaxServiceOrderLine', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')

@@ -1,10 +1,10 @@
-﻿CREATE VIEW SF.vwServiceMaxServiceGroup
+﻿CREATE VIEW [SF].[vwServiceMaxServiceGroup]
 AS
 SELECT
 	[RowId]
    ,[Id]
    ,[OwnerId]
-   ,[IsDeleted]
+   ,IIF([IsDeleted] = 255, 1, [IsDeleted]) AS [IsDeleted]
    ,[Name]
    ,[RecordTypeId]
    ,[CreatedDate]
@@ -15,7 +15,7 @@ SELECT
    ,[LastActivityDate]
    ,[LastViewedDate]
    ,[LastReferencedDate]
-   ,[IsActive]
+   ,IIF([IsActive] = 255, 1, [IsActive]) AS [IsActive]
    ,[City]
    ,[Country]
    ,[Description]
@@ -25,7 +25,7 @@ SELECT
    ,[Latitude]
    ,[Longitude]
    ,[Phone]
-   ,[Select]
+   ,IIF([Select] = 255, 1, [Select]) AS [Select]
    ,[State]
    ,[Street]
    ,[Zip]

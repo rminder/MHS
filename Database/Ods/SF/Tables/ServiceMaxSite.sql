@@ -56,7 +56,7 @@
     [Ar]                               VARCHAR (MAX)                               NOT NULL,
     [NteThreshold]                     DECIMAL (32, 16)                            NULL,
     [SuperCenter]                      VARCHAR (255)                               NOT NULL,
-    [Segment]                          VARCHAR (255)                               NOT NULL,
+    [Segment]                          NVARCHAR (255)                              NOT NULL,
     [LaborRateStandard]                DECIMAL (32, 16)                            NULL,
     [LaborRatePremium]                 DECIMAL (32, 16)                            NULL,
     [LaborRateTwoMan]                  DECIMAL (32, 16)                            NULL,
@@ -119,6 +119,8 @@
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[ServiceMaxSiteHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 GO

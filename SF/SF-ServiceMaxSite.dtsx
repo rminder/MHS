@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="SF-ServiceMaxSite"
   DTS:PackageType="5"
-  DTS:VersionBuild="264"
-  DTS:VersionGUID="{0B7665B9-9F25-4EE2-8A7E-01838B2EFFAB}">
+  DTS:VersionBuild="265"
+  DTS:VersionGUID="{8F2E9E63-F738-4598-B55B-68F891410205}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -4705,16 +4705,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       name="Parent"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationIdId]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MassSLLocationIdId]"
-                      length="15"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationIdId]"
-                      name="MassSLLocationIdId"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[Contact]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -5370,6 +5360,16 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[CostedAtValue]"
                       name="CostedAtValue"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MassSLLocationId]"
+                      length="15"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationId]"
+                      name="MassSLLocationId"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -5571,11 +5571,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       dataType="wstr"
                       length="18"
                       name="Parent" />
-                    <externalMetadataColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MassSLLocationIdId]"
-                      dataType="wstr"
-                      length="15"
-                      name="MassSLLocationIdId" />
                     <externalMetadataColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Contact]"
                       dataType="wstr"
@@ -5887,6 +5882,11 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CostedAtValue]"
                       dataType="ui1"
                       name="CostedAtValue" />
+                    <externalMetadataColumn
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MassSLLocationId]"
+                      dataType="wstr"
+                      length="15"
+                      name="MassSLLocationId" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -6123,11 +6123,11 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                       lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Parent]"
                       name="Parent" />
                     <outputColumn
-                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MassSLLocationIdId]"
+                      refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MassSLLocationId]"
                       dataType="wstr"
                       length="15"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MassSLLocationIdId]"
-                      name="MassSLLocationIdId" />
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MassSLLocationId]"
+                      name="MassSLLocationId" />
                     <outputColumn
                       refId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Contact]"
                       dataType="wstr"
@@ -7556,28 +7556,6 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                           dataType="System.String"
                           description="Mapped Column for Destination"
                           name="DestinationColumn">Parent</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column A Key Column"
-                          name="IsKeyColumn">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Is Column An Identity Column"
-                          name="IsIdentityColumn">false</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[MassSLLocationIdId]"
-                      cachedDataType="wstr"
-                      cachedLength="15"
-                      cachedName="MassSLLocationIdId"
-                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[MassSlLocationId]"
-                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationIdId]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Mapped Column for Destination"
-                          name="DestinationColumn">MassSlLocationId</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"
@@ -9107,6 +9085,28 @@ WHERE LastModifiedDate &gt; &lt;@User::SourceLastUpdate&gt;</property>
                           dataType="System.String"
                           description="Mapped Column for Destination"
                           name="DestinationColumn">ImportDate</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].Columns[MassSLLocationId]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MassSLLocationId"
+                      externalMetadataColumnId="Package\Upsert Ods\TF Upsert Destination.Inputs[Input].ExternalColumns[MassSlLocationId]"
+                      lineageId="Package\Upsert Ods\OLE DB Source.Outputs[OLE DB Source Output].Columns[MassSLLocationId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">MassSlLocationId</property>
                         <property
                           dataType="System.Boolean"
                           description="Is Column A Key Column"

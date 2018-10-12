@@ -144,7 +144,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[SF].[ServiceMaxServiceOrderLineHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_ServiceMaxServiceOrderLine_Id]
     ON [SF].[ServiceMaxServiceOrderLine]([Id] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_ServiceMaxServiceOrderLine_ServiceOrder]
+    ON [SF].[ServiceMaxServiceOrderLine]([ServiceOrder] ASC);
 

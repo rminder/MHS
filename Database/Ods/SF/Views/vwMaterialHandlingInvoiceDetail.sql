@@ -1,9 +1,10 @@
-﻿CREATE VIEW SF.vwMaterialHandlingInvoiceDetail
+﻿
+CREATE VIEW [SF].[vwMaterialHandlingInvoiceDetail]
 AS
 SELECT
 	[RowId]
    ,[Id]
-   ,[IsDeleted]
+   ,IIF([IsDeleted] = 255, 1, [IsDeleted]) AS [IsDeleted]
    ,[Name]
    ,[RecordTypeId]
    ,[CreatedDate]
@@ -22,7 +23,7 @@ SELECT
    ,[LineQuantity]
    ,[SalesTax]
    ,[Invoice]
-   ,[AddToInvoice]
+   ,IIF([AddToInvoice] = 255, 1, [AddToInvoice]) AS [AddToInvoice]
    ,[DateInvoiced]
    ,[ActivityType]
    ,[TotalLinePrice]
@@ -31,12 +32,12 @@ SELECT
    ,[InvoiceStatus]
    ,[WorkDescription]
    ,[UnitOfMeasure]
-   ,[HideLine]
+   ,IIF([HideLine] = 255, 1, [HideLine]) AS HideLine
    ,[TotalLinePriceFormula]
    ,[SortOrder]
    ,[DetailLineCost]
    ,[AccountVendorSlVendorId]
-   ,[InterfaceProcessed]
+   ,IIF([InterfaceProcessed] = 255, 1, [InterfaceProcessed]) AS [InterfaceProcessed]
    ,[AccountVendorSlCustomerId]
    ,[AccountVendorUnityAccountExternalId]
    ,[Product2PartUnityProductExternalId]

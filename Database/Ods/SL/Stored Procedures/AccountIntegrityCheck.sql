@@ -3,7 +3,7 @@
 -- Create date: 20-September, 2018
 -- Description:	Ods table data integrity check
 --
--- Exec [SL].[AccountHistoryIntegrityCheck]
+-- Exec [SL].[AccountIntegrityCheck]
 -- ===================================================
 CREATE PROCEDURE [SL].[AccountIntegrityCheck]
 AS

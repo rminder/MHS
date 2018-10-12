@@ -75,6 +75,7 @@
     <Folder Include="SF\Stored Procedures\" />
     <Folder Include="Pay\" />
     <Folder Include="Pay\Tables\" />
+    <Folder Include="Pay\Stored Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\LastUpdate.sql" />
@@ -241,5 +242,6 @@
     <Build Include="dbo\Tables\ARTran.sql" />
     <Build Include="Pay\Tables\WebTime.sql" />
     <Build Include="Security\Pay.sql" />
+    <Build Include="Pay\Stored Procedures\UpdateWebTime.sql" />
   </ItemGroup>
 </Project>

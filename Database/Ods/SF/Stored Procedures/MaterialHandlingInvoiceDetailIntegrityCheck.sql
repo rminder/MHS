@@ -24,7 +24,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.MH_Invoice_Details__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-MaterialHandlingInvoiceDetail', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -88,7 +88,6 @@ BEGIN
 		   ,T.AccountVendorUnityAccountExternalId
 		   ,T.Product2PartUnityProductExternalId
 		   ,T.LastUpdate
-		   ,T.ImportDate
 		FROM ODSStaging.SF.vwMH_Invoice_Details__c T
 			INNER JOIN CommonRows				   T2 ON T2.Id = T.Id
 		EXCEPT
@@ -132,7 +131,6 @@ BEGIN
 		   ,T.AccountVendorUnityAccountExternalId
 		   ,T.Product2PartUnityProductExternalId
 		   ,T.LastUpdate
-		   ,T.ImportDate
 		FROM ODS.SF.vwMaterialHandlingInvoiceDetail T
 			INNER JOIN CommonRows					T2 ON T2.Id = T.Id
 	)

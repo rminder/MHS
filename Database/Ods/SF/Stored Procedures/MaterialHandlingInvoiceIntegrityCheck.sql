@@ -24,7 +24,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.MH_Invoice__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-MaterialHandlingInvoice', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -64,7 +64,7 @@ BEGIN
 		   ,T.ConsumedFromLocation
 		   ,T.Contact
 		   ,T.ContactUnityExternalId
-		   --,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
 		   ,T.CustomerPo
 		   ,T.DateInvoiced
@@ -84,10 +84,10 @@ BEGIN
 		   ,ROUND(CAST(T.InvoiceTotalRollup1 AS FLOAT), 3)	  AS InvoiceTotalRollup1
 		   ,T.IsDeleted
 		   ,ROUND(CAST(T.LaborTime AS FLOAT), 3)			  AS LaborTime
-		   --,T.LastActivityDate
+		   ,T.LastActivityDate
 		   ,T.LastViewedDate
 		   ,T.LastModifiedById
-		   --,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.Location
 		   ,T.LocationAddress
 		   ,T.LocationCity
@@ -117,7 +117,7 @@ BEGIN
 		   ,ROUND(CAST(T.SubTotal AS FLOAT), 3)				  AS SubTotal
 		   ,T.Supercenter
 		   ,T.SupercenterFormula
-		   --,T.SystemModstamp
+		   ,T.SystemModstamp
 		   ,ROUND(CAST(T.TaxAdded AS FLOAT), 3)				  AS TaxAdded
 		   ,ROUND(CAST(T.TotalTax AS FLOAT), 3)				  AS TotalTax
 		   ,T.Voucher
@@ -129,7 +129,7 @@ BEGIN
 		   ,T.WorkDescription
 		   ,T.WorkOrder
 		   ,T.WorkOrderDocumentNumber
-		--,T.LastUpdate
+		   ,T.LastUpdate
 		FROM ODSStaging.SF.vwMH_Invoice_c T
 			INNER JOIN CommonRows		  T2 ON T2.Id = T.Id
 		EXCEPT
@@ -149,7 +149,7 @@ BEGIN
 		   ,T.ConsumedFromLocation
 		   ,T.Contact
 		   ,T.ContactUnityExternalId
-		   --,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
 		   ,T.CustomerPo
 		   ,T.DateInvoiced
@@ -169,10 +169,10 @@ BEGIN
 		   ,ROUND(T.InvoiceTotalRollup1, 3)	   AS InvoiceTotalRollup1
 		   ,T.IsDeleted
 		   ,ROUND(T.LaborTime, 3)			   AS LaborTime
-		   --,T.LastActivityDate
+		   ,T.LastActivityDate
 		   ,T.LastViewedDate
 		   ,T.LastModifiedById
-		   --,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.Location
 		   ,T.LocationAddress
 		   ,T.LocationCity
@@ -202,7 +202,7 @@ BEGIN
 		   ,ROUND(T.SubTotal, 3)			   AS SubTotal
 		   ,T.Supercenter
 		   ,T.SupercenterFormula
-		   --,T.SystemModstamp
+		   ,T.SystemModstamp
 		   ,ROUND(T.TaxAdded, 3)			   AS TaxAdded
 		   ,ROUND(T.TotalTax, 3)			   AS TotalTax
 		   ,T.Voucher
@@ -214,7 +214,7 @@ BEGIN
 		   ,T.WorkDescription
 		   ,T.WorkOrder
 		   ,T.WorkOrderDocumentNumber
-		--,T.LastUpdate
+		   ,T.LastUpdate
 		FROM ODS.SF.vwMaterialHandlingInvoice T
 			INNER JOIN CommonRows			  T2 ON T2.Id = T.Id
 	)

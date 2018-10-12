@@ -23,7 +23,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.Product2;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-Product2', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -93,7 +93,6 @@ BEGIN
 		   ,T.ServiceMaxProductType
 		   ,T.UnityIsStockable
 		   ,T.LastUpdate
-		   ,T.ImportDate
 		FROM ODSStaging.SF.vwProduct2 T
 			INNER JOIN CommonRows	  T2 ON T2.Id = T.Id
 		EXCEPT
@@ -143,7 +142,6 @@ BEGIN
 		   ,T.ServiceMaxProductType
 		   ,T.UnityIsStockable
 		   ,T.LastUpdate
-		   ,T.ImportDate
 		FROM ODS.SF.vwProduct2	  T
 			INNER JOIN CommonRows T2 ON T2.Id = T.Id
 	)

@@ -24,7 +24,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.Account;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-Account', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -83,12 +83,12 @@ BEGIN
 		   ,T.Description
 		   ,T.Site
 		   ,T.OwnerId
-		   --,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
-		   --,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.LastModifiedById
-		   --,T.SystemModstamp
-		   --,T.LastActivityDate
+		   ,T.SystemModstamp
+		   ,T.LastActivityDate
 		   ,T.LastViewedDate
 		   ,T.LastReferencedDate
 		   ,T.IsCustomerPortal
@@ -361,7 +361,7 @@ BEGIN
 		   ,T.UnityHasCommUnityMember
 		   ,T.UnityRecordTypeName
 		   ,T.UnityPmPin
-		   --,T.LastUpdate
+		   ,T.LastUpdate
 		FROM OdsStaging.SF.vwAccount	  T
 			INNER JOIN CommonRows T2 ON T2.Id = T.Id
 		EXCEPT
@@ -400,12 +400,12 @@ BEGIN
 		   ,T.Description
 		   ,T.Site
 		   ,T.OwnerId
-		   --,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
-		   --,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.LastModifiedById
-		   --,T.SystemModstamp
-		   --,T.LastActivityDate
+		   ,T.SystemModstamp
+		   ,T.LastActivityDate
 		   ,T.LastViewedDate
 		   ,T.LastReferencedDate
 		   ,T.IsCustomerPortal
@@ -592,7 +592,7 @@ BEGIN
 		   ,T.UnityHasPreferredPart
 		   ,T.UnityHoursOfOperationSummary
 		   ,T.UnityHoursOfOperation
-		   ,T.UnityIRS_ValIdated
+		   ,T.UnityIRSValidated
 		   ,T.UnityIvrPhoneNumber
 		   ,T.UnityIvrPin
 		   ,T.UnityInstallationFloaterLiability
@@ -605,7 +605,7 @@ BEGIN
 		   ,T.UnityOffHourQueue
 		   ,T.UnityPassword
 		   ,T.UnityPortalURL
-		   ,T.UnityPreferred_Vendor
+		   ,T.UnityPreferredVendor
 		   ,T.UnityRentedEquipmentLiabilityExpiry
 		   ,T.UnityRentedEquipmentLiability
 		   ,T.UnitySKillId2
@@ -616,7 +616,7 @@ BEGIN
 		   ,T.UnityServiceContract
 		   ,ROUND(T.UnityShippingLocationLatitude, 7)  AS UnityShippingLocationLatitude
 		   ,ROUND(T.UnityShippingLocationLongitude, 7) AS UnityShippingLocationLongitude
-		   ,T.UnitySignature_Required
+		   ,T.UnitySignatureRequired
 		   ,T.UnitySkillId
 		   ,T.UnitySubscriberId
 		   ,T.UnitySundayEndTime
@@ -678,7 +678,7 @@ BEGIN
 		   ,T.UnityHasCommUnityMember
 		   ,T.UnityRecordTypeName
 		   ,T.UnityPmPin
-		   --,T.LastUpdate
+		   ,T.LastUpdate
 		FROM Ods.SF.vwAccount T
 			INNER JOIN CommonRows	 T2 ON T2.Id = T.Id
 	)

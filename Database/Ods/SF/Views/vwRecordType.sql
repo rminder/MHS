@@ -1,4 +1,4 @@
-﻿CREATE VIEW SF.vwRecordType
+﻿CREATE VIEW [SF].[vwRecordType]
 AS
 SELECT
 	[RowId]
@@ -9,7 +9,7 @@ SELECT
    ,[Description]
    ,[BusinessProcessId]
    ,[SobjectType]
-   ,[IsActive]
+   ,IIF([IsActive] = 255, 1, [IsActive]) AS [IsActive]
    ,[CreatedById]
    ,[CreatedDate]
    ,[LastModifiedById]

@@ -24,7 +24,7 @@ BEGIN
 	SELECT @SLRowCount = COUNT(*)
 	FROM ODSStaging.SF.SVMXC__RMA_Shipment_Line__c;
 
-	IF (@OdsRowCount <> @SLRowCount)
+	IF (@OdsRowCount > @SLRowCount)
 		INSERT INTO dbo.DataIntegrity (TableName, Description, OdsRowCount, SourceRowCount, IntegrityViolation)
 		VALUES
 			 ('SF-ServiceMaxRmaShipmentLine', 'Row count mismatch', @OdsRowCount, @SLRowCount, '')
@@ -52,27 +52,27 @@ BEGIN
 		   ,T.IsDeleted
 		   ,T.Name
 		   ,T.RecordTypeId
-		   --      ,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
-		   --      ,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.LastModifiedById
-		   --      ,T.SystemModstamp
+		   ,T.SystemModstamp
 		   ,T.RmaShipmentOrder
-		   ,ROUND(CAST(T.ActualQuantity2 AS FLOAT), 3)						 AS ActualQuantity
+		   ,ROUND(CAST(T.ActualQuantity2 AS FLOAT), 3)						AS ActualQuantity
 		   ,T.ActualReceiptDate
 		   ,T.ActualShipDate
 		   ,T.CanceledBy
 		   ,T.CanceledOn
 		   ,T.ClosedBy
 		   ,T.ClosedOn
-		   ,ROUND(CAST(T.DiscountPercentage AS FLOAT), 3)					 AS DiscountPercentage
+		   ,ROUND(CAST(T.DiscountPercentage AS FLOAT), 3)					AS DiscountPercentage
 		   ,T.DispositionInstructions
 		   ,T.Disposition
 		   ,T.ExpectedCondition
-		   ,ROUND(CAST(T.ExpectedQuantity2 AS FLOAT), 3)					 AS ExpectedQuantity2
+		   ,ROUND(CAST(T.ExpectedQuantity2 AS FLOAT), 3)					AS ExpectedQuantity2
 		   ,T.ExpectedReceiptDate
 		   ,T.ExpectedShipDate
-		   ,ROUND(CAST(T.LinePrice2 AS FLOAT), 3)							 AS LinePrice2
+		   ,ROUND(CAST(T.LinePrice2 AS FLOAT), 3)							AS LinePrice2
 		   ,T.LineStatus
 		   ,T.LineType
 		   ,T.PackingInstructions
@@ -86,7 +86,7 @@ BEGIN
 		   ,T.ServiceEngineer
 		   ,T.ServiceOrderLine
 		   ,T.ShipLocation
-		   ,ROUND(CAST(T.TotalLinePrice2 AS FLOAT), 3)						 AS TotalLinePrice2
+		   ,ROUND(CAST(T.TotalLinePrice2 AS FLOAT), 3)						AS TotalLinePrice2
 		   ,T.UsePriceFromPricebook
 		   ,T.Warehouse
 		   ,T.CaseLine
@@ -97,7 +97,7 @@ BEGIN
 		   ,T.MasterOrderLine
 		   ,T.PickedBy
 		   ,T.PickedOn
-		   ,ROUND(CAST(T.PickedQuantity AS FLOAT), 3)						 AS PickedQuantity
+		   ,ROUND(CAST(T.PickedQuantity AS FLOAT), 3)						AS PickedQuantity
 		   ,T.Picked
 		   ,T.ReceivedBy
 		   ,T.ReceivedOn
@@ -112,17 +112,17 @@ BEGIN
 		   ,T.Shipped
 		   ,T.WorkOrderCreated
 		   ,T.EntitlementStatus
-		   ,ROUND(CAST(T.FulfillmentQuantity AS FLOAT), 3)					 AS FulfillmentQuantity
+		   ,ROUND(CAST(T.FulfillmentQuantity AS FLOAT), 3)					AS FulfillmentQuantity
 		   ,T.ServiceContractEndDate
 		   ,T.ServiceContractStartDate
 		   ,T.WarrantyEndDate
 		   ,T.WarrantyStartDate
 		   ,T.EntitledExchangeType
-		   ,ROUND(CAST(T.StandardCost AS FLOAT), 3)						 AS StandardCost
+		   ,ROUND(CAST(T.StandardCost AS FLOAT), 3)							AS StandardCost
 		   ,ROUND(CAST(T.MaterialHandlingTotalVendorLinePrice AS FLOAT), 3) AS MaterialHandlingTotalVendorLinePrice
 		   ,T.ProductName
-		   ,ROUND(CAST(T.VendorPrice AS FLOAT), 3)							 AS VendorPrice
-		   ,ROUND(CAST(T.TotalStandardLinePrice AS FLOAT), 3)				 AS TotalStandardLinePrice
+		   ,ROUND(CAST(T.VendorPrice AS FLOAT), 3)							AS VendorPrice
+		   ,ROUND(CAST(T.TotalStandardLinePrice AS FLOAT), 3)				AS TotalStandardLinePrice
 		   ,T.PartNumber
 		   ,T.ShipVia
 		   ,T.CrossReferenceDescription
@@ -137,7 +137,7 @@ BEGIN
 		   ,T.ProductCodePd
 		   ,T.TransactionResults
 		   ,T.Description
-		--      ,T.LastUpdate
+		   ,T.LastUpdate
 		FROM ODS.SF.vwServiceMaxRmaShipmentLine T
 			INNER JOIN CommonRows				T2 ON T2.Id = T.Id
 		EXCEPT
@@ -146,11 +146,11 @@ BEGIN
 		   ,T.IsDeleted
 		   ,T.Name
 		   ,T.RecordTypeId
-		   --      ,T.CreatedDate
+		   ,T.CreatedDate
 		   ,T.CreatedById
-		   --      ,T.LastModifiedDate
+		   ,T.LastModifiedDate
 		   ,T.LastModifiedById
-		   --      ,T.SystemModstamp
+		   ,T.SystemModstamp
 		   ,T.RmaShipmentOrder
 		   ,ROUND(T.ActualQuantity2, 3)						 AS ActualQuantity
 		   ,T.ActualReceiptDate
@@ -231,7 +231,7 @@ BEGIN
 		   ,T.ProductCodePd
 		   ,T.TransactionResults
 		   ,T.Description
-		--      ,T.LastUpdate
+		   ,T.LastUpdate
 		FROM ODSStaging.SF.vwSVMXC__RMA_Shipment_Line__c T
 			INNER JOIN CommonRows						 T2 ON T2.Id = T.Id
 	)
