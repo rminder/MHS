@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ODSStaging"
+  DTS:DTSID="{F87D2CAB-5765-46D0-AE02-E94B4A87E780}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=ODSStaging;Provider=SQLNCLI11.1;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA72tg5mwUi0e0vAhG3ZPKPAAAAAACAAAAAAAQZgAAAAEAACAAAAAopnppf56+7dg++THV2eL3/X/TKhVgHDr0RmatsMECJQAAAAAOgAAAAAIAACAAAAA63uk2v16hWBlV1TLvIsZeU5CIn0d6cXhzlzyJ8P59RoAAAABTK9bnCpMPNmeYLbRcW3fazek5O5KZeZWHdJ6zu7zkktW1NjW66IAEdqbsWYp36/WRBJSf3+oo+lskfmUBIQXD/CNJN9ufusO10o6ISeNuK2YsVW6oY00giaor9kzotN0IWrv7E4TZZyph5Ll9BjqD4BT+OAWvIdb6OAkyS4QSE0AAAAAw129HNVP0R0z81SbFGaLsauBF4qTi8K0kudrCfT4jqHX/P0+UYk4YRuKQVG/p+EJ6vZVwS82xU49V8RT04xLT</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

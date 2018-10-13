@@ -5,43 +5,17 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="MinderVM"
   DTS:CreatorName="MinderVM\randyminder"
-  DTS:DTSID="{63B26672-35F9-494C-8348-0164D2998A70}"
+  DTS:DTSID="{F90B3DC6-FF53-4B4C-A8EA-000A3CAC84A9}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3002.106"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="WebTime"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{D74DE3D6-4550-4015-9D10-DFF4A0165CF7}">
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{22A59E0C-BD0F-4FD7-92A1-41A377D3F6F3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Local Folder]"
-      DTS:CreationName="FILE"
-      DTS:DTSID="{F4C1659F-4E72-488D-A67A-D6E55A29EBD2}"
-      DTS:ObjectName="Local Folder">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:FileUsageType="2"
-          DTS:ConnectionString="C:\Temp" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ODSStaging]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{F87D2CAB-5765-46D0-AE02-E94B4A87E780}"
-      DTS:ObjectName="ODSStaging">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=RDSBI-PRO-DB.mhd.local;User ID=LucidDeveloper;Initial Catalog=ODSStaging;Provider=SQLNCLI11.1;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA72tg5mwUi0e0vAhG3ZPKPAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACKH8xcBfYyRTPQ6Sv+ynCmAG0zEoS3ypTqpK9A0aHifAAAAAAOgAAAAAIAACAAAABFjWGdOL3SzQtZx4QjSN9ha1kkwf4zc+znABqQzCJoqCAAAACXDvnJg6fHilgt3hTF9vM26RXReNyrOQKVr5EAoK+K4EAAAADwNaD+0CojrSLFPmrn5kiEf4WSEwuLPkhO7tvlwHn164/tKXo4bhnoTE1Eu0rtRduI8jex9CcIYq/0b2ilgiz/</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Paylocity FTP Connection]"
       DTS:CreationName="FTP"
@@ -56,7 +30,7 @@
             <DTS:Property
               DTS:Name="ServerPassword"
               Sensitive="1"
-              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA72tg5mwUi0e0vAhG3ZPKPAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAd0hO5E/mu+yKEd/XXd186vm6tQAUWwc6ZrZROH4feHgAAAAAOgAAAAAIAACAAAAC9AqUOMZOJm5Hg2t3pQPMgEvKJmnmT8ZO+MC+r4MpyyjAAAABQjZMULwYClHPdDdBK2rTaDjroqrqmNJdyxK1DwUdL9oyKARsPfuGwUmJtdS2NoEVAAAAAJUkpw/RWKrh2wMBPNtV/xtXj8wT6ELr7b2ZGQxKWt6/m3bgWx9ZKgw0/auMrqjRnO1BmSVTjQ0pzzJoW8QMp8Q</DTS:Property>
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA72tg5mwUi0e0vAhG3ZPKPAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACm61wj4d0FPznxYVcmg+GVHysqWhm21BL61FgQx0ICLgAAAAAOgAAAAAIAACAAAAC6ZLoa3alIbHdO8+h5A2JyWkcIiCYdQslJaAYFJVQpszAAAADqAZd5B3mM7JJgfooQQHgQvXYshb5sweGLR30TfNKAdX37hSsi0/E27SiBQAqc8cVAAAAAsLex2VDQqaSyZv7+FnLS5zQ1QEOevBip/CIjkB8kdxDMpV5pUWOnEe3GkNBDUJ/wB/GjttB76oeizBBQ2177GA</DTS:Property>
           </DTS:FtpConnection>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
@@ -357,6 +331,15 @@
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{664D18FC-BD07-4846-86F6-37D39899A483}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileHasBeenProcessed">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{2217CA23-2145-465D-ABFE-74E0DF536ECD}"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
@@ -364,8 +347,86 @@
       <DTS:VariableValue
         DTS:DataType="8">C:\Temp\Filename.csv</DTS:VariableValue>
     </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3672F2A4-3FBA-4F48-8F9A-D277C6B9245D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileSpec">
+      <DTS:VariableValue
+        DTS:DataType="8">*.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B39747FC-BEEB-47A7-9CC7-239D2F0C5983}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Temp</DTS:VariableValue>
+    </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete each File"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{49eb08c4-bf8c-41ca-82fc-54f4168066a8}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxErrorCount="0"
+      DTS:ObjectName="Delete each File">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{68a4f2bc-dd86-47a7-a90a-fb62602e77fe}"
+        DTS:ObjectName="{9787EFC3-7B22-4177-90B7-11F56B82DFC6}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::LocalFolder]</DTS:PropertyExpression>
+        <DTS:PropertyExpression
+          DTS:Name="FileSpec">@[User::FileSpec]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Temp" />
+            <FEFEProperty
+              FileSpec="*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Delete each File\Delete Local File"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{700a0c31-aa4f-4d94-b3f8-7a96ded741dd}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete Local File"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskSourcePath="User::FileName"
+              TaskIsSourceVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{40C5DEB6-E493-44A8-BEE8-CBC76F6FD6E5}"
+          DTS:ObjectName="{40C5DEB6-E493-44A8-BEE8-CBC76F6FD6E5}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Download all Files"
       DTS:CreationName="Microsoft.FtpTask"
@@ -381,7 +442,8 @@
         <FtpData
           ConnectionName="{0809FA4A-9307-41A5-A631-CC2066643FCF}"
           TaskOperationType="Receive"
-          TaskLocalPath="Local Folder"
+          TaskIsLocalPathVar="True"
+          TaskLocalPath="User::LocalFolder"
           TaskRemotePath="/WebTime/*.csv"
           TaskOverwriteDest="True" />
       </DTS:ObjectData>
@@ -399,6 +461,10 @@
         DTS:CreationName="Microsoft.ForEachFileEnumerator"
         DTS:DTSID="{9787EFC3-7B22-4177-90B7-11F56B82DFC6}"
         DTS:ObjectName="{9787EFC3-7B22-4177-90B7-11F56B82DFC6}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::LocalFolder]</DTS:PropertyExpression>
+        <DTS:PropertyExpression
+          DTS:Name="FileSpec">@[User::FileSpec]</DTS:PropertyExpression>
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
@@ -415,21 +481,31 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Process each File\Delete Local File"
-          DTS:CreationName="Microsoft.FileSystemTask"
-          DTS:Description="File System Task"
-          DTS:DTSID="{9BC90A62-49B7-418C-8927-166530D074CC}"
-          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:refId="Package\Process each File\Check if Processed File"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7FF9B58D-252A-4D32-A701-EC7870EE2134}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Delete Local File"
-          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ObjectName="Check if Processed File"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
-            <FileSystemData
-              TaskOperationType="DeleteFile"
-              TaskSourcePath="User::FileName"
-              TaskIsSourceVariable="True" />
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4B3DCDC5-10BB-412B-9D61-6EAC8D1E9F56}"
+              SQLTask:SqlStatementSource="SELECT IIF(EXISTS (SELECT * FROM Pay.WebTime WHERE ImportFileName = ?), 1, 0) as FileExists"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="FileExists"
+                SQLTask:DtsVariableName="User::FileHasBeenProcessed" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::FileName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -1485,8 +1561,8 @@
                   <connections>
                     <connection
                       refId="Package\Process each File\Import Into Staging\OLE DB Destination.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[ODSStaging]"
-                      connectionManagerRefId="Package.ConnectionManagers[ODSStaging]"
+                      connectionManagerID="{F87D2CAB-5765-46D0-AE02-E94B4A87E780}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[ODSStaging]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -2012,12 +2088,13 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process each File.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{954B33AF-C12A-4508-82BF-8F9EDD4CC1C5}"
-          DTS:From="Package\Process each File\Import Into Staging"
+          DTS:DTSID="{F1D3563A-AB39-40D5-A7BD-69B71244D828}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::FileHasBeenProcessed] == 0"
+          DTS:From="Package\Process each File\Check if Processed File"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
-          DTS:To="Package\Process each File\Delete Local File"
-          DTS:Value="2" />
+          DTS:To="Package\Process each File\Truncate Staging Table" />
         <DTS:PrecedenceConstraint
           DTS:refId="Package\Process each File.PrecedenceConstraints[Constraint 1]"
           DTS:CreationName=""
@@ -2038,8 +2115,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{514D5591-09DF-453B-A4B3-F7EAAA7ECB5C}"
-          DTS:ObjectName="{514D5591-09DF-453B-A4B3-F7EAAA7ECB5C}"
+          DTS:DTSID="{40FAA74B-F87F-43B9-9289-C602F8D22CDE}"
+          DTS:ObjectName="{40FAA74B-F87F-43B9-9289-C602F8D22CDE}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::FileName" />
       </DTS:ForEachVariableMappings>
@@ -2054,6 +2131,15 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Process each File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{24333BDE-1EE6-4868-8925-F06E291F8295}"
+      DTS:From="Package\Process each File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Delete each File"
+      DTS:Value="2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2068,132 +2154,167 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="163.5,42"
+          Id="Package\Download all Files"
+          TopLeft="327.380952380952,106.023809523809" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Process each File\Check if Processed File"
+          TopLeft="35,19" />
+        <NodeLayout
           Size="172.5,42"
           Id="Package\Process each File\Import Into Staging"
-          TopLeft="42.6547619047619,94.4166666666666" />
+          TopLeft="41.6547619047619,174.416666666667" />
         <NodeLayout
-          Size="156,42"
-          Id="Package\Process each File\Delete Local File"
-          TopLeft="21.6666666666667,178.261904761905" />
+          Size="142.5,42"
+          Id="Package\Process each File\Merge to Ods"
+          TopLeft="57.214285714286,255.880952380952" />
+        <NodeLayout
+          Size="188.5,42"
+          Id="Package\Process each File\Truncate Staging Table"
+          TopLeft="37.7380952380953,93.8571428571429" />
         <EdgeLayout
-          Id="Package\Process each File.PrecedenceConstraints[Constraint]"
-          TopLeft="100.577380952381,136.416666666667">
+          Id="Package\Process each File.PrecedenceConstraints[Constraint 1]"
+          TopLeft="129.946428571429,135.857142857143">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,41.8452380952381"
+              EndConnector="0,38.5595238095237"
               Start="0,0"
-              End="0,34.3452380952381">
+              End="0,31.0595238095237">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.3452380952381" />
+                    End="0,31.0595238095237" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each File.PrecedenceConstraints[Constraint 2]"
+          TopLeft="128.184523809524,216.416666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.464285714285"
+              Start="0,0"
+              End="0,31.964285714285">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.964285714285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Process each File.PrecedenceConstraints[Constraint]"
+          TopLeft="129.994047619048,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.8571428571429"
+              Start="0,0"
+              End="0,25.3571428571429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3571428571429" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,11.3679315476191,50.60890625,11.609375"
+              BoundingBox="-8,4.67857142857144,16,16"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="188.5,42"
-          Id="Package\Process each File\Truncate Staging Table"
-          TopLeft="32.7380952380953,18.8571428571429" />
-        <EdgeLayout
-          Id="Package\Process each File.PrecedenceConstraints[Constraint 1]"
-          TopLeft="127.946428571429,60.8571428571429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33.5595238095237"
-              Start="0,0"
-              End="0,26.0595238095237">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.0595238095237" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="142.5,42"
-          Id="Package\Process each File\Merge to Ods"
-          TopLeft="216.071428571429,178.738095238095" />
-        <EdgeLayout
-          Id="Package\Process each File.PrecedenceConstraints[Constraint 2]"
-          TopLeft="156.321428571429,136.416666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="131,42.3214285714286"
-              Start="0,0"
-              End="131,34.8214285714286">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.1619348486092" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.1619348486092"
-                    Point2="0,17.1619348486092"
-                    Point3="4,17.1619348486092" />
-                  <mssgle:LineSegment
-                    End="127,17.1619348486092" />
-                  <mssgle:CubicBezierSegment
-                    Point1="127,17.1619348486092"
-                    Point2="131,17.1619348486092"
-                    Point3="131,21.1619348486092" />
-                  <mssgle:LineSegment
-                    End="131,34.8214285714286" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="398,273.5"
-          Size="398,316.5"
+          PanelSize="298,327"
+          Size="298,370"
           Id="Package\Process each File"
-          TopLeft="183.875,162.178571428572" />
-        <NodeLayout
-          Size="163.5,42"
-          Id="Package\Download all Files"
-          TopLeft="299.880952380952,59.5238095238095" />
+          TopLeft="254.875,211.178571428572" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="382.252976190476,101.52380952381">
+          TopLeft="406.502976190476,148.023809523809">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.654761904762"
+              EndConnector="0,63.1547619047625"
               Start="0,0"
-              End="0,53.154761904762">
+              End="0,55.6547619047625">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,53.154761904762" />
+                    End="0,55.6547619047625" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Delete each File\Delete Local File"
+          TopLeft="45.666666666667,51.261904761905" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="269,186"
+          Size="269,229"
+          Id="Package\Delete each File"
+          TopLeft="697,214" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="552.875,396.178571428572">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="144.125,-67.678571428572"
+              Start="0,0"
+              End="136.625,-67.678571428572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.0625,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.0625,0"
+                    Point2="72.0625,0"
+                    Point3="72.0625,-4" />
+                  <mssgle:LineSegment
+                    End="72.0625,-63.678571428572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.0625,-63.678571428572"
+                    Point2="72.0625,-67.678571428572"
+                    Point3="76.0625,-67.678571428572" />
+                  <mssgle:LineSegment
+                    End="136.625,-67.678571428572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.758046875,1,50.60890625,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2203,11 +2324,7 @@
     design-time-name="Package\Process each File\Import Into Staging">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Process each File\Import Into Staging\OLE DB Destination"
-          TopLeft="206.5625,226.5625" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="151,42"
           Id="Package\Process each File\Import Into Staging\Flat File Source"
@@ -2216,6 +2333,10 @@
           Size="182.5,42"
           Id="Package\Process each File\Import Into Staging\Add FileName Column"
           TopLeft="197.1875,133.4375" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Process each File\Import Into Staging\OLE DB Destination"
+          TopLeft="206.5625,226.5625" />
         <EdgeLayout
           Id="Package\Process each File\Import Into Staging.Paths[Flat File Source Output]"
           TopLeft="285.4375,77.0625">
@@ -2235,7 +2356,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2257,7 +2380,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

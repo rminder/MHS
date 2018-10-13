@@ -41,7 +41,14 @@
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[Pay].[WebTimeHistory], DATA_CONSISTENCY_CHECK=ON));
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [IX_WebTime_CompanyId_EmployeeId_PunchId_PayDescription_Date_ActualTimeIn]
     ON [Pay].[WebTime]([CompanyId] ASC, [EmployeeId] ASC, [PunchId] ASC, [PayDescription] ASC, [Date] ASC, [ActualTimeIn] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_WebTime_ImportFileName]
+    ON [Pay].[WebTime]([ImportFileName] ASC);
 
