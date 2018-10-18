@@ -15,7 +15,7 @@ Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SL", "SL\SL.dtproj", "{9311
 EndProject
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Cubes", "Cubes\Cubes.dtproj", "{3283B1C3-BB01-49EF-9D37-AD1AE7C513B6}"
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "WebTime", "WebTime\WebTime.dtproj", "{AE1BE18E-27E6-4581-812D-1CDD22040E17}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Paylocity", "WebTime\Paylocity.dtproj", "{AE1BE18E-27E6-4581-812D-1CDD22040E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

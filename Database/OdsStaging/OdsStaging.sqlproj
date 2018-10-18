@@ -76,6 +76,7 @@
     <Folder Include="Pay\" />
     <Folder Include="Pay\Tables\" />
     <Folder Include="Pay\Stored Procedures\" />
+    <Folder Include="dbo\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\LastUpdate.sql" />
@@ -243,5 +244,10 @@
     <Build Include="Pay\Tables\WebTime.sql" />
     <Build Include="Security\Pay.sql" />
     <Build Include="Pay\Stored Procedures\UpdateWebTime.sql" />
+    <Build Include="Pay\Tables\Vehicle.sql" />
+    <Build Include="Pay\Tables\Demographic.sql" />
+    <Build Include="dbo\Functions\StripCharacters.sql" />
+    <Build Include="Pay\Stored Procedures\UpdateVehicle.sql" />
+    <Build Include="Pay\Stored Procedures\UpdateDemographic.sql" />
   </ItemGroup>
 </Project>

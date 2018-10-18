@@ -33,12 +33,20 @@
     [LastUpdate]             DATETIME2 (7)  NOT NULL,
     [ImportDate]             DATETIME2 (7)  NOT NULL,
     [ImportFileName]         VARCHAR (80)   NOT NULL,
+    [ImportFileDate]         DATE           NOT NULL,
     [ValidFrom]              DATETIME2 (7)  NOT NULL,
     [ValidTo]                DATETIME2 (7)  NOT NULL
 );
 
 
+
+
 GO
 CREATE CLUSTERED INDEX [ix_WebTimeHistory]
     ON [Pay].[WebTimeHistory]([ValidTo] ASC, [ValidFrom] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_WebTimeHistory_RowId]
+    ON [Pay].[WebTimeHistory]([RowId] ASC);
 

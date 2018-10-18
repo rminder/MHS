@@ -33,12 +33,15 @@
     [LastUpdate]             DATETIME2 (7)                               NOT NULL,
     [ImportDate]             DATETIME2 (7)                               NOT NULL,
     [ImportFileName]         VARCHAR (80)                                NOT NULL,
+    [ImportFileDate]         DATE                                        NOT NULL,
     [ValidFrom]              DATETIME2 (7) GENERATED ALWAYS AS ROW START NOT NULL,
     [ValidTo]                DATETIME2 (7) GENERATED ALWAYS AS ROW END   NOT NULL,
     CONSTRAINT [PKWebTime] PRIMARY KEY CLUSTERED ([RowId] ASC),
     PERIOD FOR SYSTEM_TIME ([ValidFrom], [ValidTo])
 )
 WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE=[Pay].[WebTimeHistory], DATA_CONSISTENCY_CHECK=ON));
+
+
 
 
 

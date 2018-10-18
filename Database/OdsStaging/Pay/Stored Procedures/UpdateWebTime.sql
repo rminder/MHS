@@ -13,6 +13,11 @@ BEGIN
 
 	DECLARE @RowsMerged INT = 0;
 
+	-- We process one CSV file at a time. Therefore, all the rows in the OdsStaging.Pay.WebTime table will have the same
+	-- import file name and file date.
+	DECLARE @ImportFileName VARCHAR(80) = ISNULL((SELECT TOP 1 FileName FROM OdsStaging.Pay.WebTime),'') 
+	DECLARE @ImportFileDate Date = ISNULL((SELECT TOP 1 FileDate FROM OdsStaging.Pay.WebTime),'') 
+
 	-- Find rows in staging that do not exist in Ods
 	;
 	WITH MissingRows
@@ -36,7 +41,7 @@ BEGIN
 		   ,[RoundedTimeOut]
 		   ,[ActualTimeIn]
 		   ,[ActualTimeOut]
-		   ,[Hours]
+		   ,ROUND([Hours], 3) AS [Hours]
 		   ,[PunchType]
 		   ,[LaborLevel1Code]
 		   ,[LaborLevel1Description]
@@ -69,7 +74,7 @@ BEGIN
 		   ,[RoundedTimeOut]
 		   ,[ActualTimeIn]
 		   ,[ActualTimeOut]
-		   ,[Hours]
+		   ,ROUND([Hours], 3) AS [Hours]
 		   ,[PunchType]
 		   ,[LaborLevel1Code]
 		   ,[LaborLevel1Description]
@@ -85,59 +90,16 @@ BEGIN
 		FROM ODS.Pay.WebTime
 	)
 
-	-- Retrieve all rows from MissingRows and retrieve the associated file names
-	,SourceRows AS
-	(
-		SELECT
-			T.[CompanyId]
-		   ,T.[EmployeeId]
-		   ,T.[BadgeNumber]
-		   ,T.[LastName]
-		   ,T.[FirstName]
-		   ,T.[MiddleInitial]
-		   ,T.[Title]
-		   ,T.[PersonalEmail]
-		   ,T.[WorkEmail]
-		   ,T.[MobileNumber]
-		   ,T.[PayDescription]
-		   ,T.[PayType]
-		   ,T.[Date]
-		   ,T.[RoundedTimeIn]
-		   ,T.[RoundedTimeOut]
-		   ,T.[ActualTimeIn]
-		   ,T.[ActualTimeOut]
-		   ,T.[Hours]
-		   ,T.[PunchType]
-		   ,T.[LaborLevel1Code]
-		   ,T.[LaborLevel1Description]
-		   ,T.[LaborLevel2Code]
-		   ,T.[LaborLevel2Description]
-		   ,T.[LaborLevel3Code]
-		   ,T.[LaborLevel3Description]
-		   ,T.[LaborLevel4Code]
-		   ,T.[LaborLevel4Description]
-		   ,T.[LaborLevel5Code]
-		   ,T.[LaborLevel5Description]
-		   ,T.[PunchId]
-		   ,T2.[FileName] AS ImportFileName
-		FROM MissingRows					  T
-			INNER JOIN ODSStaging.Pay.WebTime T2 ON T2.CompanyId		  = T.CompanyId
-													AND T2.EmployeeId	  = T.EmployeeId
-													AND T2.PunchId		  = T.PunchId
-													AND T2.PayDescription = T.PayDescription
-													AND T2.Date			  = T.Date
-													AND T2.ActualTimeIn	  = T.ActualTimeIn
-	)
 	-- Merge all the missing rows in staging to Ods
 	MERGE ODS.Pay.WebTime AS TARGET
-	USING SourceRows AS SOURCE
+	USING MissingRows AS SOURCE
 	ON (
 		   TARGET.CompanyId = SOURCE.CompanyId
 		   AND TARGET.EmployeeId = SOURCE.EmployeeId
 		   AND TARGET.PunchId = SOURCE.PunchId
-		   AND Target.PayDescription = Source.PayDescription
-		   AND Target.Date = Source.Date
-		   AND Target.ActualTimeIn = Source.ActualTimeIn
+		   AND TARGET.PayDescription = SOURCE.PayDescription
+		   AND TARGET.Date = SOURCE.Date
+		   AND TARGET.ActualTimeIn = SOURCE.ActualTimeIn
 	   )
 	WHEN MATCHED THEN UPDATE SET
 						  TARGET.BadgeNumber = SOURCE.BadgeNumber
@@ -164,7 +126,8 @@ BEGIN
 						 ,TARGET.LaborLevel3Description = SOURCE.LaborLevel3Description
 						 ,TARGET.LaborLevel4Description = SOURCE.LaborLevel4Description
 						 ,TARGET.LaborLevel5Description = SOURCE.LaborLevel5Description
-						 ,Target.[ImportFileName] = Source.[ImportFileName]
+						 ,TARGET.[ImportFileName] = @ImportFileName
+						 ,Target.[ImportFileDate] = @ImportFileDate
 						 ,TARGET.LastUpdate = GETUTCDATE()
 	WHEN NOT MATCHED BY TARGET THEN
 		INSERT
@@ -200,6 +163,7 @@ BEGIN
 		   ,[LaborLevel5Code]
 		   ,[LaborLevel5Description]
 		   ,[ImportFileName]
+		   ,[ImportFileDate]
 		   ,[LastUpdate]
 		   ,[ImportDate]
 		)
@@ -234,15 +198,15 @@ BEGIN
 			 ,SOURCE.LaborLevel4Description
 			 ,SOURCE.LaborLevel5Code
 			 ,SOURCE.LaborLevel5Description
-			 ,Source.[ImportFileName]
+			 ,@ImportFileName
+			 ,@ImportFileDate
 			 ,GETUTCDATE()
 			 ,GETUTCDATE());
-
-
+	;
 	SET @RowsMerged = @@ROWCOUNT;
 
 	IF @RowsMerged > 0
-		INSERT INTO Ods.Pay.ImportLog (DataImported, RowsMerged, Status, Comments, TimestampUtc)
+		INSERT INTO ODS.Pay.ImportLog (DataImported, RowsMerged, Status, Comments, ImportFileName, TimestampUtc)
 		VALUES
-			 ('WebTime', @RowsMerged, 'Success', '', GETUTCDATE());
+			 ('WebTime', @RowsMerged, 'Success', '', @ImportFileName, GETUTCDATE());
 END;

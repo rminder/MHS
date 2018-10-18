@@ -78,6 +78,7 @@
     <Folder Include="Pay\Tables\" />
     <Folder Include="Pay\Views\" />
     <Folder Include="SF\Stored Procedures\" />
+    <Folder Include="Pay\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="SL\Tables\Company.sql" />
@@ -335,6 +336,13 @@
     <Build Include="Pay\Views\TechPayrollHours.sql" />
     <Build Include="SF\Stored Procedures\UserIntegrityCheck.sql" />
     <Build Include="SF\Stored Procedures\SuperCenterIntegrityCheck.sql" />
+    <Build Include="Pay\Tables\Vehicle.sql" />
+    <Build Include="Pay\Tables\DemographicHistory.sql" />
+    <Build Include="Pay\Tables\Demographic.sql" />
+    <Build Include="Pay\Views\vwVehicle.sql" />
+    <Build Include="Pay\Views\vwDemographic.sql" />
+    <Build Include="Pay\Functions\WebTimeGetHistory.sql" />
+    <Build Include="Pay\Functions\DemographicGetHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SchemaCompareOds.scmp" />
